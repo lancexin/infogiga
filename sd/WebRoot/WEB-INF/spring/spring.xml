@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+		<!-- 
+	  	<bean id="dataSource2" 
+	        class="org.apache.commons.dbcp.BasicDataSource"
+	        destroy-method="close">
+	        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+	        <property name="url" value="jdbc:mysql://localhost:3306/test" />
+	        <property name="username" value="root" />
+	        <property name="password" value="infogiga" />
+	    </bean>
+	     -->
+    <!-- 配置c3p0连接池 -->
+	<bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource" >
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test"></property>
+		<property name="user" value="root"></property>
+		<property name="password" value="infogiga"></property>
+		<!-- 最大链接数 默认为15 -->
+		<property name="maxPoolSize" value="60"></property>
+		<!-- 最小链接数 -->
+		<property name="minPoolSize" value="5"></property>
+		<!-- 初始化的连接数,在最大与最小之间 默认为3 -->
+		<property name="initialPoolSize" value="10"></property>
+		<!-- 链接空闲时间 默认为0秒,即永不丢弃;设置为60时,60秒不用则自动丢弃 -->
+		<property name="maxIdleTime" value="60"></property>
+		<!-- 当链接用尽时,一次获取的连接数 默认为3 -->
+		<property name="acquireIncrement" value="5"></property>
+		
+		<!--JDBC的标准参数，用以控制数据源内加载的PreparedStatements数量。
+			但由于预缓存的statements属于单个connection而不是整个连接池。
+			所以设置这个参数需要考虑到多方面的因素。   
+			如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。
+			默认: 0--> 
+		<property name="maxStatements" value="0"></property>
+		<property name="maxStatementsPerConnection" value="0"></property>
+		 <!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
+		<property name="idleConnectionTestPeriod" value="60"></property>
+		 <!--定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 -->
+		<property name="acquireRetryAttempts" value="10"></property>
+		 <!--获取连接失败将会引起所有等待连接池来获取连接的线程抛出异常。
+		 	但是数据源仍有效保留，并在下次调用getConnection()的时候继续尝试获取连接。
+		 	如果设为true，那么在尝试获取连接失败后该数据源将申明已断开并永久关闭。
+		 	Default: false-->
+		<property name="breakAfterAcquireFailure" value="true"></property>
+		 <!--因性能消耗大,请只在需要的时候使用它。
+		 	如果设为true那么在每个connection提交的时候都将校验其有效性。
+		 	建议使用idleConnectionTestPeriod或automaticTestTable等方法来提升连接测试的性能。
+		 	Default: false -->
+		<property name="testConnectionOnCheckout" value="false"></property>
+	</bean> 
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+			</props>
+		</property>
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath*:/cn/infogiga/sd/pojo/</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 配置session延迟关闭 -->
+	<bean id="openSessionInViewInterceptor"
+          class="org.springframework.orm.hibernate3.support.OpenSessionInViewInterceptor">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="flushMode" value="1"/>
+        <property name="singleSession" value="true" />
+    </bean>
+    <!-- end -->
+    
+
+    
+    <!-- 配置附件上传参数 -->
+    <bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="104857600" />
+		<property name="maxInMemorySize" value="4096" />
+	</bean>
+    
+   <import resource="spring-dao.xml" />
+   <import resource="spring-service.xml" />
+</beans>

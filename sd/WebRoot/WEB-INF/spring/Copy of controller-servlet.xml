@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:tx="http://www.springframework.org/schema/tx"  
+    xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<bean id="jspResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="prefix" value="/WEB-INF/templete/jsp/"/>  
+        <property name="suffix" value=".jsp"/>  
+    </bean> 
+    
+    <bean id="jsResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="prefix" value="/WEB-INF/templete/js/"/>  
+        <property name="suffix" value=".js"/>  
+    </bean> 
+    
+    <bean id="urlTypeInperceptor"
+          class="cindy.page.springframework.UrlTypeInperceptor">
+        <property name="typeName" value="type"/>
+        <property name = "views">
+        	<map>
+        		<entry key = "json">
+                    <bean class="cindy.page.springframework.MappingJsonlibView">
+                    	<property name="contentType" value="text/html;charset=utf-8"/>  
+				        <property name="jsonArrayName" value="array"/> 
+				        <property name="jsonObjectName" value="object"/>
+                    </bean>
+                </entry>
+                <entry key = "xml">
+                    <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+    				<property name="modelKey" value="modelBean"/>
+    				<property name="contentType" value="application/xml"/>
+    				<property name="marshaller">
+    					<bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+					    	<property name="autodetectAnnotations" value="true"/>
+					    </bean>
+    				</property>
+    			</bean>
+                </entry>
+        	</map>
+        </property>
+    </bean>
+    
+	
+   <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+   		<property name="interceptors">
+	    	<list> 
+	    		<ref bean = "openSessionInViewInterceptor"/>
+	    		<ref bean = "urlTypeInperceptor"/>
+	    	</list>	 
+	    </property>
+
+	    <property name="mappings">
+	        <props>	   
+	           	<prop key="/login">jsonController</prop> 	
+	            <prop key="/menu">jsonController</prop> 
+	            
+	            
+	            <prop key="/json">jsonController</prop>
+	            <prop key="/add">jsonController</prop>	
+	            
+	            <prop key="/admin">jspController</prop>	
+	            <prop key="/system">jspController</prop>	
+	        </props>
+	    </property>
+   </bean>
+   
+   <bean id="jsonController" class="cn.infogiga.sd.controller.MappingJsonController">
+		<property name="manageService" ref="manageService"></property>
+		<property name="powerService" ref="powerService"></property>
+   </bean>
+   
+   <bean id="jspController" class="cn.infogiga.sd.controller.MappingJspController">
+		
+   </bean>
+</beans>
