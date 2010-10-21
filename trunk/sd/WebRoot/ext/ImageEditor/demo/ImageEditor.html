@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>ImageEditor.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link type="text/css" rel="stylesheet" href="../../3.2.1/resources/css/ext-all.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/organizer.css"/>
+	<script type="text/javascript" src="../../3.2.1/adapter/ext/ext-base.js"></script>
+	<script type="text/javascript" src="../../3.2.1/ext-all-debug.js"></script>
+	
+	<link type="text/css" rel="stylesheet" href="../../fileuploadfield/css/fileuploadfield.css"/>
+	<script type="text/javascript" src="../../fileuploadfield/FileUploadField.js"></script>
+	<script type="text/javascript" src="Ext.ux.ImageCuter.js"></script>
+    <script type="text/javascript">
+    
+    Ext.onReady(function(){
+    
+    
+    	var store = new Ext.data.JsonStore({
+            url: 'image?pictureList&type=json',
+            autoLoad: true,
+            root: 'data',
+            id:'id',
+            fields:[
+                'id','name', 'url','width','height'
+            ]
+        });
+    	
+    	
+    	var view = new Ext.DataView({
+	        itemSelector: 'div.thumb-wrap',
+	        style:'overflow:auto',
+	        singleSelect :true,
+	        loadingText :"正在加载.....",
+	        store: store,
+	        tpl: new Ext.XTemplate(
+	            '<tpl for=".">',
+	            '<div class="thumb-wrap" >',
+	            '<div class="thumb"><img src="{url}" class="thumb-img"></div>',
+	            '<span>{width}*{height}</span></div>',
+	            '</tpl>'
+	        ) 
+	    });
+	
+	    var images = new Ext.Panel({
+	    	id:"images",
+	        region:'center',
+	        margins: '5 5 5 0',
+	        layout:'fit',
+	        items: view,
+	        border:false,
+	        buttonAlign:'center',
+	        bbar: new Ext.PagingToolbar({
+		        pageSize: 20,
+		        store: store,
+		        displayInfo: true,
+		        displayMsg: '第{0}到{1}条数据 共{2}条',
+		        emptyMsg: "没有记录"
+		    }),
+	        buttons:[{
+				text:"确定",
+				handler:function(){
+					var r = view.getSelectedRecords()[0];
+					if(r == undefined || r == null){
+						return;
+					}
+					
+					alert(r.data.name+"   "+r.data.url);
+				}
+			},{
+				text:"裁剪",
+				handler:function(){
+					var r = view.getSelectedRecords()[0];
+					if(r == undefined || r == null){
+						return;
+					}
+					new Ext.ux.ImageCuter({
+						baseImgX:150,                //设置图片框的位置x       
+						baseImgY:100,                //设置图片框的位置y   
+						baseImgWidth:100,            //图片剪裁框的宽度度
+						baseImgHeight:100,           //图片剪裁框的高度
+						baseImgBorder:true,          //图像剪裁框是否有边框
+						imageUrl:r.data.url,         //加载图片的路径
+						opacity:80,                  //图片蒙版透明度
+						imgWidth:r.data.width,       //图片原始宽度
+					    imgHeight:r.data.height,     //图片原始高度
+					    onClickOKButton:function(x,y,w,h){
+							alert("x:"+x+"  y:"+y+"  w:"+w+"  h:"+h);
+						},
+						onClickCancelButton:function(){
+							this.close();
+						}
+					}).show();
+	
+					//alert(r.data.name);
+				
+				}
+			},{
+				text:"取消",
+				handler:function(){
+					window.close();
+				
+				}
+			}]
+	    });
+	    
+	  	
+    	
+    	var fp = new Ext.FormPanel({
+	        fileUpload: true,
+	     	border:false,
+	        autoHeight: true,
+	        buttonAlign:'center',
+	        bodyStyle: 'padding: 10px 10px 0 10px;',
+	        layout:'absolute',
+	        defaults: {
+	            allowBlank: false,
+	            msgTarget: 'side'
+	        },
+	        items: [{
+	        	y:10,
+	        	x:7,
+	        	anchor: '9%',
+	        	xtype:'button',
+	        	text: '上传',
+	        	handler: function(){
+	                if(fp.getForm().isValid()){
+	                   	fp.getForm().submit({
+	                   		url: 'image?pictureUpload&type=json',
+	                   		success: function(form, action) {
+						       Ext.Msg.alert('Success', action.result.msg);
+						    },
+						    failure: function(form, action) {
+						        switch (action.failureType) {
+						            case Ext.form.Action.CLIENT_INVALID:
+						                Ext.Msg.alert('Failure', 'Form fields may not be submitted with invalid values');
+						                break;
+						            case Ext.form.Action.CONNECT_FAILURE:
+						                Ext.Msg.alert('Failure', 'Ajax communication failed');
+						                break;
+						            case Ext.form.Action.SERVER_INVALID:
+						               Ext.Msg.alert('Failure', action.result.msg);
+						        }
+						    }
+	                   	});
+	                }
+	            }
+	        },{
+	        	x:'11%',
+	        	anchor: '85%',
+	            xtype: 'fileuploadfield',
+	            id: 'upload',
+	            hideLabel :true,
+	            emptyText: 'Select an image',
+	            fieldLabel: 'Photo',
+	            name: 'picture',
+	            buttonText: '',
+	            buttonCfg: {
+	                iconCls: 'upload-icon'
+	            }
+	        }]
+	    });
+	    
+    	var imgCmp = new Ext.BoxComponent({
+  			id:"imgShow",
+  			style:"max-width:300px;max-height:300px;",
+		    xtype: 'box', //或者xtype: 'component',  
+		    autoEl: {  
+		        tag: 'img',    //指定为img标签  
+		        src: 'images/aa1.png'    //指定url路径  
+		    }  
+	  	});
+	  	//imgCmp.setSize( Mixed width, Mixed height ) 
+	  
+	  	var imgPanel = new Ext.Panel({
+	  		id:"imgPanel",
+	  		style:"margin:auto;margin-top:5px;text-align:center;",
+	  		layout:'fit',
+	  		border:false,
+	  		height:300,
+	  		width:300,
+	  		items:imgCmp
+	  	
+	  	});
+    	
+    	var uploadPanel = new Ext.Panel({
+	  		id:"uploadPanel",
+	        layout:'fit',
+	  		border:false,
+	  		items:[fp]
+	  	});
+	  	
+	  
+    	var window = new Ext.Window({
+				height : 400,
+				width  : 445,
+				layout : 'fit',
+				title  : '图片选择器',
+				items  : [{
+					xtype: 'tabpanel',
+					activeTab: 0,
+					border: false,
+					items: [{
+						title : '图库查找',
+						layout : 'fit',
+						items:images
+					},{
+						title : '本地上传',
+						items:uploadPanel
+					}]
+				}]
+			});
+			window.show();
+    	});
+    
+    
+    </script>
+
+  </head>
+  
+  <body>
+    
+  </body>
+</html>
