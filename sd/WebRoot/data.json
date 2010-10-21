@@ -1,0 +1,124 @@
+{
+totalCount:100,
+data:[{
+		company:"3m Co",
+		price:"71.72",
+		change:"0.02",
+		pctChange:"0.03",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"Altria Group Inc",
+		price:"83.81",
+		change:"0.28",
+		pctChange:"0.34",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"Altria Group Inc",
+		price:"83.81",
+		change:"0.28",
+		pctChange:"0.34",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"Altria Group Inc",
+		price:"83.81",
+		change:"0.28",
+		pctChange:"0.34",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"Altria Group Inc",
+		price:"83.81",
+		change:"0.28",
+		pctChange:"0.34",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"3m Co",
+		price:"71.72",
+		change:"0.02",
+		pctChange:"0.03",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"Altria Group Inc",
+		price:"83.81",
+		change:"0.28",
+		pctChange:"0.34",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"Altria Group Inc",
+		price:"83.81",
+		change:"0.28",
+		pctChange:"0.34",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"Altria Group Inc",
+		price:"83.81",
+		change:"0.28",
+		pctChange:"0.34",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"Altria Group Inc",
+		price:"83.81",
+		change:"0.28",
+		pctChange:"0.34",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"3m Co",
+		price:"71.72",
+		change:"0.02",
+		pctChange:"0.03",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"Altria Group Inc",
+		price:"83.81",
+		change:"0.28",
+		pctChange:"0.34",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"Altria Group Inc",
+		price:"83.81",
+		change:"0.28",
+		pctChange:"0.34",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"Altria Group Inc",
+		price:"83.81",
+		change:"0.28",
+		pctChange:"0.34",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"Altria Group Inc",
+		price:"83.81",
+		change:"0.28",
+		pctChange:"0.34",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"3m Co",
+		price:"71.72",
+		change:"0.02",
+		pctChange:"0.03",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"Altria Group Inc",
+		price:"83.81",
+		change:"0.28",
+		pctChange:"0.34",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"Altria Group Inc",
+		price:"83.81",
+		change:"0.28",
+		pctChange:"0.34",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"Altria Group Inc",
+		price:"83.81",
+		change:"0.28",
+		pctChange:"0.34",
+		lastChange:"9/1 12:00am"
+	},{
+		company:"Altria Group Inc",
+		price:"83.81",
+		change:"0.28",
+		pctChange:"0.34",
+		lastChange:"9/1 12:00am"
+	}]
+}
