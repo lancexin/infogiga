@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	
+	 <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	    <property name="interceptors" ref="openSessionInViewInterceptor"/>
+	    <property name="mappings">
+	        <props>	        	
+	            <prop key="/list">listController</prop>
+	            <prop key="/query">queryController</prop>
+	            <prop key="/add">addController</prop>
+	            <prop key="/export">exportController</prop>
+	            <prop key="/update">updateController</prop>
+	            <prop key="/exeAdd">addController</prop>
+	            <prop key="/exeUpdate">updateController</prop>
+	            <prop key="/upload">uploadController</prop>
+	        </props>
+	    </property>
+	 </bean>
+	 
+	 <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="prefix" value="/page/"/>  
+        <property name="suffix" value=".jsp"/>  
+     </bean> 
+	 
+	<bean id="listController" class="cn.infogiga.exp.controller.ListController">
+		<property name="expService" ref="ExpService"></property>
+	</bean>
+	
+	<bean id="queryController" class="cn.infogiga.exp.controller.QueryController">
+		<property name="expService" ref="ExpService"></property>
+	</bean>
+	
+	<bean id="exportController" class="cn.infogiga.exp.controller.ExportController">
+		<property name="expService" ref="ExpService"></property>
+	</bean>
+	
+	<bean id="updateController" class="cn.infogiga.exp.controller.UpdateController">
+		<property name="expService" ref="ExpService"></property>
+	</bean>
+	
+	<bean id="addController" class="cn.infogiga.exp.controller.AddController">
+		<property name="expService" ref="ExpService"></property>
+		<property name="smsService" ref="SmsService"></property>
+	</bean>
+	
+	<bean id="uploadController" class="cn.infogiga.exp.controller.UploadController">
+		
+	</bean>
+	<!-- end -->
+ </beans>
