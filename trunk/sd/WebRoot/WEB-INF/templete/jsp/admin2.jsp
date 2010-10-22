@@ -32,6 +32,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="ext/fileuploadfield/FileUploadField.js"></script>
 	<script type="text/javascript" src="ext/ImageEditor/Ext.ux.ImageCuter.js"></script>
 	<script type="text/javascript" src="ext/ImageEditor/Ext.ux.ImageChooser.js"></script>
+	<script type="text/javascript" src="ext/ImageEditor/ImageCuter.js"></script>
+	<script type="text/javascript" src="ext/ImageEditor/ImageChooser.js"></script>
 	
   </head>
   

@@ -14,6 +14,7 @@ public class Videodownloadstat implements java.io.Serializable {
 
 	private Integer statId;
 	private Equipment equipment;
+	private Employee employee;
 	private Video video;
 	private Downloadtype downloadtype;
 	private String phoneNumber;
@@ -27,10 +28,11 @@ public class Videodownloadstat implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Videodownloadstat(Equipment equipment, Video video,
-			Downloadtype downloadtype, String phoneNumber, Integer status,
-			Date addTime) {
+	public Videodownloadstat(Equipment equipment, Employee employee,
+			Video video, Downloadtype downloadtype, String phoneNumber,
+			Integer status, Date addTime) {
 		this.equipment = equipment;
+		this.employee = employee;
 		this.video = video;
 		this.downloadtype = downloadtype;
 		this.phoneNumber = phoneNumber;
@@ -54,6 +56,14 @@ public class Videodownloadstat implements java.io.Serializable {
 
 	public void setEquipment(Equipment equipment) {
 		this.equipment = equipment;
+	}
+
+	public Employee getEmployee() {
+		return this.employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	public Video getVideo() {

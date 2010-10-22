@@ -1,8 +1,5 @@
 package cn.infogiga.sd.pojo;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Videoindex entity.
  * 
@@ -14,10 +11,8 @@ public class Videoindex implements java.io.Serializable {
 	// Fields
 
 	private Integer indexId;
-	private Videoindex videoindex;
 	private Video video;
-	private Integer videomenuId;
-	private Set videoindexes = new HashSet(0);
+	private Videomenu videomenu;
 
 	// Constructors
 
@@ -25,18 +20,10 @@ public class Videoindex implements java.io.Serializable {
 	public Videoindex() {
 	}
 
-	/** minimal constructor */
-	public Videoindex(Videoindex videoindex) {
-		this.videoindex = videoindex;
-	}
-
 	/** full constructor */
-	public Videoindex(Videoindex videoindex, Video video, Integer videomenuId,
-			Set videoindexes) {
-		this.videoindex = videoindex;
+	public Videoindex(Video video, Videomenu videomenu) {
 		this.video = video;
-		this.videomenuId = videomenuId;
-		this.videoindexes = videoindexes;
+		this.videomenu = videomenu;
 	}
 
 	// Property accessors
@@ -49,14 +36,6 @@ public class Videoindex implements java.io.Serializable {
 		this.indexId = indexId;
 	}
 
-	public Videoindex getVideoindex() {
-		return this.videoindex;
-	}
-
-	public void setVideoindex(Videoindex videoindex) {
-		this.videoindex = videoindex;
-	}
-
 	public Video getVideo() {
 		return this.video;
 	}
@@ -65,20 +44,12 @@ public class Videoindex implements java.io.Serializable {
 		this.video = video;
 	}
 
-	public Integer getVideomenuId() {
-		return this.videomenuId;
+	public Videomenu getVideomenu() {
+		return this.videomenu;
 	}
 
-	public void setVideomenuId(Integer videomenuId) {
-		this.videomenuId = videomenuId;
-	}
-
-	public Set getVideoindexes() {
-		return this.videoindexes;
-	}
-
-	public void setVideoindexes(Set videoindexes) {
-		this.videoindexes = videoindexes;
+	public void setVideomenu(Videomenu videomenu) {
+		this.videomenu = videomenu;
 	}
 
 }

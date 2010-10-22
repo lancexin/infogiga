@@ -108,6 +108,7 @@ Ext.ux.form.FileUploadField = Ext.extend(Ext.form.TextField,  {
     },
     
     createFileInput : function() {
+    	
         this.fileInput = this.wrap.createChild({
             id: this.getFileInputId(),
             name: this.name||this.getId(),
@@ -119,9 +120,11 @@ Ext.ux.form.FileUploadField = Ext.extend(Ext.form.TextField,  {
     },
     
     reset : function(){
-        this.fileInput.remove();
-        this.createFileInput();
-        this.bindListeners();
+	    if(this.fileInput){
+	    	this.fileInput.remove();
+	    	this.createFileInput();
+        	this.bindListeners();
+	    }
         Ext.ux.form.FileUploadField.superclass.reset.call(this);
     },
 

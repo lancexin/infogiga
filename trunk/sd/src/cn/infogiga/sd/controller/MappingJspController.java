@@ -115,4 +115,11 @@ public class MappingJspController {
 		model.put("name", name);
 		return "video/videobaseinfo/videobaseinfo";
 	}
+
+	@RequestMapping(value = "/p",params="videodownloadstat")
+	public String videodownloadstatList(ModelMap model,@RequestParam("code")String code,@RequestParam("name")String name){
+		model.put("code", code);
+		model.put("name", name);
+		return "video/videodownloadstat/videodownloadstat";
+	}
 }

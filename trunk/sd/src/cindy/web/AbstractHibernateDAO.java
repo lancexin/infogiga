@@ -249,4 +249,16 @@ public abstract class AbstractHibernateDAO extends HibernateDaoSupport implement
 		});
 	}
 
+	public <T extends Serializable> List<T> getListByProperty(final Class<T> clazz,final String property,final Object value,final Integer start,final Integer limit){
+		return (List<T>) getHibernateTemplate().execute(new HibernateCallback(){
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				final Criteria c = session.createCriteria(clazz);
+				c.add(Restrictions.eq(property, value));
+				c.setMaxResults(limit);
+				c.setFirstResult(start);
+				return c.list();
+			}
+		});
+	}
 }
