@@ -40,6 +40,8 @@ import cn.infogiga.sd.dto.JsonSoftDownloadStat;
 import cn.infogiga.sd.dto.JsonSoftIndex;
 import cn.infogiga.sd.dto.JsonSoftMenu;
 import cn.infogiga.sd.dto.JsonVideo;
+import cn.infogiga.sd.dto.JsonVideodownloadstat;
+import cn.infogiga.sd.dto.JsonVideoindex;
 import cn.infogiga.sd.dto.JsonVideomenu;
 import cn.infogiga.sd.pojo.Admin;
 import cn.infogiga.sd.pojo.Bissinusshall;
@@ -63,6 +65,8 @@ import cn.infogiga.sd.pojo.Softdownloadstat;
 import cn.infogiga.sd.pojo.Softindex;
 import cn.infogiga.sd.pojo.Softmenu;
 import cn.infogiga.sd.pojo.Video;
+import cn.infogiga.sd.pojo.Videodownloadstat;
+import cn.infogiga.sd.pojo.Videoindex;
 import cn.infogiga.sd.pojo.Videomenu;
 import cn.infogiga.sd.service.ManageService;
 import cn.infogiga.sd.service.PowerService;
@@ -190,13 +194,21 @@ public class MappingListJsonCongroller {
 
 	}
 	
+	@RequestMapping(value = "/json",params="comboVideomenu")
+	public String comboVideomenu(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model){
+		List<JsonVideomenu> powerList = MyBeanUtils.copyListProperties(manageService.getManageDAO().findAll(Videomenu.class), JsonVideomenu.class);
+		model.addAttribute("array", powerList);
+		return "list";
+
+	}
+	
 	@RequestMapping(value = "/json",params="powerList")
 	public String powerJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
 			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit){
 		//List<Power> powerList = manageService.getManageDAO().getListByPage(Power.class, start, limit);
 		List<JsonPower> powerList = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Power.class, start, limit), JsonPower.class);
 		int totalCount = manageService.getManageDAO().getCount(Power.class);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,powerList);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,powerList,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 
@@ -208,7 +220,7 @@ public class MappingListJsonCongroller {
 			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit){
 		List<JsonAdmin> powerList = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Admin.class, start, limit), JsonAdmin.class);
 		int totalCount = manageService.getManageDAO().getCount(Admin.class);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,powerList);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,powerList,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 
@@ -218,7 +230,7 @@ public class MappingListJsonCongroller {
 	public String musicmanJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model){
 		List<JsonMusicman> powerList = MyBeanUtils.copyListProperties(manageService.getManageDAO().findAll(Musicman.class), JsonMusicman.class);
 		int totalCount = manageService.getManageDAO().getCount(Musicman.class);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,powerList);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,powerList,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 	}
@@ -228,7 +240,7 @@ public class MappingListJsonCongroller {
 			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit){
 		List<JsonBissinussHall> powerList = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Bissinusshall.class, start, limit), JsonBissinussHall.class);
 		int totalCount = manageService.getManageDAO().getCount(Bissinusshall.class);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,powerList);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,powerList,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 
@@ -239,7 +251,7 @@ public class MappingListJsonCongroller {
 			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit){
 		List<JsonEquipment> powerList = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Equipment.class, start, limit), JsonEquipment.class);
 		int totalCount = manageService.getManageDAO().getCount(Equipment.class);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,powerList);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,powerList,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 
@@ -251,7 +263,7 @@ public class MappingListJsonCongroller {
 			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit){
 		List<JsonEmployee> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Employee.class, start, limit), JsonEmployee.class);
 		int totalCount = manageService.getManageDAO().getCount(Employee.class);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 
@@ -261,7 +273,7 @@ public class MappingListJsonCongroller {
 	public String proviceJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model){
 		List<JsonProvince> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().findAll(Province.class), JsonProvince.class);
 		int totalCount = manageService.getManageDAO().getCount(Province.class);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 
@@ -272,7 +284,7 @@ public class MappingListJsonCongroller {
 			@RequestParam("provinceId")Integer provinceId){
 		List<JsonCity> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().findByProperty(City.class, "province.provinceId", provinceId), JsonCity.class);
 		int totalCount = manageService.getManageDAO().getCount(City.class);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 
@@ -282,7 +294,7 @@ public class MappingListJsonCongroller {
 	public String phonebrandJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model){
 		List<JsonPhonebrand> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().findAll(Phonebrand.class), JsonPhonebrand.class);
 		int totalCount = manageService.getManageDAO().getCount(Phonebrand.class);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 
@@ -292,7 +304,7 @@ public class MappingListJsonCongroller {
 	public String phoneplatformJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model){
 		List<JsonPhoneplatform> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().findAll(Phoneplatform.class), JsonPhoneplatform.class);
 		int totalCount = manageService.getManageDAO().getCount(Phoneplatform.class);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 
@@ -302,7 +314,7 @@ public class MappingListJsonCongroller {
 	public String phonetypeJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model){
 		List<JsonPhonetype> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().findAll(Phonetype.class), JsonPhonetype.class);
 		int totalCount = manageService.getManageDAO().getCount(Phonetype.class);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 
@@ -312,7 +324,7 @@ public class MappingListJsonCongroller {
 	public String softMenuJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model){
 		List<JsonSoftMenu> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().findAll(Softmenu.class), JsonSoftMenu.class);
 		int totalCount = manageService.getManageDAO().getCount(Softmenu.class);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 	}
@@ -322,7 +334,7 @@ public class MappingListJsonCongroller {
 			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit){
 		List<JsonSoft> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Soft.class, start, limit), JsonSoft.class);
 		int totalCount = manageService.getManageDAO().getCount(Soft.class);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 	}
@@ -332,7 +344,7 @@ public class MappingListJsonCongroller {
 			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit){
 		List<JsonVideo> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Video.class, start, limit), JsonVideo.class);
 		int totalCount = manageService.getManageDAO().getCount(Video.class);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 	}
@@ -343,7 +355,7 @@ public class MappingListJsonCongroller {
 			@RequestParam("musicmanId")Integer musicmanId){
 		List<JsonMusic> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().findByProperty(Music.class, "musicman.musicmanId", musicmanId), JsonMusic.class);
 		int totalCount = manageService.getManageDAO().getCountByProperty(Music.class, "musicman.musicmanId", musicmanId);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 	}
@@ -353,7 +365,17 @@ public class MappingListJsonCongroller {
 			@RequestParam("musicId")Integer musicId){
 		List<JsonMusicindex> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().findByProperty(Musicindex.class, "music.musicId", musicId), JsonMusicindex.class);
 		int totalCount = manageService.getManageDAO().getCountByProperty(Musicindex.class, "music.musicId", musicId);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
+		model.addAttribute("object", jsonListBean);
+		return "list";
+	}
+
+	@RequestMapping(value = "/json",params="videoindexList")
+	public String videoindexJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
+			@RequestParam("videoId")Integer videoId){
+		List<JsonVideoindex> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().findByProperty(Videoindex.class, "video.videoId", videoId), JsonVideoindex.class);
+		int totalCount = manageService.getManageDAO().getCountByProperty(Videoindex.class, "video.videoId", videoId);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 	}
@@ -362,7 +384,7 @@ public class MappingListJsonCongroller {
 	public String softattmentJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model){
 		List<JsonSoftAttachment> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().findAll(Softattachment.class), JsonSoftAttachment.class);
 		int totalCount = manageService.getManageDAO().getCountByProperty(Soft.class, "status", 1);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 	}
@@ -372,7 +394,7 @@ public class MappingListJsonCongroller {
 			@RequestParam("attachmentId")Integer attachmentId){
 		List<JsonSoftIndex> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().findByProperty(Softindex.class, "softattachment.attachmentId", attachmentId), JsonSoftIndex.class);
 		int totalCount = manageService.getManageDAO().getCountByProperty(Soft.class, "status", 1);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 	}
@@ -395,7 +417,7 @@ public class MappingListJsonCongroller {
 		Integer fathermusicmenuId = Integer.parseInt(request.getParameter("fathermusicmenuId"));
 		List<JsonMusicmenu> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().findByProperty(Musicmenu.class, "musicmenu.musicmenuId", fathermusicmenuId), JsonMusicmenu.class);
 		int totalCount = manageService.getManageDAO().getCountByProperty(Musicmenu.class, "musicmenu.musicmenuId", fathermusicmenuId);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 	}
@@ -403,7 +425,7 @@ public class MappingListJsonCongroller {
 	public String musicmenuJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model){
 		List<JsonMusicmenu> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().findByProperty(Musicmenu.class, "isLeaf", 0), JsonMusicmenu.class);
 		int totalCount = manageService.getManageDAO().getCountByProperty(Musicmenu.class, "isLeaf", 0);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 	}
@@ -412,7 +434,7 @@ public class MappingListJsonCongroller {
 	public String videomenuJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model){
 		List<JsonVideomenu> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().findAll(Videomenu.class), JsonVideomenu.class);
 		int totalCount = manageService.getManageDAO().getCount(Videomenu.class);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 	}
@@ -448,7 +470,7 @@ public class MappingListJsonCongroller {
 		
 		List<JsonSoftDownloadStat> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Softdownloadstat.class, cBean), JsonSoftDownloadStat.class);
 	
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 
@@ -486,7 +508,43 @@ public class MappingListJsonCongroller {
 		
 		List<JsonMusicdownloadstat> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Musicdownloadstat.class, cBean), JsonMusicdownloadstat.class);
 	
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
+		model.addAttribute("object", jsonListBean);
+		return "list";
+
+	}
+	
+
+	@RequestMapping(value = "/json",params="videodownloadstatList")
+	public String videodownloadstatJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
+			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit){
+		Integer downloadtypeId = (request.getParameter("downloadtypeId")==null || request.getParameter("downloadtypeId").length()==0)?-1:Integer.parseInt(request.getParameter("downloadtypeId"));	
+		String employeeName = (request.getParameter("employeeName")==null || request.getParameter("employeeName").length()==0)?null:request.getParameter("employeeName");	
+		String employeeNo = (request.getParameter("employeeNo")==null || request.getParameter("employeeNo").length()==0)?null:request.getParameter("employeeNo");	
+		String equipmentName  = (request.getParameter("equipmentName")==null || request.getParameter("equipmentName").length()==0)?null:request.getParameter("equipmentName");	
+		String hallName	 = (request.getParameter("hallName")==null || request.getParameter("hallName").length()==0)?null:request.getParameter("hallName");	
+		String videoName = (request.getParameter("videoName")==null || request.getParameter("videoName").length()==0)?null:request.getParameter("videoName");	
+		Date startTime = (request.getParameter("startTime")==null || request.getParameter("startTime").length()==0)?null:DateUtil.stringToDate(request.getParameter("startTime"), DateUtil.NOW_DATE);	
+		Date endTime = (request.getParameter("endTime")==null || request.getParameter("endTime").length()==0)?null:DateUtil.stringToDate(request.getParameter("endTime"), DateUtil.NOW_DATE);	
+		
+		PageBean pageBean = new PageBean(start,limit);
+		CirteriaBean cBean = new CirteriaBean("addTime");
+		cBean.setPageBean(pageBean);
+		cBean.addQuery(new CirteriaQuery(CirteriaQuery.EQ,CirteriaQuery.IS_INT,"d.downloadtypeId",downloadtypeId,new String[]{"downloadtype","d"}));
+		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"emp.nickName",employeeName,new String[]{"employee","emp"}));
+		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"emp.userName",employeeNo,new String[]{"employee","emp"}));
+		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"eq.equipmentName",equipmentName,new String[]{"equipment","eq"}));
+		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"bh.hallName",hallName,new String[]{"equipment","eq","eq.bissinusshall","bh"}));
+
+		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"vi.videoName",videoName,new String[]{"video","vi"}));
+		
+		cBean.addQuery(new CirteriaQuery(CirteriaQuery.BETWEED,CirteriaQuery.IS_OBJECT,"addTime",new Object[]{startTime,endTime},null));
+		
+		int totalCount = manageService.getManageDAO().getCountByPage(Videodownloadstat.class, cBean);
+		
+		List<JsonVideodownloadstat> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Videodownloadstat.class, cBean), JsonVideodownloadstat.class);
+	
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 

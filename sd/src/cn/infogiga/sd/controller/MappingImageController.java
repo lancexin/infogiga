@@ -39,7 +39,7 @@ public class MappingImageController {
 			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit){
 		List<JsonPicture> powerList = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Picture.class, start, limit), JsonPicture.class);
 		int totalCount = manageService.getManageDAO().getCount(Picture.class);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,powerList);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,powerList,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 	}

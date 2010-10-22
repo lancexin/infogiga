@@ -10,20 +10,11 @@
             <column name="indexID" />
             <generator class="identity" />
         </id>
-        <many-to-one name="videoindex" class="cn.infogiga.sd.pojo.Videoindex" update="false" insert="false" fetch="select">
-            <column name="indexID" not-null="true" unique="true" />
-        </many-to-one>
         <many-to-one name="video" class="cn.infogiga.sd.pojo.Video" fetch="select">
             <column name="videoID" />
         </many-to-one>
-        <property name="videomenuId" type="java.lang.Integer">
+        <many-to-one name="videomenu" class="cn.infogiga.sd.pojo.Videomenu" fetch="select">
             <column name="videomenuID" />
-        </property>
-        <set name="videoindexes" inverse="true">
-            <key>
-                <column name="indexID" not-null="true" unique="true" />
-            </key>
-            <one-to-many class="cn.infogiga.sd.pojo.Videoindex" />
-        </set>
+        </many-to-one>
     </class>
 </hibernate-mapping>

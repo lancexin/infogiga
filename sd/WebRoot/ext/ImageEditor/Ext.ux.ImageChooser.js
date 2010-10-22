@@ -62,7 +62,6 @@ Ext.ux.ImageChooser = Ext.extend(Ext.Window,{
     	var tpl = this.tpl;
     	var store = this.getImgStore();
     	this.dataView = new Ext.DataView({
-    		
 	        itemSelector: 'div.thumb-wrap',
 	        style:'overflow:auto',
 	        singleSelect :true,

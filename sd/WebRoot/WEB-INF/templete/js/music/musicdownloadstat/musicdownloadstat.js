@@ -192,12 +192,12 @@ var newComponent = (function() {
 		        	xtype:'label',
 		            text:'~'
 		        },{
-		        	x:435,
+		        	x:235,
 		        	y:70,
 		            xtype:'label',
 		            text:'营业厅：'
 		        },{
-		        	x:495,
+		        	x:295,
 		        	y:65,
 		            name: 'hallName'
 		        },{
@@ -208,7 +208,7 @@ var newComponent = (function() {
 		            format:'Y-m-d', 
 		            width:127
 		        },{
-		        	x:640,
+		        	x:440,
 		        	y:64,
 		        	xtype:'button',
 		            text:'搜索',
@@ -220,7 +220,7 @@ var newComponent = (function() {
 		            	store.reload({params:params});
 		            }
 		        },{
-		        	x:700,
+		        	x:500,
 		        	y:64,
 		        	xtype:'button',
 		            text:'清空',

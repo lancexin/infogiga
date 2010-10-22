@@ -40,6 +40,7 @@ import cn.infogiga.sd.pojo.Softattachment;
 import cn.infogiga.sd.pojo.Softindex;
 import cn.infogiga.sd.pojo.Softmenu;
 import cn.infogiga.sd.pojo.Video;
+import cn.infogiga.sd.pojo.Videoindex;
 import cn.infogiga.sd.pojo.Videomenu;
 import cn.infogiga.sd.service.ManageService;
 import cn.infogiga.sd.service.PowerService;
@@ -405,6 +406,40 @@ public class MappingAddJsonController {
 		return "list";
 	}
 
+	@RequestMapping(value = "/add",params="videoindex")
+	public String addvideoindex(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
+			@RequestParam("videoId")Integer videoId,
+			@RequestParam("videomenuId")Integer videomenuId){
+		try {
+			Map<String,Object> properties = new HashMap<String,Object>();
+			properties.put("video.videoId", videoId);
+			properties.put("videomenu.videomenuId", videomenuId);
+			int count =  manageService.getManageDAO().getCountByProperties(Videoindex.class, properties);
+			if(count >0 ){
+				model.put("success", false);
+				model.put("msg", "该菜单已经存在！");
+				return "list";
+			}
+			Videoindex videoindex = new Videoindex();
+			
+			Video video = new Video();
+			video.setVideoId(videoId);
+			Videomenu videomenu = new Videomenu();
+			videomenu.setVideomenuId(videomenuId);
+			videoindex.setVideo(video);
+			videoindex.setVideomenu(videomenu);
+			manageService.getManageDAO().save(videoindex);
+			model.put("success", true);
+			model.put("msg", "添加成功！");
+		} catch (RuntimeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			model.put("success", false);
+			model.put("msg", "未知原因，添加失败~");
+		}
+		return "list";
+	}
+
 	@RequestMapping(value = "/add",params="musicindex")
 	public String addmusicindex(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
 			@RequestParam("musicId")Integer musicId,
@@ -672,11 +707,20 @@ public class MappingAddJsonController {
 	}
 	
 	@RequestMapping(value = "/add",params="video")
-	public String addVideo(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
+	public String addVideo(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model
+			,
 			@RequestParam("videoName")String videoName,
 			@RequestParam("description")String description,
 			@RequestParam("pic1")String pic1,
 			@RequestParam("pic2")String pic2){
+		/*String videoName = request.getParameter("videoName");
+		String description = request.getParameter("description");
+		String pic1 = request.getParameter("pic1");
+		String pic2 = request.getParameter("pic2");
+		System.out.println(videoName);
+		System.out.println(description);
+		System.out.println(pic1);
+		System.out.println(pic2);*/
 		/**视频文件上传**/
 		MultipartHttpServletRequest multipartRequest  =  (MultipartHttpServletRequest) request;
 		MultipartFile mFile  =  multipartRequest.getFile("upload");
@@ -735,6 +779,7 @@ public class MappingAddJsonController {
 			
 			Video video = new Video();
 			video.setVideoName(videoName);
+			video.setDescription(description);
 			video.setPic1(picUrl1);
 			video.setPic2(picUrl2);
 			video.setStatus(1);

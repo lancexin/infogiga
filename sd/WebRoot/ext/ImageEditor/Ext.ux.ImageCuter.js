@@ -232,7 +232,7 @@ Ext.ux.ImageCuter = Ext.extend(Ext.Window,{
 		alert("x:"+x+"  y:"+y+"  w:"+w+"  h:"+h);
 	},
 	onClickCancelButton:function(){
-		alert("cancel");
+		this.close();
 	}
 	
 });

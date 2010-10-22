@@ -36,6 +36,7 @@ import cn.infogiga.sd.pojo.Softattachment;
 import cn.infogiga.sd.pojo.Softindex;
 import cn.infogiga.sd.pojo.Softmenu;
 import cn.infogiga.sd.pojo.Video;
+import cn.infogiga.sd.pojo.Videoindex;
 import cn.infogiga.sd.pojo.Videomenu;
 import cn.infogiga.sd.service.ManageService;
 
@@ -321,17 +322,13 @@ public class MappingUpdateJsonController {
 				return "list";
 			}
 			//删除原素材图片
-			bl = ImageUtil.delete(new File(request.getRealPath(phonetype.getPic())));
-			if(!bl){
-				model.put("success", false);
-				model.put("msg", "文件删除出现错误");
-				return "list";
-			}
+			ImageUtil.delete(new File(request.getRealPath(phonetype.getPic())));
+			phonetype.setPic(insertUrl);
 		}
 		phonetype.setPhonebrand(new Phonebrand(phonebrandId));
 		phonetype.setPhonetypeName(phonetypeName);
 		phonetype.setPhoneplatform(new Phoneplatform(platformId));
-		phonetype.setPic(insertUrl);
+		
 		phonetype.setStatus(status);
 		try {
 			manageService.getManageDAO().save(phonetype);
@@ -385,12 +382,8 @@ public class MappingUpdateJsonController {
 				return "list";
 			}
 			//删除原素材图片
-			bl = ImageUtil.delete(new File(request.getRealPath(soft.getPic1())));
-			if(!bl){
-				model.put("success", false);
-				model.put("msg", "文件删除出现错误");
-				return "list";
-			}
+			ImageUtil.delete(new File(request.getRealPath(soft.getPic1())));
+			soft.setPic1(insertUrl1);
 		}
 		if(!soft.getPic2().equals(picUrl2)){//如果图片不一样
 			//将新图片复制到素材区
@@ -401,18 +394,14 @@ public class MappingUpdateJsonController {
 				return "list";
 			}
 			//删除原素材图片
-			bl = ImageUtil.delete(new File(request.getRealPath(soft.getPic2())));
-			if(!bl){
-				model.put("success", false);
-				model.put("msg", "文件删除出现错误");
-				return "list";
-			}
+			ImageUtil.delete(new File(request.getRealPath(soft.getPic2())));
+			soft.setPic2(insertUrl2);
 		}
 		
 		soft.setAddTime(DateUtil.stringToDate(addTime, DateUtil.NOW_TIME));
 		soft.setDescription(description);
-		soft.setPic1(insertUrl1);
-		soft.setPic2(insertUrl2);
+		
+		
 		soft.setSoftmenu(new Softmenu(softmenuId));
 		soft.setSoftName(softName);
 		try {
@@ -435,8 +424,7 @@ public class MappingUpdateJsonController {
 			@RequestParam("videoName")String videoName,
 			@RequestParam("description")String description,
 			@RequestParam("pic1")String pic1,
-			@RequestParam("pic2")String pic2,
-			@RequestParam("status")Integer status){
+			@RequestParam("pic2")String pic2){
 		
 		File of1 = new File(request.getRealPath(pic1));
 		File of2 = new File(request.getRealPath(pic2));
@@ -451,11 +439,13 @@ public class MappingUpdateJsonController {
 		String insertUrl1 = ProperiesReader.getInstence("config.properties").getStringValue("material.image.url")+Code.getCode()+"."+ImageUtil.validateFile(of1);
 		String insertUrl2 = ProperiesReader.getInstence("config.properties").getStringValue("material.image.url")+Code.getCode()+"."+ImageUtil.validateFile(of2);
 		
-		System.out.println(picUrl1);
-		System.out.println(picUrl2);
-		System.out.println(insertUrl1);
-		System.out.println(insertUrl2);
+		//System.out.println("picUrl1:"+picUrl1);
+		//System.out.println("picUrl2:"+picUrl2);
+		//System.out.println("insertUrl1:"+insertUrl1);
+		//System.out.println("insertUrl2:"+insertUrl2);
 		Video video = manageService.getManageDAO().findById(Video.class, videoId);
+		//System.out.println("video.getPic1():"+video.getPic1());
+		//System.out.println("video.getPic2():"+video.getPic2());
 		if(!video.getPic1().equals(picUrl1)){//如果图片不一样
 			//将新图片复制到素材区
 			boolean bl = ImageUtil.copyFile(of1, new File(request.getRealPath(insertUrl1)),false);
@@ -465,12 +455,8 @@ public class MappingUpdateJsonController {
 				return "list";
 			}
 			//删除原素材图片
-			bl = ImageUtil.delete(new File(request.getRealPath(video.getPic1())));
-			if(!bl){
-				model.put("success", false);
-				model.put("msg", "文件删除出现错误");
-				return "list";
-			}
+			ImageUtil.delete(new File(request.getRealPath(video.getPic1())));
+			video.setPic1(insertUrl1);
 		}
 		if(!video.getPic2().equals(picUrl2)){//如果图片不一样
 			//将新图片复制到素材区
@@ -481,17 +467,11 @@ public class MappingUpdateJsonController {
 				return "list";
 			}
 			//删除原素材图片
-			bl = ImageUtil.delete(new File(request.getRealPath(video.getPic2())));
-			if(!bl){
-				model.put("success", false);
-				model.put("msg", "文件删除出现错误");
-				return "list";
-			}
+			ImageUtil.delete(new File(request.getRealPath(video.getPic2())));
+			video.setPic2(insertUrl2);
 		}
 		
 		video.setDescription(description);
-		video.setPic1(insertUrl1);
-		video.setPic2(insertUrl2);
 		video.setVideoName(videoName);
 		try {
 			manageService.getManageDAO().update(video);
@@ -591,7 +571,7 @@ public class MappingUpdateJsonController {
 	}
 
 	@RequestMapping(value = "/update",params="musicindex")
-	public String updateMusic(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
+	public String updatemusicindex(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
 			@RequestParam("indexId")Integer indexId,
 			@RequestParam("musicmenuId")Integer musicmenuId){
 		try {
@@ -611,6 +591,38 @@ public class MappingUpdateJsonController {
 			musicindex.setMusicmenu(musicmenu);
 			
 			manageService.getManageDAO().update(musicindex);
+			model.put("success", true);
+			model.put("msg", "修改成功！");
+		} catch (RuntimeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			model.put("success", false);
+			model.put("msg", "未知原因，修改失败~");
+		}
+		return "list";
+	}
+
+	@RequestMapping(value = "/update",params="videoindex")
+	public String updatevideoindex(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
+			@RequestParam("indexId")Integer indexId,
+			@RequestParam("videomenuId")Integer videomenuId){
+		try {
+			
+			Videoindex videoindex = manageService.getManageDAO().findById(Videoindex.class, indexId);
+			Map<String,Object> properties = new HashMap<String,Object>();
+			properties.put("video.videoId", videoindex.getVideo().getVideoId());
+			properties.put("videomenu.videomenuId", videomenuId);
+			int count =  manageService.getManageDAO().getCountByProperties(Videoindex.class, properties);
+			if(count >0 ){
+				model.put("success", false);
+				model.put("msg", "该菜单已经存在！");
+				return "list";
+			}
+			Videomenu videomenu = new Videomenu();
+			videomenu.setVideomenuId(videomenuId);
+			videoindex.setVideomenu(videomenu);
+			
+			manageService.getManageDAO().update(videoindex);
 			model.put("success", true);
 			model.put("msg", "修改成功！");
 		} catch (RuntimeException e) {

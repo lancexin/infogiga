@@ -444,4 +444,22 @@ public class MappingDeleteJsonController {
 		}
 		return "list";
 	}
+
+	@RequestMapping(value = "/delete",params="videoindex")
+	public String deletevideoindex(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
+			@RequestParam("indexId")Integer indexId){
+		try {
+			Videoindex videoindex = new Videoindex();
+			videoindex.setIndexId(indexId);
+			manageService.getManageDAO().delete(videoindex);
+			model.put("success", true);
+			model.put("msg", "删除成功！");
+		} catch (RuntimeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			model.put("success", false);
+			model.put("msg", "未知原因，删除失败~");
+		}
+		return "list";
+	}
 }

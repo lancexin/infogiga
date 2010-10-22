@@ -19,7 +19,9 @@ var newComponent = new Ext.ux.CommonTabPanel({
    	],
    	expander:new Ext.ux.grid.RowExpander({
         tpl : new Ext.Template(
-        	'{description}'
+        	'<img style="margin:5px;" src="{pic1}"/>',
+        	'<img style="margin:5px;" src="{pic2}"/></br>',
+        	'<span>{description}</span>'
         )
     }),
    	updateWindowConfig:{
@@ -109,36 +111,6 @@ var newComponent = new Ext.ux.CommonTabPanel({
 		    }  
 	  	});
 		
-		var imageChooser1 = new Ext.ux.ImageChooser({
-			id:"imagechooser3",
-			proWindowId:"proWindow3",	
-			complete:function(data){
-
-		    	if(data.width != 88 || data.height != 88){
-		    		Ext.Msg.alert("提示","图片大小不合适 88x88");
-		    		return;
-		    	}
-		    	imgBox1.getEl().dom.src = data.url;
-		    	pic1.setValue(data.url);
-		    	imageChooser1.hide();
-		    	
-		    },cutWindowCinfig:{
-		    	id:"phonetypeimageCuter3",
-				imagePanelId:"phonetypeimagePanel3",   
-				backAreaId:"phonetypebackArea3",       //图片背景区id
-				drugAreaId:"phonetypedrugArea3",       //鼠标拖动区id
-				baseImgId:"phonetypebaseImg3",         //图片剪裁框id
-				width:400,
-				height:300,
-				baseImgX:150,                //设置图片框的位置x       
-				baseImgY:100,                //设置图片框的位置y   
-				baseImgWidth:88,            //图片剪裁框的宽度度
-				baseImgHeight:88,           //图片剪裁框的高度
-				baseImgBorder:true          //图像剪裁框是否有边框
-			}
-		});
-		
-		
 		var pic2 = new Ext.form.Hidden({
 			name: 'pic2',
 			allowBlank:false
@@ -157,38 +129,6 @@ var newComponent = new Ext.ux.CommonTabPanel({
 		        src: "material/images/240x320.jpg"    //指定url路径  
 		    }  
 	  	});
-		
-		var imageChooser2 = new Ext.ux.ImageChooser({
-			id:"imagechooser4",
-			proWindowId:"proWindow4",
-			complete:function(data){
-		    	
-		    	if(data.width != 240 || data.height != 320){
-		    		Ext.Msg.alert("提示","图片大小不合适 240x320");
-		    		return;
-		    	}
-		    	imgBox2.getEl().dom.src = data.url;
-		    	pic2.setValue(data.url);
-		    	imageChooser2.hide();
-		    	
-		    },cutWindowCinfig:{
-		    	id:"phonetypeimageCuter4",
-				imagePanelId:"phonetypeimagePanel4",   
-				backAreaId:"phonetypebackArea4",       //图片背景区id
-				drugAreaId:"phonetypedrugArea4",       //鼠标拖动区id
-				baseImgId:"phonetypebaseImg4",         //图片剪裁框id
-				width:500,
-				height:600,
-				baseImgX:130,                //设置图片框的位置x       
-				baseImgY:140,                //设置图片框的位置y   
-				baseImgWidth:240,            //图片剪裁框的宽度度
-				baseImgHeight:320,           //图片剪裁框的高度
-				baseImgBorder:true          //图像剪裁框是否有边框
-			}
-		});
-		
-		
-		
 		
 		var addForm = new Ext.form.FormPanel({
 			baseCls: 'x-plain',
@@ -222,7 +162,27 @@ var newComponent = new Ext.ux.CommonTabPanel({
 				xtype:"button",
 				text:"选择图片",
 				handler:function(){
-					imageChooser1.show();
+					ImageChooser.show({
+						cutConf:{
+							width:400,
+							height:300,
+							baseImgX:150,                //设置图片框的位置x       
+							baseImgY:100,                //设置图片框的位置y   
+							baseImgWidth:88,            //图片剪裁框的宽度度
+							baseImgHeight:88,           //图片剪裁框的高度
+							baseImgBorder:true
+						},
+						complete:function(data){
+							if(data.width != 88 || data.height != 88){
+					    		Ext.Msg.alert("提示","图片大小不合适 88x88");
+					    		return;
+					    	}
+					    	
+					    	imgBox1.getEl().dom.src = data.url;
+					    	pic1.setValue(data.url);
+					    	this.window.hide();
+						}
+					});
 				}
 			},imgBox1,{
 				x: 195,
@@ -236,7 +196,26 @@ var newComponent = new Ext.ux.CommonTabPanel({
 				xtype:"button",
 				text:"选择图片",
 				handler:function(){
-					imageChooser2.show();
+					ImageChooser.show({
+						cutConf:{
+							width:500,
+							height:600,
+							baseImgX:130,                //设置图片框的位置x       
+							baseImgY:140,                //设置图片框的位置y   
+							baseImgWidth:240,            //图片剪裁框的宽度度
+							baseImgHeight:320,           //图片剪裁框的高度
+							baseImgBorder:true          //图像剪裁框是否有边框
+						},
+						complete:function(data){
+							if(data.width != 240 || data.height != 320){
+					    		Ext.Msg.alert("提示","图片大小不合适 240x320");
+					    		return;
+					    	}
+					    	imgBox2.getEl().dom.src = data.url;
+					    	pic2.setValue(data.url);
+					    	this.window.hide();
+						}
+					});
 				}
 			},imgBox2,{
 				x: 0,
@@ -323,36 +302,6 @@ var newComponent = new Ext.ux.CommonTabPanel({
 		    }  
 	  	});
 		
-		var imageChooser1 = new Ext.ux.ImageChooser({
-			id:"imagechooser5",
-			proWindowId:"proWindow5",	
-			complete:function(data){
-
-		    	if(data.width != 88 || data.height != 88){
-		    		Ext.Msg.alert("提示","图片大小不合适 88x88");
-		    		return;
-		    	}
-		    	imgBox1.getEl().dom.src = data.url;
-		    	pic1.setValue(data.url);
-		    	imageChooser1.hide();
-		    	
-		    },cutWindowCinfig:{
-		    	id:"phonetypeimageCuter5",
-				imagePanelId:"phonetypeimagePanel5",   
-				backAreaId:"phonetypebackArea5",       //图片背景区id
-				drugAreaId:"phonetypedrugArea5",       //鼠标拖动区id
-				baseImgId:"phonetypebaseImg5",         //图片剪裁框id
-				width:400,
-				height:300,
-				baseImgX:150,                //设置图片框的位置x       
-				baseImgY:100,                //设置图片框的位置y   
-				baseImgWidth:88,            //图片剪裁框的宽度度
-				baseImgHeight:88,           //图片剪裁框的高度
-				baseImgBorder:true          //图像剪裁框是否有边框
-			}
-		});
-		
-		
 		var pic2 = new Ext.form.Hidden({
 			name: 'pic2',
 			id:"pic2",
@@ -372,35 +321,6 @@ var newComponent = new Ext.ux.CommonTabPanel({
 		        src: "material/images/240x320.jpg"    //指定url路径  
 		    }  
 	  	});
-		
-		var imageChooser2 = new Ext.ux.ImageChooser({
-			id:"imagechooser6",
-			proWindowId:"proWindow6",
-			complete:function(data){
-		    	
-		    	if(data.width != 240 || data.height != 320){
-		    		Ext.Msg.alert("提示","图片大小不合适 240x320");
-		    		return;
-		    	}
-		    	imgBox2.getEl().dom.src = data.url;
-		    	pic2.setValue(data.url);
-		    	imageChooser2.hide();
-		    	
-		    },cutWindowCinfig:{
-		    	id:"phonetypeimageCuter6",
-				imagePanelId:"phonetypeimagePanel6",   
-				backAreaId:"phonetypebackArea6",       //图片背景区id
-				drugAreaId:"phonetypedrugArea6",       //鼠标拖动区id
-				baseImgId:"phonetypebaseImg6",         //图片剪裁框id
-				width:400,
-				height:300,
-				baseImgX:125,                //设置图片框的位置x       
-				baseImgY:100,                //设置图片框的位置y   
-				baseImgWidth:150,            //图片剪裁框的宽度度
-				baseImgHeight:150,           //图片剪裁框的高度
-				baseImgBorder:true          //图像剪裁框是否有边框
-			}
-		});
 		
 		var updateForm = new Ext.form.FormPanel({
 			baseCls: 'x-plain',
@@ -446,7 +366,26 @@ var newComponent = new Ext.ux.CommonTabPanel({
 				xtype:"button",
 				text:"选择图片",
 				handler:function(){
-					imageChooser1.show();
+					ImageChooser.show({
+						cutConf:{
+							width:400,
+							height:300,
+							baseImgX:150,                //设置图片框的位置x       
+							baseImgY:100,                //设置图片框的位置y   
+							baseImgWidth:88,            //图片剪裁框的宽度度
+							baseImgHeight:88,           //图片剪裁框的高度
+							baseImgBorder:true
+						},
+						complete:function(data){
+							if(data.width != 88 || data.height != 88){
+					    		Ext.Msg.alert("提示","图片大小不合适 88x88");
+					    		return;
+					    	}
+					    	imgBox1.getEl().dom.src = data.url;
+					    	pic1.setValue(data.url);
+					    	this.window.hide();
+						}
+					});
 				}
 			},imgBox1,{
 				x: 195,
@@ -460,7 +399,26 @@ var newComponent = new Ext.ux.CommonTabPanel({
 				xtype:"button",
 				text:"选择图片",
 				handler:function(){
-					imageChooser2.show();
+					ImageChooser.show({
+						cutConf:{
+							width:500,
+							height:600,
+							baseImgX:130,                //设置图片框的位置x       
+							baseImgY:140,                //设置图片框的位置y   
+							baseImgWidth:240,            //图片剪裁框的宽度度
+							baseImgHeight:320,           //图片剪裁框的高度
+							baseImgBorder:true          //图像剪裁框是否有边框
+						},
+						complete:function(data){
+							if(data.width != 240 || data.height != 320){
+					    		Ext.Msg.alert("提示","图片大小不合适 240x320");
+					    		return;
+					    	}
+					    	imgBox2.getEl().dom.src = data.url;
+					    	pic2.setValue(data.url);
+					    	this.window.hide();
+						}
+					});
 				}
 			},imgBox2,{
 				x: 0,

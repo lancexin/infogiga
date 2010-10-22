@@ -102,7 +102,7 @@
 			<item>
 				<code>D_3</code>
 				<name>视频下载统计</name>
-				<url><![CDATA[add?menu]]></url>
+				<url><![CDATA[p?videodownloadstat]]></url>
 			</item>
 		</item_list>
 	</menu>
