@@ -1,0 +1,20 @@
+body {
+	color: #000039;
+}
+
+#context {
+	
+	text-align: center;
+}
+
+#hd {
+	font-size: 12px;
+	font-weight: bold;
+	height: 33px;
+	text-align: center;
+}
+#box{
+	margin-top:10px
+	margin-left:20px;
+	float: left;
+}

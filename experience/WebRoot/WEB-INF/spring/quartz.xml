@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>    
+      <bean id="smsSendJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+         <property name="jobClass">
+	         <value>
+	         	cn.infogiga.exp.quartz.SMSSendJob
+	         </value>
+        </property>
+        
+         <property name="jobDataAsMap">
+	        <map>
+		        <entry key="experienceService">
+		        	<ref bean="ExperienceService" />
+		        </entry>
+	        </map>
+        </property>
+   </bean>
+       
+    <bean id="scheduler" class="cn.infogiga.exp.quartz.MySpringQuartzSchedulerBean">
+    	<property name="sendJobAfterInit" ref="sendJobAfterInit"></property>
+        <property name="jobDetail" ref="smsSendJob"></property>
+		<property name="schedulerFactory" ref="schedulerFactory"></property>
+		
+    </bean>
+    
+    <bean id="schedulerFactory" class="org.quartz.impl.StdSchedulerFactory">
+	
+	</bean>
+	
+	<bean id="sendJobAfterInit" class="cn.infogiga.exp.quartz.SendJobAfterInit">
+		<property name="experienceService" ref="ExperienceService"></property>
+	</bean>
+</beans>

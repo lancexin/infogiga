@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	 <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	    <property name="mappings">
+	        <props>	        	
+	            <prop key="/m">serverController</prop>
+	            <prop key="/t">serverController</prop>
+	        </props>
+	    </property>
+	 </bean>
+	 
+	<bean id="serverController" class="cn.infogiga.exp.controller.ServerController">
+		<property name="smsService" ref="SmsService"></property>
+		<property name="cmbService" ref="CmbService"></property>
+		<property name="experienceService" ref="ExperienceService"></property>
+		<property name="emailService" ref="EmailService"></property>
+		<property name="xmlBeanUtil" ref="XMLBeanUtil"></property>
+		<property name="scheduler" ref="scheduler"></property>
+	</bean>
+	<!-- end -->
+ </beans>
