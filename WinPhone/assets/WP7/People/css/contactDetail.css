@@ -1,0 +1,87 @@
+@charset "utf-8";
+
+/* name */
+#name_box {
+	width: 320px;
+	position: absolute;
+	left: 0px;
+	top: 24px;
+	padding: 0 0 0 10px;
+}
+#name {
+	font-family: 'Segoe UI','Segoe UI Light', Arial, sans-serif;
+	font-size: 16px;
+	line-height: 17px;
+	color: #fff;
+}
+#social {
+	font-family: 'Segoe UI','Segoe UI Light', Arial, sans-serif;
+	font-size: 12px;
+	line-height: 13px;
+	color: #666;
+}
+
+/* menu_box */
+#menu_box {
+	width: 1000px;
+	overflow: hidden;
+	position: absolute;
+	left: 10px;
+	top: 58px;
+	font-family: 'Segoe UI','Segoe UI Light', Arial, sans-serif;
+	font-size: 42px;
+	color:#373737;
+}
+#menu_box .focus {
+	color:#fff;
+}
+
+/* state_box */
+#state_box {
+	width: 320px;
+	overflow: visible;
+	position: absolute;
+	left: 10px;
+	top: 134px;
+}
+#state_box #photo {
+	width: 115px;
+	height: 115px;
+	background-color: #1BA1E2;
+	float: left;
+	margin-right:5px;
+}
+#state_box #said {
+	font-family: 'Segoe UI','Segoe UI Light', Arial, sans-serif;
+	float: left;
+	width: 160px;
+	font-size: 14px;
+	line-height: 14px;
+}
+#state_box #saidtime {
+	font-family: 'Segoe UI','Segoe UI Light', Arial, sans-serif;
+	float: left;
+	width: 160px;
+	font-size: 13px;
+	color: #999;
+}
+
+/* detail_box */
+#detail_box {
+	width: 500px;
+	height: 370px;
+	overflow: visible;
+	position: absolute;
+	left: 10px;
+	top: 270px;
+}
+#detail_box .t {
+	font-family: 'Segoe UI','Segoe UI Light', Arial, sans-serif;
+	font-size: 25px;
+}
+#detail_box .d {
+	color:#1BA1E2;
+	font-family: 'Segoe UI','Segoe UI Light', Arial, sans-serif;
+	font-size: 12px;
+	margin-bottom: 10px;
+}

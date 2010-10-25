@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Windows Phone 7</title>
+<script type="text/javascript">
+	function txt() {
+		return document.getElementById('txt');
+	}
+	function getSent() {
+		var c = arguments[0] || -1;
+		var array = c==-1?window.message.getSentSms():window.message.getSentSms(c);
+		var str = '';
+		for(var i=0; i<array.length(); i++) {
+			str = str+ array.get(i).getId()+','+array.get(i).getPid()+','
+				+array.get(i).getDest()+','+array.get(i).getContent()+','
+				+array.get(i).getDate()+'<br/>';
+		}
+		txt().innerHTML = str;		
+	}
+	function sendSms() {
+		var obj = '{dests:["110","120"], content:"abdows sa"}';
+		
+		var ok = window.message.sendSms('991', '911');
+		txt().innerHTML = ok;
+	}
+	
+	function getSendStatus(n) {
+		var status = window.message.getSendStatus(n);
+		txt().innerHTML = n+':'+status;
+	}
+	function getUnreadSms() {
+		var array = window.message.getUnreadSms();
+		var str = '';
+		for(var i=0; i<array.length(); i++) {
+			str = str+ array.get(i).getId()+','+array.get(i).getPid()+','
+				+array.get(i).getDest()+','+array.get(i).getContent()+','
+				+array.get(i).getDate()+'<br/>';
+		}
+		txt().innerHTML = str;	
+	}
+	function getReceivedSms() {
+		var array = window.message.getReceivedSms();
+		var str = '';
+		for(var i=0; i<array.length(); i++) {
+			str = str+ array.get(i).getId()+','+array.get(i).getPid()+','
+				+array.get(i).getDest()+','+array.get(i).getContent()+','
+				+array.get(i).getDate()+'<br/>';
+		}
+		txt().innerHTML = str;
+	}
+	function readSms() {
+		var ok = window.message.readSms(11);
+		txt().innerHTML = ok;
+	}
+	function deleteSms() {
+		var ok = window.message.deleteSms(1);
+		txt().innerHTML = ok;
+	}
+</script>
+</head>
+<body>
+	<div id='txt' style='color:blue;'></div>
+	<input type='button' value='getSent' onclick='getSent()'/>
+	<input type='button' value='getSent1' onclick='getSent(1)'/>
+	<input type='button' value='sendSms' onclick='sendSms()'/>
+	<input type='button' value='readSms' onclick='readSms()'/>
+	<input type='button' value='deleteSms' onclick='deleteSms()'/>
+	<input type='button' value='getSendStatus' onclick='getSendStatus(2)'/>
+	<input type='button' value='getUnreadSms' onclick='getUnreadSms()'/>
+	<input type='button' value='getReceivedSms' onclick='getReceivedSms()'/>
+</body>
+</html>

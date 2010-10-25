@@ -1,0 +1,57 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	width: 320px;
+	height: 480px;
+	background-color: #141414;
+	overflow: visible;
+	color: #FFF;
+	font-family: 'Segoe UI Light', 'Segoe UI', Arial, sans-serif;
+	text-decoration: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+#wrap {
+	width: 320px;
+	height: 480px;
+	overflow: visible;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 200;
+}
+
+/* header */
+#header {
+	width: 320px;
+	height: 26px;
+	overflow: hidden;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 190;
+}
+
+/* main */
+#main {
+	width: 320px;
+	height: 480px;
+	overflow: visible;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+/* footer */
+#footer {
+	z-index: 100;
+}
+
+#screenLocker {
+	width:320px;
+	height:480px;
+	background:url(../image/wallpaper.png) no-repeat;
+	position:absolute;
+	top:-480px;
+	left:0px;
+	z-index:9999;
+}
