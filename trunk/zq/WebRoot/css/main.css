@@ -1,0 +1,52 @@
+@CHARSET "UTF-8";
+
+body{
+	background:#fff;
+	width:100%;	
+}
+
+.logo img { /*logo图标*/
+	width:200px;
+	height:80px;
+	cursor:pointer;
+}
+
+.logo span {/*标题*/
+	font-size:1.8em;
+	color:#834141;
+	font-family:"宋体";
+	font-weight:bold;
+	margin-left:180px;
+}
+
+.body {/*包含数据表的div*/
+	width:100%;
+}
+
+.menu {/*功能菜单*/
+	margin-top:-8px;
+	background:#ddf;
+}
+
+.menu ul {/*菜单*/
+	list-style-type:none;
+	margin:0px;		
+}
+
+.menu ul li {
+	display:inline;
+	margin-left:20px;
+	padding-top:5px;
+	cursor:pointer;
+	color:#3545ff;
+	font:1.2em;
+	width:100px;
+	height:30px;
+	text-align:center;	
+	border-left:1px solid gray;
+	border-right:1px solid gray;
+}
+
+.content {/*内容*/
+}
+

@@ -1,0 +1,94 @@
+@CHARSET "UTF-8";
+body {
+	/*background:#fff;*/
+	padding:0px;
+	margin:0px;
+	text-align:center;
+	width:1024px;
+	height:360px;
+	overflow-y:hidden;
+}
+
+#leftDiv, #rightDiv {/*两个DIV*/
+	background:#fff;
+	width:490px;
+	height:360px;
+	display:inline;	
+	text-align:left;
+	border:1px solid #ccc;
+}
+
+#leftDiv span, #rightDiv span {/*数字显示的流量*/
+	position:absolute;
+	color:blue;
+	font-size:0.8em;
+	text-align:center;
+	width:40px;
+}
+
+#leftAvg {/*左边的平均流量计数*/
+	margin-top:240px;
+	margin-left:0px;	
+}
+
+#leftAll {/*左边的总流量计数*/
+	margin-top:340px;
+	margin-left:445px;
+}
+
+#rightAll {/*右边的总流量计数*/
+	margin-top:340px;
+	margin-left:0px;
+}
+
+#rightAvg {/*右边的平均流量计数*/
+	margin-top:240px;
+	margin-left:445px;
+}
+
+#left { /*左边的总流量图*/
+	position:absolute;
+	margin-left:447px;
+	width:40px;
+	height:359px;
+	clip:rect(370 40 370 0);
+}
+
+#leftx {/*左边的平均流量图*/
+	position:absolute;
+	margin-left:1px;
+	width:40px;
+	height:359px;
+	clip:rect(370 40 370 0);
+}
+
+#leftDiv #leftTitle {/*左边的机器名*/
+	color:black;
+	font:1.2em;
+	height:20px;
+	text-align:center;
+}
+
+#right { /*右边的总流量图*/
+	position:absolute;
+	margin-left:1px;
+	width:40px;
+	height:359px;
+	clip:rect(370 40 370 0);
+	filter:dropshadow(color=gray,offx=5,offy=5,positive=0);
+}
+
+#rightx { /*右边的平均流量图*/
+	position:absolute;
+	margin-left:447px;
+	width:40px;
+	height:359px;	
+	clip:rect(370 40 370 0);
+}
+
+#rightDiv #rightTitle {/*右边的机器名*/
+	color:black;
+	font:1.2em;
+	height:20px;
+	text-align:center;
+}

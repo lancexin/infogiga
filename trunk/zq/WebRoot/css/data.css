@@ -1,0 +1,95 @@
+@CHARSET "UTF-8";
+
+body {
+	margin:0px;
+	padding:0px;
+	background:#fff;
+}
+
+#pieChart {
+	
+}
+
+#barChart {
+
+}
+
+.region {
+	width:300px;
+	height:180px;
+}
+
+.regionCount {
+	margin-left:20px;
+}
+
+.result {	
+	color:#000066;
+	font-family:"宋体";
+}
+
+.result div {
+	margin-left:10px;
+	margin-top:10px;
+}
+
+.operateList {
+	font-family:"宋体";
+	font-size:0.9em;	
+}
+
+.operateName { /*体验的名字*/
+	display:inline;
+	width:120px;
+}
+
+.operateNum {/*体验的次数*/
+	width:20px;
+	color:red;
+}
+
+.operate {
+	background:#dec;
+}
+
+.stime, .etime, .phone {
+	display:block;
+	margin-top:10px;
+	background:#dec;
+}
+
+.dataTable{/*数据显示的table*/	
+	margin-top:10px;
+	font-size:0.9em;
+	width:100%;
+	color:#003366;
+	font-family:"宋体";
+}
+
+.dataTable thead {/*table里面的thead*/
+	font-weight:bold;
+	color:#000000;
+}
+
+.titleLine {/*数据表标题行*/
+	background:#61aaee;
+}
+
+.even {/*偶数行*/
+	background:#def;
+}
+
+.odd {/*奇数行*/
+	background:#fff;
+}
+
+.dpage {
+	text-align:center;
+	margin-top:10px;	
+}
+
+.curLink {
+	color:red;
+	font-size:1.2em;
+	text-decoration:none;
+}

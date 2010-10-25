@@ -1,0 +1,140 @@
+@CHARSET "UTF-8";
+html,body {
+	overflow-y:hidden;	
+}
+
+.body {
+	margin-bottom:0px;
+}
+
+.menu #search {/*查询菜单*/
+	color:#088f43;
+	font-weight:bold;
+}
+
+.searchBar span {/*所有label*/
+	text-align:right;
+	width:90px;
+	font-size:0.9em;
+}
+
+.searchBar select {/*所有下拉列表*/
+	width:180px;	
+}
+
+.searchBar #region {/*区域列表*/
+	width:100px;
+}
+
+.stateBlock input {/*所有输入框*/
+	width:160px;
+}
+
+.stateBlock #st, .stateBlock #et {/*日历图片*/
+	width:20px;
+	height:20px;
+	cursor:pointer;
+	margin-bottom:-3px;
+	margin-left:2px;
+}
+
+.stateBlock #mobile {/*手机号输入框*/
+	width:180px;
+}
+
+.equipmentBlock, .operationBlock, .stateBlock, .queryBlock { /*每一行*/
+	width:100%;
+	padding-top:3px;
+}
+
+.queryBlock #query, .queryBlock #fastQuery {/*查询按钮*/
+	width:80px;
+	height:30px;
+	cursor:pointer;
+	float:right;
+}
+
+.showData {/*数据显示的div*/
+	border:1px solid #ccc;
+	margin-top:10px;
+	padding-top:1px;
+	padding-bottom:1px;
+	width:100%;
+	height:100px;
+}
+
+#dataFrame {/*数据显示的iframe*/
+	frameBorder:0;
+	width:100%;
+	height:100%;
+}
+
+.reportBlog {/*报表产生div块*/
+	margin-top:0px;
+	width:100%;
+	display:inline;
+}
+
+.reportBlog .state {/*报表产生状态*/
+	display:inline;
+	float:left;
+	width:400px;
+	height:40px;
+}
+
+.reportBlog #buildReport {/*报表产生按钮*/
+	width:80px;
+	height:30px;
+	cursor:hand;
+	float:right;
+	display:none;
+	margin-right:10px;
+	/*background-color:#abc;*/
+}
+
+.layer {/*遮罩层*/
+	position:absolute;
+	left:12px;
+	width:100%;
+	height:20px;
+	margin:0px;
+	padding-top:0px;
+	background:#eee;
+	z-index:200px;
+	font-size:2em;
+	text-align:center;	
+}
+
+#control {
+	margin-left:200px;
+	display:inline;
+}
+
+#up, #down{
+	width:40px;
+}
+
+.showBar {
+	position:absolute;
+	left:0px;
+	top:350px;
+	background:#43d;
+	width:10px;
+	height:40px;
+	margin-bottom:200px;
+	cursor:pointer;
+}
+
+.searchBar {
+	position:absolute;
+	left:10px;
+	top:350px;
+	background:#4274BA;
+	width:100%;
+	height:100px;
+	z-index:99;	
+	border:1px solid #43d;
+	border-left:2px solid #43d;
+	margin-bottom:0px;
+	display:none;
+}

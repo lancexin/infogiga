@@ -1,0 +1,56 @@
+@CHARSET "UTF-8";
+
+.menu #append {/*添加菜单*/
+	color:#088f43;
+	font-weight:bold;
+}
+
+.content fieldset {/*内容里面的fieldset*/
+	width:100%;
+	margin-top:20px;
+	padding:20px;
+	border:1px solid gray;
+	text-align:center;	
+}
+
+.content span {	/*内容里面的前面描述文字*/
+	width:120px;
+	font:1.0em;
+	font-style:italic;
+	font-family:sans-serif;
+	text-align:right;
+}
+
+select, input {width:186px;}/*所有的下拉框和输入框*/
+i {font-weight:bold;font-style:normal;} /*legend上的文字*/
+
+#address, #selling, #equipment {/*每个fieldset里面的div*/
+	width:320px;
+	margin-top:20px;
+}
+
+.addrName, .addrCode, .sellingName, .sellingCode, .selectSelling, .equipmentName, .equipmentCode {/*每一列*/
+	width:100%;
+	margin-top:5px;	
+}
+
+.addrState, .sellingState, .equipmentState {/*状态*/
+	padding:10px;
+	font-size: 0.8em;	
+	color:#6600FF;
+	text-align:right;
+}
+	
+#appendAddr, #appendSelling, #appendEquipment{/*添加按钮*/
+	width:80px;
+	height:30px;
+	cursor:pointer;
+	float:right;	
+	margin-top:10px;
+	margin-right:20px;
+}
+
+.addrName div, .addrCode div, .sellingName div, .sellingCode div, .equipmentName div, .equipmentCode div {/*每一列里面的放输入框div*/
+	display:inline;
+}
+

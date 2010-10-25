@@ -1,0 +1,75 @@
+@CHARSET "UTF-8";
+
+body{
+	background:#fff;
+	width:100%;
+}
+
+.toolBar input {
+	background:#fff;
+	border:1px solid #666;
+	border-right: 2px solid #666;
+	border-bottom: 2px solid #666;
+	width:80px;
+	height:30px;
+	font-size:1em;
+	font-family: "仿宋";
+}
+
+.toolBar {
+	width:100%;	
+	margin-bottom:20px;
+}
+
+.filterGroup {
+	display:inline;
+	float:left;
+}
+
+.controlGroup {
+	display:inline;
+	float:right;
+}
+
+#checkAll {
+	margin-left:38px;
+}
+
+.deviceTable {
+	text-align:center;	
+	border-collapse:collapse;
+	display:inline;
+}
+
+.deviceTable .checkCol {
+	width:20px;
+}
+
+.deviceTable .deviceName {
+	width:223px;
+}
+
+.deviceTable .name {
+	width:70px;
+}
+
+.deviceTable .ipAddress {
+	width:120px;
+}
+
+.hide {
+	display:none;
+}
+
+.grayColor {
+	
+}
+
+.device {
+	height:25px;
+	color:green;
+}
+
+.checkBox {
+	disabled:false;
+}
