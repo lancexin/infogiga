@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	 <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	    <property name="interceptors" ref="openSessionInViewInterceptor"/>
+	    <property name="mappings">
+	        <props>	        	
+	            <prop key="/checkLogin.htm">loginController</prop>
+	            <prop key="/exit.htm">loginController</prop>
+	            <prop key="/calendar.htm">calendarController</prop>
+	            
+	            <prop key="/items.htm">calendarController</prop>
+	            <prop key="/request.htm">calendarController</prop>
+	            <prop key="/reserve.htm">calendarController</prop>
+	            <prop key="/feedback.htm">calendarController</prop>
+	        </props>
+	    </property>
+	 </bean>
+	 
+	 <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="prefix" value="/logined/"/>  
+        <property name="suffix" value=".jsp"/>  
+     </bean> 
+
+	<bean id="loginController" class="cn.infogiga.controller.LoginController">
+		<property name="loginService" ref="LoginService"></property>
+	</bean>
+	
+	<bean id="calendarController" class="cn.infogiga.controller.CalendarController">
+		<property name="calendarService" ref="CalendarService"></property>
+		<property name="appointmentService" ref="AppointmentService"></property>		
+	</bean>
+	<!-- end -->
+ </beans>

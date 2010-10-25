@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	
+	 <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	    <property name="interceptors" ref="openSessionInViewInterceptor"/>
+	    <property name="mappings">
+	        <props>	        	
+	            <prop key="/day.do">scheduleController</prop><!-- 转到显示天 -->
+	            <prop key="/month.do">scheduleController</prop><!-- 转到显示月 -->
+	            <prop key="/week.do">scheduleController</prop><!-- 转到显示星期 -->
+	            <prop key="/fastReservation.do">scheduleController</prop><!-- 快速预约 -->
+	            <prop key="/addReservation.do">scheduleController</prop><!-- 添加预约 -->
+	            <prop key="/info.do">scheduleController</prop><!-- 查询接待人员和技术人员信息 -->
+	            <prop key="/application.do">scheduleController</prop><!-- 发送申请 -->
+	            
+	            <prop key="/reservation.do">commonController</prop><!-- 转到显示预约 -->
+	            <prop key="/index.do">commonController</prop><!-- 转到显示首页 -->
+	            <prop key="/setup.do">commonController</prop><!-- 转到显示设置 -->
+	            <prop key="/feedback.do">commonController</prop><!-- 转到显示反馈 -->	            
+	            <prop key="/request.do">commonController</prop><!-- 转到显示请求 -->
+	            <prop key="/feedbackSelection.do">commonController</prop>           
+	            <prop key="/reservationSelection.do">commonController</prop>
+	            <prop key="/requestSelection.do">commonController</prop>
+	            <prop key="/addUser.do">commonController</prop>
+	            <prop key="/deleteUser.do">commonController</prop>
+	            <prop key="/updateUser.do">commonController</prop>
+	            <prop key="/updateUserCommonInfo.do">commonController</prop>
+	            <prop key="/updateUserPassword.do">commonController</prop>
+	            <prop key="/getManagers.do">commonController</prop>
+	            <prop key="/getSelectManagers.do">commonController</prop>
+	            <prop key="/getSelectMailTemplete.do">commonController</prop>
+	            <prop key="/getSelectMmsTemplete.do">commonController</prop>
+	            <prop key="/updateSettingOption.do">commonController</prop>
+	            <prop key="/getTempletes.do">commonController</prop>
+	            <prop key="/addTemplete.do">commonController</prop>
+	            <prop key="/updateTemplete.do">commonController</prop>
+	            <prop key="/deleteTemplete.do">commonController</prop>
+	            
+	            
+	            
+	        </props>
+	    </property>
+	 </bean>
+	 
+	 <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="prefix" value="/jsp/"/>  
+        <property name="suffix" value=".jsp"/>  
+     </bean> 
+	 
+	<bean id="commonController" class="cn.infogiga.controller.CommonController">
+		<property name="appointmentService" ref="AppointmentService"></property>
+		<property name="settingService" ref="SettingService"></property>
+	</bean>
+	
+	<bean id="scheduleController" class="cn.infogiga.controller.ScheduleController">
+		<property name="appointmentService" ref="AppointmentService"></property>
+	</bean>
+	
+
+	<!-- end -->
+ </beans>

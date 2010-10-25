@@ -1,0 +1,493 @@
+@charset "utf-8";
+
+
+.add-top {
+	height: 40px;
+	width: 100%;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #6693c1;
+}
+
+.add-top-left {
+	float: left;
+	height: 40px;
+	width: 7px;
+	background-image: url(images/zq2admin_03.png);
+}
+.add-top-right {
+	float: left;
+	height: 40px;
+	width: 7px;
+	background-image: url(images/zq2admin_05.png);
+}
+.add-top-center {
+	float: left;
+	height: 39px;
+	width: 616px;
+	border-top-color: #9abbe8;
+	background-color: #75a6d9;
+	border-top-width: 1px;
+	border-top-style: solid;
+	text-align: center;
+}
+.add-bottom {
+	height: 40px;
+	width: 630px;
+	float: left;
+}
+.add-bottom-left {
+	background-image: url(images/zq2admin_14.png);
+	height: 40px;
+	width: 7px;
+	float: left;
+}
+.add-bottom-center {
+	float: left;
+	height: 38px;
+	width: 616px;
+	border-bottom-color: #9abbe8;
+	background-color: #f7f7c2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #e3e3b4;
+}
+.add-top-title {
+	float: left;
+	text-align: center;
+	margin-top: 5px;
+	margin-left: 5px;
+	height: 30px;
+}
+
+
+.add-bottom-right {
+	height: 40px;
+	width: 7px;
+	background-image: url(images/zq2admin_16.png);
+	float: left;
+}
+
+.add-continer{
+	width:630px;
+	-webkit-box-shadow:0px 0px 10px #9abbe8;
+	-moz-box-shadow:0px 0px 5px #9abbe8;
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	position: fixed !important;
+	position: absolute;
+	z-index:2000;
+}
+.add-main {
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: #9abbe8;
+	border-left-color: #9abbe8;
+	background-color: #FFF;
+	padding-left: 32px;
+	font-family:"黑体",Consolas,Verdana;
+	float: left;
+	width: 596px;
+}
+.add-div-d {
+	height: 308px;
+	width: 578px;
+	margin-top: 15px;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+}
+.add-div-e {
+	height: 215px;
+	width: 578px;
+	float: left;
+	overflow-y: auto;
+}
+.add-ul-g {
+
+}
+.add-li-f {
+	
+	color: #FFF;
+	font-size: 14px;
+}
+
+.add-div-h-a {
+	height: 100%;
+	float: left;
+}
+.add-div-h-b {
+	float: right;
+	height: 32px;
+	width: 32px;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	background-image: url(images/zq2admin_66.gif);
+	margin-right: 25px;
+}
+
+
+
+.add-div-h {
+	height: 43px;
+	width: 275px;
+	float: left;
+	margin-right: 8px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+.add-li-e {
+	color: #999999;
+}
+
+.add-div-g {
+	height: 100px;
+	width: 206px;
+	float: left;
+}
+
+.add-div-f {
+	float: left;
+	height: 100px;
+	width: 372px;
+	margin-bottom:20px;
+}
+
+
+
+
+.add-ul-c {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+}
+.add-span-h {
+	font-size: 14px;
+	color: #666666;
+}
+
+.add-ul-d {
+	padding: 0px;
+	list-style-type: none;
+	margin: 0px;
+}
+.add-ul-e {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+.add-li-d {
+	font-size: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+
+
+
+
+.add-top-title-new {
+	font-family:"黑体",Consolas,Verdana;
+	font-size: 16pt;
+	color: #FFF;
+	font-weight: bold;
+}
+.add-top-title-new2 {
+	font-family:"黑体",Consolas,Verdana;
+	font-size: 12pt;
+	color: #FFF;
+	font-weight: bold;
+}
+.add-li-c {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.add-span-g {
+	font-size: 18px;
+}
+
+
+
+
+.add-top-exit {
+	float: right;
+	margin-top: 10px;
+	text-align: center;
+	background-image: url(images/zq2admin_06.gif);
+	width: 13px;
+	height: 13px;
+	cursor:pointer;
+}
+.add-bottom-button-next {
+	font-family:"黑体",Consolas,Verdana;
+	font-size: 18pt;
+	color: #9b4940;
+	font-weight: bold;
+	height: 30px;
+	margin-right: 22px;
+}
+.add-main-left {
+	width: 160px;
+	float: left;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #e3e3b4;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	height: expression_r_r( this.scrollHeight < 240 ? "240px" : "auto" );
+	min-height:240px;
+}
+.add-main-right {
+	float: left;
+	width: 390px;
+	
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+
+.add-bottom-button-left {
+	text-align: left;
+	background-image: url(images/zq2admin_28.gif);
+	float: left;
+	margin-top: 3px;
+	margin-right: 15px;
+	background-repeat: no-repeat;
+	background-position: left 6px;
+	margin-left: 15px;
+	cursor:pointer;
+}
+
+
+.add-bottom-button-right {
+	text-align: right;
+	background-image: url(images/zq2admin_31.gif);
+	background-repeat: no-repeat;
+	background-position: right 3px;
+	width: 120px;
+	float: right;
+	margin-top: 3px;
+	margin-right: 15px;
+	height: 30px;
+	cursor:pointer;
+}
+.add-ul-f {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+.add-span-i {
+	margin-left: 20px;
+}
+.add-span-j {
+	font-size: 16px;
+	color: #666666;
+}
+
+
+
+.add-bottom-button-prev {
+	font-family:"黑体",Consolas,Verdana;
+	font-size: 18pt;
+	color: #9b4940;
+	font-weight: bold;
+	margin-left: 22px;
+	height: 30px;
+	width: 120px;
+}
+.add-main-continer {
+	width: 566px;
+	height: 286px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+}
+
+.add-div-a {
+	float: right;
+}
+.add-div-b {
+	float: left;
+	margin-top: 30px;
+	cursor:pointer;
+}
+
+.add-div-c {
+	height: 145px;
+	overflow-y:auto;
+}
+.add-tr-a {
+}
+.add-tr-b {
+	background-color: #8e423a;
+	margin: 0px;
+	padding: 0px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	height: 40px;
+}
+
+
+.add-td-a {
+	height: 40px;
+}
+.add-td-b {
+	padding: 0px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+}
+.add-td-c {
+	width: 30px;
+	margin: 0px;
+	padding: 0px;
+	height: 20px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	cursor:pointer;
+}
+.add-td-d {
+	margin: 0px;
+	padding: 0px;
+}
+
+
+.add-td-e {
+	height: 40px;
+	padding: 0px;
+}
+.add-ul-a {
+	list-style-type: none;
+	list-style-position: inside;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	margin-left: 10px;
+	padding: 0px;
+}
+.add-td-f {
+	background-color: #9b4940;
+}
+.add-td-g {
+	background-color: #bd8673;
+}
+
+
+.add-ul-b {
+	padding: 0px;
+	list-style-position: inside;
+	list-style-type: none;
+	margin: 0px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+}
+.add-li-b {
+	height: 20px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.add-li-a {
+	height: 25px;
+	font-size: 15px;
+	font-family:"黑体",Consolas,Verdana;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 0px;
+}
+
+
+
+.add-input-a {
+	width: 250px;
+	height: 20px;
+}
+.add-input-b {
+	height: 20px;
+	width: 120px;
+}
+.add-span-a {
+	font-family:"黑体",Consolas,Verdana;
+	font-size: 18px;
+}
+
+
+
+.add-span-b {
+	color: #F00;
+	font-family:"黑体",Consolas,Verdana;
+	font-size: 14px;
+}
+.add-span-c {
+	font-family:"黑体",Consolas,Verdana;
+	margin-left: 150px;
+	font-size: 15px;
+}
+
+
+
+.add-span-d {
+	margin-right: 10px;
+}
+.add-span-e {
+	font-family:"黑体",Consolas,Verdana;
+	color: #999;
+	font-size: 13px;
+}
+
+.add-span-f {
+	font-size: 12px;
+}
+
+
+div.cusErrorPanel
+{
+    z-index: auto;         
+    position:absolute;
+    width: 276px;
+    height: 35px;
+    overflow: hidden;
+    text-indent: 5px;
+    line-height: 40px;
+    font-size: 12px;
+    font-family: Arial;
+    background: url(images/validation/tooltop.gif) no-repeat left top;
+    opacity:0.9;
+    filter: alpha(opacity=90);
+}
+
+.add-table-a {
+	margin: 0px;
+}
+.add-div-h-left {
+	background-image: url(images/zq2admin_55.png);
+	height: 43px;
+	width: 5px;
+	float: left;
+}
+.add-div-h-center {
+	background-color: #6699cc;
+	float: left;
+	height: 43px;
+	width: 260px;
+}
+.add-div-h-right {
+	float: left;
+	height: 43px;
+	width: 5px;
+	background-image: url(images/zq2admin_58.png);
+}

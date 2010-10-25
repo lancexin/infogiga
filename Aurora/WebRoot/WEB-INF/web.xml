@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	 <!-- 加载配置文件 -->
+	<context-param>
+	      <param-name>contextConfigLocation</param-name>
+	      <param-value>/WEB-INF/xfire-servlet.xml,/WEB-INF/applicationContext.xml,/WEB-INF/quartz-servlet.xml</param-value>
+	</context-param>
+	 <!--end -->
+	 
+	 <!-- 设置以.do请求为结尾的都设置成session在页面请求结束时关闭 -->
+	<filter> 
+		<filter-name>hibernateFilter</filter-name> 
+		<filter-class>cn.infogiga.util.MyOpenSessionInViewFilter </filter-class> 
+	</filter>
+ 
+	<filter-mapping>
+		<filter-name>hibernateFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	 <!-- end -->
+	 
+	<listener>  
+	   <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
+	</listener>  
+	 <listener>   
+	   <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>  
+	</listener> 
+    <!-- end Spring配置 -->
+    
+    <servlet>
+	    <servlet-name>wapConfigListener</servlet-name>
+	    <servlet-class>cn.infogiga.filther.ConfigListener</servlet-class>    
+	    <load-on-startup>0</load-on-startup>
+    </servlet>
+
+	  <filter>
+		  <filter-name>loginFilter</filter-name>
+		  <filter-class>cn.infogiga.filther.LoginFilther</filter-class>
+	  </filter>
+	  
+	  <filter-mapping>
+		  <filter-name>loginFilter</filter-name>
+		  <url-pattern>/calendar.htm</url-pattern>
+	  </filter-mapping>
+
+    <!-- begin XFire 配置 -->
+    <servlet>   
+       <servlet-name>xfire</servlet-name>   
+       <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    </servlet>   
+    <servlet-mapping> 
+       <servlet-name>xfire</servlet-name>
+       <url-pattern>*.ws</url-pattern>
+    </servlet-mapping>
+    <servlet>
+       <!-- 配合Spring容器中XFire一起工作的Servlet-->
+       <servlet-name>xfireServlet</servlet-name>
+       <servlet-class>org.codehaus.xfire.spring.XFireSpringServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+       <servlet-name>xfireServlet</servlet-name>
+       <!-- 在这个URI下开放Web Service服务 -->
+       <url-pattern>/service/*</url-pattern>
+    </servlet-mapping>
+    <!-- end XFire 配置 -->
+  
+  <!-- 在这里配置.do请求的控制器 -->
+  <servlet>
+    <servlet-name>common</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>common</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>login</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>login</servlet-name>
+    <url-pattern>*.htm</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 这里是处理上传请求的控制器 -->
+  <servlet>
+    <servlet-name>upload</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>upload</servlet-name>
+    <url-pattern>*.up</url-pattern>
+  </servlet-mapping>
+   
+   <!-- 这里是wap1.2请求的控制器 -->
+  <servlet>
+    <servlet-name>wap</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>wap</servlet-name>
+    <url-pattern>*.wml</url-pattern>
+  </servlet-mapping>
+  
+   <!-- 这里是wap2.0请求的控制器 -->
+  <servlet>
+    <servlet-name>ewap</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ewap</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 这里是手机页面请求的控制器，处理所有的wap请求 -->
+  <servlet>
+    <servlet-name>wp</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>wp</servlet-name>
+    <url-pattern>/q</url-pattern>
+    <url-pattern>/to</url-pattern>
+    <url-pattern>/app</url-pattern>
+    <url-pattern>/comment</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 处理PC端post请求的控制器 -->
+  <servlet>
+    <servlet-name>pcin</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>pcin</servlet-name>
+    <url-pattern>*.in</url-pattern>
+  </servlet-mapping>
+  
+<filter>
+	<filter-name>encodingFilter </filter-name>
+	<filter-class>
+		org.springframework.web.filter.CharacterEncodingFilter
+	</filter-class>
+	<init-param>
+		<param-name>encoding</param-name>
+		<param-value>UTF-8</param-value>
+	</init-param>
+	<init-param>
+		<param-name>forceEncoding</param-name>
+		<param-value>true</param-value>
+	</init-param>
+</filter> 
+<filter-mapping>
+	<filter-name>encodingFilter</filter-name>
+	<url-pattern>/comment</url-pattern>
+	<url-pattern>/app</url-pattern>
+</filter-mapping>
+  
+  <!-- 设置session的有效时间为15分钟 -->
+  <session-config>   
+      <session-timeout>15</session-timeout>   
+  </session-config>  
+  
+  <!-- 设置欢迎页面 -->
+  <welcome-file-list>
+    <welcome-file>signin.html</welcome-file>
+  </welcome-file-list>
+</web-app>
+
