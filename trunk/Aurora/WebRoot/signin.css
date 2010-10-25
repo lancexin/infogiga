@@ -1,0 +1,116 @@
+@charset "utf-8";
+
+/* Start Structure */
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	background:url(images/signin_bg.png) repeat-x;
+	background-color: #76abe9;
+}
+
+#wrap {
+	width: 481px;
+	margin: 89px auto 0 auto;
+}
+
+#logo {
+	height: 71px;
+	width: 481px;
+	background: url(images/signin_logo.png) no-repeat;
+	float: left;
+}
+
+#box {
+	margin: 0 0 0 12px;
+	height: 286px;
+	width: 460px;
+	background: url(images/signin_box.png) no-repeat;
+	float: left;
+	display: inline;
+}
+
+#left {
+	width: 50%;
+	height: 286px;
+	float: left;
+}
+#right {
+	width: 50%;
+	height: 286px;
+	display: inline;
+}
+
+#signin_box {
+	width: 150px;
+	padding: 80px 0 0 45px;
+}
+
+#option {
+	padding-top: 5px;
+}
+
+#calendar {
+	width: 200px;
+	text-align: center;
+	margin: 60px 0 0 235px;
+	color: #FFF;
+	font-family: "微软雅黑", Geneva, Verdana, "黑体", sans-serif;
+	font-size: 16px;
+	letter-spacing: 3px;
+}
+#calendar #dayofweek {
+}
+#calendar #dayofmonth {
+	font-size: 90px;
+	line-height: 100px;	
+}
+
+.right {
+	float: right;
+}
+.left {
+	float: left;
+}
+.block {
+	display: block;	
+}
+.margin_b {
+	margin: 3px 0 5px 0;
+	display: inline;
+}
+.bold {
+	font-weight: bold;
+}
+
+/* End Structure */
+
+/* Start Effects & fonts */
+#signin_box {
+	color: #FFF;
+	font-family: "微软雅黑", Verdana, Geneva, "黑体", sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+}
+.input_box {
+	background: url(images/input_box_bg.png) no-repeat;
+	width: 148px;
+	height: 22px;
+	border: 0;
+	padding-top: 3px;
+}
+.remember {
+	font-weight:normal;
+	font-size: 16px;
+	display: inline;
+}
+.button {
+	font-family: "微软雅黑", Verdana, Geneva, "黑体", sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #2a5b96;
+	padding: 0 5px;
+}
+/* End Effects & fonts */
