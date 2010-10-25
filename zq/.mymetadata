@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="zq"
+  id="myeclipse.1243848067078"
+  context-root="/zq"
+  j2ee-spec="5.0"
+  archive="zq.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
