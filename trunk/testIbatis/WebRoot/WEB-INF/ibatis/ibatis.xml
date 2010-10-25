@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>  
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"  
+    "http://www.ibatis.com/dtd/sql-map-config-2.dtd"> 
+<sqlMapConfig>  
+
+	<settings 
+		lazyLoadingEnabled="true"
+     	enhancementEnabled="true"
+    />
+
+
+	<sqlMap resource="cn/infogiga/ibatis/pojo/User.xml" />  
+	<sqlMap resource="cn/infogiga/ibatis/pojo/Power.xml" />  
+	
+
+		
+</sqlMapConfig>  
