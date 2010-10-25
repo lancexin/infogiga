@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- @autonr:Cindy -->
+<power-config>
+
+	<item id="A">
+		<!-- 表示有这个权限就要在指定jsp页面上面添加<jsp:include page="add-calendar.jsp"></jsp:include>标签 -->
+		<jsp-include><![CDATA[add-calendar.jsp]]></jsp-include>
+	</item>
+	
+	<item id="B">
+		<jsp-include><![CDATA[show-calendar.jsp]]></jsp-include>
+	</item>
+	
+	<item id="C">
+		<jsp-include><![CDATA[request.jsp]]></jsp-include>
+	</item>
+	
+	<item id="D">
+		<jsp-include><![CDATA[reservation.jsp]]></jsp-include>
+	</item>
+	
+	<item id="E">
+		<jsp-include><![CDATA[feedback.jsp]]></jsp-include>
+	</item>
+	
+	<item id="F">
+		<jsp-include><![CDATA[setup.jsp]]></jsp-include>
+	</item>
+	
+	<item id="F_A">
+		<jsp-include><![CDATA[setup-singleInfo.jsp]]></jsp-include>
+	</item>
+	
+	<item id="F_B">
+		<jsp-include><![CDATA[setup-account.jsp]]></jsp-include>
+	</item>
+	
+	<item id="F_C">
+		<jsp-include><![CDATA[setup-templete.jsp]]></jsp-include>
+	</item>
+	
+	<item id="F_D">
+		<jsp-include><![CDATA[setup-option.jsp]]></jsp-include>
+	</item>
+	
+</power-config>

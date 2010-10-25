@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	 <bean id="simpleUrlHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	    <property name="mappings">
+	        <props>
+	            <prop key="/wap/index.wml">wapController</prop>
+	        </props>
+	    </property>
+	 </bean>
+	 <!-- 转到相应的jsp页面 -->
+	 <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="prefix" value="/show/"/>  <!-- 表示跳转的文件存放在/show/目录下面 -->
+        <property name="suffix" value=".jsp"/>  <!-- 表示跳转的文件后缀为jsp -->
+     </bean> 
+	 
+	<bean id="wapController" class="cn.infogiga.controller.WapController"></bean>
+	
+ </beans>

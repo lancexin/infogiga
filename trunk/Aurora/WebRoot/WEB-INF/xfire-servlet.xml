@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+<!-- 引入XFire预配置信息 -->
+<import resource="classpath:org/codehaus/xfire/spring/xfire.xml" />
+
+	<!-- 定义访问的url -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="urlMap">             
+		    <map>
+			    <!-- 显示WebService 访问路径,有几个路径就需要 配置几个路径。 -->
+			     <entry key="/Notification.ws">                  
+			     	 <ref bean="NotificationWS" /><!--与下面的是对应的。-->            
+			     </entry>
+			     <entry key="/Qrcode.ws">
+			     	<ref bean="QrcodeWS"/>
+			     </entry>
+		    </map>
+	   </property>
+	</bean>
+	
+	<!-- 使用XFire导出器 -->
+	<bean id="baseWebService" class="org.codehaus.xfire.spring.remoting.XFireExporter" lazy-init="false" abstract="true">
+	   <!-- 引用xfire.xml中定义的工厂 -->
+	   <property name="serviceFactory" ref="xfire.serviceFactory" />
+	   <!-- 引用xfire.xml中的xfire实例 -->
+	   <property name="xfire" ref="xfire" />
+	</bean>
+	
+	<!-- 服务请求的地址，与上面访问的url地址是对应的 -->
+	<bean id="NotificationWS" parent="baseWebService">
+		<!-- 业务服务bean -->
+		<property name="serviceBean" ref="notificationImpl" /> <!-- WebService的实现类bean -->  
+	    <!-- 业务服务bean的窄接口类 -->
+		<property name="serviceClass" value="cn.infogiga.service.notification.Notification" /><!-- 我定义的接口 -->
+	</bean>  <!--与spring配置文件中的是对应的-->
+	
+	<bean id="QrcodeWS" parent="baseWebService">
+		<property name="serviceBean" ref="qrcodeImpl"></property>
+		<property name="serviceClass" value="cn.infogiga.service.qrcode.Qrcode"></property>
+	</bean>
+	
+	<bean id="notificationImpl" class="cn.infogiga.service.notification.NotificationImpl"></bean>
+	<bean id="qrcodeImpl" class="cn.infogiga.service.qrcode.QrcodeImpl">
+		<property name="qrcodeService" ref="QrcodeService"></property>
+	</bean>
+</beans>

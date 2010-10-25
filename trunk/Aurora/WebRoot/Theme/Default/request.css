@@ -1,0 +1,234 @@
+@charset "utf-8";
+
+table,td,tr{
+	margin:0;
+	padding:0;
+}
+
+.container {
+	background:#fff;
+	overflow:hidden;
+}
+
+.add-top {
+	height: 40px;
+	width: 100%;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #6693c1;
+}
+
+
+
+
+
+
+
+.add-bottom-right {
+	height: 40px;
+	width: 7px;
+	background-image: url(images/zq2admin_16.png);
+	float: left;
+}
+
+.add-continer{
+	width:630px;
+	-webkit-box-shadow:0px 0px 10px #9abbe8;
+	-moz-box-shadow:0px 0px 5px #9abbe8;
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	position: fixed !important;
+	position: absolute;
+	z-index:2000;
+}
+.add-main {
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: #9abbe8;
+	border-left-color: #9abbe8;
+	background-color: #FFF;
+	font-family:"黑体",Consolas,Verdana;
+	float: left;
+	width: 628px;
+}
+.add-div-d {
+	height: 308px;
+	width: 578px;
+	margin-top: 0px;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+	margin-left: 20px;
+}
+
+
+.add-top-title-new {
+	font-family:"黑体",Consolas,Verdana;
+	font-size: 16pt;
+	color: #FFF;
+	font-weight: bold;
+}
+.add-top-title-new2 {
+	font-family:"黑体",Consolas,Verdana;
+	font-size: 12pt;
+	color: #FFF;
+	font-weight: bold;
+}
+
+
+
+.add-bottom-button-next {
+	font-family:"黑体",Consolas,Verdana;
+	font-size: 18pt;
+	color: #9b4940;
+	font-weight: bold;
+	height: 30px;
+	margin-right: 22px;
+}
+.add-main-left {
+	width: 160px;
+	float: left;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #e3e3b4;
+	padding-top: 20px;
+	padding-bottom: 20px;
+
+
+	height: expression_r_r( this.scrollHeight < 240 ? "240px" : "auto" );
+	min-height:240px;
+	margin-left: 40px;
+}
+
+.add-bottom-button-right {
+	text-align: right;
+	background-image: url(images/zq2admin_31.gif);
+	background-repeat: no-repeat;
+	background-position: right 3px;
+	width: 120px;
+	float: right;
+	margin-top: 3px;
+	margin-right: 15px;
+	height: 30px;
+	cursor:pointer;
+}
+
+.request-div-f {
+	width:60px;
+	height:inherit;
+	float:left;
+	height:100%;
+	margin-top:10px;
+	border-right:1px solid #E2E4BD;	
+}
+
+.request-div-f .request-ul-a {	
+	list-style-type:none;
+	margin:0px;
+	margin-left:2px;
+	padding:0px;		
+}
+
+.request-div-f .request-ul-a li {
+	padding-bottom:10px;
+	padding-left:2px;
+	color:#7298C6;
+	font-size:20px;
+	font-weight:bold;	
+}
+
+.result-frame {
+	width:500px;
+	height:320px;
+	*width:510px;
+	*height:310px;
+	overflow:hidden;
+	background:#fff;
+}
+
+.request-div-g {
+	width:160px;
+	float:left;
+	height:300;
+	padding-right:20px;
+	*padding-right:10px;
+	border-right:1px solid #E2E4BD;
+	background:#fff;
+	overflow:hidden;
+}
+	
+.request-div-e {
+	float:right;
+	margin-top:10px;
+	height:300px;
+	width:300px;
+	overflow-y:scroll;
+	background:#fff;
+}
+
+.request-div-e .request-show-result {
+	margin:20px;
+	margin-top:5px;
+	margin-left:5px;
+	color:#7298C6;
+	font-size:15px;
+}
+
+.request-div-e .request-show-result div {
+	padding-bottom:5px;}
+
+.request-div-g .request-show-box {
+	width:150px;
+	height:270px;
+	text-align:center;
+	overflow-y:scroll;	
+}
+
+.request-div-g .request-show-box .request-show-list {
+	list-style-type:none;
+	margin:0px;
+	padding-left:20px;			
+}
+
+.request-div-g .request-show-box .request-show-list li {
+	text-align:left;
+	color:#7298C6;
+	font-size:15px;
+	margin-bottom:10px;
+	cursor: pointer;
+}
+
+.request-div-g .request-search-box {
+	background:url(images/zq2admin_inputbox.png) no-repeat;
+	margin-left:20px;
+	margin-top:10px;
+	margin-bottom:10px;
+	height:30px;
+	
+}
+
+.request-div-g .request-search-box #request-search-text {
+	border:0px;
+	width:100px;	
+	height:25px;
+	background:transparent;
+	float:left;
+	padding-top:5px;
+	margin-left:2px;
+	*margin-left:-16px;
+	margin-bottom:2px;
+	display:inline;
+}
+
+.request-div-g .request-search-box #request-search-clear {
+	width:25px;
+	*width:20px;
+	height:28px;
+	margin:0px;
+	padding:0px;
+	background:transparent;
+	float:left;
+}
