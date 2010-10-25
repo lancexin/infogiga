@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="pkgs">
+	<!--  
+        <item>oms.mobilewidget</item>
+        <item>com.andgames.rickranger</item>
+        <item>com.konri.android.tringles</item>
+        <item>com.teleca.armageddonoid</item>
+       
+        <item>org.jfedor.frozenbubble</item>
+        <item>com.herocraft.game.farmfrenzy</item>
+        <item>dk.logisoft.airattackfull</item>
+    -->
+    	<item>QT.Dice</item>
+    	<item>oms.zhxbo.numsort</item>
+    	<item>oms.SmartPyramid</item>
+    	<item>com.SuperTetris</item>
+    	<item>com.VarietyBubbleFree</item>
+        <item>cn.infogiga.android.game</item>
+        <item>cn.infogiga.android.game2</item>
+    </string-array>
+    
+	<string-array name="acts">
+     	<item>QT.Dice.Dice</item>
+     	<item>oms.zhxbo.numsort.NumSort</item>
+     	<item>oms.SmartPyramid.SmartPyramid</item>
+     	<item>com.SuperTetris.SuperTetris</item>
+     	<item>com.VarietyBubbleFree.VarietyBubble</item>
+
+        <item>cn.infogiga.android.game.SoftActivity</item>
+        <item>cn.infogiga.android.game2.SoftActivity</item>
+    </string-array>
+
+</resources>
