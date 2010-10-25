@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <servlet>
+    <display-name>PlanarManage</display-name>
+    <servlet-name>PlanarManage</servlet-name>
+    <servlet-class>manage.PlanarManage</servlet-class>
+  </servlet>
+
+  <servlet>
+    <display-name>PageManage</display-name>
+    <servlet-name>QueryManage</servlet-name>
+    <servlet-class>manage.QueryManage</servlet-class>
+  </servlet>
+  <servlet>
+    <display-name>PageManage</display-name>
+    <servlet-name>PageManage</servlet-name>
+    <servlet-class>manage.PageManage</servlet-class>
+  </servlet>
+  <servlet>
+    <display-name>WatchManage</display-name>
+    <servlet-name>WatchManage</servlet-name>
+    <servlet-class>manage.WatchManage</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ClientManage</servlet-name>
+    <servlet-class>manage.ClientManage</servlet-class>
+  </servlet>
+ 
+  <servlet-mapping>
+    <servlet-name>PlanarManage</servlet-name>
+    <url-pattern>/do</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>QueryManage</servlet-name>
+    <url-pattern>/q</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PageManage</servlet-name>
+    <url-pattern>/door</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>WatchManage</servlet-name>
+    <url-pattern>/watch</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ClientManage</servlet-name>
+    <url-pattern>/rc</url-pattern>
+  </servlet-mapping>
+  <!-- 监听器 -->
+  <listener>
+    <listener-class>listener.MailListener</listener-class>
+  </listener>
+  
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+  </listener>
+  
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/applicationContext.xml,/WEB-INF/ds-servlet.xml</param-value>
+  </context-param>
+  
+   <servlet>
+    <servlet-name>ds</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ds</servlet-name>
+    <url-pattern>/bx</url-pattern>
+    <url-pattern>/bx/delete</url-pattern>
+    <url-pattern>/bx/addOrUpdate</url-pattern>
+    <url-pattern>/bx/list</url-pattern>
+    <url-pattern>/in</url-pattern>
+  </servlet-mapping>
+  
+  <filter>
+    <filter-name>openSessionInViewFilter</filter-name>
+    <filter-class>cindy.web.filther.MyOpenSessionInViewFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>openSessionInViewFilter</filter-name>
+    <url-pattern>/ds/*</url-pattern>
+  </filter-mapping> 
+  
+   <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  
+    <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>*</url-pattern>
+  </filter-mapping>
+  
+  <jsp-config>
+    <taglib>
+      <taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>
+      <taglib-location>/WEB-INF/c.tld</taglib-location>
+    </taglib>
+    <taglib>
+      <taglib-uri>http://java.sun.com/jsp/jstl/fmt</taglib-uri>
+      <taglib-location>/WEB-INF/fmt.tld</taglib-location>
+    </taglib>
+  </jsp-config>
+  
+  <welcome-file-list>
+    <welcome-file>login.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+</web-app>
+
