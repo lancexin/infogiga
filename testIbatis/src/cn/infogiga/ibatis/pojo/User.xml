@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="user">
+
+	<typeAlias alias="user" type="cn.infogiga.ibatis.pojo.User" />
+	<typeAlias alias="power" type="cn.infogiga.ibatis.pojo.Power" /> 	
+	
+	<resultMap class="power" id="power-map">
+		<result property="powerID" column="powerID" />
+		<result property="powerName" column="powerName" />
+		<result property="powerValue" column="powerValue" />
+	</resultMap>
+
+	<resultMap class="user" id="uer-map-cascade">
+		<result property="userID" column="userID" />
+		<result property="userName" column="userName" />
+		<result property="passWord" column="passWord" />
+		<result property="power" resultMap="user.power-map" />  
+	</resultMap>
+	
+	<resultMap class="user" id="uer-map">
+		<result property="userID" column="userID" />
+		<result property="userName" column="userName" />
+		<result property="passWord" column="passWord" />
+		<result property="power" column="powerID" select="findPowerById" />  
+	</resultMap>
+
+	<select id="findUserByIdWithCascade" resultMap="user.uer-map-cascade" parameterClass="int">
+		select u.userID as userID,
+			   u.userName as userName,
+			   u.passWord as passWord,
+			   p.powerID as powerID,
+			   p.powerName as powerName,
+			   p.powerValue as powerValue
+			   from user u left join power p on u.powerID = p.powerID
+			   where u.userID = #userID#
+	</select>
+	
+	<select id="findUserByExample" resultMap="user.uer-map" parameterClass="user">
+		select * from user 
+			<dynamic prepend="where"> 
+				<isNotNull prepend="and" property="userName"> userName= #userName#</isNotNull>
+				<isNotNull prepend="and" property="passWord"> passWord= #passWord#</isNotNull>		
+			</dynamic>
+	</select>
+	
+	<select id="findUserByExample2" resultMap="user.uer-map-cascade" parameterClass="user">
+		select u.userID as userID,
+			   u.userName as userName,
+			   u.passWord as passWord,
+			   p.powerID as powerID,
+			   p.powerName as powerName,
+			   p.powerValue as powerValue
+			   from user u left join power p on u.powerID = p.powerID
+			   <dynamic prepend="where"> 
+					<isNotNull prepend="and" property="userName"> u.userName like '%$userName$%'</isNotNull>
+					<isNotNull prepend="and" property="passWord"> u.passWord like '%$passWord$%'</isNotNull>
+					<isNotNull prepend="and" property="power.powerName"> p.powerName like '%$power.powerName$%'</isNotNull>	
+					<isNotNull prepend="and" property="power.powerValue"> p.powerValue like '%$power.powerValue$%'</isNotNull>		
+			   </dynamic>
+	</select>
+	
+	
+	<select id="findUserById" resultMap="user.uer-map" parameterClass="int">
+		select * from user where userID = #userID#
+	</select>
+	
+	<insert id="saveUser" parameterClass="user">
+		insert into user()
+	</insert>
+
+</sqlMap>
