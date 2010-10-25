@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings> 
+  <mapping name="Notification"> 
+    <method name="sendSMS"> 
+      <parameter index="0" componentType="java.lang.String"/> 
+    </method>
+    
+    <method name="sendMMS"> 
+      <parameter index="0" componentType="cn.infogiga.service.notification.MMSBean"/> 
+    </method>  
+    
+    <method name="sendMail"> 
+      <parameter index="0" componentType="cn.infogiga.service.notification.MailBean"/> 
+    </method>   
+  </mapping> 
+</mappings> 
