@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="cn.infogiga.android.experience"
+      android:versionCode="1"
+      android:versionName="1.0">
+      
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+        <activity android:name=".LoginActivity"
+        		  android:launchMode="singleInstance"
+        		  android:icon="@drawable/mshop_icon"
+        		  android:theme="@android:style/Theme.Dialog"
+                  android:label="@string/login_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+
+              
+        <activity android:name=".StartActivity"
+        		  android:theme="@android:style/Theme.Dialog"
+                  android:label="@string/alert_worning">
+                  <intent-filter>
+                  	 <action android:name="android.intent.action.MAIN" />
+                  </intent-filter>
+        </activity>
+        
+        <activity android:name=".ReceiveActivity"
+        		  android:theme="@android:style/Theme.Dialog"
+                  android:label="@string/alert_worning">
+        </activity>
+        
+        <activity android:name=".ComboActivity"
+        		  android:theme="@android:style/Theme.Dialog"
+                  android:label="@string/server_intrduction_title">
+        </activity>
+        
+        <receiver android:name=".service.BootReceiver">  
+		    <intent-filter>  
+		        <action android:name="android.intent.action.BOOT_COMPLETED"/>  
+		        <category android:name="android.intent.category.HOME" />  
+		    </intent-filter>  
+		</receiver>
+		
+		<service android:enabled="true" android:name=".service.ExperienceService" />
+    </application>
+    <uses-sdk android:minSdkVersion="3" />
+</manifest> 

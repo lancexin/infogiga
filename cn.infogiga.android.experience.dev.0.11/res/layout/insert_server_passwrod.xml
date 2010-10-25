@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView 
+        android:id="@+id/server_password_view"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:text="@string/alert_dialog_server_password_msg"
+        android:gravity="left"/>
+            
+    <EditText
+        android:id="@+id/server_password_edit"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:scrollHorizontally="true"
+        android:autoText="false"
+        android:capitalize="none"
+        android:inputType="numberPassword"
+        android:singleLine="true"
+        android:gravity="fill_horizontal" />
+    <TextView 
+        android:id="@+id/server_password_view"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+         android:textColor="@color/solid_red"
+        android:text="@string/alert_dialog_unknow_password_msg"
+        android:gravity="left"/>
+</LinearLayout>
