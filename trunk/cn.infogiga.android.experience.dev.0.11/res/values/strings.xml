@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, ExperienceActivity!</string>
+    <string name="app_name">体验软件</string>
+    <string name="music_name">随身听体验</string>
+    <string name="game_name">手机游戏体验</string>
+    <string name="reader_name">手机阅读体验</string>
+    <string name="login_name">员工登录</string>
+    
+    <string name="version">cn.infogiga.android.experience.dev.0.5</string>
+    <string name="team_id">1</string>
+    <string name="system_id">1</string>
+    
+    <string name="alert_dialog_phone">请输入您的手机号码，本次体验完全免费。</string>
+    <string name="alert_dialog_phoneNumber">手机号码</string>
+    <string name="alert_worning">提示信息</string>
+    <string name="alert_dialog_ok">确定</string>
+    <string name="alert_dialog_cancel">取消</string>
+    <string name="alert_dialog_update_title">更新提示</string>
+    <string name="alert_dialog_update_str">程序有更新,请及时更新,如果不更新将不能正常进入程序</string>
+    <string name="alert_dialog_reg_str">您尚未注册,请先输入注册码,否则程序无法执行</string>
+    <string name="alert_dialog_reg_title">注册提示</string>
+    <string name="alert_dialog_server_password_title">服务密码</string>
+    <string name="alert_dialog_server_password_msg">请输入您的服务密码</string>
+    <string name="alert_dialog_unknow_password_msg">请发送短信2010至10086获得服务密码</string>
+    
+    <string name="send_message_error">发送请求失败,请检查网络是否流畅,或联系管理人员</string>
+    <string name="server_host">http://221.131.216.48:8080</string>
+    <string name="server_url">http://221.131.216.48:8080/exp/m</string>
+   
+    <string name="cmwap_url">http://10.0.0.172/exp/m</string>
+    <string name="update_path">/sdcard/renewal</string>
+    <string name="msg_null_phoneNumber">手机号不能为空</string>
+    <string name="msg_error_phoneNumber">手机号格式不正确</string>
+    <string name="msg_null_config">配置文件未能找到</string>
+    <string name="msg_error_config">配置文件错误</string>
+    <string name="msg_sex_config">配置文件解析错误</string>
+    <string name="msg_io_config">配置文件解析错误</string>
+    <string name="msg_error_code">注册码错误,或服务器未响应,请检查网络后重新输入</string>
+    <string name="msg_order_success">提交信息成功</string>
+    <string name="msg_order_error">提交信息失败</string>
+    <string name="server_intrduction_title">业务介绍</string>
+    
+    
+    <string name="insert_phoneNumber_title">手机号输入</string>
+    <string name="reg_str">为了更好的统计体验数据,请服务员先登录验软件</string>
+    <string name="has_login">你已经登录</string>
+    <string name="no_service">服务未启动</string>
+    <string name="not_null">不能为空</string>
+    <string name="login_success">登录成功</string>
+    <string name="music">音乐随身听</string>
+    <string name="game">手机游戏</string>
+    <string name="reader">手机阅读</string>
+    <string name="server_password">服务密码：</string>
+    <string name="server_phoneNumber">手机号码：</string>
+    <string name="server_intr_title">业务介绍：</string>
+    <string name="server_combo_title">套餐信息：</string>
+    
+    
+    
+    
+    
+</resources>

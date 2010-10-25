@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="420px"
+    android:layout_height="wrap_content"
+
+    >
+	<TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="请输入以下信息以便了解更多内容："
+    android:layout_marginLeft="10px"
+    android:layout_marginRight="10px"
+    />
+
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+	android:layout_marginLeft="10px"
+    android:layout_marginRight="10px"
+    >
+	    <TextView  
+	    android:layout_width="120px" 
+	    android:layout_height="wrap_content" 
+	    android:text="手机号码："
+	    />
+	    <EditText
+	    android:layout_width="280px" 
+	    android:layout_height="wrap_content" 
+	    android:singleLine="true"
+	    android:inputType="number"
+	    />
+    </LinearLayout>
+    
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10px"
+    android:layout_marginRight="10px"
+    >
+	    <TextView  
+	    android:layout_width="120px" 
+	    android:layout_height="wrap_content" 
+	    android:text="服务密码："
+	    
+	    />
+	    <EditText
+	    android:layout_width="280px" 
+	    android:layout_height="wrap_content" 
+	    android:singleLine="true"
+	    android:password="true"
+	    
+	    />
+    </LinearLayout>
+    <TextView  
+    android:layout_width="400px" 
+    android:layout_height="wrap_content" 
+    android:text="请发送短信2010到10086获取服务密码"
+    android:layout_marginLeft="10px"
+    android:layout_marginRight="10px"
+    android:textColor="@color/solid_red"
+    />
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+        android:layout_marginLeft="10px"
+    android:layout_marginRight="10px"
+    >	
+    <Button
+    	 android:layout_width="150px"
+   		 android:layout_height="wrap_content"
+   		 android:layout_marginLeft="7px"
+   		 android:layout_marginRight="7px"
+    	 android:text="确定"
+    />
+    <Button
+    	 android:layout_width="150px"
+   		 android:layout_height="wrap_content"
+   		 android:layout_marginLeft="7px"
+   		 android:layout_marginRight="7px"
+    	 android:text="取消"
+    />
+ </LinearLayout>	
+</LinearLayout>
