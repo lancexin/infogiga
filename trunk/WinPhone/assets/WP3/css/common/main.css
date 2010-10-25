@@ -1,0 +1,61 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+	padding: 0px;
+	margin: 0px;
+	overflow: hidden;
+	cursor: default;
+}
+body {
+	width: 320px;
+	height: 480px;
+	background-color: #141414;
+	overflow: visible;
+	color: #FFF;
+	font-family: 'Segoe UI Light', 'Segoe UI', Arial, sans-serif;
+	text-decoration: none;
+	-moz-user-select: none;
+	-webkit-user-select:none;
+}
+#wrap {
+	width: 320px;
+	height: 480px;
+	overflow: visible;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 200;
+}
+
+/* header */
+#header {
+	width: 320px;
+	height: 26px;
+	overflow: hidden;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 190;
+}
+
+/* main */
+#main {
+	width: 320px;
+	height: 480px;
+	overflow: visible;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+/* footer */
+#footer {
+	z-index: 100;
+}
+
+#screenLocker {
+	width:320px;
+	height:480px;
+	background:url(../image/spec/wallpaper3.png) no-repeat;
+	position:absolute;
+}

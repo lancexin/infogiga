@@ -1,0 +1,68 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* main */
+#main {
+	width: 320px;
+}
+
+/* menu left */
+#menu_box_left {
+	width: 240px;
+	height: 100%;
+	overflow:visible;
+	position: absolute;
+	left: 10px;
+	top: 48px;
+}
+.m_l {
+	width: 115px;
+	height: 115px;
+	overflow: hidden;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	display: block;
+	background-color:#1BA1E2;
+}
+.m_l_d {
+	width: 240px;
+}
+/* menu right */
+#menu_box_right {
+	width: 270px;
+	height: 100%;
+	overflow:visible;
+	position: absolute;
+	left: 370px;
+	top: 48px;
+}
+.m_s {
+	width: 40px;
+	height: 40px;
+	overflow: visible;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	display: block;
+	background-color:#1BA1E2;
+}
+.m_s div {
+	width: 250px;
+	height: 1.4em;
+	overflow: hidden;
+	position: relative;
+	left: 50px;
+	top: 10px;
+	font-family: 'Segoe UI', 'Segoe UI Light', Arial, sans-serif;
+}
+
+
+#arrow {
+	width: 28px;
+	height: 28px;
+	position:absolute;
+	left: 270px;
+	top: 48px;
+	background: url(../image/common/next.png) no-repeat;
+}

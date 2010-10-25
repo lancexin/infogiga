@@ -1,0 +1,21 @@
+@charset "utf-8";
+.page {
+	width: 320px;
+	height: 480px;
+	overflow: visible;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+#welcome {
+	z-index:10;
+}
+#lockscreen {
+	z-index:9;
+}
+#start {
+	z-index:1;
+}
+#people {
+	z-index:2;
+}

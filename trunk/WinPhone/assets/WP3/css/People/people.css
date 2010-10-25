@@ -1,0 +1,183 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* main */
+#main {
+	width: 1110px;
+	height: 480px;
+}
+
+/* title */
+#title {
+	width: 1110px;
+	height: 150px;
+	position: absolute;
+	left: 0px;
+	top: -30px;
+	font-size:128px;
+	line-height:1em;
+	background: #141414;
+	z-index: 200;
+}
+
+/* box */
+.box {
+	width: 500px;
+	height: 370px;
+	overflow: visible;
+	position: absolute;
+	left: 10px;
+	top: 110px;
+}
+.box_title {
+	padding-left: 10px;
+	font-family: 'Segoe UI', 'Segoe UI Light', Arial, sans-serif;
+	font-size: 36px;
+	background: #141414;
+	z-index: 300;
+}
+#box_1 {
+	left: 10px;
+}
+#box_2 {
+	width: 280px;
+	left: 510px;
+	overflow: hidden;
+}
+#box_2 #plus {
+	width: 28px;
+	height: 28px;
+	position: absolute;
+	left: 220px;
+	top: 12px;
+	background: url(../../image/common/plus.png) no-repeat;
+}
+#box_3 {
+	width: 320px;
+	left: 790px;
+}
+#box_3 .box_wrap {
+	width: 320px;
+	position: absolute;
+	left: 10px;
+	top: 62px;
+	z-index: -1;
+}
+.r_l {
+	width: 115px;
+	height: 115px;
+	overflow: hidden;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	display: block;
+	background-color:#F09609;
+}
+#r_l_x {
+	left: 10px;
+	overflow: visible;
+}
+#r_l_x div {
+	width: 100px;
+	position: relative;
+	left: 125px;
+	top: 0px;
+	font-family: 'Segoe UI', 'Segoe UI Light', Arial, sans-serif;
+}
+.all_s {
+	width: 40px;
+	height: 40px;
+	overflow: visible;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	display: block;
+	background-color:#06C;
+}
+.all_s div {
+	width: 250px;
+	height: 1.4em;
+	overflow: hidden;
+	position: relative;
+	left: 50px;
+	top: 2px;
+	font-family: 'Segoe UI', 'Segoe UI Light', Arial, sans-serif;
+	font-size: 24px;
+}
+.all_s span {
+	position: relative;
+	left: 3px;
+	top: 6px;
+	font-family: 'Segoe UI', 'Segoe UI Light', Arial, sans-serif;
+	font-size: 26px;
+}
+#box_3 .box_wrap {
+	width: 320px;
+}
+.what {
+	width: 300px;
+	overflow: visible;
+	margin-bottom: 20px;
+	float: left;
+	font-family: 'Segoe UI', 'Segoe UI Light', Arial, sans-serif;
+}
+.what .name {
+	height: 30px;
+	overflow: visible;
+	font-size: 22px;
+	float: left;
+}
+.what .from {
+	width: 230px;
+	font-size: 12px;
+	float: left;
+}
+.what .news {
+	width: 230px;
+	font-size: 13px;
+	color: #14568B;
+	float: left;
+}
+.what .content {
+	width: 230px;
+	font-size: 13px;
+	color: #8B8B8B;
+	float: left;
+}
+.what .comment {
+	width: 30px;
+	height: 30px;
+	font-size: 17px;
+	float: right;
+	margin: 5px 30px 0 0;
+	padding: 0px 0 0 10px;
+	background: url(../../image/common/comment.png) no-repeat;
+}
+
+/*字母表*/
+#alphabet {
+	width: 320px;
+	height: 480px;
+	overflow: hidden;
+	position: absolute;
+	left: 0px;
+	top: -480px;
+	z-index:200;
+}
+#alphabet #bgalpha {
+	width: 320px;
+	height: 480px;
+	background-color: #000;
+	opacity: 0.7;
+}
+#alphabet .alpha_block {
+	width: 55px;
+	height: 40px;
+	overflow: visible;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	font-size: 30px;
+	font-family: 'Segoe UI', 'Segoe UI Light', Arial, sans-serif;
+	padding: 20px 0 0 5px;
+}
