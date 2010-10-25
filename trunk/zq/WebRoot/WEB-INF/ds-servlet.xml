@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	
+	 <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	    <property name="interceptors" ref="openSessionInViewInterceptor"/>
+	    <property name="mappings">
+	        <props>	        	
+	            <prop key="/bx">dsController</prop>
+	            <prop key="/bx/delete">dsController</prop>            
+	        	<prop key="/bx/addOrUpdate">dsController</prop>
+	        	<prop key="/bx/list">dsController</prop>
+	        	<prop key="/in">dataController</prop>
+	        </props>
+	    </property>
+	 </bean>
+	 
+	 <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="prefix" value="/ds/"/>  
+        <property name="suffix" value=".jsp"/>  
+     </bean> 
+	 
+	<bean id="dsController" class="cn.infogiga.ds.controller.DsController">
+		<property name="dsDAO" ref="DsDAO"></property>
+	</bean>
+	
+	<bean id="dataController" class="cn.infogiga.ds.controller.DataController">
+		<property name="dsDAO" ref="DsDAO"></property>
+	</bean>
+
+	<!-- end -->
+ </beans>
