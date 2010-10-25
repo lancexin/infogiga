@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, MusicActivity!</string>
+    <string name="app_name">号簿管家</string>
+    <string name="exp_name">号簿管家</string>
+    
+    
+    <string name="menu_id">20789</string>
+    <string name="func_id">12544</string>
+    
+    <string name="pkg">com.huawei.pisa.activity</string>
+    <string name="act">com.huawei.pisa.activity.WelcomeActivity</string>
+    <string name="open_act">cn.infogiga.android.experience.StartActivity</string>
+    <string name="open_pkg">cn.infogiga.android.experience</string>
+    <string name="self_intr">号簿管家可以帮你及时备份通信录。</string>
+</resources>
