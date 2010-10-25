@@ -1,0 +1,69 @@
+<HTML>
+<HEAD>
+<TITLE>集团彩铃</TITLE>
+<link rel="shortcut icon" href="../favicon.ico" />
+<script type='text/javascript' src='JS/jquery-1.3.2.min.js'></script>
+<script type='text/javascript' src='JS/swfobject.js'></script>
+<style>
+	#swf {text-align:center;}
+	#musicPlayer {text-align:center;}
+</style>
+<SCRIPT LANGUAGE=JavaScript>
+$(document).ready(function(){
+	loadFlash();
+});
+
+function loadFlash() {
+   	var so = new SWFObject("3d_curve_wall.swf", "myFlash", "100%", "100%", "6", "#000000"); 
+	//参数:地址，Flash 的 id（不是容器的 id），宽，高，版本需求，背景颜色		
+	so.write("swf"); 
+  }
+var time = "00:00-00:00";
+var current = "00:00";
+var total = "00:00";
+var send = false;
+function play(file) {
+	player.url = file;
+	send = false;
+	player.controls.play();
+	setInterval(updateTime, 1000);
+}
+
+function updateTime() {	
+	current = player.controls.currentPositionString == ""?"00:00":player.controls.currentPositionString;
+	total = player.playState == 1?"00:00":player.currentMedia.durationString;
+	time = current+ "-"+ total;
+	window.document.myFlash.callFlash(time);	
+}
+
+var InternetExplorer = navigator.appName.indexOf("Microsoft") != -1;
+function myFlash_DoFSCommand(command, args) {
+  var myFlashObj = InternetExplorer ? myFlash : document.myFlash;
+  play(args);
+}
+
+if (navigator.appName && navigator.appName.indexOf("Microsoft") != -1 && 
+  navigator.userAgent.indexOf("Windows") != -1 && navigator.userAgent.indexOf("Windows 3.1") == -1) {
+  document.write('<SCRIPT LANGUAGE=VBScript\> \n');
+  document.write('on error resume next \n');
+  document.write('Sub myFlash_FSCommand(ByVal command, ByVal args)\n');
+  document.write(' call myFlash_DoFSCommand(command, args)\n');
+  document.write('end sub\n');
+  document.write('</SCRIPT\> \n');
+} 
+</SCRIPT>
+</HEAD>
+<BODY bgcolor='#000000'>
+<div id='swf'>
+	<!-- OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+	 codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0"
+	 WIDTH="100%" HEIGHT="100%" id="myFlash">
+	 <PARAM NAME=movie VALUE="3d_curve_wall.swf"> 
+	 <PARAM NAME=quality VALUE=high> 
+	 <PARAM NAME=bgcolor VALUE=#000000> 
+	 <PARAM NAME=allowScriptAccess VALUE=always> 
+	 <EMBED src="3d_curve_wall.swf" quality=high bgcolor=#CCCCCC  WIDTH="800" HEIGHT="600" NAME="myFlash" swLiveConnect="true" TYPE="application/x-shockwave-flash" allowScriptAccess="always" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED>
+	 -->
+</div>
+</BODY>
+</HTML>
