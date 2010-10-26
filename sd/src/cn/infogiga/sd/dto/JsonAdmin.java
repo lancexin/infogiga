@@ -3,7 +3,7 @@ package cn.infogiga.sd.dto;
 import cindy.page.beanutils.Sync;
 
 public class JsonAdmin {
-	@Sync(value = "adminId")
+	@Sync(value = "userId")
 	private String adminId;
 	
 	@Sync(value = "nickName")
