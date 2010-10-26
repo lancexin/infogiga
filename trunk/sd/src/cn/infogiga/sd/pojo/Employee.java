@@ -10,13 +10,14 @@ import java.util.Set;
  * @author MyEclipse Persistence Tools
  */
 
-public class Employee  extends PowerUser  implements java.io.Serializable {
+public class Employee extends PowerUser implements java.io.Serializable {
 
 	// Fields
 
-	private Integer employeeId;
+
 	private Bissinusshall bissinusshall;
 	private Set musicdownloadstats = new HashSet(0);
+	private Set videodownloadstats = new HashSet(0);
 	private Set softdownloadstats = new HashSet(0);
 
 	// Constructors
@@ -24,35 +25,27 @@ public class Employee  extends PowerUser  implements java.io.Serializable {
 	/** default constructor */
 	public Employee() {
 	}
-	
-	public Employee(Integer employeeId) {
-		this.employeeId = employeeId;
-	}
 
 	/** full constructor */
 	public Employee(Power power, Bissinusshall bissinusshall, String nickName,
 			String userName, String passWord, Integer status, Date addTime,
-			Set musicdownloadstats, Set softdownloadstats) {
-		this.power = power;
+			Set musicdownloadstats, Set videodownloadstats,
+			Set softdownloadstats) {
+		super.power = power;
+		super.nickName = nickName;
+		super.userName = userName;
+		super.passWord = passWord;
+		super.status = status;
+		super.addTime = addTime;
 		this.bissinusshall = bissinusshall;
-		this.nickName = nickName;
-		this.userName = userName;
-		this.passWord = passWord;
-		this.status = status;
-		this.addTime = addTime;
 		this.musicdownloadstats = musicdownloadstats;
+		this.videodownloadstats = videodownloadstats;
 		this.softdownloadstats = softdownloadstats;
 	}
 
 	// Property accessors
 
-	public Integer getEmployeeId() {
-		return this.employeeId;
-	}
-
-	public void setEmployeeId(Integer employeeId) {
-		this.employeeId = employeeId;
-	}
+	
 
 	public Bissinusshall getBissinusshall() {
 		return this.bissinusshall;
@@ -61,13 +54,21 @@ public class Employee  extends PowerUser  implements java.io.Serializable {
 	public void setBissinusshall(Bissinusshall bissinusshall) {
 		this.bissinusshall = bissinusshall;
 	}
-	
+
 	public Set getMusicdownloadstats() {
 		return this.musicdownloadstats;
 	}
 
 	public void setMusicdownloadstats(Set musicdownloadstats) {
 		this.musicdownloadstats = musicdownloadstats;
+	}
+
+	public Set getVideodownloadstats() {
+		return this.videodownloadstats;
+	}
+
+	public void setVideodownloadstats(Set videodownloadstats) {
+		this.videodownloadstats = videodownloadstats;
 	}
 
 	public Set getSoftdownloadstats() {

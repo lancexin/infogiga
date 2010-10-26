@@ -25,17 +25,17 @@
         <property name="status" type="java.lang.Integer">
             <column name="status" />
         </property>
-        <set name="equipments" inverse="true">
-            <key>
-                <column name="hallID" />
-            </key>
-            <one-to-many class="cn.infogiga.sd.pojo.Equipment" />
-        </set>
         <set name="employees" inverse="true">
             <key>
                 <column name="hallID" />
             </key>
             <one-to-many class="cn.infogiga.sd.pojo.Employee" />
+        </set>
+        <set name="equipments" inverse="true">
+            <key>
+                <column name="hallID" />
+            </key>
+            <one-to-many class="cn.infogiga.sd.pojo.Equipment" />
         </set>
     </class>
 </hibernate-mapping>

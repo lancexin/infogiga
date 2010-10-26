@@ -20,7 +20,7 @@
             <column name="phonetypeID" />
         </many-to-one>
         <many-to-one name="employee" class="cn.infogiga.sd.pojo.Employee" fetch="select">
-            <column name="employeeID" />
+            <column name="userID" />
         </many-to-one>
         <many-to-one name="downloadtype" class="cn.infogiga.sd.pojo.Downloadtype" fetch="select">
             <column name="downloadtypeID" />

@@ -20,29 +20,25 @@ public class Bissinusshall implements java.io.Serializable {
 	private String description;
 	private Date addTime;
 	private Integer status;
-	private Set equipments = new HashSet(0);
 	private Set employees = new HashSet(0);
+	private Set equipments = new HashSet(0);
 
 	// Constructors
 
 	/** default constructor */
 	public Bissinusshall() {
 	}
-	
-	public Bissinusshall(Integer hallId) {
-		this.hallId = hallId;
-	}
 
 	/** full constructor */
 	public Bissinusshall(City city, String hallName, String description,
-			Date addTime, Integer status, Set equipments, Set employees) {
+			Date addTime, Integer status, Set employees, Set equipments) {
 		this.city = city;
 		this.hallName = hallName;
 		this.description = description;
 		this.addTime = addTime;
 		this.status = status;
-		this.equipments = equipments;
 		this.employees = employees;
+		this.equipments = equipments;
 	}
 
 	// Property accessors
@@ -95,20 +91,20 @@ public class Bissinusshall implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public Set getEquipments() {
-		return this.equipments;
-	}
-
-	public void setEquipments(Set equipments) {
-		this.equipments = equipments;
-	}
-
 	public Set getEmployees() {
 		return this.employees;
 	}
 
 	public void setEmployees(Set employees) {
 		this.employees = employees;
+	}
+
+	public Set getEquipments() {
+		return this.equipments;
+	}
+
+	public void setEquipments(Set equipments) {
+		this.equipments = equipments;
 	}
 
 }
