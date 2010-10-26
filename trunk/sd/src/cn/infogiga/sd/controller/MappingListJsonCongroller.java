@@ -97,6 +97,14 @@ public class MappingListJsonCongroller {
 	
 	@RequestMapping(value = "/json",params="comboPower")
 	public String comboPowerJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model){
+		List<JsonPower> powerList = MyBeanUtils.copyListProperties(manageService.getManageDAO().findAll(Power.class), JsonPower.class);
+		model.addAttribute("array", powerList);
+		return "list";
+
+	}
+
+	@RequestMapping(value = "/json",params="comboLowPower")
+	public String comboLowPowerJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model){
 		List<JsonPower> powerList = MyBeanUtils.copyListProperties(manageService.getManageDAO().findByProperty(Power.class, "status", 1), JsonPower.class);
 		model.addAttribute("array", powerList);
 		return "list";

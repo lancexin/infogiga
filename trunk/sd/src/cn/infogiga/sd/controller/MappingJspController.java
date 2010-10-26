@@ -122,4 +122,32 @@ public class MappingJspController {
 		model.put("name", name);
 		return "video/videodownloadstat/videodownloadstat";
 	}
+
+	@RequestMapping(value = "/p",params="selfinfo")
+	public String selfinfoList(ModelMap model,@RequestParam("code")String code,@RequestParam("name")String name){
+		model.put("code", code);
+		model.put("name", name);
+		return "shop/selfinfo/selfinfo";
+	}
+
+	@RequestMapping(value = "/p",params="shopequipment")
+	public String shopequipmentList(ModelMap model,@RequestParam("code")String code,@RequestParam("name")String name){
+		model.put("code", code);
+		model.put("name", name);
+		return "shop/equipment/equipment";
+	}
+
+	@RequestMapping(value = "/p",params="shopemployee")
+	public String shopemployeeList(ModelMap model,@RequestParam("code")String code,@RequestParam("name")String name){
+		model.put("code", code);
+		model.put("name", name);
+		return "shop/employee/employee";
+	}
+
+	@RequestMapping(value = "/p",params="shopstat")
+	public String shopstatList(ModelMap model,@RequestParam("code")String code,@RequestParam("name")String name){
+		model.put("code", code);
+		model.put("name", name);
+		return "shop/shopstat/shopstat";
+	}
 }

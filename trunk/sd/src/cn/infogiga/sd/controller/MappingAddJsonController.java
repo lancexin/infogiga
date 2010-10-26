@@ -138,7 +138,9 @@ public class MappingAddJsonController {
 			@RequestParam("hallId")Integer hallId){
 		Equipment equipment = new Equipment();
 		equipment.setAddTime(new Date());
-		equipment.setBissinusshall(new Bissinusshall(hallId));
+		Bissinusshall hall = new Bissinusshall();
+		hall.setHallId(hallId);
+		equipment.setBissinusshall(hall);
 		equipment.setMac(mac);
 		equipment.setEquipmentCode(cindy.util.Code.getCode(8));
 		equipment.setStatus(status);
@@ -168,7 +170,9 @@ public class MappingAddJsonController {
 		employee.setNickName(nickName);
 		employee.setUserName(userName);
 		employee.setPassWord(passWord);
-		employee.setBissinusshall(new Bissinusshall(hallId));
+		Bissinusshall hall = new Bissinusshall();
+		hall.setHallId(hallId);
+		employee.setBissinusshall(hall);
 		employee.setPower(new Power(powerId));
 		employee.setAddTime(new Date());
 		employee.setStatus(status);
