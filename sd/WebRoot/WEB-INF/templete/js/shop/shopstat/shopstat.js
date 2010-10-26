@@ -1,0 +1,11 @@
+var newComponent = (function() {
+
+
+
+
+	
+
+
+
+
+});
