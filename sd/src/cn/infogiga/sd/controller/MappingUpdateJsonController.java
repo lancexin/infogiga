@@ -58,7 +58,7 @@ public class MappingUpdateJsonController {
 			@RequestParam("addTime")String addTime,
 			@RequestParam("status")Integer status){
 		Admin admin = new Admin();
-		admin.setAdminId(adminId);
+		admin.setUserId(adminId);
 		admin.setNickName(nickName);
 		admin.setUserName(userName);
 		admin.setPassWord(passWord);
@@ -141,7 +141,9 @@ public class MappingUpdateJsonController {
 			@RequestParam("hallId")Integer hallId){
 		Equipment equipment = new Equipment();
 		equipment.setEquipmentId(equipmentId);
-		equipment.setBissinusshall(new Bissinusshall(hallId));
+		Bissinusshall hall = new Bissinusshall();
+		hall.setHallId(hallId);
+		equipment.setBissinusshall(hall);
 		equipment.setMac(mac);
 		equipment.setEquipmentCode(equipmentCode);
 		equipment.setStatus(status);
@@ -171,11 +173,13 @@ public class MappingUpdateJsonController {
 			@RequestParam("powerId")Integer powerId,
 			@RequestParam("status")Integer status){
 		Employee employee = new Employee();
-		employee.setEmployeeId(employeeId);
+		employee.setUserId(employeeId);
 		employee.setNickName(nickName);
 		employee.setUserName(userName);
 		employee.setPassWord(passWord);
-		employee.setBissinusshall(new Bissinusshall(hallId));
+		Bissinusshall bissinusshall = new Bissinusshall();
+		bissinusshall.setHallId(hallId);
+		employee.setBissinusshall(bissinusshall);
 		employee.setPower(new Power(powerId));
 		employee.setStatus(status);
 		employee.setAddTime(DateUtil.stringToDate(addTime, DateUtil.NOW_TIME));

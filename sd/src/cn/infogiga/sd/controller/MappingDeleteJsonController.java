@@ -63,7 +63,8 @@ public class MappingDeleteJsonController {
 	@RequestMapping(value = "/delete",params="admin")
 	public String deleteAdmin(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
 			@RequestParam("adminId")Integer adminId){
-		Admin admin = new Admin(adminId);
+		Admin admin = new Admin();
+		admin.setUserId(adminId);
 		try {
 			manageService.getManageDAO().delete(admin);
 			model.put("success", true);
@@ -80,7 +81,8 @@ public class MappingDeleteJsonController {
 	@RequestMapping(value = "/delete",params="hall")
 	public String deleteHall(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
 			@RequestParam("hallId")Integer hallId){
-		Bissinusshall hall = new Bissinusshall(hallId);
+		Bissinusshall hall = new Bissinusshall();
+		hall.setHallId(hallId);
 		try {
 			manageService.getManageDAO().delete(hall);
 			model.put("success", true);
@@ -114,7 +116,8 @@ public class MappingDeleteJsonController {
 	@RequestMapping(value = "/delete",params="employee")
 	public String deleteEmployee(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
 			@RequestParam("employeeId")Integer employeeId){
-		Employee employee = new Employee(employeeId);
+		Employee employee = new Employee();
+		employee.setUserId(employeeId);
 		try {
 			manageService.getManageDAO().delete(employee);
 			model.put("success", true);
