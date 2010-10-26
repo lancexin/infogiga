@@ -6,14 +6,14 @@
 -->
 <hibernate-mapping>
     <class name="cn.infogiga.sd.pojo.Employee" table="employee" catalog="softdown">
-        <id name="employeeId" type="java.lang.Integer">
-            <column name="employeeID" />
+        <id name="userId" type="java.lang.Integer">
+            <column name="userID" />
             <generator class="identity" />
         </id>
-        <many-to-one name="power" class="cn.infogiga.sd.pojo.Power" fetch="select">
+        <many-to-one name="power" class="cn.infogiga.sd.pojo.Power" fetch="join">
             <column name="powerID" />
         </many-to-one>
-        <many-to-one name="bissinusshall" class="cn.infogiga.sd.pojo.Bissinusshall" fetch="select">
+        <many-to-one name="bissinusshall" class="cn.infogiga.sd.pojo.Bissinusshall" fetch="join">
             <column name="hallID" />
         </many-to-one>
         <property name="nickName" type="java.lang.String">
@@ -33,13 +33,19 @@
         </property>
         <set name="musicdownloadstats" inverse="true">
             <key>
-                <column name="employeeID" />
+                <column name="userID" />
             </key>
             <one-to-many class="cn.infogiga.sd.pojo.Musicdownloadstat" />
         </set>
+        <set name="videodownloadstats" inverse="true">
+            <key>
+                <column name="userID" />
+            </key>
+            <one-to-many class="cn.infogiga.sd.pojo.Videodownloadstat" />
+        </set>
         <set name="softdownloadstats" inverse="true">
             <key>
-                <column name="employeeID" />
+                <column name="userID" />
             </key>
             <one-to-many class="cn.infogiga.sd.pojo.Softdownloadstat" />
         </set>

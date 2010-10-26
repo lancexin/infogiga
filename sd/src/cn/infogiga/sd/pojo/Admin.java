@@ -8,44 +8,25 @@ import java.util.Date;
  * @author MyEclipse Persistence Tools
  */
 
-public class Admin  extends PowerUser  implements java.io.Serializable  {
+public class Admin extends PowerUser implements java.io.Serializable {
 
 	// Fields
-
-	private Integer adminId;
-
+	
 
 	// Constructors
 
 	/** default constructor */
 	public Admin() {
 	}
-	
-	public Admin(Integer adminId) {
-		this.adminId = adminId;
-	}
 
 	/** full constructor */
 	public Admin(Power power, String nickName, String userName,
 			String passWord, Integer status, Date addTime) {
-		this.power = power;
-		this.nickName = nickName;
-		this.userName = userName;
-		this.passWord = passWord;
-		this.status = status;
-		this.addTime = addTime;
+		super.power = power;
+		super.nickName = nickName;
+		super.userName = userName;
+		super.passWord = passWord;
+		super.status = status;
+		super.addTime = addTime;
 	}
-
-	// Property accessors
-
-	public Integer getAdminId() {
-		return this.adminId;
-	}
-
-	public void setAdminId(Integer adminId) {
-		this.adminId = adminId;
-	}
-
-
-
 }

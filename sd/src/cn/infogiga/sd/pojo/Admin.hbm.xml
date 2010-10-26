@@ -6,8 +6,8 @@
 -->
 <hibernate-mapping>
     <class name="cn.infogiga.sd.pojo.Admin" table="admin" catalog="softdown">
-        <id name="adminId" type="java.lang.Integer">
-            <column name="adminID" />
+        <id name="userId" type="java.lang.Integer">
+            <column name="userID" />
             <generator class="identity" />
         </id>
         <many-to-one name="power" class="cn.infogiga.sd.pojo.Power" fetch="join">
