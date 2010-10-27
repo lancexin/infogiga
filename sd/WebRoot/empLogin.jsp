@@ -2,8 +2,6 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-String value = (String)request.getAttribute("value");
-session.removeAttribute("value");
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -18,9 +16,8 @@ session.removeAttribute("value");
 		 var form = new Ext.form.FormPanel({
 			baseCls: 'x-plain',
 			layout:'absolute',
-			url:'empLogin',
+			
 			defaultType: 'textfield',
-	
 			items: [{
 				x: 15,
 				y: 5,
@@ -30,6 +27,7 @@ session.removeAttribute("value");
 				x: 75,
 				y: 0,
 				name: 'userName',
+				value:'aa'
 			},{
 				x: 15,
 				y: 35,
@@ -39,7 +37,8 @@ session.removeAttribute("value");
 				x: 75,
 				y: 30,
 				name: 'passWord',
-				inputType:"password"
+				inputType:"password",
+				value:'aa'
 			}]
 		});
 	
@@ -57,12 +56,27 @@ session.removeAttribute("value");
 			buttons: [{
 				text: '确定',
 				handler:function(){
-					alert('ddddddddddddddddd');
+					form.getForm().submit({
+						url:'empLogin?type=json',
+						waitMsg:"请等待",
+                        method:'post',
+						success:function(form,action){
+							document.location = "/sd/admin";
+						},
+						failure:function(form,action){
+							if(action.result.msg){
+								Ext.Msg.alert('错误',action.result.msg);
+							}else{
+								Ext.Msg.alert('错误',"无法连接服务器,请稍后再试");
+							}
+                             
+                        }
+					});
 				}
 			},{
-				text: '取消',
+				text: '重置',
 				handler:function(){
-					alert('ddddddddddddddddd');
+					form.getForm().getEl().dom.reset();
 				}
 			}]
 		});
@@ -74,12 +88,5 @@ session.removeAttribute("value");
 
 <body>
 	<div id="form-login"></div>
-	 <%
-	  if(value != null){
-	  %>
-	   <script type="text/javascript">
-	  	alert("<%=value%>");
-	   </script>
-	  <%}%>
 </body>
 </html>

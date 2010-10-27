@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					align=middle>
 				</TD>
 				<TD align=right width=268>
-					<IMG height=56 src="images/header_right.jpg" width=268>
+					
 				</TD>
 			</TR>
 		</TABLE>

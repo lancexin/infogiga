@@ -114,7 +114,7 @@
 			<item>
 				<code>E_1</code>
 				<name>个人信息管理</name>
-				<url><![CDATA[list?renewal]]></url>
+				<url><![CDATA[p?selfinfo]]></url>
 			</item>
 			<item>
 				<code>E_2</code>
@@ -134,17 +134,17 @@
 			<item>
 				<code>E_5</code>
 				<name>设备管理</name>
-				<url><![CDATA[add?renewal]]></url>
+				<url><![CDATA[p?shopequipment]]></url>
 			</item>
 			<item>
 				<code>E_6</code>
 				<name>店员管理</name>
-				<url><![CDATA[add?renewal]]></url>
+				<url><![CDATA[p?shopemployee]]></url>
 			</item>
 			<item>
 				<code>E_7</code>
 				<name>统计管理</name>
-				<url><![CDATA[add?renewal]]></url>
+				<url><![CDATA[p?shopstat]]></url>
 			</item>
 		</item_list>
 	</menu>

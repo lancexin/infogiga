@@ -54,7 +54,7 @@ var newComponent = new Ext.ux.CommonTabPanel({
            	}else{
            		return "启用";
            	}
-           } },
+           } }
        ],
     gridAutoExpandColumn:"hallId",
    	comboStore:[new Ext.data.JsonStore({ 
@@ -214,11 +214,11 @@ var newComponent = new Ext.ux.CommonTabPanel({
 			items: [{
 				name: 'hallId',
 				allowBlank:false,
-				xtype:'hidden',
+				xtype:'hidden'
 			},{
 				name: 'addTime',
 				allowBlank:false,
-				xtype:'hidden',
+				xtype:'hidden'
 			},{
 				x: 15,
 				y: 5,
