@@ -489,5 +489,15 @@ var newComponent = new Ext.ux.CommonTabPanel({
     	if(box2){
     		box2.src = pic2.value;
     	}
+    },
+    beforeColse:function(a,b){
+    	if(this.addWindow){
+    		this.addWindow.close();
+    	}
+    	
+    	if(this.updateWindow){
+    		this.updateWindow.close();
+    	}
+    	ImageChooser.hide();
     }
 });

@@ -44,6 +44,7 @@ var newComponent = new Ext.ux.CommonTabPanel({
             {header: "权限名称", width:100,sortable: true, dataIndex: 'powerName'},
             {header: "权值", width:850,sortable: true, dataIndex: 'powerValue',renderer:function(value, metaData, record, rowIndex, colIndex, store){
             	var callback = "";
+            	
             	var powers = value.split(",");
             	for(var i=0;i<powers.length;i=i+1){
             		var r = Ext.StoreMgr.get("powerValueStore").getById(powers[i]); 
@@ -51,13 +52,14 @@ var newComponent = new Ext.ux.CommonTabPanel({
             			callback=callback+r.data.text+",";
             		}
             	}
+            	//alert(callback);
             	return callback;
             }},
             {header: "状态",width:50,sortable: true, dataIndex: 'status',renderer:function(value, metaData, record, rowIndex, colIndex, store){
             	if(value == 0){
-            		return "停用";
+            		return "高级";
             	}else{
-            		return "启用";
+            		return "低级";
             	}
             } }
         ],

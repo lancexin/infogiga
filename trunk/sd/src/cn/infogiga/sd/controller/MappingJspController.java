@@ -22,7 +22,7 @@ public class MappingJspController {
 	public String adminList(ModelMap model,@RequestParam("code")String code,@RequestParam("name")String name){
 		model.put("code", code);
 		model.put("name", name);
-		return "system/admin/admin";
+		return "system/admin/admin2";
 	}
 	
 	@RequestMapping(value = "/p",params="hallList")

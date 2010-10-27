@@ -20,6 +20,14 @@ var newComponent = (function() {
             field: 'adminId', direction: 'ASC'
         }
     });
+    
+    var powerStore = new Ext.data.JsonStore({ 
+		autoLoad : true,
+		idProperty: 'powerId',  	
+		url :'json?comboPower&type=json', 
+		fields : ['powerId', 'powerName'] 
+	});
+    
     store.on("beforeload",function(a,b){
     	pId = -1;
     });
@@ -123,12 +131,7 @@ var newComponent = (function() {
    	//add 
    	
    	
-   	var powerStore = new Ext.data.JsonStore({ 
-		autoLoad : true,
-		idProperty: 'powerId',  	
-		url :'json?comboPower&type=json', 
-		fields : ['powerId', 'powerName'] 
-	});
+
 	
 	
     var addPowerCombo = new Ext.form.ComboBox({ 
@@ -371,7 +374,7 @@ var newComponent = (function() {
 			handler:function(){
 				updateForm.getForm().doAction('submit',{
 					url:'update?admin&type=json',
-                       method:'post',
+                    method:'post',
 					success:function(form,action){
 						Ext.Msg.alert('提示',action.result.msg);
 						updateWindow.hide();

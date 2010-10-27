@@ -95,7 +95,8 @@
 
 	    <property name="mappings">
 	        <props>	   
-	           	<prop key="/login">loginController</prop> 	
+	           	<prop key="/login">loginController</prop> 
+	            <prop key="/empLogin">loginController</prop> 	
 	            <prop key="/menu">loginController</prop> 
 	            
 	            
@@ -110,7 +111,9 @@
 	            <prop key="/image">imageController</prop>
 	            
 	             <prop key="/export">exportController</prop>
-	            		
+	             
+	             <prop key="/manager">shopController</prop>
+	
 	        </props>
 	    </property>
    </bean>
@@ -147,6 +150,10 @@
    </bean>
    
    <bean id="exportController" class="cn.infogiga.sd.controller.MappingExportController">
+		<property name="manageService" ref="manageService"></property>
+   </bean>
+   
+   <bean id="shopController" class="cn.infogiga.sd.controller.MappingShopManageController">
 		<property name="manageService" ref="manageService"></property>
    </bean>
 </beans>

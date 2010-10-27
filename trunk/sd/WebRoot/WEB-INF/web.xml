@@ -32,8 +32,9 @@
   
   <filter-mapping>
     <filter-name>encodingFilter</filter-name>
-    <url-pattern>/login</url-pattern>
-
+    	<url-pattern>/login</url-pattern>
+		<url-pattern>/empLogin</url-pattern>
+		
 		<!-- 获取权限菜单 -->
 		<url-pattern>/menu</url-pattern>
 		<!-- 跳转管理页面 -->
@@ -46,6 +47,8 @@
 		<url-pattern>/delete</url-pattern>
 		<url-pattern>/update</url-pattern>
 		<url-pattern>/image</url-pattern>
+		<url-pattern>/mamager</url-pattern>
+		<url-pattern>/mamager/*</url-pattern>
   </filter-mapping>
 	
 
@@ -59,6 +62,8 @@
 		<filter-name>openSessionInViewFilter</filter-name>
 		<url-pattern>/system</url-pattern>
 		<url-pattern>/json</url-pattern>
+		<url-pattern>/mamager</url-pattern>
+		<url-pattern>/mamager/*</url-pattern>
 		
 	</filter-mapping>
 	
@@ -76,6 +81,8 @@
 		<url-pattern>/json</url-pattern>
 		<url-pattern>/add</url-pattern>
 		<url-pattern>/update</url-pattern>
+		<url-pattern>/manager</url-pattern>
+		<url-pattern>/manager/*</url-pattern>
 	</filter-mapping>
 
 	<!-- Processes application requests -->
@@ -93,7 +100,7 @@
 		<servlet-name>spring-servlet</servlet-name>
 		<!-- 管理员登录 -->
 		<url-pattern>/login</url-pattern>
-
+		<url-pattern>/empLogin</url-pattern>
 		<!-- 获取权限菜单 -->
 		<url-pattern>/menu</url-pattern>
 		<!-- 跳转管理页面 -->
@@ -108,6 +115,9 @@
 		<url-pattern>/image</url-pattern>
 		
 		<url-pattern>/export</url-pattern>
+		
+		<url-pattern>/manager</url-pattern>
+		<url-pattern>/manager/*</url-pattern>
 	</servlet-mapping>
 	
   <jsp-config>
@@ -122,6 +132,6 @@
   </jsp-config>
 	
   <welcome-file-list>
-    <welcome-file>/login.jsp</welcome-file>
+    <welcome-file>/empLogin.jsp</welcome-file>
   </welcome-file-list>
 </web-app>

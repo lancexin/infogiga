@@ -56,7 +56,7 @@ var newComponent = new Ext.ux.CommonTabPanel({
             	}else{
             		return "启用";
             	}
-            } },
+            } }
         ],
     gridAutoExpandColumn:"adminId",
    	comboStore:[new Ext.data.JsonStore({ 

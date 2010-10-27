@@ -307,6 +307,7 @@ Ext.ux.CommonTabPanel = Ext.extend(Ext.Panel,{
     	
     },
     initComponent:function(){
+    	this.initComboStore();
     	Ext.ux.CommonTabPanel.superclass.initComponent.call(this);
     	var _this = this;
     	this.on('beforeclose',function(p,o){
@@ -326,5 +327,6 @@ Ext.ux.CommonTabPanel = Ext.extend(Ext.Panel,{
     	this.addWindow = this.getAddWindow(this.addForm,this.addWindowConfig);
     	
     	this.updateWindow = this.getUpdateWindow(this.updateForm,this.updateWindowConfig);
+    	
     }
 });

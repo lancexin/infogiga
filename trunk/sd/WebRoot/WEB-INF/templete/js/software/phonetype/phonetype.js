@@ -276,35 +276,6 @@ var newComponent = new Ext.ux.CommonTabPanel({
 		    }  
 	  	});
 		
-		var imageChooser = new Ext.ux.ImageChooser({
-			id:"imagechooser2",
-			proWindowId:"proWindow2",
-			complete:function(data){
-		    	
-		    	if(data.width != 100 || data.height != 100){
-		    		Ext.Msg.alert("提示","图片大小不合适");
-		    		return;
-		    	}
-		    	imgBox.getEl().dom.src = data.url;
-		    	pic.setValue(data.url);
-		    	imageChooser.hide();
-		    	
-		    },cutWindowCinfig:{
-		    	id:"phonetypeimageCuter2",
-				imagePanelId:"phonetypeimagePanel2",   
-				backAreaId:"phonetypebackArea2",       //图片背景区id
-				drugAreaId:"phonetypedrugArea2",       //鼠标拖动区id
-				baseImgId:"phonetypebaseImg2",         //图片剪裁框id
-				width:400,
-				height:300,
-				baseImgX:150,                //设置图片框的位置x       
-				baseImgY:100,                //设置图片框的位置y   
-				baseImgWidth:100,            //图片剪裁框的宽度度
-				baseImgHeight:100,           //图片剪裁框的高度
-				baseImgBorder:true          //图像剪裁框是否有边框
-			}
-		});
-		
 		var pic = new Ext.form.Hidden({
 			name: 'pic',
 			allowBlank:false,
@@ -352,7 +323,26 @@ var newComponent = new Ext.ux.CommonTabPanel({
 				xtype:"button",
 				text:"选择图片",
 				handler:function(){
-					imageChooser.show();
+					ImageChooser.show({
+						cutConf:{
+							width:400,
+							height:300,
+							baseImgX:150,                //设置图片框的位置x       
+							baseImgY:100,                //设置图片框的位置y   
+							baseImgWidth:100,            //图片剪裁框的宽度度
+							baseImgHeight:100,           //图片剪裁框的高度
+							baseImgBorder:true          //图像剪裁框是否有边框
+						},
+						complete:function(data){
+							if(data.width != 100 || data.height != 100){
+					    		Ext.Msg.alert("提示","图片大小不合适");
+					    		return;
+					    	}
+					    	imgBox.getEl().dom.src = data.url;
+					    	pic.setValue(data.url);
+					    	this.window.hide();
+						}
+					});
 				}
 			},imgBox,{
 				x: 15,
@@ -401,21 +391,9 @@ var newComponent = new Ext.ux.CommonTabPanel({
     	}
     },
     onAddWindowClose:function(p){
-    	if(Ext.WindowMgr.get("imagechooser1")){
-    		Ext.WindowMgr.get("imagechooser1").close();
-    	}
-    	
-    	if(Ext.WindowMgr.get("phonetypeimageCuter")){
-    		Ext.WindowMgr.get("phonetypeimageCuter").close();
-    	}
+    	ImageChooser.hide();
     },
     onUpdateWindowClose:function(p){
-    	if(Ext.WindowMgr.get("imagechooser2")){
-    		Ext.WindowMgr.get("imagechooser2").close();
-    	}
-    	
-    	if(Ext.WindowMgr.get("phonetypeimageCuter2")){
-    		Ext.WindowMgr.get("phonetypeimageCuter2").close();
-    	}
-    },
+    	ImageChooser.hide();
+    }
 });
