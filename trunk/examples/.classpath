@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="examples/src"/>
+	<classpathentry kind="src" path="explorer/src"/>
+	<classpathentry kind="src" path="mail/src"/>
+	<classpathentry kind="src" path="resources/src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="webdesktop/src"/>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="F:/workspace/j2ee/examples/war/WEB-INF/lib/gwt-servlet.jar"/>
+	<classpathentry kind="lib" path="F:/workspace/j2ee/examples/war/WEB-INF/lib/gxt.jar"/>
+	<classpathentry kind="lib" path="F:/workspace/j2ee/examples/war/WEB-INF/lib/junit-4.4.jar"/>
+	<classpathentry kind="output" path="war/WEB-INF/classes"/>
+</classpath>

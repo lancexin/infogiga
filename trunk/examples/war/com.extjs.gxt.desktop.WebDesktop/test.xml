@@ -1,0 +1,16 @@
+<root>
+  <record name="darrell">
+    <country>us</country>
+    <boolean>false</boolean>
+    <nested>
+      <color>purple</color>
+    </nested>
+  </record>
+  <record name="cameron">
+    <country>australia</country>
+    <boolean>true</boolean>
+    <nested>
+      <color>blue</color>
+    </nested>
+  </record>
+</root>
