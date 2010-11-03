@@ -6,6 +6,7 @@
 -->
 <hibernate-mapping>
     <class name="cn.infogiga.sd.pojo.Phoneplatform" table="phoneplatform" catalog="softdown">
+    	<cache usage="read-write"/>
         <id name="platformId" type="java.lang.Integer">
             <column name="platformID" />
             <generator class="identity" />
