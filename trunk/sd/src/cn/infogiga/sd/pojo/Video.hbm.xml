@@ -6,6 +6,7 @@
 -->
 <hibernate-mapping>
     <class name="cn.infogiga.sd.pojo.Video" table="video" catalog="softdown">
+    	<cache usage="read-write"/>
         <id name="videoId" type="java.lang.Integer">
             <column name="videoID" />
             <generator class="identity" />

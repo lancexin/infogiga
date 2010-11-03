@@ -6,6 +6,7 @@
 -->
 <hibernate-mapping>
     <class name="cn.infogiga.sd.pojo.Province" table="province" catalog="softdown">
+    	<cache usage="read-write"/>
         <id name="provinceId" type="java.lang.Integer">
             <column name="provinceID" />
             <generator class="identity" />

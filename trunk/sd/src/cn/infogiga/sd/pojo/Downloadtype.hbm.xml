@@ -6,6 +6,7 @@
 -->
 <hibernate-mapping>
     <class name="cn.infogiga.sd.pojo.Downloadtype" table="downloadtype" catalog="softdown">
+    	<cache usage="read-write"/>
         <id name="downloadtypeId" type="java.lang.Integer">
             <column name="downloadtypeID" />
             <generator class="identity" />
