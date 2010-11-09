@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
+<!-- above set at the top of the file will set     -->
+<!-- the browser's rendering engine into           -->
+<!-- "Quirks Mode". Replacing this declaration     -->
+<!-- with a "Standards Mode" doctype is supported, -->
+<!-- but may lead to some differences in layout.   -->
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Talk Room</title>
+    <script type='text/javascript' src='dwr/interface/RoomManager.js'></script>  
+	<script type='text/javascript' src='dwr/engine.js'></script>  
+	<script type='text/javascript' src='dwr/util.js'></script>
+    <script type="text/javascript">
+    function send(){
+    	var msg = document.getElementById("msg").value;
+    	RoomManager.sendMsg(msg);
+    }
+    
+    function login(){
+    	RoomManager.login('aaa');
+    }
+    function call(msg){
+    	document.getElementById("info").innerHTML = document.getElementById("info").innerHTML+msg+"<br/>";
+    }
+    function clean(){
+    	document.getElementById("info").innerHTML = "";
+    }
+    
+    </script>
+  </head>
+
+  <body onload="dwr.engine.setActiveReverseAjax(true);login();">
+  	<input type="text" id="msg"/><input type="button" value="send" onclick="send()"/><input type="button" value="clean" onclick="clean()"/>
+    <div id="info">接收信息：<br/></div>
+  </body>
+</html>
