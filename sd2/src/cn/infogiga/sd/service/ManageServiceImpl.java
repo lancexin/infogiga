@@ -1,0 +1,38 @@
+package cn.infogiga.sd.service;
+
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import cn.infogiga.sd.dao.ManageHibernateDAO;
+import cn.infogiga.sd.pojo.Log;
+import cn.infogiga.sd.pojo.Logtype;
+import cn.infogiga.sd.pojo.Users;
+import cn.infogiga.sd.service.ManageService;
+
+@Component("manageService")
+public class ManageServiceImpl implements ManageService{
+	@Autowired
+	ManageHibernateDAO manageDAO;
+
+	public ManageHibernateDAO getManageDAO() {
+		return manageDAO;
+	}
+
+	public Users checkLogin(Users admin) {
+		admin = manageDAO.findSingleByExample(admin);
+		return admin;
+	}
+	
+	public void log(int logTypeId,String name,String things){
+		Log log = new Log();
+		log.setDo_(things);
+		log.setLogTime(new Date());
+		log.setName(name);
+		Logtype type = new Logtype();
+		type.setId(logTypeId);
+		log.setLogtype(type);
+		manageDAO.save(log);
+	}
+}
