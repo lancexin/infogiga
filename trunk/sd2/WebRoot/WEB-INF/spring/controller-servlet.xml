@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:tx="http://www.springframework.org/schema/tx"  
+    xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+		
+	<mvc:annotation-driven />
+		
+	<context:component-scan base-package="cn.infogiga.sd.controller" /> 	
+	<context:component-scan base-package="cn.infogiga.sd.service"/>
+	<context:component-scan base-package="cn.infogiga.sd.dao"/>	
+			
+	<mvc:interceptors>  
+	  <!-- 解决延迟加载 -->  
+	  <bean id="openSessionInViewInterceptor"
+          class="org.springframework.orm.hibernate3.support.OpenSessionInViewInterceptor">
+	        <property name="sessionFactory" ref="sessionFactory"/>
+	        <property name="flushMode" value="1"/>
+	        <property name="singleSession" value="true" />
+	    </bean>   
+	  
+	  <bean id="urlTypeInperceptor"
+          class="cindy.springframework.UrlTypeInperceptor">
+	        <property name="typeName" value="type"/>
+	        <property name = "views">
+	        	<map>
+	        		<entry key = "json">
+	                    <bean class="cindy.springframework.MappingJsonlibView">
+	                    	<property name="contentType" value="text/html;charset=utf-8"/>  
+					        <property name="jsonArrayName" value="array"/> 
+					        <property name="jsonObjectName" value="object"/>
+	                    </bean>
+	                </entry>
+	                <entry key = "xml">
+	                    <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+	    				<property name="modelKey" value="modelBean"/>
+	    				<property name="contentType" value="application/xml"/>
+	    				<property name="marshaller">
+	    					<bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+						    	<property name="autodetectAnnotations" value="true"/>
+						    </bean>
+	    				</property>
+	    			</bean>
+	                </entry>
+	        	</map>
+	        </property>
+	    </bean>
+	  
+	  
+	</mvc:interceptors>
+	
+		
+	<!-- freemarkerConfig配置  -->
+	<bean id="freemarkerConfig"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath"
+			value="/WEB-INF/templete/" />
+		 <property name="freemarkerSettings">
+		       <props>
+		     	 <prop key="defaultEncoding">UTF-8</prop>
+		       </props>
+	     </property>
+	</bean>
+	
+	<bean
+    	class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+    	<property name="ignoreAcceptHeader" value="true" /> 
+        <property name="defaultContentType" value="text/html" /> 
+        <property name="favorParameter" value="false" /> 
+    	<property name="mediaTypes">
+    		<map>
+    			<entry key="json" value="application/json" />
+    			<entry key="xml" value="application/xml" />
+    			<entry key="xls" value="application/vnd.ms-excel" />
+    		</map>
+    	</property>
+    	<property name="viewResolvers">
+    		<list>
+    			<!-- freemarker配置  -->
+    			<bean id="freemarkerViewResolver"
+					class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+					<property name="cache" value="false" />
+					<property name="suffix" value=".ftl" />
+					<property name="prefix" value=""/> 
+					<property name="exposeSpringMacroHelpers" value="true" />
+					<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+					<property name="contentType" value="text/html;charset=UTF-8"/>
+				</bean> 
+    		</list>
+    	</property>
+    </bean>	
+</beans>

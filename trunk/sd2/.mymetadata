@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="sd2"
+  id="myeclipse.1291004436875"
+  context-root="/sd"
+  j2ee-spec="5.0"
+  archive="sd2.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

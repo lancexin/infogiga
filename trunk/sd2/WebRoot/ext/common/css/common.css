@@ -1,0 +1,38 @@
+.add {
+    background-image:url(../images/add.gif) !important;
+}
+
+.save {
+    background-image:url(../images/save.gif) !important;
+}
+
+.remove {
+    background-image:url(../images/delete.gif) !important;
+}
+
+.refresh {
+    background-image:url(../images/arrow_refresh_small.png) !important;
+}
+
+.down {
+    background-image:url(../images/down.gif) !important;
+}
+.edit {
+    background-image:url(../images/edit.gif) !important;
+}
+
+.select {
+    background-image:url(../images/select.png) !important;
+}
+
+.button-search {
+    background-image:url(../images/button_search.png) !important;
+}
+
+.button-search-clear {
+    background-image:url(../images/search-clear.png) !important;
+}
+
+.excel {
+    background-image:url(../images/page_excel.png) !important;
+}
