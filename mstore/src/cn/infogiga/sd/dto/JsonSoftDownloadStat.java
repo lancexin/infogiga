@@ -18,7 +18,10 @@ public class JsonSoftDownloadStat {
 	@Sync(value = "phonetype.phonetypeName")
 	String phonetypeName;
 	
-	@Sync(value = "phonetype.phonebrand.phonebrandName")
+	@Sync(value = "phonetype.phonebrandcategory.categoryName")
+	String categoryName;
+	
+	@Sync(value = "phonetype.phonebrandcategory.phonebrand.phonebrandName")
 	String phonebrandName;
 	
 	@Sync(value = "users.nickName")
@@ -108,5 +111,11 @@ public class JsonSoftDownloadStat {
 	}
 	public void setEmployeeNo(String employeeNo) {
 		this.employeeNo = employeeNo;
+	}
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 }
