@@ -11,6 +11,7 @@ var newComponent = (function() {
 	        {name: 'hallName'},
 	        {name: 'softName'},
 	        {name: 'phonetypeName'},
+	        {name: 'categoryName'},
 	        {name: 'phonebrandName'},
 	        {name: 'employeeName'},
 	        {name: 'employeeNo'},
@@ -54,6 +55,9 @@ var newComponent = (function() {
     	collapsible:false,
     	store: store,
        	region: 'center',
+       	viewConfig : {
+		   forceFit : true //让grid的列自动填满grid的整个宽度，不用一列一列的设定宽度。
+		},
 		tbar:[{
         	 text: 'Excel导出',
         	 iconCls:'excel',
@@ -79,6 +83,7 @@ var newComponent = (function() {
             {header: "营业厅", sortable: true, dataIndex: 'hallName'},
             {header: "软件名称", sortable: true, dataIndex: 'softName'},
             {header: "手机厂商", sortable: true, dataIndex: 'phonebrandName'},
+            {header: "手机分类", sortable: true, dataIndex: 'categoryName'},
             {header: "手机型号", sortable: true, dataIndex: 'phonetypeName'},
             {header: "手机号码", sortable: true, dataIndex: 'phoneNumber'},
             {header: "下载类型", sortable: true, dataIndex: 'downloadtypeName'},
