@@ -46,6 +46,7 @@ public class DownloadstatController {
 		String hallName	 = (request.getParameter("hallName")==null || request.getParameter("hallName").length()==0)?null:request.getParameter("hallName");	
 		String phonebrandName = (request.getParameter("phonebrandName")==null || request.getParameter("phonebrandName").length()==0)?null:request.getParameter("phonebrandName");	
 		String phonetypeName = (request.getParameter("phonetypeName")==null || request.getParameter("phonetypeName").length()==0)?null:request.getParameter("phonetypeName");	
+		String categoryName = (request.getParameter("categoryName")==null || request.getParameter("categoryName").length()==0)?null:request.getParameter("categoryName");	
 		String softName = (request.getParameter("softName")==null || request.getParameter("softName").length()==0)?null:request.getParameter("softName");	
 		Date startTime = (request.getParameter("startTime")==null || request.getParameter("startTime").length()==0)?null:DateUtil.stringToDate(request.getParameter("startTime"), DateUtil.NOW_DATE);	
 		Date endTime = (request.getParameter("endTime")==null || request.getParameter("endTime").length()==0)?null:DateUtil.stringToDate(request.getParameter("endTime"), DateUtil.NOW_DATE);	
@@ -53,13 +54,15 @@ public class DownloadstatController {
 		PageBean pageBean = new PageBean(start,limit);
 		CirteriaBean cBean = new CirteriaBean("addTime");
 		cBean.setPageBean(pageBean);
-		cBean.addQuery(new CirteriaQuery(CirteriaQuery.EQ,CirteriaQuery.IS_INT,"d.downloadtypeId",downloadtypeId,new String[]{"downloadtype","d"}));
+		cBean.addQuery(new CirteriaQuery(CirteriaQuery.EQ,CirteriaQuery.IS_INT,"d.id",downloadtypeId,new String[]{"downloadtype","d"}));
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"emp.nickName",employeeName,new String[]{"users","emp"}));
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"emp.userName",employeeNo,new String[]{"users","emp"}));
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"eq.equipmentName",equipmentName,new String[]{"equipment","eq"}));
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"bh.hallName",hallName,new String[]{"equipment","eq","eq.bissinusshall","bh"}));
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"pt.phonetypeName",phonetypeName,new String[]{"phonetype","pt"}));
-		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"pb.phonebrandName",phonebrandName,new String[]{"phonetype","pt","pt.phonebrand","pb"}));
+		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"pb.phonebrandName",phonebrandName,new String[]{"phonetype","pt","pt.phonebrandcategory","pdy","pdy.phonebrand","pb"}));
+		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"pdy.categoryName",categoryName,new String[]{"phonetype","pt","pt.phonebrandcategory","pdy"}));
+		
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"sf.softName",softName,new String[]{"soft","sf"}));
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.BETWEED,CirteriaQuery.IS_OBJECT,"addTime",new Object[]{startTime,endTime},null));
 		
@@ -86,6 +89,7 @@ public class DownloadstatController {
 		String hallName	 = (request.getParameter("hallName")==null || request.getParameter("hallName").length()==0)?null:new String(request.getParameter("hallName").getBytes("iso8859-1"),"utf-8");	
 		String phonebrandName = (request.getParameter("phonebrandName")==null || request.getParameter("phonebrandName").length()==0)?null:new String(request.getParameter("phonebrandName").getBytes("iso8859-1"),"utf-8");	
 		String phonetypeName = (request.getParameter("phonetypeName")==null || request.getParameter("phonetypeName").length()==0)?null:new String(request.getParameter("phonetypeName").getBytes("iso8859-1"),"utf-8");	
+		String categoryName = (request.getParameter("categoryName")==null || request.getParameter("categoryName").length()==0)?null:request.getParameter("categoryName");	
 		String softName = (request.getParameter("softName")==null || request.getParameter("softName").length()==0)?null:new String(request.getParameter("softName").getBytes("iso8859-1"),"utf-8");	
 		Date startTime = (request.getParameter("startTime")==null || request.getParameter("startTime").length()==0)?null:DateUtil.stringToDate(request.getParameter("startTime"), DateUtil.NOW_DATE);	
 		Date endTime = (request.getParameter("endTime")==null || request.getParameter("endTime").length()==0)?null:DateUtil.stringToDate(request.getParameter("endTime"), DateUtil.NOW_DATE);	
@@ -97,7 +101,8 @@ public class DownloadstatController {
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"eq.equipmentName",equipmentName,new String[]{"equipment","eq"}));
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"bh.hallName",hallName,new String[]{"equipment","eq","eq.bissinusshall","bh"}));
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"pt.phonetypeName",phonetypeName,new String[]{"phonetype","pt"}));
-		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"pb.phonebrandName",phonebrandName,new String[]{"phonetype","pt","pt.phonebrand","pb"}));
+		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"pb.phonebrandName",phonebrandName,new String[]{"phonetype","pt","pt.phonebrandcategory","pdy","pdy.phonebrand","pb"}));
+		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"pdy.categoryName",categoryName,new String[]{"phonetype","pt","pt.phonebrandcategory","pdy"}));
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"sf.softName",softName,new String[]{"soft","sf"}));
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.BETWEED,CirteriaQuery.IS_OBJECT,"addTime",new Object[]{startTime,endTime},null));
 		
