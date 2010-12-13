@@ -95,7 +95,7 @@ public class DownloadstatController {
 		Date endTime = (request.getParameter("endTime")==null || request.getParameter("endTime").length()==0)?null:DateUtil.stringToDate(request.getParameter("endTime"), DateUtil.NOW_DATE);	
 		CirteriaBean cBean = new CirteriaBean("addTime");
 
-		cBean.addQuery(new CirteriaQuery(CirteriaQuery.EQ,CirteriaQuery.IS_INT,"d.downloadtypeId",downloadtypeId,new String[]{"downloadtype","d"}));
+		cBean.addQuery(new CirteriaQuery(CirteriaQuery.EQ,CirteriaQuery.IS_INT,"d.id",downloadtypeId,new String[]{"downloadtype","d"}));
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"emp.nickName",employeeName,new String[]{"users","emp"}));
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"emp.userName",employeeNo,new String[]{"users","emp"}));
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"eq.equipmentName",equipmentName,new String[]{"equipment","eq"}));
@@ -110,7 +110,7 @@ public class DownloadstatController {
 
 		try {
 			OutputStream os = response.getOutputStream();
-			String[] title = {"序号","设备名称","营业厅","软件名称","手机型号","手机厂商","员工姓名","员工账户","下载类型","手机号码","发生时间"};
+			String[] title = {"序号","设备名称","营业厅","软件名称","手机型号","型号分类","手机厂商","员工姓名","员工账户","下载类型","手机号码","发生时间"};
 			ExcelCreatorUtil.exportExcel(os, title, list);
 		} catch (Exception e) {
 			e.printStackTrace();
