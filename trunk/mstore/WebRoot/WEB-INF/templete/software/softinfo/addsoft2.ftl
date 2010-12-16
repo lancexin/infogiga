@@ -17,7 +17,9 @@
 	<script type="text/javascript" src="ext/ImageEditor/ImageCuter.js"></script>
 	<script type="text/javascript" src="ext/ImageEditor/ImageChooser.js"></script>
 <script type="text/javascript">
+	
 	Ext.onReady(function(){
+		//alert(window.document.body.scrollHeight);
 		var ll = 0;
 		var p = new Ext.FormPanel({
 	        labelWidth: 75,
@@ -41,7 +43,6 @@
 							Ext.getCmp("pic3").getEl().dom.src = "material/images/240x320.jpg";
 							Ext.getCmp("pic4").getEl().dom.src = "material/images/240x320.jpg";
 							Ext.getCmp("pic5").getEl().dom.src = "material/images/240x320.jpg";
-							
 						},
 						failure:function(form,action){
 							if(action.result){
