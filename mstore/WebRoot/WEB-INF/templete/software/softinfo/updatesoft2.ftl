@@ -49,46 +49,46 @@
 	        		xtype:'hidden',
 					allowBlank:false,
 					name:'icon',
-					value:'${soft.icon}'
+					value:'${soft.icon!""}'
 	        	},{
 	        		xtype:'hidden',
 					allowBlank:false,
 					name:'pic1',
-					value:'${soft.pic1}'
+					value:'${soft.pic1!""}'
 	        	},{
 	        		xtype:'hidden',
 					allowBlank:false,
 					name:'pic2',
-					value:'${soft.pic2}'
+					value:'${soft.pic2!""}'
 	        	},{
 	        		xtype:'hidden',
 					allowBlank:false,
 					name:'pic3',
-					value:'${soft.pic3}'
+					value:'${soft.pic3!""}'
 	        	},{
 	        		xtype:'hidden',
 					allowBlank:false,
 					name:'pic4',
-					value:'${soft.pic4}'
+					value:'${soft.pic4!""}'
 	        	},{
 	        		xtype:'hidden',
 					allowBlank:false,
 					name:'pic5',
-					value:'${soft.pic5}'
+					value:'${soft.pic5!""}'
 	        	},{
 	                fieldLabel: '软件名称',
 	                name: 'softName',
 	                allowBlank:false,
 	                xtype:'textfield',
 	            	width: 230,
-					value:'${soft.softName}'
+					value:'${soft.softName!""}'
 	            },{
 	                fieldLabel: '英文缩写',
 	                name: 'shortName',
 	                allowBlank:false,
 	                xtype:'textfield',
 	            	width: 230,
-	            	value:'${soft.shortName}'
+	            	value:'${soft.shortName!""}'
 	            },{
 	            	xtype: 'checkboxgroup',
 	            	fieldLabel: '软件菜单',
@@ -117,7 +117,7 @@
 	                name: 'description',
 	                allowBlank:false,
 	            	width: 230,
-					value:'${soft.description}'
+					value:'${soft.description!""}'
 	            },{
 	            	 layout:'column',
 	            	 border:false,
@@ -166,7 +166,7 @@
 						    heigth:70, 
 						    autoEl: {  
 						        tag: 'img',
-						        src: "${soft.icon}"
+						        src: "${soft.icon!""}"
 						    }  
 					  	}]
 	            	}]
@@ -218,7 +218,7 @@
 						    heigth:160, 
 						    autoEl: {  
 						        tag: 'img',
-						        src: "${soft.pic1}"
+						        src: "${soft.pic1!""}"
 						    }  
 					  	}]
 	            	},{
@@ -258,7 +258,7 @@
 						    heigth:160, 
 						    autoEl: {  
 						        tag: 'img',
-						        src: "${soft.pic2}"
+						        src: "${soft.pic2!""}"
 						    }  
 					  	}]
 	            	},{
@@ -298,7 +298,7 @@
 						    heigth:160, 
 						    autoEl: {  
 						        tag: 'img',
-						        src: "${soft.pic3}"
+						        src: "${soft.pic3!""}"
 						    }  
 					  	}]
 	            	},{
@@ -338,7 +338,7 @@
 						    heigth:160, 
 						    autoEl: {  
 						        tag: 'img',
-						        src: "${soft.pic4}"
+						        src: "${soft.pic4!""}"
 						    }  
 					  	}]
 	            	},{
@@ -378,7 +378,7 @@
 						    heigth:160, 
 						    autoEl: {  
 						        tag: 'img',
-						        src: "${soft.pic5}"
+						        src: "${soft.pic5!""}"
 						    }  
 					  	}]
 	            	}]
