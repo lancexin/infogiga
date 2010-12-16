@@ -1,3 +1,4 @@
+
 Ext.onReady(function(){
   
         Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
@@ -47,7 +48,8 @@ Ext.onReady(function(){
 				    	
 						if(n.leaf){//如果是子菜单这则做如下操作
 							if(n.attributes.isframe){
-					            openNewFrame(centerTab,n.text,n.attributes.code,n.attributes.url);
+								var postUrl = n.attributes.url+"&name="+n.text+"&code="+n.attributes.code;
+					            openNewFrame(centerTab,n.text,n.attributes.code,postUrl);
 							}else{
 								Ext.Ajax.request({
 								    url: n.attributes.url,
@@ -92,6 +94,10 @@ function openNewFrame(tab,title,id,url){
             autoWidth:true,  
             closable:true,  
 			border:false,
-            html:'<iframe src="'+url+'" width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>'  
+            html:'<iframe  width="100%" height="100%"  id="'+id+'" name="'+id+'" src="'+url+'" frameborder="0" scrolling="auto"></iframe>'  
       }).show(); 
+}
+
+function tuneHeight(t) {  
+	var tmp = t.document?t.document:t.contentWindow.document;
 }
