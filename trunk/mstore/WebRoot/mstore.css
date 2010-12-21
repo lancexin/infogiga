@@ -1,0 +1,195 @@
+@charset "utf-8";
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+ul{
+	list-style-type: none;
+}
+
+#mstore-hander {
+	background-image: url(images/inder_hander_background.png);
+	height: 82px;
+}
+
+#mstore-hander #mstore-logo {
+	background-image: url(images/index_logo.png);
+	height: 82px;
+	width: 274px;
+}
+
+#mstore-bottom {
+	background-image: url(images/index_botton_background.png);
+	height: 30px;
+	
+}
+
+#mstore-containner {
+	background-color: #E6E6FF;
+}
+
+
+.mstore-common {
+	
+	border: 1px solid #000;
+}
+
+#mstore-bottom #mstore-exit {
+	background-image: url(images/exit_button.png);
+	height: 21px;
+	width: 18px;
+	float:right;
+	margin-top:5px;
+	margin-right:5px;
+	cursor:pointer;
+}
+#mstore-navigationbar {
+	background-color: #000;
+	height: 30px;
+}
+
+.mstore-navigationbar-li {
+	float: left;
+	
+	margin-right: 5px;
+	margin-left: 5px;
+	margin-top: 5px;
+	color: #FFF;
+	cursor:pointer;
+}
+
+.mstore-navigationbar-clicked {
+	color: #FF0;
+	font-weight: bolder;
+}
+.mstore-containner-box {
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#mstore-widget-ul {
+	
+}
+
+.mstore-navigationbar-ul {
+	list-style-type: none;
+	float:left;
+	height: 28px;
+	overflow: hidden;
+}
+
+.mstore-button-next {
+	background: none repeat scroll 0 0 #EEEEEE;
+	border-color: #CCCCCC #999999 #999999 #CCCCCC;
+	border-right: 1px solid #999999;
+	border-style: solid;
+	border-width: 1px;
+	height: 30px;
+	width: 320px ! important;
+	font-size:16px;
+}
+
+#mstore-moblie-choose {
+	width: 200px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+
+.mstore-mobile-image {
+	position: absolute;
+	heigth: 60px;
+	top: 0px;
+	right: 6px;
+}
+
+.mstore-mobile-state {
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFF;
+	margin-top: 12px;
+	text-align: center;
+
+	width: 120px;
+	margin-right: 5px;
+	margin-bottom: 12px;
+}
+
+.mstore-mobile-btn {
+	background: none repeat scroll 0 0 #EEEEEE;
+	border-color: #CCCCCC #999999 #999999 #CCCCCC;
+	border-right: 1px solid #999999;
+	border-style: solid;
+	border-width: 1px;
+	height: 25px;
+	width: 120px ! important;
+	font-size:14px;
+	font-weight: bold;
+}
+
+.mstore-mobile-btn:active {
+    background: none repeat scroll 0 0 #CCCCCC;
+}
+
+.mstore-button-next:active {
+    background: none repeat scroll 0 0 #CCCCCC;
+}
+
+.mstore-containner-bottom {
+	height: 40px;
+	width: 100%;
+	padding-top: 5px;
+	text-align: center;
+	padding-bottom: 5px;
+}
+
+.mstore-widget {
+	height: 120px;
+	width: 120px;
+	float:left;
+}
+
+.mstore-widget-icon {
+	height: 88px;
+	width: 88px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 5px;
+	cursor:pointer;
+}
+
+.mstore-widget-icon-click {
+	background-color: #F69;		
+}
+
+.mstore-widget-text {
+	height: 14px;
+	width: 110px;
+	margin-top: 5px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	margin-right: 5px;
+	margin-left: 5px;
+	overflow: hidden;
+}
+
+
+
+.mstore-phonebrand-widget-icon {
+	background-image: url(images/lenovo.jpg);
+	height: 48px;
+	width: 96px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 25px;
+	cursor:pointer;
+}
+
+.mstore-phonebrand-widget {
+	height: 120px;
+	width: 120px;
+	float:left;
+	background-color:#0F9；
+}
