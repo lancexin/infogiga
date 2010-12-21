@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>M-Store手机软件下载平台</title>
+<link href="mstore.css" rel="stylesheet" type="text/css" />
+<script src="jquery/jquery-1.3.min.js"></script>
+<script type="text/javascript"><!--
+	$(document).ready(function() {
+							   
+		var widgetLine = 0;  //软件有多少排
+		var widgetLineCount = 0; //每排多少个
+		var widgetCount = 0; //可以请求软件个数
+		var containnerHeight = 0; //容器的高度
+		var boxHeight = 0;   //盒子的高度
+
+		var page = 1;
+		var flag = false;
+		var widgetUrl = "web?list&type=json";
+		var params = {
+			softId:-1,
+			menuId:-1,
+			phonetypeId:-1,
+			phoneNumber:"",
+			start:0,
+			limit:0
+		};
+		
+		var widgetTemplete = '<li style="float:left">'+
+								'<div class="mstore-widget">'+
+									'<div class="mstore-widget-icon" style="background-image:url({icon});">'+
+									'</div>'+
+									'<div class="mstore-widget-text">'+
+										'<span>{softName}</span>'+
+									'</div>'+
+								'</div>'+
+							'</li>';
+							
+		resiceWindiw();
+		
+		$(window).resize(function(){
+			if(flag){
+				flag = false;
+				return;
+			}
+		  	resiceWindiw();
+		});
+		
+		$(".mstore-navigationbar-li").click(function(){
+			$(".mstore-navigationbar-li").removeClass("mstore-navigationbar-clicked");
+			$(".mstore-navigationbar-li").css("color","#FFF");
+			$(this).addClass("mstore-navigationbar-clicked");
+			$(this).css("color","#FF0");
+			params.menuId = parseInt($(this).attr("name"));
+			resiceWindiw();
+			//alert($(this).attr("name"));
+		});
+		
+		$("#mstore-exit").click(function(){
+				if(confirm("您是否真的要退出?")){
+					alert("退出成功");
+				}									 
+		});
+		
+		function moreWidget(){
+			flag = true;
+			page = page+1;
+			
+			params.start = params.start+widgetCount;
+			
+			$.post(widgetUrl,params,function(html){
+				eval("var el = "+html);
+				if(el.success){
+					var length = el.data.length;
+					//alert(el.totalCount+"   "+widgetCount);
+					if(length < widgetCount){
+						$(".mstore-containner-bottom").hide();
+						var addLine = parseInt((length-1)/widgetLineCount)+1;
+						containnerHeight = containnerHeight + addLine*120;
+						boxHeight = boxHeight+addLine*120;
+						$("#mstore-containner").css("height",containnerHeight+"px");
+						$(".mstore-containner-box").css("height",addLine*120+"px");
+					}else{
+						containnerHeight = containnerHeight + widgetLine*120;
+						boxHeight = boxHeight+widgetLine*120;
+						$("#mstore-containner").css("height",containnerHeight+"px");
+						$(".mstore-containner-box").css("height",widgetLine*page*120+"px");
+					}
+					$.each(el.data, function(i, n){
+					  	var text = widgetTemplete.replace("{icon}",n.icon);
+					  	text = text.replace("{softName}",n.softName);
+					  	var temp = $(text);
+					  	temp.find(".mstore-widget-icon").data("data",n);
+					  	temp.find(".mstore-widget-icon").click(function(){
+							$(".mstore-widget").removeClass("mstore-widget-icon-click");
+							$(this).parent().addClass("mstore-widget-icon-click");	
+							alert($(this).data("data").softId);
+						});
+						$("#mstore-widget-ul").append(temp);
+					});
+				}else{
+					alert("访问服务器出现错误");
+				}
+			});
+		}
+		
+		
+		$("#mstore-button-next").click(function(){
+			moreWidget();
+		});
+		
+		function resiceWindiw(){
+			
+			params.start = 0;
+			
+			page = 1;
+			$(".mstore-widget-icon").unbind();
+			$(".mstore-widget-icon").removeData("data");
+			$("#mstore-widget-ul").empty();
+			var height = $(window).height();
+			var width =  $(window).width();
+			containnerHeight = height-144;
+			boxHeight = height-184;
+			$("#mstore-containner").css("height",containnerHeight+"px");
+			
+			
+			//算出图片可以显示多少排
+			widgetLine = parseInt((boxHeight)/120);
+			//算出每排有多少个
+			widgetLineCount = parseInt((width-2)/120);
+			$(".mstore-containner-box").css("height",widgetLine*120+"px");
+			//$(".mstore-button-next").val((width-2)/120);
+			//算出总个数
+			widgetCount = widgetLineCount*widgetLine;
+			$(".mstore-containner-box").css("width",widgetLineCount*120+"px");
+			params.limit = widgetCount;
+			$(".mstore-containner-bottom").show();			
+			$.post(widgetUrl,params,function(html){
+				eval("var el = "+html);
+				if(el.success){
+					var length = el.data.length;
+					//alert(el.totalCount+"   "+widgetCount);
+					if(el.totalCount <= widgetCount){
+						$(".mstore-containner-bottom").hide();
+					}
+					$.each(el.data, function(i, n){
+					  	var text = widgetTemplete.replace("{icon}",n.icon);
+					  	text = text.replace("{softName}",n.softName);
+					  	var temp = $(text);
+					  	temp.find(".mstore-widget-icon").data("data",n);
+					  	temp.find(".mstore-widget-icon").click(function(){
+							$(".mstore-widget").removeClass("mstore-widget-icon-click");
+							$(this).parent().addClass("mstore-widget-icon-click");	
+							alert($(this).data("data").softId);
+						});
+						$("#mstore-widget-ul").append(temp);
+					});
+				}else{
+					alert("访问服务器出现错误");
+				}
+			});
+			
+			//$(".mstore-widget-icon").click(function(){
+			//	$(".mstore-widget").removeClass("mstore-widget-icon-click");
+			//	$(this).parent().addClass("mstore-widget-icon-click");										
+			//});
+		}
+		
+		//function 
+		
+	});
+
+--></script>
+</head>
+
+<body>
+<div class="mstore-common">
+  	<div id="mstore-hander">
+      	<div id="mstore-logo">
+        	
+   		</div>   
+        
+        <div id="mstore-moblie-choose">
+            <div>
+                <div class="mstore-mobile-state">您尚未选择机型</div>
+                <input class="mstore-mobile-btn" type="button" value="选择机型"/>
+            </div>
+            <img class="mstore-mobile-image" src="images/noPhone.gif" />
+        </div>
+    </div>
+    
+    <div id="mstore-navigationbar">
+    	<ul class="mstore-navigationbar-ul">
+    		<#list menus as menu>
+    			<li class="mstore-navigationbar-li" name="${menu.id}">${menu.menuName}</li>
+  			</#list>
+        	
+        </ul>
+    </div>
+    
+    <div id="mstore-containner">
+    	<div class="mstore-containner-box">
+            <ul id="mstore-widget-ul">
+                
+            </ul>
+            
+            
+        </div>
+        
+        <div class="mstore-containner-bottom">
+            <input id="mstore-button-next" class="mstore-button-next" type="button" value="显示更多结果"/>
+        </div>
+        
+    </div>
+    
+    <div id="mstore-bottom">
+       <div id="mstore-exit">
+       
+       </div>
+    </div>
+</div>
+
+
+</body>
+</html>
