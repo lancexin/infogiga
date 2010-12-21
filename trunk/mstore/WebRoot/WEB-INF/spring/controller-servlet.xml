@@ -11,9 +11,7 @@
 		
 	<mvc:annotation-driven />
 		
-	<context:component-scan base-package="cn.infogiga.sd.controller" /> 	
-	<context:component-scan base-package="cn.infogiga.sd.service"/>
-	<context:component-scan base-package="cn.infogiga.sd.dao"/>	
+	<context:component-scan base-package="cn.infogiga" /> 
 			
 	<mvc:interceptors>  
 	  <!-- 解决延迟加载 -->  
