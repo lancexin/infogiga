@@ -6,7 +6,7 @@ public class JsonSoftAttachment {
 	@Sync(value = "id")
 	String attachmentId;
 	
-	@Sync(value = "attachmentName")
+	@Sync(value = "name")
 	String attachmentName;
 	
 	@Sync(value = "soft.id")
@@ -15,7 +15,7 @@ public class JsonSoftAttachment {
 	@Sync(value = "soft.softName")
 	String softName;
 	
-	@Sync(value = "download.id")
+	@Sync(value = "soft.download.id")
 	String downloadId;
 
 	public String getAttachmentId() {

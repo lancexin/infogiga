@@ -4,7 +4,7 @@ import java.util.List;
 
 public class JsonListBean {
 	List<?> data;
-	Integer totalCount;
+	long totalCount;
 	Boolean success;
 	String msg;
 	
@@ -20,7 +20,7 @@ public class JsonListBean {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	public JsonListBean(Integer totalCount,List<?> data,Boolean success,String msg) {
+	public JsonListBean(long totalCount,List<?> data,Boolean success,String msg) {
 		super();
 		this.data = data;
 		this.totalCount = totalCount;
@@ -33,7 +33,7 @@ public class JsonListBean {
 	public void setData(List<?> data) {
 		this.data = data;
 	}
-	public Integer getTotalCount() {
+	public long getTotalCount() {
 		return totalCount;
 	}
 	public void setTotalCount(Integer totalCount) {
