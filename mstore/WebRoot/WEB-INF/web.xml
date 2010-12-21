@@ -64,6 +64,7 @@
     <url-pattern>/admin</url-pattern>
     <url-pattern>/menu</url-pattern>
     <url-pattern>/p</url-pattern>
+    <url-pattern>/m</url-pattern>
     <url-pattern>/login</url-pattern>
     <url-pattern>/power</url-pattern>
     <url-pattern>/power/*</url-pattern>
@@ -99,6 +100,9 @@
     <url-pattern>/category/*</url-pattern>
     <url-pattern>/attachment</url-pattern>
     <url-pattern>/attachment/*</url-pattern>
+    <url-pattern>/web</url-pattern>
+    <url-pattern>/webLogin</url-pattern>
+    <url-pattern>/web/*</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>
