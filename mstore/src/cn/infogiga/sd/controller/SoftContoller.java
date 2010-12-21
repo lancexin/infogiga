@@ -301,13 +301,27 @@ public class SoftContoller {
 			return "list";
 		}
 		Soft soft = manageService.getManageDAO().findById(Soft.class, softId);
+		if(soft.getIcon() != null){
+			FileUtil.delete(new File(request.getRealPath(soft.getIcon())));
+		}
+		if(soft.getPic1() != null){
+			FileUtil.delete(new File(request.getRealPath(soft.getPic1())));
+		}
+		if(soft.getPic2() != null){
+			FileUtil.delete(new File(request.getRealPath(soft.getPic2())));
+		}
+		if(soft.getPic3() != null){
+			FileUtil.delete(new File(request.getRealPath(soft.getPic3())));
+		}
 		
-		FileUtil.delete(new File(request.getRealPath(soft.getIcon())));
-		FileUtil.delete(new File(request.getRealPath(soft.getPic1())));
-		FileUtil.delete(new File(request.getRealPath(soft.getPic2())));
-		FileUtil.delete(new File(request.getRealPath(soft.getPic3())));
-		FileUtil.delete(new File(request.getRealPath(soft.getPic4())));
-		FileUtil.delete(new File(request.getRealPath(soft.getPic5())));
+		if(soft.getPic4() != null){
+			FileUtil.delete(new File(request.getRealPath(soft.getPic4())));
+		}
+		
+		if(soft.getPic5() != null){
+			FileUtil.delete(new File(request.getRealPath(soft.getPic5())));
+		}
+		
 		Set siset = soft.getSoftindexes();
 		manageService.getManageDAO().deleteAll(siset);
 		
