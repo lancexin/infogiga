@@ -144,12 +144,12 @@
 										height:300,
 										baseImgX:150,                //设置图片框的位置x       
 										baseImgY:100,                //设置图片框的位置y   
-										baseImgWidth:70,            //图片剪裁框的宽度度
-										baseImgHeight:70,           //图片剪裁框的高度
+										baseImgWidth:88,            //图片剪裁框的宽度度
+										baseImgHeight:88,           //图片剪裁框的高度
 										baseImgBorder:true          //图像剪裁框是否有边框
 									},
 									complete:function(data){
-										if(data.width != 70 || data.height != 70){
+										if(data.width != 88 || data.height != 88){
 								    		Ext.Msg.alert("提示","图片大小不合适");
 								    		return;
 								    	}
@@ -162,8 +162,8 @@
 	            		},{
 		            	 	id:'icon',
 						    xtype: 'box',
-						    width:70,
-						    heigth:70, 
+						    width:88,
+						    heigth:88, 
 						    autoEl: {  
 						        tag: 'img',
 						        src: "${soft.icon!""}"
