@@ -128,8 +128,8 @@ public class MsoftServiceImpl implements MsoftService{
 		
 		//添加软件附件
 		String attFolder = folderUrl+"\\down";
-		String attachmentName = soft.getShortName()+"_"+arrayName+attachment.getName().substring(attachment.getName().lastIndexOf(".")).toLowerCase();
-		FileUtil.copyFile(request.getRealPath(attachment.getUrl()), attFolder+"\\"+attachmentName);
+		//String attachmentName = soft.getShortName()+"_"+arrayName+attachment.getName().substring(attachment.getName().lastIndexOf(".")).toLowerCase();
+		FileUtil.copyFile(request.getRealPath(attachment.getUrl()), attFolder+"\\"+attachment.getName());
 	}
 	
 	public void deleteAttachment(Attachment attachment,HttpServletRequest request){
