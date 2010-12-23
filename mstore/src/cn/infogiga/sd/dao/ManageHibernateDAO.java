@@ -61,7 +61,7 @@ public class ManageHibernateDAO extends AbstractHibernateDAO{
 					throws HibernateException, SQLException {
 				//Criteria criteria = session.createCriteria(Attachment.class);
 				//criteria.setProjection(arg0)
-				String hql = "from Soft s where (s.id in ("+
+				String hql = "from Soft s where s.status = 1 and (s.id in ("+
 					"select a.soft.id from Attachment a where (a.id in ("+
 							"select ad.attachment.id from Attachandarray ad where ad.phonearray.id in ("+
 									"select ar.phonearray.id from Phonetype ar where ar.id =?"+
@@ -86,7 +86,7 @@ public class ManageHibernateDAO extends AbstractHibernateDAO{
 					throws HibernateException, SQLException {
 				//Criteria criteria = session.createCriteria(Attachment.class);
 				//criteria.setProjection(arg0)
-				String hql = "select count(s.id) from Soft s where (s.id in ("+
+				String hql = "select count(s.id) from Soft s where s.status = 1 and (s.id in ("+
 					"select a.soft.id from Attachment a where (a.id in ("+
 							"select ad.attachment.id from Attachandarray ad where ad.phonearray.id in ("+
 									"select ar.phonearray.id from Phonetype ar where ar.id =?"+
@@ -108,7 +108,7 @@ public class ManageHibernateDAO extends AbstractHibernateDAO{
 					throws HibernateException, SQLException {
 				//Criteria criteria = session.createCriteria(Attachment.class);
 				//criteria.setProjection(arg0)
-				String hql = "from Attachment at where at.soft.id = ? and at.id in ("+
+				String hql = "from Attachment at where at.soft.id = ? and at.soft.status = 1 and at.id in ("+
 					"select ar.attachment.id from Attachandarray ar where ar.phonearray.id = ( select pb.phonearray.id from Phonetype pb where pb.id = ?))";
 				Query query = session.createQuery(hql);
 				query.setInteger(0, softId);
