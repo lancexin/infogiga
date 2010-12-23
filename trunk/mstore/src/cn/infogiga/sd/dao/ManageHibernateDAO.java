@@ -3,16 +3,21 @@ package cn.infogiga.sd.dao;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.stereotype.Component;
 
 import cn.infogiga.pojo.Attachment;
+import cn.infogiga.pojo.Phonetype;
 import cn.infogiga.pojo.Soft;
 
 import cindy.page.hibernate.CirteriaBean;
@@ -103,12 +108,46 @@ public class ManageHibernateDAO extends AbstractHibernateDAO{
 					throws HibernateException, SQLException {
 				//Criteria criteria = session.createCriteria(Attachment.class);
 				//criteria.setProjection(arg0)
-				String hql = "select at.* from attachment at where at.softID = ? and at.id in ("+
-					"select ar.attachmentID from attachandarray ar where ar.arrayID = ( select pb.phonearrayID from phonetype pb where pb.id = ?));";
+				String hql = "from Attachment at where at.soft.id = ? and at.id in ("+
+					"select ar.attachment.id from Attachandarray ar where ar.phonearray.id = ( select pb.phonearray.id from Phonetype pb where pb.id = ?))";
 				Query query = session.createQuery(hql);
 				query.setInteger(0, softId);
 				query.setInteger(1, phonetypeId);
-				return query.uniqueResult();
+				List list = query.list();
+				if(list == null || list.size() == 0){
+					return null;
+				}
+				return list.get(0);
+			}
+		});
+	}
+	
+	public List<Phonetype> getPhonetypebyPhonebrand(final Integer phonebrandId,final Integer start,final Integer limit){
+		return (List<Phonetype>) getHibernateTemplate().execute(new HibernateCallback(){
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				final Criteria c = session.createCriteria(Phonetype.class);
+				
+				c.createAlias("phonebrandcategory", "ct");
+				c.createAlias("ct.phonebrand", "pd");
+				c.add(Restrictions.eq("pd.id", phonebrandId));
+				c.setFirstResult(start);
+				c.setMaxResults(limit);
+				return c.list();
+			}
+		});
+	}
+	public Integer getPhonetypeCountbyPhonebrand(final Integer phonebrandId){
+		return (Integer) getHibernateTemplate().execute(new HibernateCallback(){
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				final Criteria c = session.createCriteria(Phonetype.class);
+				
+				c.createAlias("phonebrandcategory", "ct");
+				c.createAlias("ct.phonebrand", "pd");
+				c.add(Restrictions.eq("pd.id", phonebrandId));
+				c.setProjection(Projections.rowCount()); 
+				return c.uniqueResult();
 			}
 		});
 	}
