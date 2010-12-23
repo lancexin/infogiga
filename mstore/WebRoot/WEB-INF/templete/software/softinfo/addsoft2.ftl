@@ -31,6 +31,8 @@
 	        buttons:[{
 	        	text:'提交',
 	        	handler:function(){
+	        		var _this = this;
+	        		_this.disable();
 	        		p.getForm().doAction('submit',{
 						url:'soft?add&type=json',
                    		method:'post',
@@ -43,11 +45,13 @@
 							Ext.getCmp("pic3").getEl().dom.src = "material/images/240x320.jpg";
 							Ext.getCmp("pic4").getEl().dom.src = "material/images/240x320.jpg";
 							Ext.getCmp("pic5").getEl().dom.src = "material/images/240x320.jpg";
+							_this.enable();
 						},
 						failure:function(form,action){
 							if(action.result){
 								Ext.Msg.alert('错误',action.result.msg);
-							}   
+							} 
+							//_this.enable();  
                   	 	}
 					});
 	        	}
