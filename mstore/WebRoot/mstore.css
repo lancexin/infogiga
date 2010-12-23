@@ -164,9 +164,9 @@ ul{
 }
 
 .mstore-widget-text {
-	height: 14px;
+	height: 15px;
 	width: 110px;
-	margin-top: 5px;
+	margin-top: 3px;
 	text-align: center;
 	font-size: 14px;
 	font-weight: bold;
@@ -192,4 +192,49 @@ ul{
 	width: 120px;
 	float:left;
 	background-color:#0F9；
+}
+
+.wappush-dialog {
+	background-color: #CCC;
+	height: 100px;
+	width: 270px;
+	position: absolute;
+	left: auto;
+	top: 100px;
+	right: auto;
+	border: 5px solid #333;
+}
+.wappush-dialog .wappush-dialog-box {
+	text-align: center;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+.wappush-dialog .wappush-dialog-title {
+	height: 22px;
+	background-color: #666;
+	padding-top: 3px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #F6F6F3;
+	padding-left: 5px;
+}
+
+.wappush-btn {
+	background: none repeat scroll 0 0 #EEEEEE;
+	border-color: #CCCCCC #999999 #999999 #CCCCCC;
+	border-right: 1px solid #999999;
+	border-style: solid;
+	border-width: 1px;
+	height: 25px;
+	font-size:14px;
+	font-weight: bold;
+	cursor:pointer;
+}
+
+.wappush-btn:active {
+	background-attachment: scroll;
+	background-color: #999;
+	background-image: none;
+	background-repeat: repeat;
+	background-position: 0 0;
 }
