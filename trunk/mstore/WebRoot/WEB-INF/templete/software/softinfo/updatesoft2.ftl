@@ -29,6 +29,8 @@
 	        buttons:[{
 	        	text:'提交',
 	        	handler:function(){
+	        		var _this = this;
+	        		_this.disable();
 	        		p.getForm().doAction('submit',{
 						url:'soft?update&softId=${soft.id}&type=json',
                    		method:'post',
@@ -36,6 +38,7 @@
 							//Ext.Msg.alert('提示',action.result.msg);
 							p.getForm().reset();
 							document.location = "p?updatephonesoft&softId=${soft.id}";
+							
 						},
 						failure:function(form,action){
 							if(action.result){
