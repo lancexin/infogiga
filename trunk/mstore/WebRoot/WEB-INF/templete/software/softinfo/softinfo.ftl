@@ -64,7 +64,7 @@ var newComponent = new Ext.ux.CommonTabPanel({
     gridColumns:[
          {id:'softId',hidden:true,sortable: true, dataIndex: 'softId'},
          {header: "软件名称", sortable: true, dataIndex: 'softName'},
-         {header: "软件缩写", sortable: true, dataIndex: 'shortTime'},
+         {header: "软件缩写", sortable: true, dataIndex: 'shortName'},
          {header: "添加时间", sortable: true, dataIndex: 'addTime'},
          {header: "下载次数", sortable: true, dataIndex: 'downloadCount'},
          {header: "状态",sortable: true, dataIndex: 'status',renderer:function(value, metaData, record, rowIndex, colIndex, store){
