@@ -93,6 +93,26 @@
 	                xtype:'textfield',
 	            	width: 230
 	            },{
+					width: 230,
+					xtype:'combo',
+					name: 'status',
+					mode: 'local',
+					triggerAction: 'all',
+					typeAhead: true,
+					allowBlank:false,
+					editable:false,
+					store:new Ext.data.ArrayStore({
+			   		     fields: [
+			        	    'statusId',
+			        	    'text'
+			        	],
+			        	data: [[1, '启用'], [0, '停用']]
+			    	}),
+					valueField: 'statusId',
+					displayField: 'text',
+					hiddenValue:1,
+					hiddenName:"status"
+				},{
 	            	xtype: 'checkboxgroup',
 	            	fieldLabel: '软件菜单',
 	            	columns: 5,
