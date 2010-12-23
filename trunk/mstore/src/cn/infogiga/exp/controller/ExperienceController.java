@@ -44,6 +44,7 @@ public class ExperienceController {
 	 */
 	@RequestMapping(value = "/m")
 	public void info(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		
 		String xml = request.getReader().readLine();
 		log.info("接收信息："+xml);
 		//System.out.println("xml:"+xml);
@@ -111,6 +112,15 @@ public class ExperienceController {
 				break;
 			case 12://获得软件id信息
 				callback = getMenuInfo(rb);
+				break;
+				
+			case 13://添加wappush临时统计信息
+				//callback = getMenuInfo(rb);
+				
+				break;
+			case 14://wappush临时统计信息确认
+				
+				
 				break;
 			default:
 				Intf intf2 = new Intf();
