@@ -136,7 +136,8 @@ public class SoftContoller {
 			@RequestParam("softName")String softName,
 			@RequestParam("shortName")String shortName,
 			@RequestParam("description")String description,
-			@RequestParam("softmenuId")Integer[] softmenus){
+			@RequestParam("softmenuId")Integer[] softmenus,
+			@RequestParam("status")Integer status){
 		
 		if(icon == null || icon.trim().length() ==0 || 
 				softName == null || softName.trim().length() ==0 || 
@@ -173,7 +174,7 @@ public class SoftContoller {
 		soft.setAddTime(new Date());
 		soft.setDescription(description);
 		soft.setIcon(picIcon);
-		soft.setStatus(1);
+		soft.setStatus(status);
 		soft.setPic1(picUrl1);
 		soft.setPic2(picUrl2);
 		soft.setPic3(picUrl3);
@@ -272,7 +273,8 @@ public class SoftContoller {
 			@RequestParam("softName")String softName,
 			@RequestParam("shortName")String shortName,
 			@RequestParam("description")String description,
-			@RequestParam("softmenuId")Integer[] softmenus){
+			@RequestParam("softmenuId")Integer[] softmenus,
+			@RequestParam("status")Integer status){
 		
 		if(icon == null || icon.trim().length() ==0 || 
 				softName == null || softName.trim().length() ==0 || 
@@ -331,7 +333,7 @@ public class SoftContoller {
 		soft.setShortName(shortName);
 		soft.setDescription(description);
 		soft.setIcon(picIcon);
-		soft.setStatus(1);
+		soft.setStatus(status);
 		soft.setPic1(picUrl1);
 		soft.setPic2(picUrl2);
 		soft.setPic3(picUrl3);
