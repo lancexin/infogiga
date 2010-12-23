@@ -50,6 +50,20 @@ public class PhonetypeController {
 
 	}
 	
+
+	@RequestMapping(value = "/phonetype",params="byPhonebrand")
+	public String phonetypeJsonList2(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
+			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit,@RequestParam("phonebrandId")Integer phonebrandId){
+		List<JsonPhonetype> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getPhonetypebyPhonebrand(phonebrandId, start, limit), JsonPhonetype.class);
+		Integer totalCount = manageService.getManageDAO().getPhonetypeCountbyPhonebrand(phonebrandId);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
+		model.addAttribute("object", jsonListBean);
+		return "list";
+
+	}
+	
+	
+	
 	@RequestMapping(value = "/phonetype",params="comboPhonetype")
 	public String comboPhonetypeJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model){
 		List<JsonPhonetype> powerList = MyBeanUtils.copyListProperties(manageService.getManageDAO().findAll(Phonetype.class), JsonPhonetype.class);
