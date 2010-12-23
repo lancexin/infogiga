@@ -228,28 +228,30 @@ public class SoftContoller {
 				model.put("success", false);
 				return "list";
 			}
-			Attachment attachment = new Attachment();
-			attachment.setCode(code);
-			attachment.setName(file.getOriginalFilename());
-			attachment.setUrl(ProperiesReader.getInstence("config.properties").getStringValue("material.soft.url")+code+suffix);
-			attachment.setSoft(soft);
-			/*Phonearray phonearray = new Phonearray();
-			phonearray.setId(Integer.parseInt(name));
-			attachment.setPhonearray(phonearray);*/
-			
-			Set attachandarraies = new HashSet();
-			//System.out.println(name);
 			String[] arrayIds = name.split("_");
-			for(int i=1;i<arrayIds.length;i++){
-				Attachandarray aaa = new Attachandarray();
-				aaa.setAttachment(attachment);
-				Phonearray phonearray = manageService.getManageDAO().findById(Phonearray.class, Integer.parseInt(arrayIds[i]));
-				aaa.setPhonearray(phonearray);
-				attachandarraies.add(aaa);
+			if(arrayIds.length > 1){
+				Phonearray ph = manageService.getManageDAO().findById(Phonearray.class, Integer.parseInt(arrayIds[1]));
+				
+				Attachment attachment = new Attachment();
+				attachment.setCode(code);
+				attachment.setName(shortName+"_"+ph.getPhonearrayName()+suffix);
+				attachment.setUrl(ProperiesReader.getInstence("config.properties").getStringValue("material.soft.url")+code+suffix);
+				attachment.setSoft(soft);
+				
+				Set attachandarraies = new HashSet();
+		
+				for(int i=1;i<arrayIds.length;i++){
+					Attachandarray aaa = new Attachandarray();
+					aaa.setAttachment(attachment);
+					Phonearray phonearray = manageService.getManageDAO().findById(Phonearray.class, Integer.parseInt(arrayIds[i]));
+					aaa.setPhonearray(phonearray);
+					attachandarraies.add(aaa);
+				}
+				attachment.setAttachandarraies(attachandarraies);
+				manageService.getManageDAO().save(attachment);
+				msoftService.addAttachment(attachment, request);
 			}
-			attachment.setAttachandarraies(attachandarraies);
-			manageService.getManageDAO().save(attachment);
-			msoftService.addAttachment(attachment, request);
+			
 		}
 		model.put("success", true);
 		model.put("msg", "添加成功！");
@@ -383,28 +385,30 @@ public class SoftContoller {
 				model.put("success", false);
 				return "list";
 			}
-			Attachment attachment = new Attachment();
-			attachment.setCode(code);
-			attachment.setName(file.getOriginalFilename());
-			attachment.setUrl(ProperiesReader.getInstence("config.properties").getStringValue("material.soft.url")+code+suffix);
-			attachment.setSoft(soft);
-			/*Phonearray phonearray = new Phonearray();
-			phonearray.setId(Integer.parseInt(name));
-			attachment.setPhonearray(phonearray);*/
-			
-			Set attachandarraies = new HashSet();
-			//System.out.println(name);
 			String[] arrayIds = name.split("_");
-			for(int i=1;i<arrayIds.length;i++){
-				Attachandarray aaa = new Attachandarray();
-				aaa.setAttachment(attachment);
-				Phonearray phonearray = manageService.getManageDAO().findById(Phonearray.class, Integer.parseInt(arrayIds[i]));
-				aaa.setPhonearray(phonearray);
-				attachandarraies.add(aaa);
+			if(arrayIds.length > 1){
+				Phonearray ph = manageService.getManageDAO().findById(Phonearray.class, Integer.parseInt(arrayIds[1]));
+				
+				Attachment attachment = new Attachment();
+				attachment.setCode(code);
+				attachment.setName(shortName+"_"+ph.getPhonearrayName()+suffix);
+				attachment.setUrl(ProperiesReader.getInstence("config.properties").getStringValue("material.soft.url")+code+suffix);
+				attachment.setSoft(soft);
+				
+				Set attachandarraies = new HashSet();
+				
+				for(int i=1;i<arrayIds.length;i++){
+					Attachandarray aaa = new Attachandarray();
+					aaa.setAttachment(attachment);
+					Phonearray phonearray = manageService.getManageDAO().findById(Phonearray.class, Integer.parseInt(arrayIds[i]));
+					aaa.setPhonearray(phonearray);
+					attachandarraies.add(aaa);
+				}
+				attachment.setAttachandarraies(attachandarraies);
+				manageService.getManageDAO().save(attachment);
+				msoftService.addAttachment(attachment, request);
 			}
-			attachment.setAttachandarraies(attachandarraies);
-			manageService.getManageDAO().save(attachment);
-			msoftService.addAttachment(attachment, request);
+
 			
 		}
 		model.put("success", true);
