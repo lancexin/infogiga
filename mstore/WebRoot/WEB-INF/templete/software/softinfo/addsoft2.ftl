@@ -19,6 +19,8 @@
 <script type="text/javascript">
 	
 	Ext.onReady(function(){
+	
+		var submit_button;
 		//alert(window.document.body.scrollHeight);
 		var ll = 0;
 		var p = new Ext.FormPanel({
@@ -31,8 +33,8 @@
 	        buttons:[{
 	        	text:'提交',
 	        	handler:function(){
-	        		var _this = this;
-	        		_this.disable();
+	        		submit_button = this;
+	        		submit_button.disable();
 	        		p.getForm().doAction('submit',{
 						url:'soft?add&type=json',
                    		method:'post',
@@ -45,7 +47,7 @@
 							Ext.getCmp("pic3").getEl().dom.src = "material/images/240x320.jpg";
 							Ext.getCmp("pic4").getEl().dom.src = "material/images/240x320.jpg";
 							Ext.getCmp("pic5").getEl().dom.src = "material/images/240x320.jpg";
-							_this.enable();
+							submit_button.enable();
 						},
 						failure:function(form,action){
 							if(action.result){
@@ -54,6 +56,11 @@
 							//_this.enable();  
                   	 	}
 					});
+	        	}
+	        },{
+	        	text:'恢复',
+	        	handler:function(){
+	        		submit_button.enable();
 	        	}
 	        }],
 	        items: [{
