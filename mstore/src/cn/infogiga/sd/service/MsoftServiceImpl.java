@@ -91,13 +91,13 @@ public class MsoftServiceImpl implements MsoftService{
 			Softindex index = (Softindex) iite.next();
 			folderName.append("@"+index.getSoftmenu().getId()+"@");
 		}
-		String arrayName = null;
+		//String arrayName = null;
 		Set attachandarraies = attachment.getAttachandarraies();
 		Iterator aite = attachandarraies.iterator();
 		while(aite.hasNext()){
 			Attachandarray  aaa = (Attachandarray) aite.next();
 			folderName.append("^"+aaa.getPhonearray().getId()+"^");
-			arrayName = aaa.getPhonearray().getPhonearrayName();
+			//arrayName = aaa.getPhonearray().getPhonearrayName();
 		}
 		//附件所属的软件
 		folderName.append("-"+soft.getId()+"-");
