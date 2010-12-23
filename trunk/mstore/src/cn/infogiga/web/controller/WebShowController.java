@@ -89,7 +89,7 @@ public class WebShowController {
 				String code = Code.getCode();
 				
 				String sendUrl = ProperiesReader.getInstence("config.properties")
-					.getStringValue("msoft.download.post")+URLEncoder.encode(attachment.getName())+"?id="+code;
+					.getStringValue("msoft.download.post")+attachment.getName()+"?id="+code;
 				//String sendUrl = "http://221.131.216.48:8080/exp/"+URLEncoder.encode("这是一个测试文件名称.rar");
 				System.out.println(sendUrl);
 				String sendStr = attachment.getSoft().getSoftName()+"的下载地址是：";
