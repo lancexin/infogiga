@@ -6,6 +6,7 @@
 -->
 <hibernate-mapping>
     <class name="cn.infogiga.pojo.Sms" table="sms" catalog="softdown">
+    	<cache usage="read-write"/> 
         <id name="id" type="java.lang.Integer">
             <column name="ID" />
             <generator class="identity" />

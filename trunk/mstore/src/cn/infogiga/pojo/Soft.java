@@ -27,6 +27,7 @@ public class Soft implements java.io.Serializable {
 	private String pic4;
 	private String pic5;
 	private String shortName;
+	private String softCode;
 	private Set softindexes = new HashSet(0);
 	private Set softdownloadstats = new HashSet(0);
 	private Set attachments = new HashSet(0);
@@ -41,8 +42,8 @@ public class Soft implements java.io.Serializable {
 	public Soft(Download download, String softName, String description,
 			Date addTime, Integer status, String icon, String pic1,
 			String pic2, String pic3, String pic4, String pic5,
-			String shortName, Set softindexes, Set softdownloadstats,
-			Set attachments) {
+			String shortName, String softCode, Set softindexes,
+			Set softdownloadstats, Set attachments) {
 		this.download = download;
 		this.softName = softName;
 		this.description = description;
@@ -55,6 +56,7 @@ public class Soft implements java.io.Serializable {
 		this.pic4 = pic4;
 		this.pic5 = pic5;
 		this.shortName = shortName;
+		this.softCode = softCode;
 		this.softindexes = softindexes;
 		this.softdownloadstats = softdownloadstats;
 		this.attachments = attachments;
@@ -164,6 +166,14 @@ public class Soft implements java.io.Serializable {
 
 	public void setShortName(String shortName) {
 		this.shortName = shortName;
+	}
+
+	public String getSoftCode() {
+		return this.softCode;
+	}
+
+	public void setSoftCode(String softCode) {
+		this.softCode = softCode;
 	}
 
 	public Set getSoftindexes() {
