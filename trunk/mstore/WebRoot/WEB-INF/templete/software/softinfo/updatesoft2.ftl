@@ -93,6 +93,7 @@
 	            	width: 230,
 	            	value:'${soft.shortName!""}'
 	            },{
+	           		fieldLabel: '软件状态',
 					width: 230,
 					xtype:'combo',
 					name: 'status',
