@@ -183,7 +183,7 @@ var newComponent = (function(){
    		title:"手机分类",
    		style:"padding:5px;",
   	 	width: 230,
-		height: 500,
+		height: 450,
    		store: phonearrayStore,
    		border:true,
    		columns:[
@@ -396,7 +396,7 @@ var newComponent = (function(){
    		title:"手机平台",
    		style:"padding:5px;",
    		width: 230,
-		height: 500,
+		height: 450,
    		store: platformStore,
    		border:true,
    		columns:[
@@ -596,7 +596,7 @@ var newComponent = (function(){
    		title:"软件菜单",
    		style:"padding:5px;",
    		width: 230,
-		height: 500,
+		height: 450,
    		store: softmenuStore,
    		border:true,
    		columns:[
