@@ -93,6 +93,10 @@ public class Soft implements java.io.Serializable {
 	}
 
 	public void setDescription(String description) {
+		if(description == null){
+			this.description = description;
+			return;
+		}
 		description = description.replaceAll("\"", "");
 		description = description.replaceAll("\'", "");
 		description = description.replaceAll(":", "");
