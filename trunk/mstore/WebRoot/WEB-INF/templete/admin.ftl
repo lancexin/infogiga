@@ -55,5 +55,7 @@
 	<div id="south">
 		<p>Password By 杭州讯杰科技 2010-8-4</p>
 	</div>
+	
+	<iframe src="status.html" style="display:none;"></iframe>
 </body>
 </html>
