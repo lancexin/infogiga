@@ -59,6 +59,7 @@ public class JsonSoft {
 		return description;
 	}
 	public void setDescription(String description) {
+		description = description.replaceAll("\r\n", "");
 		this.description = description;
 	}
 	public String getAddTime() {
