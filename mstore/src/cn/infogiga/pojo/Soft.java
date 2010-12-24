@@ -98,6 +98,7 @@ public class Soft implements java.io.Serializable {
 		description = description.replaceAll(":", "");
 		description = description.replaceAll("<", "");
 		description = description.replaceAll(">", "");
+		description = description.replaceAll("\r\n", "");
 		this.description = description;
 	}
 
