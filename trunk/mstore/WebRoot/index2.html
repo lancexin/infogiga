@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>M-Store手机软件下载平台</title>
+<link href="mstore.css" rel="stylesheet" type="text/css" />
+<script src="jquery/jquery-1.3.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+							   
+		var widgetLine = 0;  //软件有多少排
+		var widgetLineCount = 0;
+		var widgetCount = 0; //可以请求软件个数
+		var containnerHeight = 0; //容器的高度
+		var boxHeight = 0;   //盒子的高度
+		var page = 1;
+		var flag = false;
+		
+		var widgetTemplete = '<li style="float:left">'+
+								'<div class="mstore-widget">'+
+									'<div class="mstore-widget-icon" style="background-image:url(images/name.png);">'+
+									'</div>'+
+									'<div class="mstore-widget-text">'+
+										'<span>360手机安全卫士</span>'+
+									'</div>'+
+								'</div>'+
+							'</li>';
+							
+		
+			
+		resiceWindiw();
+		
+		$(window).resize(function(){
+		  	resiceWindiw();
+		});
+		
+		$(".mstore-navigationbar-li").click(function(){
+			$(".mstore-navigationbar-li").removeClass("mstore-navigationbar-clicked");
+			$(".mstore-navigationbar-li").css("color","#FFF");
+			$(this).addClass("mstore-navigationbar-clicked");
+			$(this).css("color","#FF0");
+		});
+		
+		$("#mstore-exit").click(function(){
+				if(confirm("您是否真的要退出?")){
+					alert("退出成功");
+				}									 
+		});
+		
+		function moreWidget(){
+			flag = true;
+			page = page+1;
+			containnerHeight = containnerHeight + widgetLine*120;
+			boxHeight = boxHeight+widgetLine*120;
+			$("#mstore-containner").css("height",containnerHeight+"px");
+			$(".mstore-containner-box").css("height",widgetLine*page*120+"px");
+			
+			for(var i=0;i<widgetCount;i++){
+				var temp = $(widgetTemplete);
+				temp.find(".mstore-widget-icon").click(function(){
+					$(".mstore-widget").removeClass("mstore-widget-icon-click");
+					$(this).parent().addClass("mstore-widget-icon-click");	
+				});
+				$("#mstore-widget-ul").append(temp);
+			}
+		}
+		
+		
+		$("#mstore-button-next").click(function(){
+			moreWidget();
+		});
+		
+		function resiceWindiw(){
+			if(flag){
+				flag = false;
+				return;
+			}
+			page = 1;
+			$(".mstore-widget-icon").unbind()
+			
+			$("#mstore-widget-ul").empty();
+			var height = $(window).height();
+			var width =  $(window).width();
+			containnerHeight = height-144;
+			boxHeight = height-184;
+			$("#mstore-containner").css("height",containnerHeight+"px");
+			
+			
+			//算出图片可以显示多少排
+			widgetLine = parseInt((boxHeight)/120);
+			//算出每排有多少个
+			widgetLineCount = parseInt((width-2)/120);
+			$(".mstore-containner-box").css("height",widgetLine*120+"px");
+			//$(".mstore-button-next").val((width-2)/120);
+			//算出总个数
+			widgetCount = widgetLineCount*widgetLine;
+			$(".mstore-containner-box").css("width",widgetLineCount*120+"px");
+			//for(var i=0;i<widgetCount;i++){
+			//	var temp = $(widgetTemplete);
+			//	temp.find(".mstore-widget-icon").click(function(){
+			//		$(".mstore-widget").removeClass("mstore-widget-icon-click");
+			//		$(this).parent().addClass("mstore-widget-icon-click");	
+			//	});
+			//	$("#mstore-widget-ul").append(temp);
+			//}
+			
+			//$(".mstore-widget-icon").click(function(){
+			//	$(".mstore-widget").removeClass("mstore-widget-icon-click");
+			//	$(this).parent().addClass("mstore-widget-icon-click");										
+			//});
+		}
+		
+		
+	});
+
+</script>
+</head>
+
+<body>
+<div class="mstore-common">
+  	<div id="mstore-hander">
+      	<div id="mstore-logo">
+        	
+   		</div>   
+        
+        <div id="mstore-moblie-choose">
+          <div>
+            <div class="mstore-mobile-state">您尚未选择机型</div>
+            <input class="mstore-mobile-btn" type="button" value="选择机型"/>
+            </div>
+            <img class="mstore-mobile-image" src="images/noPhone.gif" />
+        </div>
+    </div>
+    
+    <div id="mstore-navigationbar">
+    	<ul class="mstore-navigationbar-ul">
+        	<li class="mstore-navigationbar-li">热门推荐</li>
+            <li class="mstore-navigationbar-li">网络工具</li>
+            <li class="mstore-navigationbar-li">系统辅助</li>
+            <li class="mstore-navigationbar-li">游戏专区</li>
+            <li class="mstore-navigationbar-li">影音娱乐</li>
+            <li class="mstore-navigationbar-li">聊天交友</li>
+            <li class="mstore-navigationbar-li">定位导航</li>
+            <li class="mstore-navigationbar-li">办公理财</li>
+            <li class="mstore-navigationbar-li">通信管理</li>
+            <li class="mstore-navigationbar-li">阅读学习</li>
+            <li class="mstore-navigationbar-li">安全防护</li>
+            <li class="mstore-navigationbar-li">生活助理</li>
+        </ul>
+    </div>
+    
+    <div id="mstore-containner">
+    	<div class="mstore-containner-box">
+           
+            <ul id="mstore-widget-ul" style="display:none;">
+                
+            </ul>
+            
+            <ul id="mstore-phonetype-ul">
+            
+            </ul>
+            
+            <ul id="mstore-phonebrand-ul" style="display:none;">
+                <li style="float:left">
+                    <div class="mstore-widget">
+                        <div class="mstore-phonebrand-widget-icon" style="background-image:url(images/lenovo.jpg)">
+                        </div>
+                        <div class="mstore-widget-text">
+                            <span>联想</span>
+                        </div>
+                    </div>
+                </li>
+                
+                <li style="float:left">
+                    <div class="mstore-widget">
+                        <div class="mstore-phonebrand-widget-icon" style="background-image:url(images/lenovo.jpg)">
+                        </div>
+                        <div class="mstore-widget-text">
+                            <span>联想</span>
+                        </div>
+                    </div>
+                </li>
+                
+                <li style="float:left">
+                    <div class="mstore-widget">
+                        <div class="mstore-phonebrand-widget-icon" style="background-image:url(images/lenovo.jpg)">
+                        </div>
+                        <div class="mstore-widget-text">
+                            <span>联想</span>
+                        </div>
+                    </div>
+                </li>
+                
+                <li style="float:left">
+                    <div class="mstore-widget">
+                        <div class="mstore-phonebrand-widget-icon" style="background-image:url(images/lenovo.jpg)">
+                        </div>
+                        <div class="mstore-widget-text">
+                            <span>联想</span>
+                        </div>
+                    </div>
+                </li>
+                
+                <li style="float:left">
+                    <div class="mstore-widget">
+                        <div class="mstore-phonebrand-widget-icon" style="background-image:url(images/lenovo.jpg)">
+                        </div>
+                        <div class="mstore-widget-text">
+                            <span>联想</span>
+                        </div>
+                    </div>
+                </li>
+                
+                <li style="float:left">
+                    <div class="mstore-widget">
+                        <div class="mstore-phonebrand-widget-icon" style="background-image:url(images/lenovo.jpg)">
+                        </div>
+                        <div class="mstore-widget-text">
+                            <span>联想</span>
+                        </div>
+                    </div>
+                </li>
+                
+                <li style="float:left">
+                    <div class="mstore-widget">
+                        <div class="mstore-phonebrand-widget-icon" style="background-image:url(images/lenovo.jpg)">
+                        </div>
+                        <div class="mstore-widget-text">
+                            <span>联想</span>
+                        </div>
+                    </div>
+                </li>
+                
+                <li style="float:left">
+                    <div class="mstore-widget">
+                        <div class="mstore-phonebrand-widget-icon" style="background-image:url(images/lenovo.jpg)">
+                        </div>
+                        <div class="mstore-widget-text">
+                            <span>联想</span>
+                        </div>
+                    </div>
+                </li>
+                
+                <li style="float:left">
+                    <div class="mstore-widget">
+                        <div class="mstore-phonebrand-widget-icon" style="background-image:url(images/lenovo.jpg)">
+                        </div>
+                        <div class="mstore-widget-text">
+                            <span>联想</span>
+                        </div>
+                    </div>
+                </li>
+                
+                
+            </ul>
+        </div>
+        
+        
+        <div class="mstore-containner-bottom">
+            <input id="mstore-button-next" class="mstore-button-next" type="button" value="显示更多结果"/>
+        </div>
+        
+    </div>
+    
+    <div id="mstore-bottom">
+       <div id="mstore-exit">
+       
+       </div>
+    </div>
+</div>
+
+
+</body>
+</html>
