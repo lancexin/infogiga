@@ -479,6 +479,6 @@
     	</form>
     </div>
 </div>
-
+<iframe src="status.html" style="display:none;"></iframe>
 </body>
 </html>
