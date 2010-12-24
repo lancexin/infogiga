@@ -148,7 +148,7 @@
 	                name: 'description',
 	                allowBlank:false,
 	            	width: 230,
-					value:'${soft.description!""}'
+					value:"${soft.description!""}"
 	            },{
 	            	 layout:'column',
 	            	 border:false,
