@@ -57,6 +57,7 @@
 		resiceWindiw();
 		
 		$(window).resize(function(){
+			//alert("resize");
 			if(flag){
 				flag = false;
 				return;
@@ -189,7 +190,7 @@
 		});
 		
 		function resiceWindiw(){
-			
+			flag = true;
 			params.start = 0;
 			
 			page = 1;
@@ -267,6 +268,7 @@
 				}else{
 					alert("访问服务器出现错误");
 				}
+				flag = false;
 			});
 			
 		}
