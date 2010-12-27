@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import cn.infogiga.exp.dao.ExperienceDAO;
+import cn.infogiga.exp.webservice.bean.Comformstat;
 import cn.infogiga.exp.webservice.bean.ReceiveBean;
+import cn.infogiga.pojo.Download;
 import cn.infogiga.pojo.Downloadtype;
 import cn.infogiga.pojo.Equipment;
 import cn.infogiga.pojo.Menu;
@@ -20,6 +22,7 @@ import cn.infogiga.pojo.Scene;
 import cn.infogiga.pojo.Sms;
 import cn.infogiga.pojo.Soft;
 import cn.infogiga.pojo.Softdownloadstat;
+import cn.infogiga.pojo.Tempdownloadstat;
 import cn.infogiga.pojo.Users;
 import cn.infogiga.util.DateUtil;
 
@@ -163,6 +166,73 @@ public class ExperienceService {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public boolean addTempDownloadstat(ReceiveBean rb){
+		try {
+			Tempdownloadstat temp = new Tempdownloadstat();
+			temp.setAddTime(DateUtil.stringToDate(rb.getAdd_time(), DateUtil.NOW_TIME));
+			temp.setCode(rb.getCode());
+			temp.setDownloadtypeId(Integer.parseInt(rb.getDownload_type()));
+			temp.setPhoneNumber(rb.getPhone_number());
+			temp.setSoftId(Integer.parseInt(rb.getSoft_id()));
+			temp.setUserId(Integer.parseInt(rb.getEmp_no()));
+			Equipment equi = getSingleEquipment(rb);
+			temp.setEquipmentId(equi.getId());
+			experienceDAO.save(temp);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean comformDownloadstat(ReceiveBean rb){
+		try {
+			List<Comformstat> cList = rb.getComformstatList();
+			int size = cList.size();
+			Comformstat stat;
+			for(int i=0;i<size;i++){
+				stat =  cList.get(i);
+				Tempdownloadstat tls = new Tempdownloadstat();
+				tls.setCode(stat.getCode());
+				tls = experienceDAO.findSingleByExample(tls);
+				tempToDownloadstat(tls);
+				deleteTempDownloadstat(tls);
+			}
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+		
+		
+	}
+	
+	private void tempToDownloadstat(Tempdownloadstat tls){
+		Softdownloadstat downloadstat = new Softdownloadstat();
+		downloadstat.setAddTime(tls.getAddTime());
+		Equipment equipment = new Equipment();
+		equipment.setId(tls.getEquipmentId());
+		downloadstat.setEquipment(equipment);
+		Downloadtype downloadtype = new Downloadtype();
+		downloadtype.setId(tls.getDownloadtypeId());
+		downloadstat.setDownloadtype(downloadtype);
+		Phonetype phonetype = new Phonetype();
+		phonetype.setId(tls.getPhonetypeId());
+		downloadstat.setPhonetype(phonetype);
+		Soft soft = new Soft();
+		soft.setId(tls.getSoftId());
+		downloadstat.setSoft(soft);
+		downloadstat.setPhoneNumber(tls.getPhoneNumber());
+		experienceDAO.save(downloadstat);
+	}
+	
+	private void deleteTempDownloadstat(Tempdownloadstat tls){
+		experienceDAO.delete(tls);
 	}
 	
 /*	public String checkUpdate(ReceiveBean rb){
