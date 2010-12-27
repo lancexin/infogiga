@@ -1,5 +1,7 @@
 package cn.infogiga.exp.webservice.bean;
 
+import java.util.ArrayList;
+
 import cn.infogiga.util.xml.XMLBean;
 import cn.infogiga.util.xml.XMLElement;
 import cn.infogiga.util.xml.XMLField;
@@ -98,6 +100,12 @@ public class ReceiveBean extends XMLBean{
 	@XMLField(value="pkg",xmlType=XMLTypes.XML_ELEMENT)
 	private String pkg = null;
 
+	@XMLField(value="add_time",xmlType=XMLTypes.XML_ELEMENT)
+	private String add_time = null;
+	
+	@XMLField(xmlType=XMLTypes.XML_LIST,mClass=Comformstat.class)
+	private ArrayList<Comformstat> comformstatList = null;
+	
 	public String getDownload_type() {
 		return download_type;
 	}
@@ -336,5 +344,21 @@ public class ReceiveBean extends XMLBean{
 
 	public void setPkg(String pkg) {
 		this.pkg = pkg;
+	}
+
+	public String getAdd_time() {
+		return add_time;
+	}
+
+	public void setAdd_time(String add_time) {
+		this.add_time = add_time;
+	}
+
+	public ArrayList<Comformstat> getComformstatList() {
+		return comformstatList;
+	}
+
+	public void setComformstatList(ArrayList<Comformstat> comformstatList) {
+		this.comformstatList = comformstatList;
 	}
 }
