@@ -114,12 +114,12 @@ public class ExperienceController {
 				callback = getMenuInfo(rb);
 				break;
 				
-			case 13://添加wappush临时统计信息
-				//callback = getMenuInfo(rb);
+			case 15://添加wappush临时统计信息
+				callback = addTempDownloadstat(rb);
 				
 				break;
-			case 14://wappush临时统计信息确认
-				
+			case 16://wappush临时统计信息确认
+				callback = comfirmDownloadstat(rb);
 				
 				break;
 			default:
@@ -407,5 +407,37 @@ public class ExperienceController {
 		}
 	}
 	
+	/**
+	 * 添加临时软件下载统计信息
+	 * @param rb
+	 * @return
+	 */
+	private String addTempDownloadstat(ReceiveBean rb){
+		boolean bl = experienceService.addTempDownloadstat(rb);
+		Intf intf = new Intf();
+		if(bl){
+			ErrInfo errInfo = CmbBeanFactory.getSuccessErrInfo();
+			intf.setErrinfo(errInfo);
+			return intf.toString();
+		}else{
+			ErrInfo errInfo = CmbBeanFactory.getNullErrorInfo();
+			intf.setErrinfo(errInfo);
+			return intf.toString();
+		}
+	}
 	
+	private String comfirmDownloadstat(ReceiveBean rb){
+		boolean bl = experienceService.comformDownloadstat(rb);
+		Intf intf = new Intf();
+		if(bl){
+			ErrInfo errInfo = CmbBeanFactory.getSuccessErrInfo();
+			intf.setErrinfo(errInfo);
+			return intf.toString();
+		}else{
+			ErrInfo errInfo = CmbBeanFactory.getNullErrorInfo();
+			intf.setErrinfo(errInfo);
+			return intf.toString();
+		}
+	}
+
 }
