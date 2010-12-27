@@ -213,6 +213,9 @@ public class ExperienceService {
 	}
 	
 	private void tempToDownloadstat(Tempdownloadstat tls){
+		if(tls == null){
+			return;
+		}
 		Softdownloadstat downloadstat = new Softdownloadstat();
 		downloadstat.setAddTime(tls.getAddTime());
 		Equipment equipment = new Equipment();
