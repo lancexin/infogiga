@@ -12,6 +12,7 @@ import org.hibernate.criterion.Order;
 import org.springframework.orm.hibernate3.HibernateCallback;
 
 import cindy.web.AbstractHibernateDAO;
+import cn.infogiga.exp.webservice.bean.Comformstat;
 import cn.infogiga.pojo.Soft;
 
 
@@ -42,6 +43,5 @@ public class ExperienceDAO extends AbstractHibernateDAO{
 			}
 		});
 	}
-	
 	
 }
