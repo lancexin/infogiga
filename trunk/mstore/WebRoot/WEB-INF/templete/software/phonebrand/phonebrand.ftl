@@ -28,7 +28,8 @@ var newComponent = (function(){
         fields: [
            {name: 'categoryId'},
            {name: 'categoryName'},
-           {name: 'phonebrandId'}
+           {name: 'phonebrandId'},
+           {name: 'pic'}
         ],
         sortInfo: {
             field: 'phonebrandId', direction: 'ASC'
@@ -158,8 +159,9 @@ var newComponent = (function(){
 		closeAction:"hide",
 		items:new Ext.form.FormPanel({
 			baseCls: 'x-plain',
-			id:"phonebrandUpdateForm",
+			
 			labelWidth: 75,
+			id:"phonebrandUpdateForm",
 			items:[
 				{
 					name: 'phonebrandId',
@@ -368,7 +370,7 @@ var newComponent = (function(){
     var categoryAddWindow = new Ext.Window({
     	title: '厂商分类添加',
 		width: 250,
-		height:100,
+		height:220,
 		layout: 'fit',
 		plain:true,
 		closable :true,
@@ -377,21 +379,75 @@ var newComponent = (function(){
 		buttonAlign:'center',
 		closeAction:"hide",
 		items:new Ext.form.FormPanel({
-			baseCls: 'x-plain',
-			layout:'absolute',
 			id:"categoryAddForm",
-			defaultType: 'textfield',
+			baseCls: 'x-plain',
+			labelWidth: 75,
 			items:[{
-				x: 15,
-				y: 5,
-				xtype:'label',
-				text: '分类名称:'
-			},{
-				x: 75,
-				y: 0,
+				fieldLabel: '分类名称',
 				name: 'categoryName',
-				allowBlank:false
-			}]
+				allowBlank:false,
+				xtype:'textfield'
+			},{
+	        	xtype:'hidden',
+				allowBlank:false,
+				name:'pic'
+	        },{
+					layout:'column',
+					bodyStyle: "background-color:#CCD9E8", 
+					border:false,
+	            	width: 230,
+	            	items:[{
+	            		layout: 'form',
+	            	 	width:80,
+	            	 	bodyStyle: "background-color:#CCD9E8;font:12px tahoma,arial,helvetica,sans-serif", 
+	            	 	border:false,
+	            	 	items:[{
+	            	 		
+	            	 		xtype:'label',
+		                    text: '软件图标:'
+	            	 	}]
+	            	},{
+	            		layout: 'form',
+	            		border:false,
+	            		style:'margin:0 5px 0 ',
+	            		items:[{
+	            			xtype:'button',
+		                    text:'选择图片',
+		                    anchor:'100%',
+		                    handler:function(){
+		                    	ImageChooser.show({
+									cutConf:{
+										width:400,
+										height:300,
+										baseImgX:150,                //设置图片框的位置x       
+										baseImgY:100,                //设置图片框的位置y   
+										baseImgWidth:100,            //图片剪裁框的宽度度
+										baseImgHeight:100,           //图片剪裁框的高度
+										baseImgBorder:true          //图像剪裁框是否有边框
+									},
+									complete:function(data){
+										//if(data.width != 100 || data.height != 100){
+								    	//	Ext.Msg.alert("提示","图片大小不合适");
+								    	//	return;
+								    	//}
+								    	Ext.getCmp("addcategoryUrl").getEl().dom.src = data.url;
+								    	Ext.getCmp("categoryAddForm").getForm().findField('pic').setValue(data.url);
+								    	this.window.hide();
+									}
+								});
+		                    }
+	            		},{
+		            	 	id:'addcategoryUrl',
+						    xtype: 'box',
+						    width:100,
+						    heigth:100, 
+						    autoEl: {  
+						        tag: 'img',
+						        src: "material/images/100x100.gif"
+						    }  
+					  	}]
+	            	}] 
+				}]
 		}),
 		buttons: [{
 			text: '添加',
@@ -427,7 +483,7 @@ var newComponent = (function(){
      var categoryUpdateWindow = new Ext.Window({
     	title: '厂商分类修改',
 		width: 250,
-		height:100,
+		height:220,
 		layout: 'fit',
 		plain:true,
 		closable :true,
@@ -437,9 +493,8 @@ var newComponent = (function(){
 		closeAction:"hide",
 		items:new Ext.form.FormPanel({
 			baseCls: 'x-plain',
-			layout:'absolute',
+			labelWidth: 75,
 			id:"categoryUpdateForm",
-			defaultType: 'textfield',
 			items:[{
 					name: 'phonebrandId',
 					xtype:"hidden",
@@ -449,15 +504,70 @@ var newComponent = (function(){
 					xtype:"hidden",
 					allowBlank:false
 				},{
-					x: 15,
-					y: 5,
-					xtype:'label',
-					text: '分类名称:'
-				},{
-					x: 75,
-					y: 0,
+					fieldLabel: '分类名称',
 					name: 'categoryName',
-					allowBlank:false
+					allowBlank:false,
+					xtype:'textfield'
+				},{
+	        		xtype:'hidden',
+					allowBlank:false,
+					name:'pic'
+	        	},{
+					layout:'column',
+					bodyStyle: "background-color:#CCD9E8", 
+					border:false,
+	            	width: 230,
+	            	items:[{
+	            		layout: 'form',
+	            	 	width:80,
+	            	 	bodyStyle: "background-color:#CCD9E8;font:12px tahoma,arial,helvetica,sans-serif", 
+	            	 	border:false,
+	            	 	items:[{
+	            	 		
+	            	 		xtype:'label',
+		                    text: '软件图标:'
+	            	 	}]
+	            	},{
+	            		layout: 'form',
+	            		border:false,
+	            		style:'margin:0 5px 0 ',
+	            		items:[{
+	            			xtype:'button',
+		                    text:'选择图片',
+		                    anchor:'100%',
+		                    handler:function(){
+		                    	ImageChooser.show({
+									cutConf:{
+										width:400,
+										height:300,
+										baseImgX:150,                //设置图片框的位置x       
+										baseImgY:100,                //设置图片框的位置y   
+										baseImgWidth:100,            //图片剪裁框的宽度度
+										baseImgHeight:100,           //图片剪裁框的高度
+										baseImgBorder:true          //图像剪裁框是否有边框
+									},
+									complete:function(data){
+										//if(data.width != 100 || data.height != 100){
+								    	//	Ext.Msg.alert("提示","图片大小不合适");
+								    	//	return;
+								    	//}
+								    	Ext.getCmp("updatecategoryUrl").getEl().dom.src = data.url;
+								    	Ext.getCmp("categoryUpdateForm").getForm().findField('pic').setValue(data.url);
+								    	this.window.hide();
+									}
+								});
+		                    }
+	            		},{
+		            	 	id:'updatecategoryUrl',
+						    xtype: 'box',
+						    width:100,
+						    heigth:100, 
+						    autoEl: {  
+						        tag: 'img',
+						        src: "material/images/100x100.gif"
+						    }  
+					  	}]
+	            	}] 
 				}
 			]
 		}),
@@ -492,10 +602,19 @@ var newComponent = (function(){
 		height: 600,
    		store: categoryStore,
    		border:true,
-   		columns:[
+   		columns:[new Ext.ux.grid.RowExpander({
+       		 	tpl : new Ext.Template(
+        			'<img style="margin:5px;" src="{pic}"/>'
+       	 		)
+   			}),
    			{id:'categoryId',hidden:true,sortable: true, dataIndex: 'categoryId'},
    			{header: "分类名称",width:270,sortable: true, dataIndex: 'categoryName'}
    		],
+   		plugins:new Ext.ux.grid.RowExpander({
+       		 tpl : new Ext.Template(
+        		'<img style="margin:5px;" src="{pic}"/>'
+       	 	)
+   		}),
    		stripeRows: true,
         autoExpandColumn: 'categoryId',
         loadMask: true,
