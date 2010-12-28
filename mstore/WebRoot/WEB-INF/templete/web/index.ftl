@@ -18,8 +18,9 @@
 		var flag = false;
 		var widgetUrl = "web?list&type=json";
 		var phonebrandUrl = "phonebrand?type=json";
-		//var categoryUrl = "category?type=json";
+		var categoryUrl = "category?type=json";
 		var phonetypeUrl = "phonetype?byPhonebrand&type=json";
+		
 		
 		var operate = 1;
 		
@@ -119,6 +120,9 @@
 				case 3:
 					uurl = phonetypeUrl;
 					break;
+				case 4:
+					uurl = categoryUrl;
+					break;
 				default:
 					uurl = widgetUrl;
 					break;
@@ -169,8 +173,25 @@
 							$.each(el.data, function(i, n){
 							  	addPhonetypeWidget(n);
 							});
-						
-						
+							break;
+						case 4:
+							if(length < widgetCount){
+								$(".mstore-containner-bottom").hide();
+								var addLine = parseInt((length-1)/widgetLineCount)+1;
+								containnerHeight = containnerHeight + addLine*120;
+								boxHeight = boxHeight+addLine*120;
+								$("#mstore-containner").css("height",containnerHeight+"px");
+								$(".mstore-containner-box").css("height",addLine*120+"px");
+							}else{
+								containnerHeight = containnerHeight + widgetLine*120;
+								boxHeight = boxHeight+widgetLine*120;
+								$("#mstore-containner").css("height",containnerHeight+"px");
+								$(".mstore-containner-box").css("height",widgetLine*page*120+"px");
+								$("#mstore-category-ul").show();
+							}
+							$.each(el.data, function(i, n){
+							  	addCategoryWidget(n);
+							});
 							break;
 					}
 				
@@ -213,6 +234,9 @@
 				case 3:
 					uurl = phonetypeUrl;
 					break;
+				case 4:
+					uurl = categoryUrl;
+					break;
 				default:
 					uurl = widgetUrl;
 					break;
@@ -252,6 +276,17 @@
 							}
 							$.each(el.data, function(i, n){
 							  	addPhonetypeWidget(n);
+							});
+							break;
+							
+						case 4://category
+							if(el.totalCount <= widgetCount){
+								$(".mstore-containner-bottom").hide();
+							}else{
+								$(".mstore-containner-bottom").show();
+							}
+							$.each(el.data, function(i, n){
+							  	addCategoryWidget(n);
 							});
 							break;
 						default:
@@ -302,7 +337,7 @@
 				$(this).parent().addClass("mstore-widget-icon-click");	
 				//alert($(this).data("data").phonebrandId);
 				params.phonebrandId = $(this).data("data").phonebrandId;
-				showPhonetype();
+				showCategory();
 				
 			});
 			$("#mstore-phonebrand-ul").append(temp);
@@ -316,8 +351,8 @@
 		  	temp.find(".mstore-widget-icon").click(function(){
 				$(".mstore-widget").removeClass("mstore-widget-icon-click");
 				$(this).parent().addClass("mstore-widget-icon-click");	
-				if(params.phonebrandId == -1){
-					alert("请选择手机厂商");
+				if(params.categoryId == -1){
+					alert("请选择手机分类");
 					return;
 				}
 				//显示下载框
@@ -332,10 +367,41 @@
 			$("#mstore-phonetype-ul").append(temp);
 		}
 		
+		function addCategoryWidget(n){
+			var text = widgetTemplete.replace("{icon}",n.pic);
+		  	text = text.replace("{softName}",n.categoryName);
+		  	var temp = $(text);
+		  	temp.find(".mstore-widget-icon").data("data",n);
+		  	temp.find(".mstore-widget-icon").click(function(){
+				$(".mstore-widget").removeClass("mstore-widget-icon-click");
+				$(this).parent().addClass("mstore-widget-icon-click");	
+				if(params.phonebrandId == -1){
+					alert("请选择手机厂商");
+					return;
+				}
+				//显示下载框
+				var data = $(this).data("data");
+				params.categoryId = data.categoryId;
+			//	$(".mstore-mobile-image").attr("src",data.pic);
+			//	$(".mstore-mobile-state").text(data.phonetypeName);
+				//alert($(this).data("data").phonetypeId);
+				showPhonetype();
+				
+			});
+			$("#mstore-category-ul").append(temp);
+		}
+		
 		$(".mstore-mobile-btn").click(function(){
 			showPhonebrand();
 		});
 		
+		function showWidget(){
+			$(".mstore-ul").hide();
+			$("#mstore-widget-ul").empty();
+			$("#mstore-widget-ul").show();
+			operate = 1;
+			resiceWindiw();
+		}
 		function showPhonebrand(){
 			$(".mstore-ul").hide();
 			$("#mstore-phonebrand-ul").empty();
@@ -352,13 +418,15 @@
 			resiceWindiw();
 		}
 		
-		function showWidget(){
+		function showCategory(){
 			$(".mstore-ul").hide();
-			$("#mstore-widget-ul").empty();
-			$("#mstore-widget-ul").show();
-			operate = 1;
+			$("#mstore-category-ul").empty();
+			$("#mstore-category-ul").show();
+			operate = 4;
 			resiceWindiw();
 		}
+		
+		
 		
 		$("#wappush-concel-btn").click(function(){
 			hideWappushDialog();
@@ -438,12 +506,17 @@
                 
             </ul>
             
-            <ul   id="mstore-phonebrand-ul" class="mstore-ul" style="display:none;">
+            <ul id="mstore-phonebrand-ul" class="mstore-ul" style="display:none;">
             	
             
             </ul>
             
-            <ul   id="mstore-phonetype-ul" class="mstore-ul" style="display:none;">
+             <ul id="mstore-category-ul" class="mstore-ul" style="display:none;">
+            	
+            
+            </ul>
+            
+            <ul id="mstore-phonetype-ul" class="mstore-ul" style="display:none;">
             	
             
             </ul>
