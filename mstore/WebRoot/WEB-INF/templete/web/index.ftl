@@ -371,8 +371,8 @@
 			var text = phonebrandTemplete.replace("{url}",n.pic);
 		  	text = text.replace("{phonebrandName}",n.categoryName);
 		  	var temp = $(text);
-		  	temp.find(".mstore-widget-icon").data("data",n);
-		  	temp.find(".mstore-widget-icon").click(function(){
+		  	temp.find(".mstore-phonebrand-widget-icon").data("data",n);
+		  	temp.find(".mstore-phonebrand-widget-icon").click(function(){
 				$(".mstore-widget").removeClass("mstore-widget-icon-click");
 				$(this).parent().addClass("mstore-widget-icon-click");	
 				if(params.phonebrandId == -1){
