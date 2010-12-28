@@ -37,8 +37,9 @@ public class MsoftServiceImpl implements MsoftService{
 		//System.out.println(folerUrl);
 		FileUtil.addFoler(folerUrl);
 		String imgUrl = request.getRealPath(phonebrand.getUrl());
-		FileUtil.copyFile(imgUrl, folerUrl+"/"+phonebrand.getPhonebrandName()+".jpg");
-		
+		if(imgUrl != null){
+			FileUtil.copyFile(imgUrl, folerUrl+"/"+phonebrand.getPhonebrandName()+".jpg");
+		}
 	}
 	
 	public void deletePhonebrand(Phonebrand phonebrand,HttpServletRequest request){
@@ -50,6 +51,10 @@ public class MsoftServiceImpl implements MsoftService{
 		String folerUrl = request.getRealPath(ProperiesReader.getInstence("config.properties").getStringValue("msoft.phone.url")
 					+category.getPhonebrand().getPhonebrandName()+"/"+category.getCategoryName());
 		FileUtil.addFoler(folerUrl);
+		String imgUrl = request.getRealPath(category.getPic());
+		if(imgUrl != null){
+			FileUtil.copyFile(imgUrl, folerUrl+"/"+category.getCategoryName()+".jpg");
+		}
 	}
 	
 	public void deleteCategory(Phonebrandcategory category,HttpServletRequest request){
@@ -59,13 +64,23 @@ public class MsoftServiceImpl implements MsoftService{
 	}
 	
 	public void addPhonetype(Phonetype phonetype,HttpServletRequest request){
+		Phonebrandcategory category = phonetype.getPhonebrandcategory();
+		if(category == null){
+			return;
+		}
+		Phonebrand phonebrand = category.getPhonebrand();
+		if(phonebrand == null){
+			return;
+		}
+		
 		String folerUrl = request.getRealPath(ProperiesReader.getInstence("config.properties").getStringValue("msoft.phone.url")
-			+phonetype.getPhonebrandcategory().getPhonebrand().getPhonebrandName()+"/"+phonetype.getPhonebrandcategory().getCategoryName()
+			+phonebrand.getPhonebrandName()+"/"+category.getCategoryName()
 			+"/"+phonetype.getPhonetypeName());
 		FileUtil.addFoler(folerUrl);
 		String imgUrl = request.getRealPath(phonetype.getPic());
 		FileUtil.copyFile(imgUrl, folerUrl+"/Name.jpg");
-		FileUtil.addTxtFile(folerUrl, "system", ""+phonetype.getPhonearray().getId());
+		String system = phonetype.getPhonearray().getId()+","+phonetype.getPhonebrandcategory().getId()+","+phonetype.getPhonebrandcategory().getPhonebrand().getId()+","+phonetype.getId();
+		FileUtil.addTxtFile(folerUrl, "system", system);
 	
 	}
 	
