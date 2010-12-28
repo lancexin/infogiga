@@ -53,9 +53,9 @@ public class PhonetypeController {
 
 	@RequestMapping(value = "/phonetype",params="byPhonebrand")
 	public String phonetypeJsonList2(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
-			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit,@RequestParam("phonebrandId")Integer phonebrandId){
-		List<JsonPhonetype> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getPhonetypebyPhonebrand(phonebrandId, start, limit), JsonPhonetype.class);
-		Integer totalCount = manageService.getManageDAO().getPhonetypeCountbyPhonebrand(phonebrandId);
+			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit,@RequestParam("categoryId")Integer categoryId){
+		List<JsonPhonetype> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByProperty(Phonetype.class, "phonebrandcategory.id", categoryId, start, limit), JsonPhonetype.class);
+		Integer totalCount = manageService.getManageDAO().getCountByProperty(Phonetype.class, "phonebrandcategory.id", categoryId);
 		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";

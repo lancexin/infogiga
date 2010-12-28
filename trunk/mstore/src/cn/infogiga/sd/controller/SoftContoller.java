@@ -170,6 +170,11 @@ public class SoftContoller {
 		}
 		Soft soft = new Soft();
 		soft.setSoftName(softName);
+		shortName = shortName.replaceAll(" ", "");
+		shortName = shortName.replaceAll("?", "");
+		shortName = shortName.replaceAll("&", "");
+		shortName = shortName.replaceAll("/", "");
+		shortName = shortName.replaceAll("\\", "");
 		soft.setShortName(shortName);
 		soft.setAddTime(new Date());
 		soft.setDescription(description);
@@ -330,6 +335,11 @@ public class SoftContoller {
 		manageService.getManageDAO().deleteAll(siset);
 		
 		soft.setSoftName(softName);
+		shortName = shortName.replaceAll(" ", "");
+		shortName = shortName.replaceAll("?", "");
+		shortName = shortName.replaceAll("&", "");
+		shortName = shortName.replaceAll("/", "");
+		shortName = shortName.replaceAll("\\", "");
 		soft.setShortName(shortName);
 		soft.setDescription(description);
 		soft.setIcon(picIcon);

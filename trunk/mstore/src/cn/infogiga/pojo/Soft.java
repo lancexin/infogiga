@@ -85,6 +85,7 @@ public class Soft implements java.io.Serializable {
 	}
 
 	public void setSoftName(String softName) {
+		
 		this.softName = softName;
 	}
 
