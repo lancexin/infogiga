@@ -37,6 +37,8 @@
     <url-pattern>/mamager</url-pattern>
     <url-pattern>/mamager/*</url-pattern>
   </filter-mapping>
+  
+  
   <filter>
     <filter-name>loginFilter</filter-name>
     <filter-class>cn.infogiga.sd.filther.LoginFilther</filter-class>
@@ -48,6 +50,18 @@
     <url-pattern>/manager</url-pattern>
     <url-pattern>/manager/*</url-pattern>
   </filter-mapping>
+  
+  <filter>
+    <filter-name>webLoginFilter</filter-name>
+    <filter-class>cn.infogiga.sd.filther.WebLoginFilther</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>webLoginFilter</filter-name>
+    <url-pattern>/web</url-pattern>
+    <url-pattern>/web/*</url-pattern>
+  </filter-mapping>
+  
+  
   <!-- Processes application requests -->
   <servlet>
     <servlet-name>spring-servlet</servlet-name>

@@ -12,13 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+public class WebLoginFilther implements Filter  {
 
-
-
-public class LoginFilther implements Filter {
-	private final static Log log = LogFactory.getLog(LoginFilther.class);
+	public void destroy() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
@@ -26,15 +25,10 @@ public class LoginFilther implements Filter {
 		
 		if(session.getAttribute("user") == null ){
 			HttpServletRequest hrequest = (HttpServletRequest)request;
-			((HttpServletResponse)response).sendRedirect(hrequest.getContextPath()+"/admin.jsp");
+			((HttpServletResponse)response).sendRedirect(hrequest.getContextPath()+"/");
 		}else{
 			chain.doFilter(request, response);
 		}
-		
-	}
-
-	public void destroy() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -42,5 +36,5 @@ public class LoginFilther implements Filter {
 		// TODO Auto-generated method stub
 		
 	}
-}
 
+}
