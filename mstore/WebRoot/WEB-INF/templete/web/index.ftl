@@ -368,8 +368,8 @@
 		}
 		
 		function addCategoryWidget(n){
-			var text = widgetTemplete.replace("{icon}",n.pic);
-		  	text = text.replace("{softName}",n.categoryName);
+			var text = phonebrandTemplete.replace("{url}",n.url);
+		  	text = text.replace("{phonebrandName}",n.phonebrandName);
 		  	var temp = $(text);
 		  	temp.find(".mstore-widget-icon").data("data",n);
 		  	temp.find(".mstore-widget-icon").click(function(){
