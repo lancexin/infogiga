@@ -16,6 +16,7 @@ public class Phonebrandcategory implements java.io.Serializable {
 	private Integer id;
 	private Phonebrand phonebrand;
 	private String categoryName;
+	private String pic;
 	private Set phonetypes = new HashSet(0);
 
 	// Constructors
@@ -26,9 +27,10 @@ public class Phonebrandcategory implements java.io.Serializable {
 
 	/** full constructor */
 	public Phonebrandcategory(Phonebrand phonebrand, String categoryName,
-			Set phonetypes) {
+			String pic, Set phonetypes) {
 		this.phonebrand = phonebrand;
 		this.categoryName = categoryName;
+		this.pic = pic;
 		this.phonetypes = phonetypes;
 	}
 
@@ -56,6 +58,14 @@ public class Phonebrandcategory implements java.io.Serializable {
 
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
+	}
+
+	public String getPic() {
+		return this.pic;
+	}
+
+	public void setPic(String pic) {
+		this.pic = pic;
 	}
 
 	public Set getPhonetypes() {
