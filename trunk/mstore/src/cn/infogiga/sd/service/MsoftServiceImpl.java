@@ -50,6 +50,7 @@ public class MsoftServiceImpl implements MsoftService{
 	public void addCategory(Phonebrandcategory category,HttpServletRequest request){
 		String folerUrl = request.getRealPath(ProperiesReader.getInstence("config.properties").getStringValue("msoft.phone.url")
 					+category.getPhonebrand().getPhonebrandName()+"/"+category.getCategoryName());
+		System.out.println(folerUrl);
 		FileUtil.addFoler(folerUrl);
 		String imgUrl = request.getRealPath(category.getPic());
 		if(imgUrl != null){
