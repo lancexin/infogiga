@@ -1,5 +1,6 @@
 package cn.infogiga.sd.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cindy.page.beanutils.MyBeanUtils;
+import cindy.util.Code;
+import cindy.util.FileUtil;
+import cindy.util.ImageUtil;
+import cindy.util.ProperiesReader;
 import cn.infogiga.pojo.Phonebrand;
 import cn.infogiga.pojo.Phonebrandcategory;
 import cn.infogiga.sd.dto.JsonListBean;
@@ -57,9 +62,32 @@ public class CategoryController {
 	@RequestMapping(value = "/category",params="add")
 	public String addCity(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
 			@RequestParam("categoryName")String categoryName,
-			@RequestParam("phonebrandId")Integer phonebrandId){
+			@RequestParam("phonebrandId")Integer phonebrandId,
+			@RequestParam("pic")String pic){
+		if(pic == null || pic.length() <= 0){
+			model.put("success", false);
+			model.put("msg", "必须选择图片");
+			return "list";
+		}
+		File of = new File(request.getRealPath(pic));
+		String suffix = ImageUtil.validateFile(of);
+		if(suffix == null){
+			model.put("success", false);
+			model.put("msg", "未能找到文件");
+			return "list";
+		}
+		String code = Code.getCode();
+		String picUrl = ProperiesReader.getInstence("config.properties").getStringValue("material.image.url")+code+"."+suffix;
+		boolean bl = FileUtil.copyFile(of, new File(request.getRealPath(picUrl)),false);
+		if(!bl){
+			model.put("success", false);
+			model.put("msg", "文件复制出现错误");
+			return "list";
+		}
+		
 		Phonebrandcategory category = new Phonebrandcategory();
 		category.setCategoryName(categoryName);
+		category.setPic(picUrl);
 		Phonebrand phonebrand = manageService.getManageDAO().findById(Phonebrand.class, phonebrandId);
 		
 		category.setPhonebrand(phonebrand);
@@ -83,6 +111,7 @@ public class CategoryController {
 			@RequestParam("categoryId")Integer categoryId){
 		Phonebrandcategory category = manageService.getManageDAO().findById(Phonebrandcategory.class, categoryId);
 		try {
+			FileUtil.delete(new File(request.getRealPath(category.getPic())));
 			manageService.getManageDAO().delete(category);
 			model.put("success", true);
 			model.put("msg", "删除成功！");
@@ -100,8 +129,39 @@ public class CategoryController {
 	public String updateCity(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
 			@RequestParam("categoryId")Integer categoryId,
 			@RequestParam("categoryName")String categoryName,
-			@RequestParam("phonebrandId")Integer phonebrandId){
+			@RequestParam("phonebrandId")Integer phonebrandId,
+			@RequestParam("pic")String pic){
+		
+		File of = new File(request.getRealPath(pic));
+		if(!of.exists()){
+			model.put("success", false);
+			model.put("msg", "未能找到文件");
+			return "list";
+		}
+		String picUrl = ProperiesReader.getInstence("config.properties").getStringValue("material.image.url")+of.getName();
+		String insertUrl = ProperiesReader.getInstence("config.properties").getStringValue("material.image.url")+Code.getCode()+"."+ImageUtil.validateFile(of);
+		
+		
+		
+		
 		Phonebrandcategory category = manageService.getManageDAO().findById(Phonebrandcategory.class, categoryId);
+		
+		if(category.getPic() == null || !category.getPic().equals(picUrl)){//如果图片不一样或没有
+			//将新图片复制到素材区
+			boolean bl = FileUtil.copyFile(of, new File(request.getRealPath(insertUrl)),false);
+			if(!bl){
+				model.put("success", false);
+				model.put("msg", "文件复制出现错误");
+				return "list";
+			}
+			//删除原素材图片
+			if(category.getPic() != null){
+				FileUtil.delete(new File(request.getRealPath(category.getPic())));
+			}
+			
+			category.setPic(insertUrl);
+		}
+		
 		msoftService.deleteCategory(category, request);
 		category.setCategoryName(categoryName);
 		Phonebrand phonebrand = new Phonebrand();
