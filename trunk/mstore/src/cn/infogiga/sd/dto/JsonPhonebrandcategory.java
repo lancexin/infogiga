@@ -11,6 +11,8 @@ public class JsonPhonebrandcategory {
 	private String phonebrandId;
 	@Sync(value = "phonebrand.phonebrandName")
 	private String phonebrandName;
+	@Sync(value = "pic")
+	private String pic;
 	public String getPhonebrandId() {
 		return phonebrandId;
 	}
@@ -35,5 +37,11 @@ public class JsonPhonebrandcategory {
 	}
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
+	}
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
 	}
 }
