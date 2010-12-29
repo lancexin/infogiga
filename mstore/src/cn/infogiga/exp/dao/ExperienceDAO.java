@@ -23,7 +23,8 @@ public class ExperienceDAO extends AbstractHibernateDAO{
 			public List<Soft> doInHibernate(Session session)
 					throws HibernateException, SQLException {
 				final Criteria c = session.createCriteria(Soft.class);
-				c.addOrder(Order.desc("download.downloadCount"));
+				c.createAlias("download", "d");
+				c.addOrder(Order.desc("d.downloadCount"));
 				c.setMaxResults(10);
 				c.setFirstResult(0);
 				return c.list();
@@ -36,7 +37,8 @@ public class ExperienceDAO extends AbstractHibernateDAO{
 			public Soft doInHibernate(Session session)
 					throws HibernateException, SQLException {
 				final Criteria c = session.createCriteria(Soft.class);
-				c.addOrder(Order.desc("download.downloadCount"));
+				c.createAlias("download", "d");
+				c.addOrder(Order.desc("d.downloadCount"));
 				c.setMaxResults(1);
 				c.setFirstResult(0);
 				return (Soft) c.list().get(0);
