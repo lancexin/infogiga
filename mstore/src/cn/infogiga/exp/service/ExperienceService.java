@@ -227,11 +227,13 @@ public class ExperienceService {
 		Phonetype phonetype = new Phonetype();
 		phonetype.setId(tls.getPhonetypeId());
 		downloadstat.setPhonetype(phonetype);
-		Soft soft = new Soft();
-		soft.setId(tls.getSoftId());
+		Soft soft = experienceDAO.findById(Soft.class, tls.getSoftId());
 		downloadstat.setSoft(soft);
 		downloadstat.setPhoneNumber(tls.getPhoneNumber());
 		experienceDAO.save(downloadstat);
+		Download d = soft.getDownload();
+		d.setDownloadCount(d.getDownloadCount()+1);
+		experienceDAO.save(d);
 	}
 	
 	private void deleteTempDownloadstat(Tempdownloadstat tls){
@@ -296,11 +298,13 @@ public class ExperienceService {
 		Phonetype phonetype = new Phonetype();
 		phonetype.setId(phone_type_id);
 		downloadstat.setPhonetype(phonetype);
-		Soft softinfo = new Soft();
-		softinfo.setId(soft_id);
+		Soft softinfo = experienceDAO.findById(Soft.class, soft_id);
 		downloadstat.setSoft(softinfo);
 		try {
 			experienceDAO.save(downloadstat);
+			Download d = softinfo.getDownload();
+			d.setDownloadCount(d.getDownloadCount()+1);
+			experienceDAO.save(d);
 			return true;
 		} catch (RuntimeException e) {
 			// TODO Auto-generated catch block
