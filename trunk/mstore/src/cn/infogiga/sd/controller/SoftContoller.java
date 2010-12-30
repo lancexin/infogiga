@@ -426,7 +426,9 @@ public class SoftContoller {
 		}
 		model.put("success", true);
 		model.put("msg", "修改成功！");
-		manageService.log(Logtype.SOFT, ((Users)session.getAttribute("user")).getNickName(),"修改软件信息,软件名称为："+softName);
+		if(session.getAttribute("user") != null){
+			manageService.log(Logtype.SOFT, ((Users)session.getAttribute("user")).getNickName(),"修改软件信息,软件名称为："+softName);
+		}
 		return "list";
 	}
 	
