@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import cindy.util.DateUtil;
 import cn.infogiga.exp.dao.ExperienceDAO;
 import cn.infogiga.exp.webservice.bean.Comformstat;
 import cn.infogiga.exp.webservice.bean.ReceiveBean;
@@ -24,7 +25,6 @@ import cn.infogiga.pojo.Soft;
 import cn.infogiga.pojo.Softdownloadstat;
 import cn.infogiga.pojo.Tempdownloadstat;
 import cn.infogiga.pojo.Users;
-import cn.infogiga.util.DateUtil;
 
 
 @Component("experienceService")
@@ -207,9 +207,6 @@ public class ExperienceService {
 			e.printStackTrace();
 			return false;
 		}
-		
-		
-		
 	}
 	
 	private void tempToDownloadstat(Tempdownloadstat tls){
@@ -313,8 +310,16 @@ public class ExperienceService {
 		}
 	}
 	
+	public boolean deleteTempDownloadstat(){
+		return experienceDAO.deleteTempDownloadstat();
+	}
+	
 	public <T extends Serializable> List<T>  findAll(Class<T> clazz){
 		return experienceDAO.findAll(clazz);
+	}
+	
+	public List<Softdownloadstat> getDownloadstatByDate(Date startTime,Date endTime){
+		return experienceDAO.getDownloadStatByDate(startTime, endTime);
 	}
 	
 }
