@@ -137,7 +137,12 @@
             						</#if>
             					</#list>},
             			<#else>
-            				{boxLabel:'${menu.menuName}',name: 'softmenuId',inputValue: '${menu.id}'}
+            				{boxLabel:'${menu.menuName}',name: 'softmenuId',inputValue: '${menu.id}'
+            					<#list soft.softindexes as si>
+            						<#if si.softmenu.id == menu.id>
+            							,checked: true
+            						</#if>
+            					</#list>}
             			</#if>
             			
 	    			</#list>
