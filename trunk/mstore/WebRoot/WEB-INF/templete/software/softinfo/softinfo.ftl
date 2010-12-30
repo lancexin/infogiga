@@ -10,6 +10,7 @@ var newComponent = new Ext.ux.CommonTabPanel({
    	storeField:[
    		{name: 'softId'},
         {name: 'softName'},
+        {name: 'softCode'},
         {name: 'shortName'},
         {name: 'description'},
         {name: 'addTime'},
@@ -65,6 +66,7 @@ var newComponent = new Ext.ux.CommonTabPanel({
          {id:'softId',hidden:true,sortable: true, dataIndex: 'softId'},
          {header: "软件名称", sortable: true, dataIndex: 'softName'},
          {header: "软件缩写", sortable: true, dataIndex: 'shortName'},
+         {header: "软件编码", sortable: true, dataIndex: 'softCode'},
          {header: "添加时间", sortable: true, dataIndex: 'addTime'},
          {header: "下载次数", sortable: true, dataIndex: 'downloadCount'},
          {header: "状态",sortable: true, dataIndex: 'status',renderer:function(value, metaData, record, rowIndex, colIndex, store){
