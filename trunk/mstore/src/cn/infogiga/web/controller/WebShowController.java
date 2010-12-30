@@ -20,6 +20,7 @@ import cindy.util.ProperiesReader;
 import cn.infogiga.exp.service.CmbService;
 import cn.infogiga.exp.service.ExperienceService;
 import cn.infogiga.pojo.Attachment;
+import cn.infogiga.pojo.Soft;
 import cn.infogiga.pojo.Softmenu;
 import cn.infogiga.pojo.Tempdownloadstat;
 import cn.infogiga.pojo.Users;
@@ -86,25 +87,31 @@ public class WebShowController {
 				model.put("msg", "您所下的软件已经被移除或者不存在！");
 			}else{
 				//记录临时统计信息
-				String code = Code.getCode();
 				
-				String sendUrl = ProperiesReader.getInstence("config.properties")
-					.getStringValue("msoft.download.post")+attachment.getName()+"?id="+code;
-				//String sendUrl = "http://221.131.216.48:8080/exp/"+URLEncoder.encode("这是一个测试文件名称.rar");
-				System.out.println(sendUrl);
-				String sendStr = attachment.getSoft().getSoftName()+"的下载地址是：";
+				String sendUrl = null;
+				Soft soft = attachment.getSoft();
+				String sendStr = soft.getSoftName()+"的下载地址是：";
+				if(soft.getSoftCode() != null && soft.getSoftCode().trim().length() > 0){
+					sendUrl = ProperiesReader.getInstence("config.properties")
+						.getStringValue("mstore.rd.download.post")+"?sid="+soft.getSoftCode()+"&amp;e="+users.getUserName();
+				}else{
+					String code = Code.getCode();
+					sendUrl = ProperiesReader.getInstence("config.properties")
+						.getStringValue("msoft.download.post")+attachment.getName()+"?id="+code;
+					
+					//像短信表里添加一条
+					Tempdownloadstat temp = new Tempdownloadstat();
+					temp.setCode(code);
+					temp.setPhoneNumber(phoneNumber);
+					temp.setPhonetypeId(phonetypeId);
+					temp.setSoftId(softId);
+					temp.setDownloadtypeId(4);//4表示wappush
+					temp.setAddTime(new Date());
+					temp.setUserId(users.getId());
+					manageService.getManageDAO().save(temp);
+				}
 				//发送wappush
 				cmbService.sendWapPush(phoneNumber, sendUrl, sendStr);
-				//像短信表里添加一条
-				Tempdownloadstat temp = new Tempdownloadstat();
-				temp.setCode(code);
-				temp.setPhoneNumber(phoneNumber);
-				temp.setPhonetypeId(phonetypeId);
-				temp.setSoftId(softId);
-				temp.setDownloadtypeId(4);//4表示wappush
-				temp.setAddTime(new Date());
-				temp.setUserId(users.getId());
-				manageService.getManageDAO().save(temp);
 				model.put("success", true);
 				model.put("msg", "软件下载地址已经发送至您的手机,请及时查收！");
 			}
