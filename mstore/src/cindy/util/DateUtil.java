@@ -13,6 +13,8 @@ public class DateUtil {
 	public static SimpleDateFormat NOW_TIME = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	public static SimpleDateFormat NOW_TIME2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	
+	public static SimpleDateFormat NOW_TIME3 = new SimpleDateFormat("yyyyMMdd");
 	/**
 	 * yyyy-MM-dd example：2010-01-02,2010-1-2
 	 */
@@ -269,6 +271,8 @@ public class DateUtil {
 		return c.getTime();
 	}
 	
+	
+	
 	/**
 	 * 一周的开始
 	 * @param date
@@ -296,6 +300,23 @@ public class DateUtil {
 	public static Date getLastWeek() {
 		Calendar c = Calendar.getInstance();
 		c.add(Calendar.DAY_OF_YEAR, -7);
+		return c.getTime();
+	}
+	
+	/**
+	 * 昨天
+	 * @return
+	 */
+	public static Date getYesterday(){
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.DAY_OF_YEAR, -1);
+		return c.getTime();
+	}
+	
+	public static Date getYesterday(Date date){
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		c.add(Calendar.DAY_OF_YEAR, -1);
 		return c.getTime();
 	}
 	
@@ -383,4 +404,19 @@ public class DateUtil {
 		return getDayNumberOfWeek(stringToDate(dateStr, format));
 	}
 	
+	
+	public static boolean isBefore(Date date,Date is){
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		Calendar calendar2 = Calendar.getInstance();
+		calendar2.setTime(is);
+		return calendar.before(calendar2);
+	}
+	
+	public static void main(String[] args) {
+		Date startDate = DateUtil.stringToDate("2010-07-05", DateUtil.NOW_DATE);
+		Date endDate = DateUtil.stringToDate("2010-12-22", DateUtil.NOW_DATE);
+		System.out.println(isBefore(endDate, startDate));
+		System.out.println(isBefore(endDate, new Date()));
+	}
 }
