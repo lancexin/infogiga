@@ -98,6 +98,7 @@
 	                fieldLabel: '软件编码',
 	                name: 'softCode',
 	                xtype:'textfield',
+	                value:'${soft.softCode!""}'
 	            	width: 230
 	            },{
 	           		fieldLabel: '软件状态',
