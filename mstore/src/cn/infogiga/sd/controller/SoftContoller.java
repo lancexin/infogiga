@@ -25,6 +25,7 @@ import cindy.page.beanutils.MyBeanUtils;
 import cindy.util.Code;
 import cindy.util.FileUtil;
 import cindy.util.ImageUtil;
+import cindy.util.MyValidate;
 import cindy.util.ProperiesReader;
 import cn.infogiga.pojo.Attachandarray;
 import cn.infogiga.pojo.Attachment;
@@ -134,6 +135,7 @@ public class SoftContoller {
 			@RequestParam("pic4")String pic4,
 			@RequestParam("pic5")String pic5,
 			@RequestParam("softName")String softName,
+			@RequestParam("softCode")String softCode,
 			@RequestParam("shortName")String shortName,
 			@RequestParam("description")String description,
 			@RequestParam("softmenuId")Integer[] softmenus,
@@ -172,6 +174,9 @@ public class SoftContoller {
 		soft.setSoftName(softName);
 		shortName = shortName.replaceAll(" ", "");
 		soft.setShortName(shortName);
+		if(softCode != null && softCode.trim().length() > 0 && MyValidate.isNumeric(softCode)){
+			soft.setSoftCode(softCode);
+		}
 		soft.setAddTime(new Date());
 		soft.setDescription(description);
 		soft.setIcon(picIcon);
@@ -272,6 +277,7 @@ public class SoftContoller {
 			@RequestParam("pic4")String pic4,
 			@RequestParam("pic5")String pic5,
 			@RequestParam("softName")String softName,
+			@RequestParam("softCode")String softCode,
 			@RequestParam("shortName")String shortName,
 			@RequestParam("description")String description,
 			@RequestParam("softmenuId")Integer[] softmenus,
@@ -333,6 +339,9 @@ public class SoftContoller {
 		soft.setSoftName(softName);
 		shortName = shortName.replaceAll(" ", "");
 		soft.setShortName(shortName);
+		if(softCode != null && softCode.trim().length() > 0 && MyValidate.isNumeric(softCode)){
+			soft.setSoftCode(softCode);
+		}
 		soft.setDescription(description);
 		soft.setIcon(picIcon);
 		soft.setStatus(status);
@@ -498,4 +507,6 @@ public class SoftContoller {
 	    }
 	    return null;
 	}
+	
+	
 }
