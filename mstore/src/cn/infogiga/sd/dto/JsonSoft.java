@@ -9,6 +9,9 @@ public class JsonSoft {
 	@Sync(value = "softName")
 	private String softName;
 	
+	@Sync(value = "softCode")
+	private String softCode;
+	
 	@Sync(value = "shortName")
 	private String shortName;
 	
@@ -121,6 +124,12 @@ public class JsonSoft {
 	}
 	public void setShortName(String shortName) {
 		this.shortName = shortName;
+	}
+	public String getSoftCode() {
+		return softCode;
+	}
+	public void setSoftCode(String softCode) {
+		this.softCode = softCode;
 	}
 	
 }
