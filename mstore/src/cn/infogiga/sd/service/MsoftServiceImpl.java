@@ -122,6 +122,10 @@ public class MsoftServiceImpl implements MsoftService{
 		}
 		//附件所属的软件
 		folderName.append("-"+soft.getId()+"-");
+		if(soft.getSoftCode() != null && soft.getSoftCode().trim().length() > 0){
+			folderName.append("_"+soft.getSoftCode().trim()+"_");
+		}
+		
 		//System.out.println(folderName);
 		String folderUrl = request.getRealPath(ProperiesReader.getInstence("config.properties").getStringValue("msoft.soft.url")
 			+folderName.toString());
