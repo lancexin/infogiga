@@ -7,6 +7,8 @@
 <script src="jquery/jquery-1.3.min.js"></script>
 <script type="text/javascript"><!--
 	$(document).ready(function() {
+	
+		window.scrollTo(0, 1);
 							   
 		var widgetLine = 0;  //软件有多少排
 		var widgetLineCount = 0; //每排多少个
