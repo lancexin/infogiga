@@ -47,6 +47,11 @@ Ext.onReady(function(){
 				    click: function(n) {
 				    	
 						if(n.leaf){//如果是子菜单这则做如下操作
+							if(centerTab.get(n.attributes.code)){
+								centerTab.setActiveTab(n.attributes.code);
+								return;
+							}
+							
 							if(n.attributes.isframe){
 								var postUrl = n.attributes.url+"&name="+n.text+"&code="+n.attributes.code;
 					            openNewFrame(centerTab,n.text,n.attributes.code,postUrl);
