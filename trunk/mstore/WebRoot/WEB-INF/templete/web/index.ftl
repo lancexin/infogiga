@@ -477,7 +477,7 @@
 --></script>
 </head>
 
-<body>
+<body onload="setTimeout(function () { window.scrollTo(0, 1) }, 100)">
 <div class="mstore-common">
   	<div id="mstore-hander">
       	<div id="mstore-logo">

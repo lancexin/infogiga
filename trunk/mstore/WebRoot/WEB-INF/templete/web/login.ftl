@@ -73,7 +73,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 	
-		window.scrollTo(0, 1);
+		
 		$(".login-btn-text").click(function(){
 			var date = $('form[id="login-form"]').serialize();
 			$.post("login?type=json",date,function(html){
@@ -86,10 +86,14 @@
 			});
 		});
 	});
+	
+	function hideToolbar(){
+		window.scrollTo(0, 1);
+	}
 </script>
 </head>
 
-<body>
+<body onload="setTimeout(function () { window.scrollTo(0, 1) }, 100)">
 <div id="mstore-login-containner">
 <div id="mstore-form-containner">
     	<form id="login-form" action="login?type=json" method="post">
