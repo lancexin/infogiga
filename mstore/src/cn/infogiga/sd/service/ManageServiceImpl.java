@@ -18,6 +18,10 @@ public class ManageServiceImpl implements ManageService{
 	@Autowired
 	ManageHibernateDAO manageDAO;
 
+	public void setManageDAO(ManageHibernateDAO manageDAO) {
+		this.manageDAO = manageDAO;
+	}
+
 	public ManageHibernateDAO getManageDAO() {
 		return manageDAO;
 	}

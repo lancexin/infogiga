@@ -1,6 +1,5 @@
 package cn.infogiga.web.controller;
 
-import java.net.URLEncoder;
 import java.util.Date;
 import java.util.List;
 

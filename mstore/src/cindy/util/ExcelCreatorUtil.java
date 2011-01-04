@@ -79,7 +79,7 @@ public class ExcelCreatorUtil {
 			List<String> context = praseIterator(obj);
 			size = context.size();
 			for(int j=0; j <size; j ++){
-				log.info("row:"+i+"	cell:"+j);
+				//log.info("row:"+i+"	cell:"+j);
 				String value = String.valueOf(context.get(j));
 				Label lable = new Label(j+1, i+1,value );
 				sheet.setColumnView(j+1, value.length()*2+2);

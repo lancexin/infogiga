@@ -113,6 +113,19 @@ public abstract class AbstractHibernateDAO extends HibernateDaoSupport implement
 			}
 		});
 	}
+	
+	public <T extends Serializable> T findSingleByProperty(final Class<T> clazz,
+			final String propertyName,final Object value) {
+		return (T) getHibernateTemplate().execute(new HibernateCallback(){
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				final Criteria c = session.createCriteria(clazz);
+				c.add(Restrictions.eq(propertyName, value));
+
+				return c.uniqueResult();
+			}
+		});
+	}
 
 	public <T extends Serializable> List<T> findByProperty(Class<T> clazz,
 			String propertyName, Object value) {
