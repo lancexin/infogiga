@@ -21,7 +21,10 @@ import cn.infogiga.exp.pojo.Downloadstat;
 import cn.infogiga.exp.quartz.ExcelCreatorUtil;
 import cn.infogiga.exp.quartz.ExcelUtil;
 import cn.infogiga.exp.quartz.RDdownloadExcel;
+import cn.infogiga.pojo.Bissinusshall;
+import cn.infogiga.pojo.City;
 import cn.infogiga.pojo.Phonetype;
+import cn.infogiga.pojo.Power;
 import cn.infogiga.pojo.Soft;
 import cn.infogiga.pojo.Softdownloadstat;
 import cn.infogiga.pojo.Users;
@@ -58,11 +61,15 @@ public class TestController {
 	public void startMock(HttpServletRequest request,HttpServletResponse response){
 		System.out.println("mock start ...");
 		
-		copyPhonetype();
+		
+		copyTeam();
+		copyEmployee();
+		copyEquipment();
+		//copyPhonetype();
 		/**
 		 * 旧体验数据导入新系统
 		 */
-		copyDownloadstat();
+		//copyDownloadstat();
 		/**
 		 * 添加蓝牙mac地址
 		 */
@@ -88,6 +95,85 @@ public class TestController {
 		while(DateUtil.isBefore(startDate, endDate)){
 			createRDExcel(startDate,newDAO);
 			startDate = DateUtil.getNextDay(startDate);
+		}
+	}
+	
+	private void copyEmployee(){
+		List<cn.infogiga.exp.pojo.Employee> list = oldDAO.findAll(cn.infogiga.exp.pojo.Employee.class);
+		int size = list.size();
+		cn.infogiga.exp.pojo.Employee pt = null;
+		for(int i=0;i<size;i++){
+			pt = list.get(i);
+			Users users = newDAO.findById(Users.class, pt.getEmployeeId());
+			if(users != null){//过滤掉已经添加过的
+				return;
+			}
+			users = new Users();
+			users.setId(pt.getEmployeeId());
+			users.setAddTime(pt.getAddTime());
+			users.setStatus(1);
+			users.setNickName(pt.getEmpName());
+			users.setUserName(pt.getEmpNo());
+			users.setPassWord(pt.getPassword());
+			Power power = newDAO.findById(Power.class, 3);
+			users.setPower(power);
+			users.setPhoneNumber(pt.getPhoneNumber());
+			Bissinusshall hall = new Bissinusshall();
+			hall.setId(pt.getTeam().getTeamId());
+			users.setBissinusshall(hall);
+			newDAO.save(users);
+		}
+		
+	}
+	
+	private void copyEquipment(){
+		List<cn.infogiga.exp.pojo.Equipment> list = oldDAO.findAll(cn.infogiga.exp.pojo.Equipment.class);
+		int size = list.size();
+		cn.infogiga.exp.pojo.Equipment pt = null;
+		for(int i=0;i<size;i++){
+			pt = list.get(i);
+			cn.infogiga.pojo.Equipment equipment = newDAO.findById(cn.infogiga.pojo.Equipment.class, pt.getEquipmentId());
+			if(equipment != null){
+				continue;
+			}
+			equipment = new cn.infogiga.pojo.Equipment();
+			equipment.setId(pt.getEquipmentId());
+			equipment.setAddTime(pt.getAddTime());
+			equipment.setEquipmentCode(pt.getCode());
+			equipment.setEquipmentName(pt.getEquiName());
+			equipment.setMac(pt.getMac());
+			
+			Bissinusshall hall = new Bissinusshall();
+			hall.setId(pt.getTeam().getTeamId());
+			equipment.setBissinusshall(hall);
+			
+			equipment.setStatus(pt.getStatus());
+			newDAO.save(equipment);
+		}
+	}
+	
+	private void copyTeam(){
+		List<cn.infogiga.exp.pojo.Team> list = oldDAO.findAll(cn.infogiga.exp.pojo.Team.class);
+		int size = list.size();
+		cn.infogiga.exp.pojo.Team p1 = null;
+		for(int i=0;i<size;i++){
+			p1 = list.get(i);
+			cn.infogiga.pojo.Bissinusshall hall = newDAO.findById(cn.infogiga.pojo.Bissinusshall.class, p1.getTeamId());
+			if(hall != null){
+				continue;
+			}
+			hall = new Bissinusshall();
+			hall.setId(p1.getTeamId());
+			
+			City city = newDAO.findById(City.class, 1);
+			hall.setCity(city);
+			hall.setStatus(p1.getStatus());
+			hall.setCode(p1.getTeamCode());
+			hall.setDescription(p1.getDescription());
+			hall.setHallName(p1.getTeamName());
+			hall.setAddTime(p1.getAddTime());
+			
+			newDAO.save(hall);
 		}
 	}
 
