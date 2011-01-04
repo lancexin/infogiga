@@ -59,7 +59,7 @@ var newComponent = new Ext.ux.CommonTabPanel({
 		closeAction:"hide"
    	},
    	storeSortInfo: {
-        field: 'softId', direction: 'ASC'
+        field: 'softId', direction: 'DESC'
     },
     deleteId:"softId",
     gridColumns:[
