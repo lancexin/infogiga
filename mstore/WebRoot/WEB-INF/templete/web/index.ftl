@@ -472,6 +472,11 @@
 			$("#wappush-form")[0].reset();
 		}
 		
+		
+		window.onorientationchange = function(){
+			alert("size change...");
+			resiceWindiw();
+		}
 	});
 	
 	function hideUrlBar(){
