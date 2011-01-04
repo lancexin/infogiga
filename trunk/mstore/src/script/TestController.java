@@ -57,10 +57,12 @@ public class TestController {
 	@RequestMapping(value = "/mock")
 	public void startMock(HttpServletRequest request,HttpServletResponse response){
 		System.out.println("mock start ...");
+		
+		copyPhonetype();
 		/**
 		 * 旧体验数据导入新系统
 		 */
-		//copyDownloadstat();
+		copyDownloadstat();
 		/**
 		 * 添加蓝牙mac地址
 		 */
@@ -116,25 +118,40 @@ public class TestController {
 		Downloadstat pt = null;
 		for(int i=0;i<size;i++){
 			pt = list.get(i);
-			Softdownloadstat stat = new Softdownloadstat();
+			Softdownloadstat stat = newDAO.findById(Softdownloadstat.class, pt.getDownloadstatId());
+			if(stat != null){
+				System.out.println("已经添加，跳过...");
+				continue;
+			}
+			//System.out.println("已经添加，跳过...");
+			stat = new Softdownloadstat();
 			stat.setAddTime(pt.getAddTime());
 			cn.infogiga.pojo.Downloadtype downloadtype = new cn.infogiga.pojo.Downloadtype();
 			downloadtype.setId(pt.getDownloadtype().getDownloadtypeId());
 			stat.setDownloadtype(downloadtype);
 			
-			cn.infogiga.pojo.Equipment equipment = new cn.infogiga.pojo.Equipment();
-			equipment.setId(pt.getEquipment().getEquipmentId());
+			cn.infogiga.pojo.Equipment equipment = newDAO.findById(cn.infogiga.pojo.Equipment.class, pt.getEquipment().getEquipmentId());
+			if(equipment == null){
+				continue;
+			}
 			stat.setEquipment(equipment);
 			stat.setId(pt.getDownloadstatId());
 			stat.setPhoneNumber(pt.getPhoneNumber());
 			cn.infogiga.pojo.Phonetype phonetype = new cn.infogiga.pojo.Phonetype();
 			phonetype.setId(pt.getPhonetype().getPhonetypeId());
 			stat.setPhonetype(phonetype);
-			Soft soft = new Soft();
-			soft.setId(pt.getSoftinfo().getSoftId());
+			Soft soft = newDAO.findById(Soft.class, pt.getSoftinfo().getSoftId());
+			if(soft == null){
+				continue;
+			}
+			//soft.setId(pt.getSoftinfo().getSoftId());
 			stat.setSoft(soft);
-			Users users = new Users();
-			users.setId(pt.getEmployee().getEmployeeId());
+			Users users = newDAO.findById(Users.class, pt.getEmployee().getEmployeeId());
+			if(users == null){
+				continue;
+			}
+			
+			//users.setId(pt.getEmployee().getEmployeeId());
 			stat.setUsers(users);
 			newDAO.save(stat);
 		}
