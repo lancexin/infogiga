@@ -1,5 +1,8 @@
 package cn.infogiga.sd.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
@@ -21,6 +24,7 @@ import cindy.page.hibernate.CirteriaQuery;
 import cindy.page.hibernate.PageBean;
 import cindy.util.DateUtil;
 import cindy.util.ExcelCreatorUtil;
+import cindy.util.ProperiesReader;
 import cn.infogiga.pojo.Downloadtype;
 import cn.infogiga.pojo.Logtype;
 import cn.infogiga.pojo.Softdownloadstat;
@@ -77,11 +81,23 @@ public class DownloadstatController {
 	
 	@RequestMapping(value = "/downloadstat",params="export")
 	public void softdownloadstatExport(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws UnsupportedEncodingException{
-		
-		response.setContentType("application/vnd.ms-excel");
+		//Date date = ;
+		/*response.setContentType("application/vnd.ms-excel");
 		response.setHeader("Location", (new Date().getTime())+".xls");
 		response.setHeader("Cache-Control", "max-age=" + new Date());
-		response.setHeader("Content-Disposition", "attachment; filename="+(new Date().getTime())+".xls");
+		response.setHeader("Content-Disposition", "attachment; filename="+(new Date().getTime())+".xls");*/
+		String fileName = new Date().getTime()+".xls";
+		String url = ProperiesReader.getInstence("config.properties").getStringValue("soft.export.url")+fileName;
+		File file = new File(url);
+		if(file.exists()){
+			file.delete();
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		Integer downloadtypeId = (request.getParameter("downloadtypeId")==null || request.getParameter("downloadtypeId").length()==0)?-1:Integer.parseInt(request.getParameter("downloadtypeId"));	
 		String employeeName = (request.getParameter("employeeName")==null || request.getParameter("employeeName").length()==0)?null:new String(request.getParameter("employeeName").getBytes("iso8859-1"),"utf-8");	
 		String employeeNo = (request.getParameter("employeeNo")==null || request.getParameter("employeeNo").length()==0)?null:new String(request.getParameter("employeeNo").getBytes("iso8859-1"),"utf-8");	
@@ -111,7 +127,8 @@ public class DownloadstatController {
 		try {
 			OutputStream os = response.getOutputStream();
 			String[] title = {"序号","设备名称","营业厅","软件名称","手机型号","型号分类","手机厂商","员工姓名","员工账户","下载类型","手机号码","发生时间"};
-			ExcelCreatorUtil.exportExcel(os, title, list);
+			ExcelCreatorUtil.exportExcel(new FileOutputStream(file), title, list);
+			response.sendRedirect("excel/"+fileName);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

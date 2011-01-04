@@ -17,11 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
+import cn.infogiga.exp.pojo.Downloadstat;
 import cn.infogiga.exp.quartz.ExcelCreatorUtil;
 import cn.infogiga.exp.quartz.ExcelUtil;
 import cn.infogiga.exp.quartz.RDdownloadExcel;
 import cn.infogiga.pojo.Phonetype;
+import cn.infogiga.pojo.Soft;
 import cn.infogiga.pojo.Softdownloadstat;
+import cn.infogiga.pojo.Users;
 import cn.infogiga.sd.dto.JsonSoftDownloadStat;
 
 import scrpit.now.dao.MappingNewDAO;
@@ -54,19 +57,22 @@ public class TestController {
 	@RequestMapping(value = "/mock")
 	public void startMock(HttpServletRequest request,HttpServletResponse response){
 		System.out.println("mock start ...");
-		
+		/**
+		 * 旧体验数据导入新系统
+		 */
+		//copyDownloadstat();
 		/**
 		 * 添加蓝牙mac地址
 		 */
-		changePhoneNumber();
+		//changePhoneNumber();
 		/**
 		 * 导出热点数据
 		 */
-		exportRD();
+		//exportRD();
 		/**
 		 * 导出每天体验数据
 		 */
-		exportDownloadstat();
+		//exportDownloadstat();
 		System.out.println("mock end ...");
 		
 	}
@@ -101,6 +107,36 @@ public class TestController {
 			phonetype.setPhonetypeName(pt.getPhonetypeName());
 			phonetype.setStatus(pt.getStatus());
 			newDAO.save(phonetype);
+		}
+	}
+		
+	private void copyDownloadstat(){
+		List<Downloadstat> list = oldDAO.findAll(Downloadstat.class);
+		int size = list.size();
+		Downloadstat pt = null;
+		for(int i=0;i<size;i++){
+			pt = list.get(i);
+			Softdownloadstat stat = new Softdownloadstat();
+			stat.setAddTime(pt.getAddTime());
+			cn.infogiga.pojo.Downloadtype downloadtype = new cn.infogiga.pojo.Downloadtype();
+			downloadtype.setId(pt.getDownloadtype().getDownloadtypeId());
+			stat.setDownloadtype(downloadtype);
+			
+			cn.infogiga.pojo.Equipment equipment = new cn.infogiga.pojo.Equipment();
+			equipment.setId(pt.getEquipment().getEquipmentId());
+			stat.setEquipment(equipment);
+			stat.setId(pt.getDownloadstatId());
+			stat.setPhoneNumber(pt.getPhoneNumber());
+			cn.infogiga.pojo.Phonetype phonetype = new cn.infogiga.pojo.Phonetype();
+			phonetype.setId(pt.getPhonetype().getPhonetypeId());
+			stat.setPhonetype(phonetype);
+			Soft soft = new Soft();
+			soft.setId(pt.getSoftinfo().getSoftId());
+			stat.setSoft(soft);
+			Users users = new Users();
+			users.setId(pt.getEmployee().getEmployeeId());
+			stat.setUsers(users);
+			newDAO.save(stat);
 		}
 	}
 	
