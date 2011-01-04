@@ -58,7 +58,6 @@
 	color: #000;
 }
 .login-form-username {
-	background-image: url(images/mstore_login_input.png);
 	height: 35px;
 	width: 208px;
 	border-top-style: none;
