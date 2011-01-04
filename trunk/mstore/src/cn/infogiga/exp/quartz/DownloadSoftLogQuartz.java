@@ -30,14 +30,17 @@ public class DownloadSoftLogQuartz extends QuartzJobBean{
 	@Override
 	protected void executeInternal(JobExecutionContext arg0)
 			throws JobExecutionException {
+		//删除所有wappush暂时统计信息
 		boolean bl = experienceService.deleteTempDownloadstat();
+		
+		//导出每日热点统计信息
 		Date yesterday = DateUtil.getYesterday();
 		Date startTime = DateUtil.getStartOfDay(yesterday);
 		Date endTime = DateUtil.getEndOfDay(yesterday);
 		List<Softdownloadstat> aList = experienceService.getDownloadstatByDate(startTime, endTime);
 		List<RDdownloadExcel> list = ExcelUtil.getRDdownloadExcelList(aList);
 		String fileName = DateUtil.getDateString(yesterday, DateUtil.NOW_TIME3);
-		File file = new File(ProperiesReader.getInstence("config.").getStringValue("soft.export.url")+fileName+".xls");
+		File file = new File(ProperiesReader.getInstence("config.properties").getStringValue("soft.rdexport.url")+fileName+".xls");
 		try {
 			if(!file.exists()){
 				file.createNewFile();

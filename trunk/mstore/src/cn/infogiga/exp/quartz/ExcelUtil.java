@@ -11,17 +11,20 @@ public class ExcelUtil {
 		List<RDdownloadExcel> list = new ArrayList<RDdownloadExcel>();
 		
 		int size = aList.size();
+		
 		Softdownloadstat downloadstat = null;
 		for(int i=0;i<size;i++){
 			downloadstat = aList.get(i);
 			if(downloadstat.getEquipment().getBissinusshall().getId() == 1){//过滤掉测试组的数据
+				
 				continue;
 			}
 			
 			if(downloadstat.getSoft().getSoftCode() == null || (downloadstat.getSoft().getSoftCode().trim()).length() <= 0){//过滤掉测试组的数据
+				
 				continue;
 			}
-			
+			//System.out.println("add one .....");
 			RDdownloadExcel excel = new RDdownloadExcel();
 			excel.setTeamName(downloadstat.getEquipment().getBissinusshall().getHallName());
 			excel.setEmpNo(downloadstat.getUsers().getUserName());

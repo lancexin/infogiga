@@ -55,23 +55,12 @@ public class ExcelCreatorUtil {
 				WritableFont.NO_BOLD, false,
 				jxl.format.UnderlineStyle.NO_UNDERLINE, Colour.BLACK);
 		WritableCellFormat titleFormat = new WritableCellFormat(wfont);
-		/*titleFormat.setAlignment(Alignment.CENTRE);
-		titleFormat.setBackground(Colour.GRAY_25);
-		titleFormat.setBorder(Border.ALL, BorderLineStyle.THIN,
-			     jxl.format.Colour.BLACK);*/
+		
 		
 		// 设置内容
 		Iterator it = list.iterator();
 		
-	/*	WritableFont wfont2 = new WritableFont(WritableFont.ARIAL, 12,
-				WritableFont.NO_BOLD, false,
-				jxl.format.UnderlineStyle.NO_UNDERLINE, Colour.BLACK);
-		WritableCellFormat titleFormat2 = new WritableCellFormat(wfont2);
-		titleFormat2.setAlignment(Alignment.CENTRE);
-		titleFormat2.setBorder(Border.ALL, BorderLineStyle.THIN,
-			     jxl.format.Colour.BLACK);*/
-		
-		//CellFormat cellFormat = new CellFormat();
+	
 		int i = 0;
 		int size = 0;
 		for(; it.hasNext(); i ++){
@@ -79,7 +68,7 @@ public class ExcelCreatorUtil {
 			List<String> context = praseIterator(obj);
 			size = context.size();
 			for(int j=0; j <size; j ++){
-				log.info("row:"+i+"	cell:"+j);
+				//log.info("row:"+i+"	cell:"+j);
 				String value = String.valueOf(context.get(j));
 				Label lable = new Label(j, i,value );
 				sheet.setColumnView(j+1, value.length()*2+2);
