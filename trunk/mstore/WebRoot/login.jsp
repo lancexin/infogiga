@@ -87,7 +87,10 @@
 	});
 	
 	function hideUrlBar(){
-	    setTimeout(function () { window.scrollTo(0, 1) }, 100);
+	    window.setTimeout(function () {
+	    	 window.scrollTo(0, 1);
+	    	 //alert("change success"); 
+	    }, 200);
 	}
 </script>
 </head>
