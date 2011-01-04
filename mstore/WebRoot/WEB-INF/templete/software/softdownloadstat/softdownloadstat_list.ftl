@@ -20,7 +20,7 @@ var newComponent = (function() {
 	        {name: 'addTime'}
         ],
         sortInfo: {
-            field: 'statId', direction: 'ASC'
+            field: 'statId', direction: 'DESC'
         }
     });
     
