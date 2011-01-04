@@ -72,6 +72,8 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+	
+		window.scrollTo(0, 1);
 		$(".login-btn-text").click(function(){
 			var date = $('form[id="login-form"]').serialize();
 			$.post("login?type=json",date,function(html){
