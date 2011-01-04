@@ -473,11 +473,14 @@
 		}
 		
 	});
-
+	
+	function hideUrlBar(){
+	    setTimeout(function () { window.scrollTo(0, 1) }, 100);
+	}
 --></script>
 </head>
 
-<body onload="setTimeout(function () { window.scrollTo(0, 1) }, 100)">
+<body onload="hideUrlBar()">
 <div class="mstore-common">
   	<div id="mstore-hander">
       	<div id="mstore-logo">
