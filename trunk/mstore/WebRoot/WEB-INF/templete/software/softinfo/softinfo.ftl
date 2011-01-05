@@ -471,6 +471,7 @@ var newComponent = new Ext.ux.CommonTabPanel({
         	 handler : function(){
                Ext.Ajax.request({
                		 url:'soft?export&type=json',
+               		 timeout:60000,
                		 success:function(response, options){
                		 		eval("action = "+response.responseText);
          					Ext.Msg.alert('提示',action.msg);
