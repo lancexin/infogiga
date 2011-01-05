@@ -135,7 +135,7 @@ public class SoftContoller {
 		manageService.getManageDAO().deleteAll(siset);
 		try {
 			manageService.getManageDAO().delete(soft);
-			msoftService.deleteAttachments(soft, request);
+			//msoftService.deleteAttachments(soft, request);
 			model.put("success", true);
 			model.put("msg", "删除成功！");
 			manageService.log(Logtype.SOFT, ((Users)session.getAttribute("user")).getNickName(),"删除软件信息,软件名称为："+soft.getSoftName());
@@ -278,7 +278,7 @@ public class SoftContoller {
 				}
 				attachment.setAttachandarraies(attachandarraies);
 				manageService.getManageDAO().save(attachment);
-				msoftService.addAttachment(attachment, request);
+				//msoftService.addAttachment(attachment, request);
 			}
 			
 		}
@@ -441,7 +441,7 @@ public class SoftContoller {
 				}
 				attachment.setAttachandarraies(attachandarraies);
 				manageService.getManageDAO().save(attachment);
-				msoftService.addAttachment(attachment, request);
+				//msoftService.addAttachment(attachment, request);
 			}
 
 			

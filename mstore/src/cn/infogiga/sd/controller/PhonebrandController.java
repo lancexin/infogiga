@@ -32,8 +32,8 @@ public class PhonebrandController {
 	@Autowired
 	ManageService manageService;
 	
-	@Autowired
-	MsoftService msoftService;
+	/*@Autowired
+	MsoftService msoftService;*/
 	
 
 	@RequestMapping(value = "/phonebrand",params="comboPhonebrand")
@@ -95,7 +95,7 @@ public class PhonebrandController {
 			return "list";
 		}
 		manageService.log(Logtype.PHANDBRAND, ((Users)session.getAttribute("user")).getNickName(),"添加手机厂商信息,名称为："+phonebrandName);
-		msoftService.addPhonebrand(phonebrand, request);
+		//msoftService.addPhonebrand(phonebrand, request);
 		return "list";
 	}
 
@@ -117,7 +117,7 @@ public class PhonebrandController {
 			return "list";
 		}
 		manageService.log(Logtype.PHANDBRAND, ((Users)session.getAttribute("user")).getNickName(),"删除手机厂商信息,名称为："+phonebrand.getPhonebrandName());
-		msoftService.deletePhonebrand(phonebrand, request);
+		//msoftService.deletePhonebrand(phonebrand, request);
 		return "list";
 	}
 
@@ -137,7 +137,7 @@ public class PhonebrandController {
 		
 		
 		Phonebrand phonebrand = manageService.getManageDAO().findById(Phonebrand.class, phonebrandId);
-		msoftService.deletePhonebrand(phonebrand, request);
+		//msoftService.deletePhonebrand(phonebrand, request);
 		if(!phonebrand.getUrl().equals(picUrl)){//如果图片不一样
 			//将新图片复制到素材区
 			boolean bl = FileUtil.copyFile(of, new File(request.getRealPath(insertUrl)),false);
@@ -167,7 +167,7 @@ public class PhonebrandController {
 		}
 		manageService.log(Logtype.PHANDBRAND, ((Users)session.getAttribute("user")).getNickName(),"修改手机厂商信息,名称为："+phonebrand.getPhonebrandName());
 		
-		msoftService.addPhonebrand(phonebrand, request);
+		//msoftService.addPhonebrand(phonebrand, request);
 		return "list";
 	}
 }
