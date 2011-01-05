@@ -91,6 +91,9 @@ public class SoftContoller {
 			
 			List<Attachment> attachments = manageService.getManageDAO().findAll(Attachment.class);
 			msoftService.addAttachments(attachments, request);
+			
+			msoftService.createClientFileList(request);
+			
 			model.put("success", true);
 			model.put("msg", "导出成功！");
 		} catch (RuntimeException e) {
