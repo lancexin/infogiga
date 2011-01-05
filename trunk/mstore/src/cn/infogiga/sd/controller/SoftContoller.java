@@ -69,17 +69,6 @@ public class SoftContoller {
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"softName",softName,null));
 		int totalCount = manageService.getManageDAO().getCountByPage(Soft.class, cBean);
 		List<JsonSoft> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Soft.class, cBean), JsonSoft.class);
-		/*List<JsonSoft> list = null;
-		if(softName != null && softName.length() != 0 ){
-			list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByProperty(Soft.class, "softName", softName, start, limit), JsonSoft.class);
-		}else{
-			list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Soft.class, start, limit), JsonSoft.class);
-		}
-
-		int totalCount = manageService.getManageDAO().getCount(Soft.class);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
-		model.addAttribute("object", jsonListBean);*/
-		//int totalCount = manageService.getManageDAO().getCount(Soft.class);
 		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
@@ -89,7 +78,7 @@ public class SoftContoller {
 	public String softExport(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model){
 		
 		try {
-			msoftService.deleteAll();
+			msoftService.deleteAll(request);
 			
 			List<Phonebrand> phonebrands = manageService.getManageDAO().findAll(Phonebrand.class);
 			msoftService.addPhonebrands(phonebrands, request);

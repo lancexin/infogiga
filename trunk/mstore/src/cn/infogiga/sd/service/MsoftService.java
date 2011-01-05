@@ -28,5 +28,5 @@ public interface MsoftService {
 	public void deleteAttachment(Attachment attachment,HttpServletRequest request);
 	public void deleteAttachments(Soft soft,HttpServletRequest request);
 	
-	public void deleteAll();
+	public void deleteAll(HttpServletRequest request);
 }

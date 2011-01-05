@@ -25,9 +25,14 @@ import cindy.util.FileUtil;
 @Component("msoftService")
 public class MsoftServiceImpl implements MsoftService{
 	
-	public void deleteAll(){
-		FileUtil.deleteAllFile(new File(ProperiesReader.getInstence("config.properties").getStringValue("msoft.phone.url")));
-		FileUtil.deleteAllFile(new File(ProperiesReader.getInstence("config.properties").getStringValue("msoft.soft.url")));
+	public void deleteAll(HttpServletRequest request){
+		String phoneUrl = request.getRealPath(ProperiesReader.getInstence("config.properties").getStringValue("msoft.phone.url"));
+		String softUrl = request.getRealPath(ProperiesReader.getInstence("config.properties").getStringValue("msoft.soft.url"));
+		FileUtil.deleteAllFile(new File(phoneUrl));
+		FileUtil.deleteAllFile(new File(softUrl));
+		
+		FileUtil.addFoler(phoneUrl);
+		FileUtil.addFoler(softUrl);
 	}
 	
 	
