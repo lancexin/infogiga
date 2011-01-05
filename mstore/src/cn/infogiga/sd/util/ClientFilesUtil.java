@@ -26,7 +26,7 @@ public class ClientFilesUtil {
 			
 			try {
 				String md5Code = FileMd5.getFileMD5String(file);
-				buffer.append(outParentpath(file.getAbsolutePath(),parentPath)+" <*> "+file.getName()+" <*> "+md5Code);
+				buffer.append(outParentpath(file.getParent()+File.separator,parentPath+File.separator)+" <*> "+file.getName()+" <*> "+md5Code);
 				buffer.append("\r\n");
 				//System.out.println();
 			} catch (IOException e) {
@@ -36,7 +36,7 @@ public class ClientFilesUtil {
 		}
 		
 		if(file.isDirectory()){
-			buffer.append(outParentpath(file.getAbsolutePath()+File.separator,parentPath));
+			buffer.append(outParentpath(file.getAbsolutePath()+File.separator,parentPath+File.separator));
 			buffer.append("\r\n");
 			File[] files = file.listFiles();
 			for(int i=0;i<files.length;i++){
