@@ -277,4 +277,16 @@ public class MsoftServiceImpl implements MsoftService{
 		}
 	}
 
+
+	public void createClientFileList(HttpServletRequest request) {
+		String softUrl = request.getRealPath(ProperiesReader.getInstence("config.properties").getStringValue("msoft.soft.url"));
+		File softFile = new File(softUrl);
+		File clientFolder = softFile.getParentFile();
+		String exportUrl = clientFolder.getAbsolutePath()+File.separator;
+		StringBuffer buffer = new StringBuffer();
+		cn.infogiga.sd.util.ClientFilesUtil.exportClientFiles(clientFolder, buffer, clientFolder.getParent());
+		FileUtil.addTxtFile(exportUrl, "clientFiles", buffer.toString());
+	}
+	
+
 }

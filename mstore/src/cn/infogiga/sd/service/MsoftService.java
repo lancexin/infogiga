@@ -29,4 +29,7 @@ public interface MsoftService {
 	public void deleteAttachments(Soft soft,HttpServletRequest request);
 	
 	public void deleteAll(HttpServletRequest request);
+	
+	public void createClientFileList(HttpServletRequest request);
+	
 }
