@@ -18,6 +18,7 @@
 	<script type="text/javascript" src="ext/3.2.1/ext-all.js"></script>
 	<script type="text/javascript" src="ext/lovcombo/js/Ext.ux.form.LovCombo.js"></script>
 	<script type="text/javascript" src="ext/common/common.js"></script>
+	<script type="text/javascript" src="ext/common/SearchField.js"></script>
 	<script type="text/javascript" src="ext/common/RowExpander.js"></script>
 	<script type="text/javascript" src="ext/common/Ext.ux.CommonTabPanel.js"></script>
 	

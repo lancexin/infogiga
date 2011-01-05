@@ -22,6 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import cindy.page.beanutils.MyBeanUtils;
+import cindy.page.hibernate.CirteriaBean;
+import cindy.page.hibernate.CirteriaQuery;
+import cindy.page.hibernate.PageBean;
 import cindy.util.Code;
 import cindy.util.FileUtil;
 import cindy.util.ImageUtil;
@@ -36,11 +39,13 @@ import cn.infogiga.pojo.Phonebrand;
 import cn.infogiga.pojo.Phonebrandcategory;
 import cn.infogiga.pojo.Phonetype;
 import cn.infogiga.pojo.Soft;
+import cn.infogiga.pojo.Softdownloadstat;
 import cn.infogiga.pojo.Softindex;
 import cn.infogiga.pojo.Softmenu;
 import cn.infogiga.pojo.Users;
 import cn.infogiga.sd.dto.JsonListBean;
 import cn.infogiga.sd.dto.JsonSoft;
+import cn.infogiga.sd.dto.JsonSoftDownloadStat;
 import cn.infogiga.sd.service.ManageService;
 import cn.infogiga.sd.service.MsoftService;
 
@@ -55,9 +60,26 @@ public class SoftContoller {
 	
 	@RequestMapping(value = "/soft")
 	public String softJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
-			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit){
-		List<JsonSoft> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Soft.class, start, limit), JsonSoft.class);
+			@RequestParam("start")Integer start){
+		String softName = request.getParameter("query");
+		Integer limit = (request.getParameter("limit")==null || request.getParameter("limit").length()==0)?20:Integer.parseInt(request.getParameter("limit"));
+		PageBean pageBean = new PageBean(start,limit);
+		CirteriaBean cBean = new CirteriaBean("id");
+		cBean.setPageBean(pageBean);
+		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"softName",softName,null));
+		int totalCount = manageService.getManageDAO().getCountByPage(Soft.class, cBean);
+		List<JsonSoft> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Soft.class, cBean), JsonSoft.class);
+		/*List<JsonSoft> list = null;
+		if(softName != null && softName.length() != 0 ){
+			list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByProperty(Soft.class, "softName", softName, start, limit), JsonSoft.class);
+		}else{
+			list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Soft.class, start, limit), JsonSoft.class);
+		}
+
 		int totalCount = manageService.getManageDAO().getCount(Soft.class);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
+		model.addAttribute("object", jsonListBean);*/
+		//int totalCount = manageService.getManageDAO().getCount(Soft.class);
 		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
