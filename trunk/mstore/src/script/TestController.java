@@ -62,9 +62,9 @@ public class TestController {
 		System.out.println("mock start ...");
 		
 		
-		copyTeam();
+		//copyTeam();
 		copyEmployee();
-		copyEquipment();
+		//copyEquipment();
 		//copyPhonetype();
 		/**
 		 * 旧体验数据导入新系统
@@ -101,13 +101,16 @@ public class TestController {
 	private void copyEmployee(){
 		List<cn.infogiga.exp.pojo.Employee> list = oldDAO.findAll(cn.infogiga.exp.pojo.Employee.class);
 		int size = list.size();
+		System.out.println(size);
 		cn.infogiga.exp.pojo.Employee pt = null;
 		for(int i=0;i<size;i++){
 			pt = list.get(i);
 			Users users = newDAO.findById(Users.class, pt.getEmployeeId());
 			if(users != null){//过滤掉已经添加过的
-				return;
+				System.out.println("empId:"+pt.getEmployeeId());
+				continue;
 			}
+			System.out.println("添加一个员工");
 			users = new Users();
 			users.setId(pt.getEmployeeId());
 			users.setAddTime(pt.getAddTime());
@@ -172,7 +175,7 @@ public class TestController {
 			hall.setDescription(p1.getDescription());
 			hall.setHallName(p1.getTeamName());
 			hall.setAddTime(p1.getAddTime());
-			
+			//syso
 			newDAO.save(hall);
 		}
 	}
