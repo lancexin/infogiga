@@ -285,7 +285,7 @@ public class MsoftServiceImpl implements MsoftService{
 		String exportUrl = clientFolder.getAbsolutePath()+File.separator;
 		StringBuffer buffer = new StringBuffer();
 		cn.infogiga.sd.util.ClientFilesUtil.exportClientFiles(clientFolder, buffer, clientFolder.getParent());
-		FileUtil.addTxtFile(exportUrl, "clientFiles", buffer.toString());
+		FileUtil.addTxtFile(exportUrl, "serverFiles", buffer.toString());
 	}
 	
 
