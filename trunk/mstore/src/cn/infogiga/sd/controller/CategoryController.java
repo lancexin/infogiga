@@ -31,8 +31,8 @@ public class CategoryController {
 	ManageService manageService;
 	
 
-	@Autowired
-	MsoftService msoftService;
+	/*@Autowired
+	MsoftService msoftService;*/
 	
 	@RequestMapping(value = "/category",params="comboCategory")
 	public String comboCityJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
@@ -102,7 +102,7 @@ public class CategoryController {
 			model.put("msg", "未知原因，添加失败~");
 			return "list";
 		}
-		msoftService.addCategory(category, request);
+		//msoftService.addCategory(category, request);
 		return "list";
 	}
 
@@ -121,7 +121,7 @@ public class CategoryController {
 			model.put("success", false);
 			model.put("msg", "未知原因，删除失败~");
 		}
-		msoftService.deleteCategory(category, request);
+		//msoftService.deleteCategory(category, request);
 		return "list";
 	}
 
@@ -162,7 +162,7 @@ public class CategoryController {
 			category.setPic(insertUrl);
 		}
 		
-		msoftService.deleteCategory(category, request);
+		//msoftService.deleteCategory(category, request);
 		category.setCategoryName(categoryName);
 		Phonebrand phonebrand = new Phonebrand();
 		phonebrand.setId(phonebrandId);
@@ -178,7 +178,7 @@ public class CategoryController {
 			model.put("msg", "未知原因，修改失败~");
 			return "list";
 		}
-		msoftService.addCategory(category, request);
+		//msoftService.addCategory(category, request);
 		return "list";
 	}
 }

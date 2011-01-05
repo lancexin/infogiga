@@ -22,8 +22,8 @@ public class AttachmentController {
 	@Autowired
 	ManageService manageService;
 	
-	@Autowired
-	MsoftService msoftService;
+	/*@Autowired
+	MsoftService msoftService;*/
 	
 	@RequestMapping(value = "/attachment",params="delete")
 	public String removeAttachment(HttpServletRequest request,HttpServletResponse response,HttpSession session,ModelMap model,
@@ -32,7 +32,7 @@ public class AttachmentController {
 			Attachment attachment = manageService.getManageDAO().findById(Attachment.class, attachmentId);
 			
 			FileUtil.delete(new File(request.getRealPath(attachment.getUrl())));
-			msoftService.deleteAttachment(attachment, request);
+			//msoftService.deleteAttachment(attachment, request);
 			manageService.getManageDAO().delete(attachment);
 			model.put("success", true);
 			model.put("msg", "删除成功！");

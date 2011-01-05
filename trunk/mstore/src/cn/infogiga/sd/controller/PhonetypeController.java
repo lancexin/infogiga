@@ -36,8 +36,8 @@ public class PhonetypeController {
 	@Autowired
 	ManageService manageService;
 	
-	@Autowired
-	MsoftService msoftService;
+	/*@Autowired
+	MsoftService msoftService;*/
 	
 	@RequestMapping(value = "/phonetype")
 	public String phonetypeJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
@@ -127,7 +127,7 @@ public class PhonetypeController {
 			return "list";
 		}
 		manageService.log(Logtype.PHONETYPE, ((Users)session.getAttribute("user")).getNickName(),"添加手机型号信息,型号名称为："+phonetypeName);
-		msoftService.addPhonetype(phonetype, request);
+		//msoftService.addPhonetype(phonetype, request);
 		return "list";
 	}
 	
@@ -151,7 +151,7 @@ public class PhonetypeController {
 			return "list";
 		}
 		manageService.log(Logtype.PHONETYPE, ((Users)session.getAttribute("user")).getNickName(),"删除手机型号信息,型号名称为："+phonetype.getPhonetypeName());
-		msoftService.deletePhoentype(phonetype, request);
+		//msoftService.deletePhoentype(phonetype, request);
 		return "list";
 	}
 	
@@ -175,7 +175,7 @@ public class PhonetypeController {
 		String picUrl = ProperiesReader.getInstence("config.properties").getStringValue("material.image.url")+of.getName();
 		String insertUrl = ProperiesReader.getInstence("config.properties").getStringValue("material.image.url")+Code.getCode()+"."+ImageUtil.validateFile(of);
 		Phonetype phonetype = manageService.getManageDAO().findById(Phonetype.class, phonetypeId);
-		msoftService.deletePhoentype(phonetype, request);
+		//msoftService.deletePhoentype(phonetype, request);
 		if(phonetype.getPic() == null || !phonetype.getPic().equals(picUrl)){//如果图片不一样
 			//将新图片复制到素材区
 			boolean bl = FileUtil.copyFile(of, new File(request.getRealPath(insertUrl)),false);
@@ -213,7 +213,7 @@ public class PhonetypeController {
 			return "list";
 		}
 		manageService.log(Logtype.PHONETYPE, ((Users)session.getAttribute("user")).getNickName(),"修改手机型号信息,型号名称为："+phonetype.getPhonetypeName());
-		msoftService.addPhonetype(phonetype, request);
+		//msoftService.addPhonetype(phonetype, request);
 		return "list";
 	}
 	
