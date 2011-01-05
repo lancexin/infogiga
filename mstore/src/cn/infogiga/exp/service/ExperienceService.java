@@ -172,12 +172,31 @@ public class ExperienceService {
 		try {
 			Tempdownloadstat temp = new Tempdownloadstat();
 			temp.setAddTime(DateUtil.stringToDate(rb.getAdd_time(), DateUtil.NOW_TIME));
+			if(rb.getCode() == null ){
+				return false;
+			}
 			temp.setCode(rb.getCode());
+			if(rb.getDownload_type() == null){
+				return false;
+			}
 			temp.setDownloadtypeId(Integer.parseInt(rb.getDownload_type()));
+			if(rb.getPhone_number()== null){
+				return false;
+			}
 			temp.setPhoneNumber(rb.getPhone_number());
+			if(rb.getSoft_id()== null){
+				return false;
+			}
 			temp.setSoftId(Integer.parseInt(rb.getSoft_id()));
+			if(rb.getEmp_no()== null){
+				return false;
+			}
 			temp.setUserId(Integer.parseInt(rb.getEmp_no()));
 			Equipment equi = getSingleEquipment(rb);
+			if(equi== null){
+				return false;
+			}
+			
 			temp.setEquipmentId(equi.getId());
 			experienceDAO.save(temp);
 			return true;
@@ -196,8 +215,13 @@ public class ExperienceService {
 			for(int i=0;i<size;i++){
 				stat =  cList.get(i);
 				Tempdownloadstat tls = new Tempdownloadstat();
+				//System.out.println(stat.getCode());
 				tls.setCode(stat.getCode());
 				tls = experienceDAO.findSingleByExample(tls);
+				if(tls == null){
+					System.out.println("数据库未找到该临时记录:"+stat.getCode());
+					continue;
+				}
 				tempToDownloadstat(tls);
 				deleteTempDownloadstat(tls);
 			}
@@ -215,16 +239,25 @@ public class ExperienceService {
 		}
 		Softdownloadstat downloadstat = new Softdownloadstat();
 		downloadstat.setAddTime(tls.getAddTime());
-		Equipment equipment = new Equipment();
-		equipment.setId(tls.getEquipmentId());
+		Equipment equipment = experienceDAO.findById(Equipment.class, tls.getEquipmentId()==null?-1:tls.getEquipmentId());
+		if(equipment == null){
+			return;
+		}
+		//equipment.setId(tls.getEquipmentId());
 		downloadstat.setEquipment(equipment);
 		Downloadtype downloadtype = new Downloadtype();
 		downloadtype.setId(tls.getDownloadtypeId());
 		downloadstat.setDownloadtype(downloadtype);
-		Phonetype phonetype = new Phonetype();
-		phonetype.setId(tls.getPhonetypeId());
+		Phonetype phonetype = experienceDAO.findById(Phonetype.class, tls.getPhonetypeId()==null?-1:tls.getPhonetypeId());
+		if(phonetype == null){
+			return;
+		}
+		//phonetype.setId(tls.getPhonetypeId());
 		downloadstat.setPhonetype(phonetype);
-		Soft soft = experienceDAO.findById(Soft.class, tls.getSoftId());
+		Soft soft = experienceDAO.findById(Soft.class, tls.getSoftId()== null?-1:tls.getSoftId());
+		if(soft == null){
+			return;
+		}
 		downloadstat.setSoft(soft);
 		downloadstat.setPhoneNumber(tls.getPhoneNumber());
 		experienceDAO.save(downloadstat);
@@ -234,6 +267,9 @@ public class ExperienceService {
 	}
 	
 	private void deleteTempDownloadstat(Tempdownloadstat tls){
+		if(tls == null){
+			return;
+		}
 		experienceDAO.delete(tls);
 	}
 	
