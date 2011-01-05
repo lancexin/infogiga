@@ -20,6 +20,10 @@ public class ClientFilesUtil {
 		}
 		
 		if(file.isFile()){
+			if(file.getName() != null && file.getName().equals("Thumbs.db")){
+				return;
+			}
+			
 			try {
 				String md5Code = FileMd5.getFileMD5String(file);
 				buffer.append(outParentpath(file.getAbsolutePath(),parentPath)+" <*> "+file.getName()+" <*> "+md5Code);
