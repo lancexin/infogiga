@@ -197,6 +197,11 @@ public class ExperienceService {
 				return false;
 			}
 			
+			if(rb.getPhone_type_id() == null){
+				return false;
+			}
+			temp.setPhonetypeId(Integer.parseInt(rb.getPhone_type_id()));
+			
 			temp.setEquipmentId(equi.getId());
 			experienceDAO.save(temp);
 			return true;
