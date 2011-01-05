@@ -479,6 +479,12 @@ var newComponent = new Ext.ux.CommonTabPanel({
              }
         });
         
+        tbar.push( 'Search: ', ' ',
+            new Ext.ux.form.SearchField({
+                store: _this.gridStore,
+                width:320
+            }));
+        
         return tbar;
     	
     },
