@@ -1,7 +1,7 @@
 var newComponent = (function() {
 
 	var store = new Ext.data.JsonStore({
-	    	url:"downloadstat?type=json",
+	    	url:"downloadstat?type=json&kind=2",
 	    	root:"data",
 	    	totalProperty:"totalCount",//返回的总页数
 	        fields: [

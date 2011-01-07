@@ -44,9 +44,20 @@ public class DownloadstatController {
 	@RequestMapping(value = "/downloadstat")
 	public String softdownloadstatJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
 			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit){
+		
+		
 		Integer downloadtypeId = (request.getParameter("downloadtypeId")==null || request.getParameter("downloadtypeId").length()==0)?-1:Integer.parseInt(request.getParameter("downloadtypeId"));	
 		String employeeName = (request.getParameter("employeeName")==null || request.getParameter("employeeName").length()==0)?null:request.getParameter("employeeName");	
 		String employeeNo = (request.getParameter("employeeNo")==null || request.getParameter("employeeNo").length()==0)?null:request.getParameter("employeeNo");	
+		String kind = request.getParameter("kind");
+		if(kind != null && kind.equals("2")){
+			Users users = (Users)session.getAttribute("user");
+			if(users != null){
+				employeeNo = users.getUserName();
+			}else{
+				employeeNo = "-1";
+			}
+		}
 		String equipmentName  = (request.getParameter("equipmentName")==null || request.getParameter("equipmentName").length()==0)?null:request.getParameter("equipmentName");	
 		String hallName	 = (request.getParameter("hallName")==null || request.getParameter("hallName").length()==0)?null:request.getParameter("hallName");	
 		String phonebrandName = (request.getParameter("phonebrandName")==null || request.getParameter("phonebrandName").length()==0)?null:request.getParameter("phonebrandName");	
@@ -102,6 +113,15 @@ public class DownloadstatController {
 		Integer downloadtypeId = (request.getParameter("downloadtypeId")==null || request.getParameter("downloadtypeId").length()==0)?-1:Integer.parseInt(request.getParameter("downloadtypeId"));	
 		String employeeName = (request.getParameter("employeeName")==null || request.getParameter("employeeName").length()==0)?null:new String(request.getParameter("employeeName").getBytes("iso8859-1"),"utf-8");	
 		String employeeNo = (request.getParameter("employeeNo")==null || request.getParameter("employeeNo").length()==0)?null:new String(request.getParameter("employeeNo").getBytes("iso8859-1"),"utf-8");	
+		String kind = request.getParameter("kind");
+		if(kind != null && kind.equals("2")){
+			Users users = (Users)session.getAttribute("user");
+			if(users != null){
+				employeeNo = users.getUserName();
+			}else{
+				employeeNo = "-1";
+			}
+		}
 		String equipmentName  = (request.getParameter("equipmentName")==null || request.getParameter("equipmentName").length()==0)?null:new String(request.getParameter("equipmentName").getBytes("iso8859-1"),"utf-8");	
 		String hallName	 = (request.getParameter("hallName")==null || request.getParameter("hallName").length()==0)?null:new String(request.getParameter("hallName").getBytes("iso8859-1"),"utf-8");	
 		String phonebrandName = (request.getParameter("phonebrandName")==null || request.getParameter("phonebrandName").length()==0)?null:new String(request.getParameter("phonebrandName").getBytes("iso8859-1"),"utf-8");	
@@ -149,6 +169,15 @@ public class DownloadstatController {
 		Integer downloadtypeId = (request.getParameter("downloadtypeId")==null || request.getParameter("downloadtypeId").length()==0)?-1:Integer.parseInt(request.getParameter("downloadtypeId"));	
 		String employeeName = (request.getParameter("employeeName")==null || request.getParameter("employeeName").length()==0)?null:new String(request.getParameter("employeeName").getBytes("iso8859-1"),"utf-8");	
 		String employeeNo = (request.getParameter("employeeNo")==null || request.getParameter("employeeNo").length()==0)?null:new String(request.getParameter("employeeNo").getBytes("iso8859-1"),"utf-8");	
+		String kind = request.getParameter("kind");
+		if(kind != null && kind.equals("2")){
+			Users users = (Users)session.getAttribute("user");
+			if(users != null){
+				employeeNo = users.getUserName();
+			}else{
+				employeeNo = "-1";
+			}
+		}
 		String equipmentName  = (request.getParameter("equipmentName")==null || request.getParameter("equipmentName").length()==0)?null:new String(request.getParameter("equipmentName").getBytes("iso8859-1"),"utf-8");	
 		String hallName	 = (request.getParameter("hallName")==null || request.getParameter("hallName").length()==0)?null:new String(request.getParameter("hallName").getBytes("iso8859-1"),"utf-8");	
 		String phonebrandName = (request.getParameter("phonebrandName")==null || request.getParameter("phonebrandName").length()==0)?null:new String(request.getParameter("phonebrandName").getBytes("iso8859-1"),"utf-8");	

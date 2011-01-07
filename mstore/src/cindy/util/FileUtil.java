@@ -99,6 +99,7 @@ public class FileUtil {
 		}
 		try {
 			file.createNewFile();
+			
 			java.io.FileOutputStream fis = new java.io.FileOutputStream(file);
 			OutputStreamWriter osw = new OutputStreamWriter(fis);
 			osw.write(text);

@@ -15,6 +15,7 @@ public class Bissinusshall implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
+	private Channel channel;
 	private City city;
 	private String hallName;
 	private String description;
@@ -31,9 +32,10 @@ public class Bissinusshall implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Bissinusshall(City city, String hallName, String description,
-			Date addTime, Integer status, String code, Set userses,
-			Set equipments) {
+	public Bissinusshall(Channel channel, City city, String hallName,
+			String description, Date addTime, Integer status, String code,
+			Set userses, Set equipments) {
+		this.channel = channel;
 		this.city = city;
 		this.hallName = hallName;
 		this.description = description;
@@ -52,6 +54,14 @@ public class Bissinusshall implements java.io.Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Channel getChannel() {
+		return this.channel;
+	}
+
+	public void setChannel(Channel channel) {
+		this.channel = channel;
 	}
 
 	public City getCity() {

@@ -13,12 +13,14 @@ var newComponent = new Ext.ux.CommonTabPanel({
         {name: 'code'},
         {name: 'status'},
         {name: 'cityId'},
-        {name: 'cityName'}
+        {name: 'cityName'},
+        {name: 'channelId'},
+        {name: 'channelName'}
    	],
    	updateWindowConfig:{
    		title: '管理员修改',
 		width: 250,
-		height:290,
+		height:320,
 		layout: 'fit',
 		plain:true,
 		closable :true,
@@ -30,7 +32,7 @@ var newComponent = new Ext.ux.CommonTabPanel({
    	addWindowConfig:{
    		title: '管理员添加',
 		width: 250,
-		height:290,
+		height:320,
 		layout: 'fit',
 		plain:true,
 		closable :true,
@@ -46,6 +48,7 @@ var newComponent = new Ext.ux.CommonTabPanel({
     gridColumns:[
            {id:'hallId',hidden:true,sortable: true, dataIndex: 'hallId'},
            {header: "店名", sortable: true, dataIndex: 'hallName'},
+           {header: "渠道", sortable: true, dataIndex: 'channelName'},
            {header: "编号", sortable: true, dataIndex: 'code'},
            {header: "地区", sortable: true, dataIndex: 'cityName'},
            {header: "添加时间", sortable: true, dataIndex: 'addTime'},
@@ -71,12 +74,18 @@ var newComponent = new Ext.ux.CommonTabPanel({
 		idProperty: 'provinceId',  	
 		url :'province?comboProvince&type=json', 
 		fields : ['provinceId', 'provinceName'] 
+	}),new Ext.data.JsonStore({ 
+		storeId:"channelStore",
+		autoLoad : false,
+		idProperty: 'channelId',  	
+		url :'channel?comboChannel&type=json', 
+		fields : ['channelId', 'channelName'] 
 	})],
 	getAddForm:function(){
 	
 		var addProvinceCombo = new Ext.form.ComboBox({ 
 	    	x: 75,
-			y: 60,
+			y: 90,
 			width:127,
 			store : Ext.StoreMgr.get("provinceStore"), 
 			valueField : 'provinceId',// 域的值,对应于store里的fields 
@@ -88,13 +97,27 @@ var newComponent = new Ext.ux.CommonTabPanel({
 			hiddenName:"provinceId"
 		}); 
 		
+		var addChannelCombo = new Ext.form.ComboBox({ 
+	    	x: 75,
+			y: 60,
+			width:127,
+			store : Ext.StoreMgr.get("channelStore"), 
+			valueField : 'channelId',// 域的值,对应于store里的fields 
+			displayField : 'channelName',// 显示的域,对应于store里的fields 
+			hideOnSelect:false,
+			triggerAction:'all',
+			editable : false,
+			allowBlank:false,
+			hiddenName:"channelId"
+		}); 
+		
 		addProvinceCombo.on("select",function(combo,record,index){
 			Ext.StoreMgr.get("cityStore").reload({params:{provinceId:record.data.provinceId}});
 		});
     
     	var addCityCombo = new Ext.form.ComboBox({
 			x: 75,
-			y: 90,
+			y: 120,
 			width:127,
 			store : Ext.StoreMgr.get("cityStore"), 
 			valueField : 'cityId',// 域的值,对应于store里的fields 
@@ -136,16 +159,21 @@ var newComponent = new Ext.ux.CommonTabPanel({
 				x: 15,
 				y: 65,
 				xtype:'label',
+				text: '渠道:'
+			},addChannelCombo,{
+				x: 15,
+				y: 95,
+				xtype:'label',
 				text: '地区:'
 			},addProvinceCombo,
 			  addCityCombo,{
 				x: 15,
-				y: 125,
+				y: 155,
 				xtype:'label',
 				text: '状态:'
 			},{
 				x: 75,
-				y: 120,
+				y: 150,
 				width:127,
 				xtype:'combo',
 				name: 'status',
@@ -167,12 +195,12 @@ var newComponent = new Ext.ux.CommonTabPanel({
 				hiddenName:"status"
 			},{
 				x: 15,
-				y: 155,
+				y: 185,
 				xtype:'label',
 				text: '介绍:'
 			},{
 				x: 75,
-				y: 150,
+				y: 180,
 				name: 'description',
 				xtype:"textarea",
 				width:127,
@@ -185,7 +213,7 @@ var newComponent = new Ext.ux.CommonTabPanel({
     getUpdateForm:function(){
     	var updateProvinceCombo = new Ext.form.ComboBox({ 
 	    	x: 75,
-			y: 60,
+			y: 90,
 			width:127,
 			store : Ext.StoreMgr.get("provinceStore"), 
 			valueField : 'provinceId',// 域的值,对应于store里的fields 
@@ -203,7 +231,7 @@ var newComponent = new Ext.ux.CommonTabPanel({
 		
 		var updateCityCombo = new Ext.form.ComboBox({
 			x: 75,
-			y: 90,
+			y: 120,
 			width:127,
 			store : Ext.StoreMgr.get("cityStore"),
 			valueField : 'cityId',// 域的值,对应于store里的fields 
@@ -217,6 +245,19 @@ var newComponent = new Ext.ux.CommonTabPanel({
 		});
 		
 		
+		var updateChannelCombo = new Ext.form.ComboBox({ 
+	    	x: 75,
+			y: 60,
+			width:127,
+			store : Ext.StoreMgr.get("channelStore"), 
+			valueField : 'channelId',// 域的值,对应于store里的fields 
+			displayField : 'channelName',// 显示的域,对应于store里的fields 
+			hideOnSelect:false,
+			triggerAction:'all',
+			editable : false,
+			allowBlank:false,
+			hiddenName:"channelId"
+		}); 
 		
 		var updateForm = new Ext.form.FormPanel({
 			baseCls: 'x-plain',
@@ -255,16 +296,21 @@ var newComponent = new Ext.ux.CommonTabPanel({
 				x: 15,
 				y: 65,
 				xtype:'label',
+				text: '渠道:'
+			},updateChannelCombo,{
+				x: 15,
+				y: 95,
+				xtype:'label',
 				text: '地区:'
 			},updateProvinceCombo,
 			  updateCityCombo,{
 				x: 15,
-				y: 125,
+				y: 155,
 				xtype:'label',
 				text: '状态:'
 			},{
 				x: 75,
-				y: 120,
+				y: 150,
 				width:127,
 				xtype:'combo',
 				name: 'status',
@@ -286,12 +332,12 @@ var newComponent = new Ext.ux.CommonTabPanel({
 				hiddenName:"status"
 			},{
 				x: 15,
-				y: 155,
+				y: 185,
 				xtype:'label',
 				text: '介绍:'
 			},{
 				x: 75,
-				y: 150,
+				y: 180,
 				name: 'description',
 				xtype:"textarea",
 				width:127,

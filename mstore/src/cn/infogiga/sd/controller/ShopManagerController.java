@@ -32,7 +32,7 @@ public class ShopManagerController {
 	@Autowired
 	ManageService manageService;
 	
-	@RequestMapping(value = "/manager")
+	@RequestMapping(value = "/mg")
 	public String getSelfInfo(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model){
 		Users employee = (Users) session.getAttribute("user");
 		if(employee == null){
@@ -48,7 +48,7 @@ public class ShopManagerController {
 		return "list";
 	}
 
-	@RequestMapping(value = "/manager",params="update")
+	@RequestMapping(value = "/mg",params="update")
 	public String updateSelfInfo(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
 			@RequestParam("userId")Integer employeeId,
 			@RequestParam("userName")String userName,
@@ -77,7 +77,7 @@ public class ShopManagerController {
 		return "list";
 	}
 
-	@RequestMapping(value = "/manager",params="equipmentlist")
+	@RequestMapping(value = "/mg",params="equipmentlist")
 	public String getEquipment(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
 			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit){
 		Users employee = (Users) session.getAttribute("user");
@@ -101,7 +101,7 @@ public class ShopManagerController {
 		return "list";
 	}
 
-	@RequestMapping(value = "/manager",params="equipmentadd")
+	@RequestMapping(value = "/mg",params="equipmentadd")
 	public String addEquipment(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
 			@RequestParam("equipmentName")String equipmentName,
 			@RequestParam("mac")String mac){
@@ -134,7 +134,7 @@ public class ShopManagerController {
 		return "list";
 	}
 
-	@RequestMapping(value = "/manager",params="equipmentupdate")
+	@RequestMapping(value = "/mg",params="equipmentupdate")
 	public String updateEquipment(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
 			@RequestParam("equipmentId")Integer equipmentId,
 			@RequestParam("equipmentCode")String equipmentCode,
@@ -172,7 +172,7 @@ public class ShopManagerController {
 		return "list";
 	}
 
-	@RequestMapping(value = "/manager",params="shopemployee")
+	@RequestMapping(value = "/mg",params="shopemployee")
 	public String employeeJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
 			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit){
 		Users employee = (Users) session.getAttribute("user");
@@ -198,7 +198,7 @@ public class ShopManagerController {
 
 	}
 	
-	@RequestMapping(value = "/manager",params="employeeadd")
+	@RequestMapping(value = "/mg",params="employeeadd")
 	public String addEmployee(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
 			@RequestParam("nickName")String nickName,
 			@RequestParam("userName")String userName,
@@ -237,7 +237,7 @@ public class ShopManagerController {
 		return "list";
 	}
 
-	@RequestMapping(value = "/manager",params="employeeupdate")
+	@RequestMapping(value = "/mg",params="employeeupdate")
 	public String updateEmployee(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
 			@RequestParam("employeeId")Integer employeeId,
 			@RequestParam("nickName")String nickName,

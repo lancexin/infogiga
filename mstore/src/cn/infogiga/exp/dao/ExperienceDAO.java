@@ -48,11 +48,12 @@ public class ExperienceDAO extends AbstractHibernateDAO{
 		});
 	}
 	
-	public Boolean deleteTempDownloadstat(){
+	public Boolean deleteTempDownloadstat(final Date beforeTime){
 		return (Boolean) getHibernateTemplate().execute(new HibernateCallback(){
 			public Boolean doInHibernate(Session session)
 					throws HibernateException, SQLException {
-				Query query = session.createSQLQuery("delete from tempdownloadstat");
+				Query query = session.createQuery("delete from Tempdownloadstat where addTime < ?");
+				query.setDate(1, beforeTime);
 				query.executeUpdate();
 				//session.getSessionFactory().evict(Tempdownloadstat.class);
 				return true;
