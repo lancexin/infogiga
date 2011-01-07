@@ -47,8 +47,8 @@
     <filter-name>loginFilter</filter-name>
     <url-pattern>/admin</url-pattern>
     <url-pattern>/menu</url-pattern>
-    <url-pattern>/manager</url-pattern>
-    <url-pattern>/manager/*</url-pattern>
+    <url-pattern>/mg</url-pattern>
+    <url-pattern>/mg/*</url-pattern>
   </filter-mapping>
   
   <filter>
@@ -108,10 +108,12 @@
     <url-pattern>/soft/*</url-pattern>
     <url-pattern>/downloadstat</url-pattern>
     <url-pattern>/downloadstat/*</url-pattern>
-    <url-pattern>/manager</url-pattern>
-    <url-pattern>/manager/*</url-pattern>
+    <url-pattern>/mg</url-pattern>
+    <url-pattern>/mg/*</url-pattern>
     <url-pattern>/category</url-pattern>
     <url-pattern>/category/*</url-pattern>
+     <url-pattern>/channel</url-pattern>
+    <url-pattern>/channel/*</url-pattern>
     <url-pattern>/attachment</url-pattern>
     <url-pattern>/attachment/*</url-pattern>
     <url-pattern>/web</url-pattern>

@@ -39,6 +39,16 @@ public class JsonSoftDownloadStat {
 	
 	@Sync(value = "addTime")
 	String addTime;
+	
+	@Sync(value = "equipment.bissinusshall.channel.channelName")
+	String channelName;
+	
+	public String getChannelName() {
+		return channelName;
+	}
+	public void setChannelName(String channelName) {
+		this.channelName = channelName;
+	}
 	public String getStatId() {
 		return statId;
 	}

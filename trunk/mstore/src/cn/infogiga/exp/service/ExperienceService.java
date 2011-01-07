@@ -313,7 +313,7 @@ public class ExperienceService {
 		Softdownloadstat downloadstat = new Softdownloadstat();
 		int soft_id = Integer.parseInt(rb.getSoft_id().trim());
 		int phone_type_id = Integer.parseInt(rb.getPhone_type_id().trim());
-		int phone_brand_id = Integer.parseInt(rb.getPhone_brand_id().trim());
+		//int phone_brand_id = Integer.parseInt(rb.getPhone_brand_id().trim());
 		int download_type_id = Integer.parseInt(rb.getDownload_type().trim());
 		Equipment equipment = getSingleEquipment(rb);
 		Users employee = getSingleEmployee(rb);
@@ -352,7 +352,8 @@ public class ExperienceService {
 	}
 	
 	public boolean deleteTempDownloadstat(){
-		return experienceDAO.deleteTempDownloadstat();
+		Date beforeDate = DateUtil.getLastWeek();
+		return experienceDAO.deleteTempDownloadstat(beforeDate);
 	}
 	
 	public <T extends Serializable> List<T>  findAll(Class<T> clazz){

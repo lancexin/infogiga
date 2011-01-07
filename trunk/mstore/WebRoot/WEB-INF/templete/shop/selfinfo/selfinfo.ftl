@@ -2,7 +2,7 @@ var newComponent = (function(){
 	
 	 var store = new Ext.data.JsonStore({
 	 	autoLoad:true,
-    	url :'manager?type=json',
+    	url :'mg?type=json',
     	root:"data",
     	totalProperty:"totalCount",//返回的总页数
         fields: [

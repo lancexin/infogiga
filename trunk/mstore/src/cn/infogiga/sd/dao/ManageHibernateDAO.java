@@ -151,4 +151,9 @@ public class ManageHibernateDAO extends AbstractHibernateDAO{
 			}
 		});
 	}
+	
+	public void updateAllSoftStatus(){
+		getHibernateTemplate().bulkUpdate("update Soft s set s.status = 1");
+	}
+	
 }

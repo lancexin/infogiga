@@ -6,11 +6,14 @@
 -->
 <hibernate-mapping>
     <class name="cn.infogiga.pojo.Bissinusshall" table="bissinusshall" catalog="softdown">
-    	<cache usage="read-write"/> 
+   		 <cache usage="read-write"/> 
         <id name="id" type="java.lang.Integer">
             <column name="ID" />
             <generator class="identity" />
         </id>
+        <many-to-one name="channel" class="cn.infogiga.pojo.Channel" fetch="select">
+            <column name="channelID" />
+        </many-to-one>
         <many-to-one name="city" class="cn.infogiga.pojo.City" fetch="select">
             <column name="cityID" />
         </many-to-one>

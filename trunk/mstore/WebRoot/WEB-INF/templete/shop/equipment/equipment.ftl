@@ -1,9 +1,9 @@
 var newComponent = new Ext.ux.CommonTabPanel({
 	id:"${code}",
 	title:"${name}",
-	storeUrl:"manager?equipmentlist&type=json",
-   	addUrl:"manager?equipmentadd&type=json",
-   	updateUrl:"manager?equipmentupdate&type=json",
+	storeUrl:"mg?equipmentlist&type=json",
+   	addUrl:"mg?equipmentadd&type=json",
+   	updateUrl:"mg?equipmentupdate&type=json",
    	deleteUrl:"delete?equipment&type=json",
    	storeField:[
    		{name: 'equipmentId'},

@@ -106,19 +106,19 @@
 			</item>
 			<item>
 				<code>E_5</code>
-				<name>设备管理</name>
+				<name>设备自主管理</name>
 				<url><![CDATA[p?shopequipment]]></url>
 				<isframe>false</isframe>
 			</item>
 			<item>
 				<code>E_6</code>
-				<name>店员管理</name>
+				<name>店员自主管理</name>
 				<url><![CDATA[p?shopemployee]]></url>
 				<isframe>false</isframe>
 			</item>
 			<item>
 				<code>E_7</code>
-				<name>统计管理</name>
+				<name>个人统计管理</name>
 				<url><![CDATA[p?shopstat]]></url>
 				<isframe>false</isframe>
 			</item>

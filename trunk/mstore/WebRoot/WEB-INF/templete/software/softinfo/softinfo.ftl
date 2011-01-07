@@ -466,9 +466,25 @@ var newComponent = new Ext.ux.CommonTabPanel({
              }
         });
         
+         tbar.push({
+        	 text: '一键启用',
+        	 iconCls:'key-add',
+             handler : function(){
+               Ext.Ajax.request({
+               		 url:'soft?updateStatus&type=json',
+               		 success:function(response, options){
+               		 		eval("action = "+response.responseText);
+         					Ext.Msg.alert('提示',action.msg);
+         					_this.gridStore.reload();
+               		 }
+               });
+             }
+        });
+        
         tbar.push({
-        	text: '软件导出',
-        	 handler : function(){
+        	text: '软件列表生成',
+        	iconCls:'computer-go',
+        	handler : function(){
                Ext.Ajax.request({
                		 url:'soft?export&type=json',
                		 timeout:60000,
@@ -480,7 +496,7 @@ var newComponent = new Ext.ux.CommonTabPanel({
              }
         });
         
-        tbar.push(' ',
+        tbar.push('-','搜索:',
             new Ext.ux.form.SearchField({
                 store: _this.gridStore,
                 width:320

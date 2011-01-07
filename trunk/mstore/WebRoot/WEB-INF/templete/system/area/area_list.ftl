@@ -1,7 +1,12 @@
 
 var newComponent = (function(){
-	
-	 var provinceStore = new Ext.data.JsonStore({
+	    
+    var pId = -1;
+    var cId = -1;
+    var hId = -1;
+    
+    
+	var provinceStore = new Ext.data.JsonStore({
 	 	autoLoad:true,
     	url:"province?type=json",
     	root:"data",
@@ -33,6 +38,22 @@ var newComponent = (function(){
             field: 'provinceId', direction: 'ASC'
         }
     });
+    
+    
+	 var channelStore = new Ext.data.JsonStore({
+	 	autoLoad:true,
+    	url:"channel?type=json",
+    	root:"data",
+    	totalProperty:"totalCount",//返回的总页数
+        fields: [
+           {name: 'channelId'},
+           {name: 'channelName'}
+        ],
+        sortInfo: {
+            field: 'channelId', direction: 'ASC'
+        }
+    });
+    
    
       
     var provinceAddWindow = new Ext.Window({
@@ -150,12 +171,10 @@ var newComponent = (function(){
 			}
 		}]
     });
-    
-    var pId = -1;
-    var cId = -1;
+
    
    	var provinceGrid = new Ext.grid.GridPanel({
-  	 	width: 300,
+  	 	width: 250,
 		height: 600,
    		store: provinceStore,
    		border:true,
@@ -362,7 +381,7 @@ var newComponent = (function(){
     });
    	
    	var cityGrid = new Ext.grid.GridPanel({
-   		width: 300,
+   		width: 250,
 		height: 600,
    		store: cityStore,
    		border:true,
@@ -453,12 +472,221 @@ var newComponent = (function(){
     	cId = -1;
     });
    	/**********************************************************************/
+   	 var channelAddWindow = new Ext.Window({
+    	title: '渠道添加',
+		width: 250,
+		height:100,
+		layout: 'fit',
+		plain:true,
+		closable :true,
+		collapsible : true ,
+		bodyStyle:'padding:5px;',
+		buttonAlign:'center',
+		closeAction:"hide",
+		items:new Ext.form.FormPanel({
+			baseCls: 'x-plain',
+			layout:'absolute',
+			id:"channelAddForm",
+			defaultType: 'textfield',
+			items:[
+				{
+					x: 15,
+					y: 5,
+					xtype:'label',
+					text: '渠道名称:'
+				},{
+					x: 75,
+					y: 0,
+					name: 'channelName',
+					allowBlank:false
+				}
+			]
+		}),
+		buttons: [{
+			text: '添加',
+			handler:function(){
+				Ext.getCmp("channelAddForm").getForm().doAction('submit',{
+					url:'channel?add&type=json',
+                       method:'post',
+					success:function(form,action){
+						Ext.Msg.alert('提示',action.result.msg);
+						channelAddWindow.hide();
+						channelStore.reload();
+					},
+					failure:function(form,action){
+						if(action.result){
+							Ext.Msg.alert('错误',action.result.msg);
+						}   
+                   }
+				});
+			}
+		},{
+			text: '取消',
+			handler:function(){
+				channelAddWindow.hide();
+			}
+		}]
+    });
+    
+     var channelUpdateWindow = new Ext.Window({
+    	title: '渠道修改',
+		width: 250,
+		height:100,
+		layout: 'fit',
+		plain:true,
+		closable :true,
+		collapsible : true ,
+		bodyStyle:'padding:5px;',
+		buttonAlign:'center',
+		closeAction:"hide",
+		items:new Ext.form.FormPanel({
+			baseCls: 'x-plain',
+			layout:'absolute',
+			id:"channelUpdateForm",
+			defaultType: 'textfield',
+			items:[
+				{
+					name: 'channelId',
+					xtype:"hidden",
+					allowBlank:false
+				},{
+					x: 15,
+					y: 5,
+					xtype:'label',
+					text: '渠道名称:'
+				},{
+					x: 75,
+					y: 0,
+					name: 'channelName',
+					allowBlank:false
+				}
+			]
+		}),
+		buttons: [{
+			text: '修改',
+			handler:function(){
+				Ext.getCmp("channelUpdateForm").getForm().doAction('submit',{
+					url:'channel?update&type=json',
+                       method:'post',
+					success:function(form,action){
+						Ext.Msg.alert('提示',action.result.msg);
+						channelUpdateWindow.hide();
+						channelStore.reload();
+					},
+					failure:function(form,action){
+						if(action.result){
+							Ext.Msg.alert('错误',action.result.msg);
+						}   
+                   }
+				});
+			}
+		},{
+			text: '取消',
+			handler:function(){
+				channelUpdateWindow.hide();
+			}
+		}]
+    });
+
+   
+   	var channelGrid = new Ext.grid.GridPanel({
+  	 	width: 250,
+		height: 600,
+   		store: channelStore,
+   		border:true,
+   		columns:[
+   			{id:'channelId',hidden:true,sortable: true, dataIndex: 'channelId'},
+   			{header: "渠道名",width:270, sortable: true, dataIndex: 'channelName'}
+   		],
+   		stripeRows: true,
+        autoExpandColumn: 'channelId',
+        loadMask: true,
+        tbar:[{
+        	 text: '添加',
+        	 iconCls:'add',
+             handler : function(){
+             
+             	Ext.getCmp("channelAddForm").getForm().reset();
+              	channelAddWindow.show();
+             }
+        },{
+        	 text: '编辑',
+        	 iconCls:'edit',
+             handler : function(){
+               if(hId == undefined || hId ==  -1){
+               		Ext.Msg.alert('提示',"请先选择您要操作的列");
+               		return;
+               }
+               //alert(pId);
+               var record = channelStore.getAt(hId);
+               Ext.getCmp("channelUpdateForm").getForm().setValues(record.data);
+               channelUpdateWindow.show();
+               
+             }
+        },{
+        	 text: '删除',
+        	 iconCls:'remove',
+             handler : function(){
+              	if(pId == undefined || pId ==  -1){
+               		Ext.Msg.alert('提示',"请先选择您要操作的列");
+               		return;
+	            }
+               Ext.MessageBox.confirm("提示","您确定要删除该项吗?",function(bool){
+               		var channelId = channelStore.getAt(pId).data.channelId;
+               		if(bool == 'yes'){
+               			Ext.Ajax.request({
+               				url:"channel?delete&type=json",
+               				params:{
+               					channelId:channelId
+               				},
+               				success:function(response, options){
+               					eval("action = "+response.responseText);
+               					Ext.Msg.alert('提示',action.msg);
+               					if(action.success){
+               						channelStore.reload();
+               					}
+               				},
+               				failure:function(response, options){
+               					Ext.Msg.alert('提示',"连接服务器失败");
+               				}
+               			});
+               		
+               			return true;
+               		}else{
+               			return false;
+               		}
+               });
+             }
+        },{
+        	 text: '刷新',
+        	 iconCls:'refresh',
+             handler : function(){
+               channelStore.reload();
+             }
+        }]
+   	
+   	});
+   	
+   	channelGrid.getSelectionModel().on('rowselect', function(sm, rowIdx, r){
+   		hId = rowIdx;
+    });
+   	
+   	
+   	/**********************************************************************/
    	var showPanel = new Ext.Panel({
    		title:"区域管理",
     	layout: 'hbox',
-    	width:600,
+    	width:500,
     	height:600,
     	items:[provinceGrid,cityGrid]
+    });
+    
+    var channelPanel = new Ext.Panel({
+   		title:"渠道管理",
+    	layout: 'hbox',
+    	width:250,
+    	height:600,
+    	items:channelGrid
     });
    	
    	
@@ -468,11 +696,10 @@ var newComponent = (function(){
     	baseCls:'x-plain',
     	closable:true,
     	layout: {
-             type:'vbox',
-             padding:'50 0 0 0',
-             align:'center'
+             type:'hbox',
+             padding:'10 10 10 10'
         },
-        items:showPanel
+        items:[showPanel,channelPanel]
     });
     
      panel.on('beforeclose',function(p,o){

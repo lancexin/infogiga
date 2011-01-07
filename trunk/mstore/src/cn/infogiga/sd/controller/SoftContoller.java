@@ -104,6 +104,14 @@ public class SoftContoller {
 		return "list";
 	}
 	
+	@RequestMapping(value = "/soft",params="updateStatus")
+	public String updateSoftStatus(HttpServletRequest request,HttpServletResponse response,HttpSession session,ModelMap model){
+		manageService.getManageDAO().updateAllSoftStatus();
+		model.put("success", true);
+		model.put("msg", "修改成功！");
+		return "list";
+	}
+	
 	
 	@RequestMapping(value = "/soft",params="delete")
 	public String deleteSoft(HttpServletRequest request,HttpServletResponse response,HttpSession session,ModelMap model,

@@ -30,7 +30,7 @@ public class DownloadSoftLogQuartz extends QuartzJobBean{
 	@Override
 	protected void executeInternal(JobExecutionContext arg0)
 			throws JobExecutionException {
-		//删除所有wappush暂时统计信息
+		//删除wappush暂时统计信息
 		boolean bl = experienceService.deleteTempDownloadstat();
 		
 		//导出每日热点统计信息

@@ -28,6 +28,12 @@ public class JsonBissinussHall {
 	@Sync(value = "code")
 	private String code;
 	
+	@Sync(value = "channel.id")
+	private String channelId;
+	
+	@Sync(value = "channel.channelName")
+	private String channelName;
+	
 	public String getCode() {
 		return code;
 	}
@@ -75,6 +81,18 @@ public class JsonBissinussHall {
 	}
 	public void setHallId(String hallId) {
 		this.hallId = hallId;
+	}
+	public String getChannelId() {
+		return channelId;
+	}
+	public void setChannelId(String channelId) {
+		this.channelId = channelId;
+	}
+	public String getChannelName() {
+		return channelName;
+	}
+	public void setChannelName(String channelName) {
+		this.channelName = channelName;
 	}
 	
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cindy.page.beanutils.MyBeanUtils;
 import cindy.util.DateUtil;
 import cn.infogiga.pojo.Bissinusshall;
+import cn.infogiga.pojo.Channel;
 import cn.infogiga.pojo.City;
 import cn.infogiga.pojo.Logtype;
 import cn.infogiga.pojo.Users;
@@ -52,7 +53,8 @@ public class HallController {
 			@RequestParam("description")String description,
 			@RequestParam("code")String code,
 			@RequestParam("status")Integer status,
-			@RequestParam("cityId")Integer cityId){
+			@RequestParam("cityId")Integer cityId,
+			@RequestParam("channelId")Integer channelId){
 		Bissinusshall hall = new Bissinusshall();
 		hall.setHallName(hallName);
 		hall.setDescription(description);
@@ -61,6 +63,10 @@ public class HallController {
 		City city = new City();
 		city.setId(cityId);
 		hall.setCity(city);
+		
+		Channel channel = new Channel();
+		channel.setId(channelId);
+		hall.setChannel(channel);
 		hall.setAddTime(new Date());
 		try {
 			manageService.getManageDAO().save(hall);
@@ -106,7 +112,8 @@ public class HallController {
 			
 			@RequestParam("status")Integer status,
 			@RequestParam("addTime")String addTime,
-			@RequestParam("cityId")Integer cityId){
+			@RequestParam("cityId")Integer cityId,
+			@RequestParam("channelId")Integer channelId){
 		Bissinusshall hall = new Bissinusshall();
 		hall.setId(hallId);
 		hall.setHallName(hallName);
@@ -116,6 +123,9 @@ public class HallController {
 		City city = new City();
 		city.setId(cityId);
 		hall.setCity(city);
+		Channel channel = new Channel();
+		channel.setId(channelId);
+		hall.setChannel(channel);
 		hall.setAddTime(DateUtil.stringToDate(addTime, DateUtil.NOW_TIME));
 		try {
 			manageService.getManageDAO().update(hall);
