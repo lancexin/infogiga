@@ -92,7 +92,7 @@ public class DownloadstatController {
 	}
 	
 	@RequestMapping(value = "/downloadstat",params="export")
-	public void softdownloadstatExport(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws UnsupportedEncodingException{
+	public String softdownloadstatExport(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model) throws UnsupportedEncodingException{
 		//Date date = ;
 		/*response.setContentType("application/vnd.ms-excel");
 		response.setHeader("Location", (new Date().getTime())+".xls");
@@ -144,15 +144,28 @@ public class DownloadstatController {
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.BETWEED,CirteriaQuery.IS_OBJECT,"addTime",new Object[]{startTime,endTime},null));
 		
 		List<JsonSoftDownloadStat> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Softdownloadstat.class, cBean), JsonSoftDownloadStat.class);
-
+		int size = list.size();
+		if(size >20000){
+			model.put("success", false);
+			model.put("msg", "您导出的数据量较大,请分条导出");
+			return "list";
+		}
 		try {
-			OutputStream os = response.getOutputStream();
+			//OutputStream os = response.getOutputStream();
 			String[] title = {"序号","设备名称","营业厅","软件名称","手机型号","型号分类","手机厂商","员工姓名","员工账户","下载类型","手机号码","发生时间"};
 			ExcelCreatorUtil.exportExcel(new FileOutputStream(file), title, list);
-			response.sendRedirect("excel/"+fileName);
+			//response.sendRedirect("excel/"+fileName);
+			model.put("success", true);
+			model.put("msg", "导出成功");
+			model.put("url", "excel/"+fileName);
+			return "list";
+			
 		} catch (Exception e) {
+			model.put("success", false);
+			model.put("msg", "导出失败,请连接管理员");
 			e.printStackTrace();
 		}
+		return "list";
 
 	}
 	

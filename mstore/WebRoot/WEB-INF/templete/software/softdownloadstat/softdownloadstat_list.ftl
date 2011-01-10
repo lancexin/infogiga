@@ -63,9 +63,27 @@ var newComponent = (function() {
         	 text: 'Excel导出',
         	 iconCls:'excel',
              handler : function(){
-             	var params = Ext.getCmp('searchForm').getForm().getValues(true);
+             	var params = Ext.getCmp('searchForm').getForm().getValues(false);
+             	Ext.Ajax.request({
+   					url: 'downloadstat?export&type=json',
+  				    success:function(response, options){
+               		 	eval("action = "+response.responseText);
+         				if(action.success){
+         					window.location = action.url;
+         				}else{
+         					alert(action.msg);
+         				}
+               		},
+   				    failure: function(t){
+   				    	alert('请求失败');
+   				    },
+   					params:params
+				});
+
+             	
+             	
               	//window.loaction.href = 'export?softdownloadstat&'+params;
-              	window.location = 'downloadstat?export&'+params;
+              	
               	//alert(window.location);
              }
         }],
