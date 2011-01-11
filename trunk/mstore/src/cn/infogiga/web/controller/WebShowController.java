@@ -122,6 +122,14 @@ public class WebShowController {
 		return "list";
 	}
 	
+	@RequestMapping(value = "/web",params="layout")
+	public String layout(HttpSession session, ModelMap model){
+		session.removeAttribute("user");
+		model.put("success", true);
+		model.put("msg", "退出成功");
+		return "list";
+	}
+	
 	public static void main(String[] args) {
 		System.out.println(Code.getCode());
 	}
