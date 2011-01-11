@@ -92,7 +92,7 @@ public class WebShowController {
 				String sendStr = soft.getSoftName()+"的下载地址是：";
 				if(soft.getSoftCode() != null && soft.getSoftCode().trim().length() > 0){
 					sendUrl = ProperiesReader.getInstence("config.properties")
-						.getStringValue("mstore.rd.download.post")+"?sid="+soft.getSoftCode()+"&amp;e="+users.getUserName();
+						.getStringValue("mstore.rd.download.post")+"?aid="+soft.getSoftCode()+"&e="+users.getUserName();
 				}else{
 					String code = Code.getCode();
 					sendUrl = ProperiesReader.getInstence("config.properties")
