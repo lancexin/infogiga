@@ -83,7 +83,14 @@
 		
 		$("#mstore-exit").click(function(){
 				if(confirm("您是否真的要退出?")){
-					alert("退出成功");
+					$.post("web?layout&type=json","",function(html){
+						eval("action = "+html);
+						if(action.success){
+							window.location = "/";
+						}else{
+							alert(action.msg);
+						}
+					});
 				}									 
 		});
 		
@@ -479,13 +486,10 @@
 		}
 	});
 	
-	function hideUrlBar(){
-	    setTimeout(function () { window.scrollTo(0, 1) }, 100);
-	}
 --></script>
 </head>
 
-<body onload="hideUrlBar()">
+<body>
 <div class="mstore-common">
   	<div id="mstore-hander">
       	<div id="mstore-logo">
