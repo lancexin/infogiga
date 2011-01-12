@@ -269,6 +269,7 @@ public class ExperienceService {
 		Download d = soft.getDownload();
 		d.setDownloadCount(d.getDownloadCount()+1);
 		experienceDAO.save(d);
+		System.out.println("成功添加一个wappush统计信息："+tls.getCode());
 	}
 	
 	private void deleteTempDownloadstat(Tempdownloadstat tls){
@@ -276,6 +277,7 @@ public class ExperienceService {
 			return;
 		}
 		experienceDAO.delete(tls);
+		System.out.println("成功删除一个wappush统计信息："+tls.getCode());
 	}
 	
 /*	public String checkUpdate(ReceiveBean rb){
