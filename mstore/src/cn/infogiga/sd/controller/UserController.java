@@ -14,11 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cindy.page.beanutils.MyBeanUtils;
+import cindy.page.hibernate.CirteriaBean;
+import cindy.page.hibernate.CirteriaQuery;
+import cindy.page.hibernate.PageBean;
 import cindy.util.DateUtil;
 import cn.infogiga.pojo.Bissinusshall;
 import cn.infogiga.pojo.Logtype;
 import cn.infogiga.pojo.Power;
 import cn.infogiga.pojo.Users;
+import cn.infogiga.sd.dto.JsonBissinussHall;
 import cn.infogiga.sd.dto.JsonListBean;
 import cn.infogiga.sd.dto.JsonUser;
 import cn.infogiga.sd.service.ManageService;
@@ -31,10 +35,23 @@ public class UserController {
 	
 	@RequestMapping(value = "/user")
 	public String adminJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
-			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit,@RequestParam("status")Integer status){
-		List<JsonUser> powerList = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByProperty(Users.class, "status",status, start, limit), JsonUser.class);
-		int totalCount = manageService.getManageDAO().getCountByProperty(Users.class, "status", status);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,powerList,true,null);
+			@RequestParam("start")Integer start,@RequestParam("status")Integer status){
+		
+		String nickName = (request.getParameter("query")==null || request.getParameter("query").length()==0)?null:request.getParameter("query");	
+		
+		Integer limit = (request.getParameter("limit")==null || request.getParameter("limit").length()==0)?20:Integer.parseInt(request.getParameter("limit"));
+		PageBean pageBean = new PageBean(start,limit);
+		CirteriaBean cBean = new CirteriaBean("addTime");
+		cBean.setPageBean(pageBean);
+		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"nickName",nickName,null));
+		cBean.addQuery(new CirteriaQuery(CirteriaQuery.EQ,CirteriaQuery.IS_INT,"status",status,null));
+		
+		int totalCount = manageService.getManageDAO().getCountByPage(Users.class, cBean);
+		List<JsonUser> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Users.class, cBean), JsonUser.class);
+		
+		//List<JsonUser> powerList = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByProperty(Users.class, "status",status, start, limit), JsonUser.class);
+		//int totalCount = manageService.getManageDAO().getCountByProperty(Users.class, "status", status);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 

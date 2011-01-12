@@ -14,10 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cindy.page.beanutils.MyBeanUtils;
+import cindy.page.hibernate.CirteriaBean;
+import cindy.page.hibernate.CirteriaQuery;
+import cindy.page.hibernate.PageBean;
 import cindy.util.Code;
 import cindy.util.FileUtil;
 import cindy.util.ImageUtil;
 import cindy.util.ProperiesReader;
+import cn.infogiga.pojo.Bissinusshall;
 import cn.infogiga.pojo.Logtype;
 import cn.infogiga.pojo.Phonearray;
 import cn.infogiga.pojo.Phonebrand;
@@ -26,6 +30,7 @@ import cn.infogiga.pojo.Phoneplatform;
 import cn.infogiga.pojo.Phonetype;
 import cn.infogiga.pojo.Soft;
 import cn.infogiga.pojo.Users;
+import cn.infogiga.sd.dto.JsonBissinussHall;
 import cn.infogiga.sd.dto.JsonListBean;
 import cn.infogiga.sd.dto.JsonPhonetype;
 import cn.infogiga.sd.service.ManageService;
@@ -41,9 +46,19 @@ public class PhonetypeController {
 	
 	@RequestMapping(value = "/phonetype")
 	public String phonetypeJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
-			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit){
-		List<JsonPhonetype> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Phonetype.class, start, limit), JsonPhonetype.class);
-		int totalCount = manageService.getManageDAO().getCount(Phonetype.class);
+			@RequestParam("start")Integer start){
+	
+		String phonetypeName = (request.getParameter("query")==null || request.getParameter("query").length()==0)?null:request.getParameter("query");	
+		Integer limit = (request.getParameter("limit")==null || request.getParameter("limit").length()==0)?20:Integer.parseInt(request.getParameter("limit"));
+		PageBean pageBean = new PageBean(start,limit);
+		CirteriaBean cBean = new CirteriaBean();
+		cBean.setPageBean(pageBean);
+		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"phonetypeName",phonetypeName,null));
+		//List<JsonPhonetype> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Phonetype.class, start, limit), JsonPhonetype.class);
+		//int totalCount = manageService.getManageDAO().getCount(Phonetype.class);
+		int totalCount = manageService.getManageDAO().getCountByPage(Phonetype.class, cBean);
+		List<JsonPhonetype> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Phonetype.class, cBean), JsonPhonetype.class);
+		
 		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
