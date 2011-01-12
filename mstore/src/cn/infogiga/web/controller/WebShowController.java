@@ -107,6 +107,14 @@ public class WebShowController {
 					temp.setDownloadtypeId(4);//4表示wappush
 					temp.setAddTime(new Date());
 					temp.setUserId(users.getId());
+					
+					Integer eId = (Integer) session.getAttribute("eId");
+					if(eId == -1){
+						temp.setEquipmentId(ProperiesReader.getInstence("config.properties").getIntegerValue("mstore.default.eId"));
+					}else{
+						temp.setEquipmentId(eId);
+					}
+					
 					manageService.getManageDAO().save(temp);
 				}
 				//发送wappush
