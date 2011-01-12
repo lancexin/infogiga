@@ -27,7 +27,6 @@ import cindy.util.DateUtil;
 import cindy.util.ExcelCreatorUtil;
 import cindy.util.ProperiesReader;
 import cn.infogiga.pojo.Downloadtype;
-import cn.infogiga.pojo.Logtype;
 import cn.infogiga.pojo.Softdownloadstat;
 import cn.infogiga.pojo.Users;
 import cn.infogiga.sd.dto.JsonDownloadtype;

@@ -14,14 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cindy.page.beanutils.MyBeanUtils;
+import cindy.page.hibernate.CirteriaBean;
+import cindy.page.hibernate.CirteriaQuery;
+import cindy.page.hibernate.PageBean;
 import cindy.util.DateUtil;
 import cn.infogiga.pojo.Bissinusshall;
 import cn.infogiga.pojo.Channel;
 import cn.infogiga.pojo.City;
 import cn.infogiga.pojo.Logtype;
+import cn.infogiga.pojo.Softdownloadstat;
 import cn.infogiga.pojo.Users;
 import cn.infogiga.sd.dto.JsonBissinussHall;
 import cn.infogiga.sd.dto.JsonListBean;
+import cn.infogiga.sd.dto.JsonSoftDownloadStat;
 import cn.infogiga.sd.service.ManageService;
 
 @Controller
@@ -38,10 +43,24 @@ public class HallController {
 	
 	@RequestMapping(value = "/hall")
 	public String hallJsonList(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
-			@RequestParam("start")Integer start,@RequestParam("limit")Integer limit){
-		List<JsonBissinussHall> powerList = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Bissinusshall.class, start, limit), JsonBissinussHall.class);
-		int totalCount = manageService.getManageDAO().getCount(Bissinusshall.class);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,powerList,true,null);
+			@RequestParam("start")Integer start){
+		
+		String hallName = (request.getParameter("query")==null || request.getParameter("query").length()==0)?null:request.getParameter("query");	
+		//Integer channelId = (request.getParameter("channelId")==null || request.getParameter("channelId").length()==0)?-1:Integer.parseInt(request.getParameter("channelId"));	
+		Integer limit = (request.getParameter("limit")==null || request.getParameter("limit").length()==0)?20:Integer.parseInt(request.getParameter("limit"));
+		PageBean pageBean = new PageBean(start,limit);
+		CirteriaBean cBean = new CirteriaBean("addTime");
+		cBean.setPageBean(pageBean);
+		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"hallName",hallName,null));
+		//cBean.addQuery(new CirteriaQuery(CirteriaQuery.EQ,CirteriaQuery.IS_INT,"c.id",channelId,new String[]{"channel","c"}));
+		int totalCount = manageService.getManageDAO().getCountByPage(Bissinusshall.class, cBean);
+		List<JsonBissinussHall> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Bissinusshall.class, cBean), JsonBissinussHall.class);
+		
+		//List<JsonBissinussHall> powerList = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Bissinusshall.class, start, limit), JsonBissinussHall.class);
+		//int totalCount = manageService.getManageDAO().getCount(Bissinusshall.class);
+		
+		
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
 		return "list";
 	}

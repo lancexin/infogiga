@@ -47,6 +47,9 @@ public class LoginController {
 		}
 		session.setAttribute("user", pu);
 		model.put("success", true);
+		
+		Integer eId = (request.getParameter("eId")==null || request.getParameter("eId").length()==0)?-1:Integer.parseInt(request.getParameter("eId"));	
+		session.setAttribute("eId", eId);
 		return "list";
 	}
 	

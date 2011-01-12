@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cindy.util.FileUtil;
 import cn.infogiga.pojo.Attachment;
 import cn.infogiga.sd.service.ManageService;
-import cn.infogiga.sd.service.MsoftService;
 
 @Controller
 public class AttachmentController {
