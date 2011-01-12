@@ -75,6 +75,50 @@ var newComponent = new Ext.ux.CommonTabPanel({
 		url :'hall?comboHall&type=json', 
 		fields : ['hallId', 'hallName'] 
 	})],
+	getTbar:function(){
+    	var tbar = [];
+    	var _this = this;
+    	tbar.push({
+        	 text: '添加',
+        	 iconCls:'add',
+             handler : function(){
+              	_this.onClickAddButton();
+             }
+        });
+        
+        tbar.push({
+        	 text: '编辑',
+        	 iconCls:'edit',
+             handler : function(){
+               _this.onClickEditButton();
+             }
+        });
+        
+        tbar.push({
+        	 text: '删除',
+        	 iconCls:'remove',
+             handler : function(){
+               _this.onClickDeleteButton();
+             }
+        });
+        
+        tbar.push({
+        	 text: '刷新',
+        	 iconCls:'refresh',
+             handler : function(){
+               _this.onClickRefreshButton();
+             }
+        });
+        
+        tbar.push('-','搜索:',
+            new Ext.ux.form.SearchField({
+                store: _this.gridStore,
+                width:320
+        }));
+        
+        return tbar;
+    	
+    },
 	getAddForm:function(){
     
     	var addPowerCombo = new Ext.form.ComboBox({ 
