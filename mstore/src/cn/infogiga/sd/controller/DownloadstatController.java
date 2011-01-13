@@ -26,6 +26,7 @@ import cindy.util.CsvCreatorUtil;
 import cindy.util.DateUtil;
 import cindy.util.ExcelCreatorUtil;
 import cindy.util.ProperiesReader;
+import cn.infogiga.pojo.Bissinusshall;
 import cn.infogiga.pojo.Downloadtype;
 import cn.infogiga.pojo.Softdownloadstat;
 import cn.infogiga.pojo.Users;
@@ -142,13 +143,15 @@ public class DownloadstatController {
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.LIKE,CirteriaQuery.IS_STRING,"sf.softName",softName,new String[]{"soft","sf"}));
 		cBean.addQuery(new CirteriaQuery(CirteriaQuery.BETWEED,CirteriaQuery.IS_OBJECT,"addTime",new Object[]{startTime,endTime},null));
 		
-		List<JsonSoftDownloadStat> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().getListByPage(Softdownloadstat.class, cBean), JsonSoftDownloadStat.class);
-		int size = list.size();
-		if(size >20000){
+		int totalCount = manageService.getManageDAO().getCountByPage(Softdownloadstat.class, cBean);
+		if(totalCount >20000){
 			model.put("success", false);
-			model.put("msg", "您导出的数据量较大,请分条导出");
+			model.put("msg", "您导出的数据量较大（大于20000条）,请加入条件导出");
 			return "list";
 		}
+		List<Softdownloadstat> mList = manageService.getManageDAO().getListByPage(Softdownloadstat.class, cBean);
+		List<JsonSoftDownloadStat> list = MyBeanUtils.copyListProperties(mList, JsonSoftDownloadStat.class);
+		
 		try {
 			//OutputStream os = response.getOutputStream();
 			String[] title = {"序号","设备名称","营业厅","软件名称","手机型号","型号分类","手机厂商","员工姓名","员工账户","下载类型","手机号码","发生时间"};
