@@ -485,12 +485,14 @@ var newComponent = new Ext.ux.CommonTabPanel({
         	text: '软件列表生成',
         	iconCls:'computer-go',
         	handler : function(){
+        	   Ext.getBody().mask("正在生成列表,请稍等...","x-mask-loading");
                Ext.Ajax.request({
                		 url:'soft?export&type=json',
                		 timeout:60000,
                		 success:function(response, options){
                		 		eval("action = "+response.responseText);
          					Ext.Msg.alert('提示',action.msg);
+         					Ext.getBody().unmask();
                		 }
                });
              }
