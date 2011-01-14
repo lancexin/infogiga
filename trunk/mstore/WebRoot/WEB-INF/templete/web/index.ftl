@@ -56,6 +56,17 @@
                         '</div>'+
                     '</div>'+
                 '</li>';
+                
+        var phonetypeTemplete = '<li style="float:left">'+
+				'<div class="mstore-widget">'+
+					'<div class="mstore-widget-icon mstore-icon" >'+
+					'<img class="mstore-pic-icon" src="{icon}">'+
+					'</div>'+
+					'<div class="mstore-widget-text">'+
+						'<span>{softName}</span>'+
+					'</div>'+
+				'</div>'+
+		'</li>';
 							
 		resiceWindiw();
 		
@@ -353,7 +364,7 @@
 		}
 		
 		function addPhonetypeWidget(n){
-			var text = widgetTemplete.replace("{icon}",n.pic);
+			var text = phonetypeTemplete.replace("{icon}",n.pic);
 		  	text = text.replace("{softName}",n.phonetypeName);
 		  	var temp = $(text);
 		  	temp.find(".mstore-widget-icon").data("data",n);
