@@ -51,8 +51,6 @@
 	        	</map>
 	        </property>
 	    </bean>
-	  
-	  
 	</mvc:interceptors>
 	
 		
