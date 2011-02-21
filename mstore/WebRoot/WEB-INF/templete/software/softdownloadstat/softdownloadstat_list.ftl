@@ -56,6 +56,7 @@ var newComponent = (function() {
     	collapsible:false,
     	store: store,
        	region: 'center',
+       	border:true,
        	viewConfig : {
 		   forceFit : true //让grid的列自动填满grid的整个宽度，不用一列一列的设定宽度。
 		},
