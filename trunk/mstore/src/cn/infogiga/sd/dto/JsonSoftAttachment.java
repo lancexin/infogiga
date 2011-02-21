@@ -23,6 +23,7 @@ public class JsonSoftAttachment {
 	}
 
 	public void setAttachmentId(String attachmentId) {
+		
 		this.attachmentId = attachmentId;
 	}
 
