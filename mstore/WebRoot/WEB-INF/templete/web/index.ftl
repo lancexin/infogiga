@@ -76,7 +76,7 @@
 		resiceWindiw();
 		
 		$(window).resize(function(){
-			//alert("resize");
+			alert("resize");
 			if(flag){
 				flag = false;
 				return;
