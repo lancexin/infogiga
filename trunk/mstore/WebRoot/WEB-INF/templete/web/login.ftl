@@ -3,6 +3,11 @@
 <head>
 <title>M-Store用户登录</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png" />
+    <link rel="apple-touch-startup-image" href="splash.png" />
+    <meta name="viewport" content="width=device-width,height=device-height,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" /> 
 <script src="jquery/jquery-1.3.min.js"></script>
 
 <style type="text/css">
@@ -90,6 +95,8 @@
 	function hideToolbar(){
 		window.scrollTo(0, 1);
 	}
+	
+	
 </script>
 </head>
 

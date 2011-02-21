@@ -2,6 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png" />
+    <link rel="apple-touch-startup-image" href="splash.png" />
+    <meta name="viewport" content="width=device-width,height=device-height,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" /> 
 <title>M-Store手机软件下载平台</title>
 <link href="mstore.css" rel="stylesheet" type="text/css" />
 <script src="jquery/jquery-1.3.min.js"></script>
@@ -492,15 +497,19 @@
 		
 		
 		window.onorientationchange = function(){
-			alert("size change...");
+			//alert("size change...");
 			resiceWindiw();
 		}
 	});
 	
+	function hideUrlBar(){
+   		setTimeout(function () { window.scrollTo(0, 1) }, 100);
+	}
+	
 --></script>
 </head>
 
-<body>
+<body onload="hideUrlBar()">
 <div class="mstore-common">
   	<div id="mstore-hander">
       	<div id="mstore-logo">
