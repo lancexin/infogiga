@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				x: 75,
 				y: 0,
 				name: 'userName',
-				value:'admin'
+				value:''
 			},{
 				x: 15,
 				y: 35,
@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				y: 30,
 				name: 'passWord',
 				inputType:"password",
-				value:'admin'
+				value:''
 			}]
 		});
 	
