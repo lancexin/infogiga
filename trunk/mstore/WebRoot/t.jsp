@@ -15,8 +15,8 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		setTimeout(function () {
-			var height = $(window).height();
-			var width =  $(window).width();
+			var height = $(document.body).height();
+			var width =  $(document.body).width();
 			$("#t").html("w:"+width+",h"+height);
 		}, 100);
 		
