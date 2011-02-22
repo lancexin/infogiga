@@ -91,13 +91,11 @@
 		});
 	});
 	
-	function hideUrlBar(){
-   		setTimeout(function () { window.scrollTo(0, 1) }, 100);
-	}
+	
 </script>
 </head>
 
-<body onload="hideUrlBar()">
+<body>
 <div id="mstore-login-containner">
 <div id="mstore-form-containner">
     	<form id="login-form" action="login?type=json" method="post">
