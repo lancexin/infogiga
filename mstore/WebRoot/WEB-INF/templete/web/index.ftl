@@ -4,15 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png" />
     <link rel="apple-touch-startup-image" href="splash.png" />
-    <meta name="viewport" content="width=device-width,height=device-height,user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" /> 
 <title>M-Store手机软件下载平台</title>
 <link href="mstore.css" rel="stylesheet" type="text/css" />
 <script src="jquery/jquery-1.3.min.js"></script>
+<script src="jquery/jquery.lazyload.mini.js"></script>
 <script type="text/javascript"><!--
 	$(document).ready(function() {
-	
+		
 		window.scrollTo(0, 1);
 							   
 		var widgetLine = 0;  //软件有多少排
@@ -76,7 +76,7 @@
 		resiceWindiw();
 		
 		$(window).resize(function(){
-			alert("resize");
+			//alert("resize");
 			if(flag){
 				flag = false;
 				return;
@@ -111,8 +111,8 @@
 		});
 		
 		function setWindowSize(){
-			var height = $(window).height();
-			var width =  $(window).width();
+			var width = window.innerWidth;
+			var height = window.innerHeight;
 			containnerHeight = height-144;
 			boxHeight = height-184;
 			$("#mstore-containner").css("height",containnerHeight+"px");
@@ -495,21 +495,18 @@
 			$("#wappush-form")[0].reset();
 		}
 		
+		$("img").lazyload();
 		
 		window.onorientationchange = function(){
-			//alert("size change...");
-			resiceWindiw();
+			location.reload();
 		}
 	});
 	
-	function hideUrlBar(){
-   		setTimeout(function () { window.scrollTo(0, 1) }, 100);
-	}
 	
 --></script>
 </head>
 
-<body onload="hideUrlBar()">
+<body>
 <div class="mstore-common">
   	<div id="mstore-hander">
       	<div id="mstore-logo">
