@@ -500,13 +500,23 @@
 		}
 		$("#loading-msg").html("80%");
 		
-		setTimeout(function () {
+		
+		
+		loadWidget();
+	});
+	
+	var i = 0;
+	
+	function loadWidget(){
+		 i=i+10;
+		 $("#loading-msg").html(i+"%");
+		 if(i==100){
 		 	$("#loading").hide();
 		 	$("#loading-mask").hide();
-		}, 3000);
-		
-		
-	});
+		 }else{
+		 	setTimeout("loadWidget()",200);
+		 }
+	} 
 	
 	
 --></script>
@@ -518,7 +528,7 @@
 <div id="loading"> 
     <div class="loading-indicator">
     	<img src="images/extanim32.gif" width="32" height="32" style="margin-right:8px;float:left;vertical-align:center;"/>正在加载请稍后...<br/>
-    	<span id="loading-msg">100%</span>
+    	<span id="loading-msg">0%</span>
     </div> 
 </div>
 
