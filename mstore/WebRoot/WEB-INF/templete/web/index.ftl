@@ -504,7 +504,7 @@
 		
 		setTimeout(function () {
 		 	$("#loading").hide();
-			$(".mstore-common").show();
+		 	$("#loading-mask").hide();
 		}, 2000);
 		
 		
@@ -516,7 +516,7 @@
 
 <body>
 
-
+<div id="loading-mask"></div>
 <div id="loading"> 
     <div class="loading-indicator">
     	<img src="images/extanim32.gif" width="32" height="32" style="margin-right:8px;float:left;vertical-align:center;"/>正在加载请稍后...
