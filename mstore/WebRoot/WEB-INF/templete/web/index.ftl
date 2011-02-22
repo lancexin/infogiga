@@ -477,11 +477,12 @@
 		});
 		
 		function showWappushDialog(){
-			var height = $(window).height();
-			var width =  $(window).width();
+			var sTop = getScrollTop();
+			var width = window.innerWidth;
+			var height = window.innerHeight;
 			var h = $("#wappush-form").height();
 			var w = $("#wappush-form").width();
-			var top = (height - 100)/2;
+			var top = (height - 100)/2+sTop;
 			var left = (width - 270)/2;
 			$(".wappush-dialog").css("top",top+"px");
 			$(".wappush-dialog").css("left",left+"px");
@@ -517,6 +518,19 @@
 		 	setTimeout("loadWidget()",200);
 		 }
 	} 
+	
+	function getScrollTop(){
+	    var scrollTop=0;
+	    if(document.documentElement&&document.documentElement.scrollTop)
+	    {
+	        scrollTop=document.documentElement.scrollTop;
+	    }
+	    else if(document.body)
+	    {
+	        scrollTop=document.body.scrollTop;
+	    }
+	    return scrollTop;
+	}
 	
 	
 --></script>
