@@ -27,7 +27,6 @@
 		var categoryUrl = "category?type=json";
 		var phonetypeUrl = "phonetype?byPhonebrand&type=json";
 		
-		
 		var operate = 1;
 		
 		var params = {
