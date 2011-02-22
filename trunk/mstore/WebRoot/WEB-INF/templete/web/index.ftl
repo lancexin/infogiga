@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png" />
-    <link rel="apple-touch-startup-image" href="splash.png" />
+	<link rel="apple-touch-icon-precomposed" href="logo.png" />
+    <link rel="apple-touch-startup-image" href="logo.png" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" /> 
 <title>M-Store手机软件下载平台</title>
@@ -521,12 +521,9 @@
 	
 	function getScrollTop(){
 	    var scrollTop=0;
-	    if(document.documentElement&&document.documentElement.scrollTop)
-	    {
+	    if(document.documentElement&&document.documentElement.scrollTop){
 	        scrollTop=document.documentElement.scrollTop;
-	    }
-	    else if(document.body)
-	    {
+	    }else if(document.body){
 	        scrollTop=document.body.scrollTop;
 	    }
 	    return scrollTop;
