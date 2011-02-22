@@ -500,8 +500,13 @@
 		window.onorientationchange = function(){
 			location.reload();
 		}
-		$("#loading").hide();
-		$(".mstore-common").show();
+		
+		
+		setTimeout(function () {
+		 	$("#loading").hide();
+			$(".mstore-common").show();
+		}, 2000);
+		
 		
 	});
 	
