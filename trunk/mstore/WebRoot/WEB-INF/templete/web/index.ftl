@@ -12,7 +12,6 @@
 <script src="jquery/jquery.lazyload.mini.js"></script>
 <script type="text/javascript"><!--
 	$(document).ready(function() {
-		
 		window.scrollTo(0, 1);
 							   
 		var widgetLine = 0;  //软件有多少排
@@ -500,12 +499,12 @@
 		window.onorientationchange = function(){
 			location.reload();
 		}
-		
+		$("#loading-msg").html("80%");
 		
 		setTimeout(function () {
 		 	$("#loading").hide();
 		 	$("#loading-mask").hide();
-		}, 2000);
+		}, 3000);
 		
 		
 	});
@@ -519,8 +518,8 @@
 <div id="loading-mask"></div>
 <div id="loading"> 
     <div class="loading-indicator">
-    	<img src="images/extanim32.gif" width="32" height="32" style="margin-right:8px;float:left;vertical-align:center;"/>正在加载请稍后...
-    	
+    	<img src="images/extanim32.gif" width="32" height="32" style="margin-right:8px;float:left;vertical-align:center;"/>正在加载请稍后...<br/>
+    	<span id="loading-msg">100%</span>
     </div> 
 </div>
 
