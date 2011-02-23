@@ -515,7 +515,9 @@
 		 	$("#loading").hide();
 		 	$("#loading-mask").hide();
 		 }else{
-		 	setTimeout("loadWidget()",200);
+		 	setTimeout(function(){
+		 		loadWidget();
+		 	},200);
 		 }
 	} 
 	
