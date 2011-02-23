@@ -9,11 +9,23 @@
 <title>M-Store手机软件下载平台</title>
 <link href="mstore.css" rel="stylesheet" type="text/css" />
 <script src="jquery/jquery-1.3.min.js"></script>
-<script src="jquery/jquery.lazyload.mini.js"></script>
 <script type="text/javascript"><!--
+
+	document.getViewportHeight = function(){
+		if (window.innerHeight!=window.undefined) return window.innerHeight;
+		if (document.compatMode=='CSS1Compat') return document.documentElement.clientHeight;
+		if (document.body) return document.body.clientHeight; 
+		return window.undefined; 
+	};
+	document.getViewportWidth = function(){
+		if (window.innerWidth!=window.undefined) return window.innerWidth; 
+		if (document.compatMode=='CSS1Compat') return document.documentElement.clientWidth; 
+		if (document.body) return document.body.clientWidth; 
+	};
+
 	$(document).ready(function() {
-		window.scrollTo(0, 1);
-							   
+		//window.scrollTo(0, 1);
+		//		alert(document.getViewportHeight());			   
 		var widgetLine = 0;  //软件有多少排
 		var widgetLineCount = 0; //每排多少个
 		var widgetCount = 0; //可以请求软件个数
@@ -74,7 +86,6 @@
 		resiceWindiw();
 		
 		$(window).resize(function(){
-			//alert("resize");
 			if(flag){
 				flag = false;
 				return;
@@ -109,8 +120,8 @@
 		});
 		
 		function setWindowSize(){
-			var width = window.innerWidth;
-			var height = window.innerHeight;
+			var width = document.getViewportWidth();
+			var height =document.getViewportHeight();
 			containnerHeight = height-144;
 			boxHeight = height-184;
 			$("#mstore-containner").css("height",containnerHeight+"px");
@@ -478,8 +489,8 @@
 		
 		function showWappushDialog(){
 			var sTop = getScrollTop();
-			var width = window.innerWidth;
-			var height = window.innerHeight;
+			var width = document.getViewportWidth();
+			var height =document.getViewportHeight();
 			var h = $("#wappush-form").height();
 			var w = $("#wappush-form").width();
 			var top = (height - 100)/2+sTop;
@@ -494,7 +505,6 @@
 			$("#wappush-form")[0].reset();
 		}
 		
-		$("img").lazyload();
 		
 		window.onorientationchange = function(){
 			location.reload();
@@ -502,12 +512,11 @@
 		$("#loading-msg").html("80%");
 		
 		
-		
 		loadWidget();
 	});
 	
-	var i = 0;
 	
+	var i = 0;
 	function loadWidget(){
 		 i=i+10;
 		 $("#loading-msg").html(i+"%");
@@ -520,6 +529,7 @@
 		 	},200);
 		 }
 	} 
+	
 	
 	function getScrollTop(){
 	    var scrollTop=0;
