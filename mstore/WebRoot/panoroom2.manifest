@@ -14,10 +14,10 @@ images/inder_hander_background.png
 images/index_logo.png
 images/index_botton_background.png
 images/exit_button.png
+material/images/*
 
 NETWORK:
 web
-material/images/*
 phonebrand
 category
 phonetype
