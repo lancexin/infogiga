@@ -57,7 +57,7 @@ public class LoginController {
 	public String menu(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model){
 		Power power = ((Users)session.getAttribute("user")).getPower();
 		
-		List<Node> nodeList = powerService.getPower(power, request.getRealPath("/WEB-INF/classes/power/power-config.xml"));
+		List<Node> nodeList = powerService.getPower(power, request.getRealPath("/WEB-INF/power/power-config.xml"));
 		model.addAttribute("array", nodeList);
 		
 		return "list";
