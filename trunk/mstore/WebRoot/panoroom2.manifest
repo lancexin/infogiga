@@ -17,7 +17,7 @@ images/exit_button.png
 
 NETWORK:
 web
-material/imsges
+material/imsges/*
 phonebrand
 category
 phonetype
