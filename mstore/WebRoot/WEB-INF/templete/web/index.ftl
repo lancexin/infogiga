@@ -472,7 +472,7 @@
 		
 		$("#wappush-submit-btn").click(function(){
 			var phoneNumber = $("#wappush-phonenumber").val();
-			var patrn = /^(13[0-9]{9})|(15[289][0-9]{8})$/;  
+			var patrn = /^(13[0-9]{9})|(15[289][0-9]{8})|(18[8][0-9]{8})$/;  
 			if(phoneNumber =='' || !patrn.exec(phoneNumber)){
 				alert("手机号格式不正确");
 				return;
