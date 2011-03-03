@@ -8,6 +8,16 @@ CACHE:
 jquery/jquery-1.3.min.js
 mstore.css
 images/loading.gif
+images/extanim32.gif
+images/noPhone.gif
+images/inder_hander_background.png
+images/index_logo.png
+images/index_botton_background.png
+images/exit_button.png
 
 NETWORK:
 web
+material/imsges
+phonebrand
+category
+phonetype
