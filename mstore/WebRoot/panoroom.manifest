@@ -9,6 +9,7 @@ login.jsp
 jquery/jquery-1.3.min.js
 logo.png
 images/mstore_login_bg.png
+images/loading.gif
 
 NETWORK:
 http://bunnyherolabs.com/
