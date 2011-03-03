@@ -8,7 +8,9 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" /> 
 <title>M-Store手机软件下载平台</title>
 <link href="mstore.css" rel="stylesheet" type="text/css" />
+
 <script src="jquery/jquery-1.3.min.js"></script>
+<script src="jquery/jquery.lazyload.js"></script>
 <script type="text/javascript"><!--
 
 	document.getViewportHeight = function(){
@@ -54,7 +56,8 @@
 		
 		var widgetTemplete = '<li style="float:left">'+
 				'<div class="mstore-widget">'+
-					'<div class="mstore-widget-icon mstore-icon" style="background-image:url({icon});">'+
+					'<div class="mstore-widget-icon mstore-icon" style="background-image:url(images/loading.gif);background-position:center center;background-repeat:no-repeat;">'+
+						'<img src="{icon}">'+
 					'</div>'+
 					'<div class="mstore-widget-text">'+
 						'<span>{softName}</span>'+
@@ -64,7 +67,8 @@
 		
 		var phonebrandTemplete = '<li style="float:left">'+
                     '<div class="mstore-widget">'+
-                        '<div class="mstore-phonebrand-widget-icon mstore-icon " style="background-image:url({url})">'+
+                        '<div class="mstore-phonebrand-widget-icon mstore-icon " style="background-image:url(images/loading.gif);background-position:center center;background-repeat:no-repeat;">'+
+                        	'<img src="{url}">'+
                         '</div>'+
                         '<div class="mstore-widget-text">'+
                             '<span>{phonebrandName}</span>'+
@@ -74,7 +78,7 @@
                 
         var phonetypeTemplete = '<li style="float:left">'+
 				'<div class="mstore-widget">'+
-					'<div class="mstore-widget-icon mstore-icon" >'+
+					'<div class="mstore-widget-icon mstore-icon"  style="background-image:url(images/loading.gif);background-position:center center;background-repeat:no-repeat;">'+
 					'<img class="mstore-pic-icon" src="{icon}">'+
 					'</div>'+
 					'<div class="mstore-widget-text">'+
