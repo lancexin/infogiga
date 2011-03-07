@@ -99,9 +99,8 @@
 		
 		$(".mstore-navigationbar-li").click(function(){
 			$(".mstore-navigationbar-li").removeClass("mstore-navigationbar-clicked");
-			$(".mstore-navigationbar-li").css("color","#FFF");
+			//$(".mstore-navigationbar-li").css("color","#FFF");
 			$(this).addClass("mstore-navigationbar-clicked");
-			$(this).css("color","#FF0");
 			params.menuId = parseInt($(this).attr("name"));
 			operate = 1;
 			$(".mstore-ul").hide();
@@ -467,6 +466,7 @@
 		
 		
 		$("#wappush-concel-btn").click(function(){
+			$("#wappush-phonenumber").val("");
 			hideWappushDialog();
 		});
 		
@@ -497,11 +497,27 @@
 			var height =document.getViewportHeight();
 			var h = $("#wappush-form").height();
 			var w = $("#wappush-form").width();
-			var top = (height - 100)/2+sTop;
-			var left = (width - 270)/2;
+			var top = (height - 460)/2+sTop;
+			var left = (width - 600)/2;
 			$(".wappush-dialog").css("top",top+"px");
 			$(".wappush-dialog").css("left",left+"px");
-			$(".wappush-dialog").show();
+			$.post("web?info&type=json",params,function(html){
+				eval("var el = "+html);
+				if(el.success){
+					$("#wappush-widget-count").html(el.data.downloadCount);
+					$("#wappush-widget-name").html(el.data.softName);
+					$("#wappush-widget-date").html(el.data.addTime);
+					$("#wappush-widget-description").html(el.data.description);
+					$("#wappush-widget-icon").css("background-image","url("+el.data.icon+")");
+					$("#wappush-widget-pic").attr("src",el.data.pic1);
+					$(".wappush-dialog").show();
+				}else{
+					alert(el.msg);
+				}
+				$("#wappush-submit-btn").removeAttr("disabled");
+			});
+			
+			
 		}
 		
 		function hideWappushDialog(){
@@ -560,7 +576,8 @@
 </div>
 
 <div class="mstore-common">
-  	<div id="mstore-hander">
+
+	<div id="mstore-hander">
       	<div id="mstore-logo">
         	
    		</div>   
@@ -570,19 +587,17 @@
                 <div class="mstore-mobile-state">您尚未选择机型</div>
                 <input class="mstore-mobile-btn" type="button" value="选择机型"/>
             </div>
-            <img class="mstore-mobile-image" width="70" height="70" src="images/noPhone.gif" />
+            <img class="mstore-mobile-image" heigth="70" height="70"  src="images/noPhone.gif" />
         </div>
     </div>
     
     <div id="mstore-navigationbar">
     	<ul class="mstore-navigationbar-ul">
     		<#list menus as menu>
-    			<li class="mstore-navigationbar-li" name="${menu.id}">${menu.menuName}</li>
+    			<li class="mstore-navigationbar-li mstore-navigationbar-bg" name="${menu.id}"><div style="padding-top:4px;">${menu.menuName}</div></li>
   			</#list>
-        	
         </ul>
     </div>
-    
     <div id="mstore-containner">
     	<div class=" mstore-containner-box">
             <ul id="mstore-widget-ul" class="mstore-ul">
@@ -619,22 +634,49 @@
 </div>
 
 <div class="wappush-dialog" style="display:none;">
-	<div class="wappush-dialog-title">软件下载</div>
-    <div class="wappush-dialog-box">
-    	<form id="wappush-form" action="#" method="post">
-    	  <table width="100%">
-    	    <tr>
-    	      <td>手机号码：</td>
-    	      <td><input id="wappush-phonenumber" type="text" name="phoneNumber" /></td>
-  	      </tr>
-    	    <tr >
-    	       <th colspan="2"><input id="wappush-submit-btn" class="wappush-btn  " style="width: 120px ! important;" type="button" value="获取下载地址" />
-                  	<input id="wappush-concel-btn" class="wappush-btn " style="width: 80px ! important;" type="button" value="取消" /></th>
-  	      </tr>
-  	    </table>
-    	</form>
+        <div class="wappush-dialog-top">
+            <div class="wappush-dialog-angle" style="background-repeat: no-repeat;background-image: url(images/border.png);"></div>
+            <div class="wappush-dialog-side"></div>
+            <div class="wappush-dialog-angle" style="background-repeat: no-repeat;background-image: url(images/border.png);background-position: -20px 0px;"></div>
+        </div>
+        <div class="wappush-dialog-center">
+        	<div class="wappush-dialog-center-left">
+            	<div class="wappush-dianlog-center-left-top">
+                	<div class="wappush-dialog-center-icon"  id="wappush-widget-icon" style="background-image:url(images/demo1.png)"></div>
+                    <div class="wappush-dialog-center-info">
+                    	<ul class="wappush-dialog-ul">
+                            <li class="wappush-dialog-li">已经下载:<span id="wappush-widget-count">122</span>次</li>
+                            <li class="wappush-dialog-li">发布:<span id="wappush-widget-date">2011-02-10</span></li>
+                        </ul>
+                  	</div>
+                </div>
+                <div class="wappush-dialog-center-left-bottom">
+                	<img id="wappush-widget-pic"  src="images/demo2.jpg" />
+                </div>
+                
+            </div>
+            <div class="wappush-dialog-center-right">
+            	<div class="wappush-dialog-center-right-top">
+               	  <div class="wappush-dialog-title" id="wappush-widget-name">音乐随身听</div>
+                    <div class="wappush-dialog-introduction" style="outline:hidden;" id="wappush-widget-description">音乐随身听是中国移动无线音乐基地开发的手机音乐在线播放软件，本软件具备歌词显示，并集歌曲下载，在线实时听歌，彩铃定制等功能于一体；同时提供会员注册和升级的途径，让您随时随地体验动听人生！</div>
+                </div>
+                <div class="wappush-dialog-center-right-bottom">
+                	<form id="wappush-form">
+                    	<input id="wappush-phonenumber" style="width:247px;height:27px;font-size:20px" name="phonenumber" type="text"/>
+                    </form>
+                    <div style="margin-top:9px;">
+                    	<img id ="wappush-concel-btn"  style="margin-right:2px;cursor:pointer;" src="images/btn-back.png" />
+                    	<img id= "wappush-submit-btn" style="cursor:pointer;" src="images/btn-ok.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wappush-dialog-bottom">
+      <div class="wappush-dialog-angle" style="background-repeat: no-repeat;background-image: url(images/border.png);background-position: 0px -20px;"></div>
+            <div class="wappush-dialog-side"></div>
+            <div class="wappush-dialog-angle" style="background-repeat: no-repeat;background-image: url(images/border.png);background-position: -20px -20px;"></div>
+        </div>
     </div>
-</div>
 <iframe src="status.html" style="display:none;"></iframe>
 </body>
 </html>
