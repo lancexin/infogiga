@@ -10,7 +10,7 @@
 <link href="mstore.css" rel="stylesheet" type="text/css" />
 
 <script src="jquery/jquery-1.3.min.js"></script>
-<script src="jquery/jquery.lazyload.js"></script>
+<script src="jquery/jquery.cookie.js"></script>
 <script type="text/javascript"><!--
 
 	document.getViewportHeight = function(){
@@ -53,6 +53,13 @@
 			phonebrandId:-1,
 			categoryId:-1
 		};
+		
+
+		if($.cookie('phonetypeId') != null && $.cookie('phonetypeImg') != null && $.cookie('phonetypeName') != null){
+			params.phonetypeId = $.cookie('phonetypeId');
+			$(".mstore-mobile-image").attr("src",$.cookie('phonetypeImg'));
+			$(".mstore-mobile-state").text($.cookie('phonetypeName'));
+		}
 		
 		var widgetTemplete = '<li style="float:left">'+
 				'<div class="mstore-widget">'+
@@ -397,13 +404,16 @@
 				params.phonetypeId = data.phonetypeId;
 				$(".mstore-mobile-image").attr("src",data.pic);
 				$(".mstore-mobile-state").text(data.phonetypeName);
+				$.cookie('phonetypeId',data.phonetypeId);
+				$.cookie('phonetypeImg',data.pic);
+				$.cookie('phonetypeName',data.phonetypeName);				
 				//alert($(this).data("data").phonetypeId);
 				showWidget();
 				
 			});
 			$("#mstore-phonetype-ul").append(temp);
 		}
-		
+				
 		function addCategoryWidget(n){
 			var text = phonebrandTemplete.replace("{url}",n.pic);
 		  	text = text.replace("{phonebrandName}",n.categoryName);
