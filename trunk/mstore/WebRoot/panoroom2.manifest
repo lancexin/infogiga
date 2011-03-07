@@ -14,6 +14,14 @@ images/inder_hander_background.png
 images/index_logo.png
 images/index_botton_background.png
 images/exit_button.png
+images/bar-background.png
+images/bar-gackground-changed.png
+images/border.png
+images/btn-back.png
+images/btn-ok.png
+images/dot.png
+images/phonenumber-input.png
+images/noPhone.gif
 material/images/*
 
 NETWORK:

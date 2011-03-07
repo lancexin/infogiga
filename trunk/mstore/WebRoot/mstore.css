@@ -50,25 +50,27 @@ ul{
 
 .mstore-navigationbar-li {
 	float: left;
-	
-	margin-right: 5px;
-	margin-left: 5px;
-	margin-top: 5px;
+	height:20px;
+	width:89px;
+	margin-right:4px;
+	margin-top:2px;
 	color: #FFF;
 	cursor:pointer;
+	background-image: url(images/bar-background.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	font-size:13px;
+	text-align: center;
 }
 
 .mstore-navigationbar-clicked {
 	color: #FF0;
 	font-weight: bolder;
+	background-image: url(images/bar-gackground-changed.png);
 }
 .mstore-containner-box {
 	margin-right: auto;
 	margin-left: auto;
-}
-
-#mstore-widget-ul {
-	
 }
 
 .mstore-navigationbar-ul {
@@ -201,51 +203,6 @@ ul{
 	background-color:#0F9；
 }
 
-.wappush-dialog {
-	background-color: #CCC;
-	height: 100px;
-	width: 270px;
-	position: absolute;
-	left: auto;
-	top: 100px;
-	right: auto;
-	border: 5px solid #333;
-}
-.wappush-dialog .wappush-dialog-box {
-	text-align: center;
-	padding-right: 5px;
-	padding-left: 5px;
-}
-.wappush-dialog .wappush-dialog-title {
-	height: 22px;
-	background-color: #666;
-	padding-top: 3px;
-	font-size: 16px;
-	font-weight: bold;
-	color: #F6F6F3;
-	padding-left: 5px;
-}
-
-.wappush-btn {
-	background: none repeat scroll 0 0 #EEEEEE;
-	border-color: #CCCCCC #999999 #999999 #CCCCCC;
-	border-right: 1px solid #999999;
-	border-style: solid;
-	border-width: 1px;
-	height: 25px;
-	font-size:14px;
-	font-weight: bold;
-	cursor:pointer;
-}
-
-.wappush-btn:active {
-	background-attachment: scroll;
-	background-color: #999;
-	background-image: none;
-	background-repeat: repeat;
-	background-position: 0 0;
-}
-
 #loading-mask{
     position:absolute;
     left:0;
@@ -276,4 +233,106 @@ ul{
 }
 #loading-msg {
     font: normal 12px arial,tahoma,sans-serif;
+}
+
+.wappush-dialog {
+	height: 460px;
+	width: 600px;
+	color: #FFF;
+	position: absolute;
+}
+.wappush-dialog-top {
+	height: 20px;
+	width: 100%;
+}
+.wappush-dialog-angle {
+	float: left;
+	height: 20px;
+	width: 20px;
+}
+.wappush-dialog-side {
+	float: left;
+	height: 20px;
+	width: 560px;
+	background-image: url(images/dot.png);
+}
+.wappush-dialog-center {
+	height: 420px;
+	width: 100%;
+	background-image: url(images/dot.png);
+}
+
+.wappush-dialog-center-left {
+	height: 100%;
+	width: 280px;
+	float:left;
+	padding-left:20px;
+}
+.wappush-dialog-center-right-bottom {
+}
+.wappush-dialog-center-icon {
+	height: 100px;
+	width: 120px;
+	background-repeat: no-repeat;
+	background-position: 20px center;
+	float:left;
+}
+.wappush-dialog-center-right {
+	height: 100%;
+	width: 280px;
+	float:left;
+	padding-right:20px;
+}
+.wappush-dialog-center-left-top {
+	height: 100px;
+	width: 100%;
+}
+.wappush-dialog-ul {
+	list-style-type: none;
+	padding: 0px;
+	margin-top: 30px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 20px;
+}
+.wappush-dialog-li {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.wappush-dialog-center-left-bottom {
+	height: 320px;
+	width: 100%;
+	padding-left:20px;
+	padding-right:20px;
+}
+.wappush-dialog-center-info {
+	float: left;
+	height: 100px;
+	width: 160px;
+	font-size:14px;
+}
+
+.wappush-dialog-center-right-top {
+	height: 210px;
+	width: 100%;
+	
+}
+.wappush-dialog-title {
+	font-size:32px;
+	text-align: center;
+	width:100%;
+}
+.wappush-dialog-introduction {
+	height: 100px;
+	width: 100%;
+	padding-top:10px;
+}
+
+.wappush-dialog-center-right-bottom {
+	height: 95px;
+	width: 263px;
+	background-image: url(images/phonenumber-input.png);
+	padding-top: 80px;
+	padding-left: 13px;
 }
