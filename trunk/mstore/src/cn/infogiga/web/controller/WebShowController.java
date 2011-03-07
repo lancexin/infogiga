@@ -24,6 +24,7 @@ import cn.infogiga.pojo.Softmenu;
 import cn.infogiga.pojo.Tempdownloadstat;
 import cn.infogiga.pojo.Users;
 import cn.infogiga.sd.dto.JsonListBean;
+import cn.infogiga.sd.dto.JsonObjectBean;
 import cn.infogiga.sd.dto.JsonSoft;
 import cn.infogiga.sd.service.ManageService;
 
@@ -62,6 +63,25 @@ public class WebShowController {
 		long totalCount = manageService.getManageDAO().searchSoftCount(menuId, phonetypeId);
 		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
 		model.addAttribute("object", jsonListBean);
+		return "list";
+	}
+	
+
+	@RequestMapping(value = "/web",params="info")
+	public String info(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
+			@RequestParam("softId")Integer softId){
+
+		/*List<JsonSoft> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().searchSoft(menuId, phonetypeId, start, limit), JsonSoft.class);
+		long totalCount = manageService.getManageDAO().searchSoftCount(menuId, phonetypeId);
+		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
+		model.addAttribute("object", jsonListBean);*/
+
+		JsonSoft jsoft = MyBeanUtils.copyProperties(manageService.getManageDAO().findById(Soft.class, softId), JsonSoft.class);
+		JsonObjectBean ob = new JsonObjectBean();
+		ob.setMsg("request success");
+		ob.setData(jsoft);
+		ob.setSuccess(true);
+		model.addAttribute("object", ob);
 		return "list";
 	}
 	
