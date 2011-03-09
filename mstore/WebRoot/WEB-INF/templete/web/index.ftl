@@ -542,8 +542,11 @@
 		}
 		$("#loading-msg").html("80%");
 		
-		
 		loadWidget();
+		
+		$("div").click(function(event){
+			event.preventDefault(); 
+		});
 	});
 	
 	
