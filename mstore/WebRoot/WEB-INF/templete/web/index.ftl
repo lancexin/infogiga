@@ -547,6 +547,10 @@
 		$("div").click(function(event){
 			event.preventDefault(); 
 		});
+		
+		$("div").mousedown(function(event){
+			event.preventDefault(); 
+		});
 	});
 	
 	
