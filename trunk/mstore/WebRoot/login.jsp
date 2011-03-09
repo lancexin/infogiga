@@ -89,6 +89,10 @@
 				}
 			});
 		});
+		
+		$("div").click(function(event){
+			event.preventDefault(); 
+		});
 	});
 	
 	
