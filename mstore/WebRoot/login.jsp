@@ -8,6 +8,7 @@
     <link rel="apple-touch-startup-image" href="logo.png" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="user-scalable=no"/>
 <script src="jquery/jquery-1.3.min.js"></script>
 
 <style type="text/css">
