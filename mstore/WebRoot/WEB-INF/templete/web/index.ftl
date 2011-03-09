@@ -44,6 +44,10 @@
 		
 		var operate = 1;
 		
+		var scrollLock = false;
+		
+		var scrollWidth = 0;
+		
 		var params = {
 			softId:-1,
 			menuId:-1,
@@ -258,7 +262,8 @@
 		function resiceWindiw(){
 			flag = true;
 			params.start = 0;
-			
+			$(".wappush-dialog").hide();
+			$("#zz").hide();
 			page = 1;
 			$(".mstore-icon").unbind();
 			$(".mstore-icon").removeData("data");
@@ -503,9 +508,17 @@
 		});
 		
 		function showWappushDialog(){
+			scrollWidth = $(window).scrollTop();
+			//$("#zz").css("width",width+"px");
+			$("#zz").css("top",scrollWidth+"px");
+			$("#zz").show();
+			scrollLock = true;
+			
+			$(document.body).css("overflow","hidden");
 			var sTop = getScrollTop();
 			var width = document.getViewportWidth();
 			var height =document.getViewportHeight();
+			
 			var h = $("#wappush-form").height();
 			var w = $("#wappush-form").width();
 			var top = (height - 460)/2+sTop;
@@ -532,13 +545,16 @@
 		}
 		
 		function hideWappushDialog(){
+			$("#zz").hide();
+			$(document.body).css("overflow","auto");
 			$(".wappush-dialog").hide();
 			$("#wappush-form")[0].reset();
+			scrollLock = false;
 		}
 		
 		
 		window.onorientationchange = function(){
-			location.reload();
+			//location.reload();
 		}
 		$("#loading-msg").html("80%");
 		
@@ -548,8 +564,13 @@
 			event.preventDefault(); 
 		});
 		
-		$("div").mousedown(function(event){
-			event.preventDefault(); 
+		$(window).scroll(function(e){
+			if(scrollLock){
+				$(window).scrollTop(scrollWidth); 
+				
+			}
+			$("#zz").css("top",$(window).scrollTop()+"px");
+			
 		});
 	});
 	
@@ -586,6 +607,8 @@
 <body>
 
 <div id="loading-mask"></div>
+
+<div id="zz"></div>
 <div id="loading"> 
     <div class="loading-indicator">
     	<img src="images/extanim32.gif" width="32" height="32" style="margin-right:8px;float:left;vertical-align:center;"/>正在加载请稍后...<br/>
@@ -653,9 +676,9 @@
 
 <div class="wappush-dialog" style="display:none;">
         <div class="wappush-dialog-top">
-            <div class="wappush-dialog-angle" style="background-repeat: no-repeat;background-image: url(images/border.png);"></div>
+            <div class="wappush-dialog-angle"></div>
             <div class="wappush-dialog-side"></div>
-            <div class="wappush-dialog-angle" style="background-repeat: no-repeat;background-image: url(images/border.png);background-position: -20px 0px;"></div>
+            <div class="wappush-dialog-angle"></div>
         </div>
         <div class="wappush-dialog-center">
         	<div class="wappush-dialog-center-left">
@@ -663,7 +686,7 @@
                 	<div class="wappush-dialog-center-icon"  id="wappush-widget-icon" style="background-image:url(images/demo1.png)"></div>
                     <div class="wappush-dialog-center-info">
                     	<ul class="wappush-dialog-ul">
-                            <li class="wappush-dialog-li">已经下载:<span id="wappush-widget-count">122</span>次</li>
+                            <li class="wappush-dialog-li" >已经下载:<span id="wappush-widget-count">122</span>次</li>
                             <li class="wappush-dialog-li">发布:<span id="wappush-widget-date">2011-02-10</span></li>
                         </ul>
                   	</div>
