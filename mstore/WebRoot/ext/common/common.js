@@ -94,9 +94,7 @@ function openNewFrame(tab,title,id,url){
             title:title,  
             id:id,  
             margins:'0 4 4 0',  
-            autoHeight:true,  
             autoScroll:true,  
-            autoWidth:true,  
             closable:true,  
 			border:false,
             html:'<iframe  width="100%" height="100%"  id="'+id+'" name="'+id+'" src="'+url+'" frameborder="0" scrolling="auto"></iframe>'  
