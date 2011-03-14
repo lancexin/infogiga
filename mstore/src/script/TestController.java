@@ -18,11 +18,13 @@ import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
 import cn.infogiga.exp.pojo.Downloadstat;
+import cn.infogiga.exp.pojo.Phonebrand;
 import cn.infogiga.exp.quartz.ExcelCreatorUtil;
 import cn.infogiga.exp.quartz.ExcelUtil;
 import cn.infogiga.exp.quartz.RDdownloadExcel;
 import cn.infogiga.pojo.Bissinusshall;
 import cn.infogiga.pojo.City;
+import cn.infogiga.pojo.Phonebrandcategory;
 import cn.infogiga.pojo.Phonetype;
 import cn.infogiga.pojo.Power;
 import cn.infogiga.pojo.Soft;
@@ -57,13 +59,18 @@ public class TestController {
 		this.newDAO = newDAO;
 	}
 	
-	@RequestMapping(value = "/mock")
+	
+	@RequestMapping(value = "/mock2")
+	public void startMock2(HttpServletRequest request,HttpServletResponse response){
+		testPhoneTypeNewToOld();
+	}
+	
 	public void startMock(HttpServletRequest request,HttpServletResponse response){
 		System.out.println("mock start ...");
 		
 		
 		//copyTeam();
-		copyEmployee();
+		//copyEmployee();
 		//copyEquipment();
 		//copyPhonetype();
 		/**
@@ -199,6 +206,32 @@ public class TestController {
 			phonetype.setStatus(pt.getStatus());
 			newDAO.save(phonetype);
 		}
+	}
+
+	public void testPhoneTypeNewToOld(){
+
+		List<cn.infogiga.pojo.Phonetype> newList = newDAO.findAll(cn.infogiga.pojo.Phonetype.class);
+		cn.infogiga.pojo.Phonetype p1;
+		for(int i=0;i<newList.size();i++){
+			p1 = newList.get(i);
+			if(p1.getPhonetypeName() == null ){
+				continue;
+			}
+			int count = oldDAO.getCountByProperty(cn.infogiga.exp.pojo.Phonetype.class, "phonetypeName", p1.getPhonetypeName());
+			if(count == 0){
+				cn.infogiga.exp.pojo.Phonetype op = new cn.infogiga.exp.pojo.Phonetype();
+				op.setPhonetypeName(p1.getPhonetypeName());
+				Phonebrandcategory category = newDAO.findById(Phonebrandcategory.class, p1.getPhonebrandcategory().getId());
+				cn.infogiga.exp.pojo.Phonebrand phonebrand = new cn.infogiga.exp.pojo.Phonebrand();
+				phonebrand.setPhonebrandId(category.getPhonebrand().getId());
+				op.setPhonebrand(phonebrand);
+				op.setStatus(1);
+				System.out.println(p1.getPhonetypeName()+"不存在");
+				oldDAO.save(op);
+			}
+		}
+		
+		
 	}
 		
 	private void copyDownloadstat(){
