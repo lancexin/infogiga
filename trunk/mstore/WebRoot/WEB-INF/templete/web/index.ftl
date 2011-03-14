@@ -264,6 +264,7 @@
 			params.start = 0;
 			$(".wappush-dialog").hide();
 			$("#zz").hide();
+			scrollLock = false;
 			page = 1;
 			$(".mstore-icon").unbind();
 			$(".mstore-icon").removeData("data");
