@@ -13,13 +13,7 @@ public class Tempdownloadstat implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
-	private Integer equipmentId;
-	private Integer softId;
-	private Integer phonetypeId;
-	private Integer userId;
-	private Integer downloadtypeId;
-	private String phoneNumber;
-	private Date addTime;
+	private Integer statId;
 	private String code;
 
 	// Constructors
@@ -29,16 +23,7 @@ public class Tempdownloadstat implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Tempdownloadstat(Integer equipmentId, Integer softId,
-			Integer phonetypeId, Integer userId, Integer downloadtypeId,
-			String phoneNumber, Date addTime, String code) {
-		this.equipmentId = equipmentId;
-		this.softId = softId;
-		this.phonetypeId = phonetypeId;
-		this.userId = userId;
-		this.downloadtypeId = downloadtypeId;
-		this.phoneNumber = phoneNumber;
-		this.addTime = addTime;
+	public Tempdownloadstat(Integer statId,String code) {
 		this.code = code;
 	}
 
@@ -52,68 +37,22 @@ public class Tempdownloadstat implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Integer getEquipmentId() {
-		return this.equipmentId;
+	public Integer getStatId() {
+		return statId;
 	}
 
-	public void setEquipmentId(Integer equipmentId) {
-		this.equipmentId = equipmentId;
-	}
-
-	public Integer getSoftId() {
-		return this.softId;
-	}
-
-	public void setSoftId(Integer softId) {
-		this.softId = softId;
-	}
-
-	public Integer getPhonetypeId() {
-		return this.phonetypeId;
-	}
-
-	public void setPhonetypeId(Integer phonetypeId) {
-		this.phonetypeId = phonetypeId;
-	}
-
-	public Integer getUserId() {
-		return this.userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-
-	public Integer getDownloadtypeId() {
-		return this.downloadtypeId;
-	}
-
-	public void setDownloadtypeId(Integer downloadtypeId) {
-		this.downloadtypeId = downloadtypeId;
-	}
-
-	public String getPhoneNumber() {
-		return this.phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
-	public Date getAddTime() {
-		return this.addTime;
-	}
-
-	public void setAddTime(Date addTime) {
-		this.addTime = addTime;
+	public void setStatId(Integer statId) {
+		this.statId = statId;
 	}
 
 	public String getCode() {
-		return this.code;
+		return code;
 	}
 
 	public void setCode(String code) {
 		this.code = code;
 	}
+
+	
 
 }

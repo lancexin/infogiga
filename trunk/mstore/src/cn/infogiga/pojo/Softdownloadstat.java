@@ -20,8 +20,26 @@ public class Softdownloadstat implements java.io.Serializable {
 	private Phonetype phonetype;
 	private String phoneNumber;
 	private Date addTime;
+	private Integer status;
+	private Date completeTime;
 
 	// Constructors
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public Date getCompleteTime() {
+		return completeTime;
+	}
+
+	public void setCompleteTime(Date completeTime) {
+		this.completeTime = completeTime;
+	}
 
 	/** default constructor */
 	public Softdownloadstat() {
