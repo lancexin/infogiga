@@ -1,6 +1,7 @@
 package cn.infogiga.exp.service;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -221,13 +222,17 @@ public class ExperienceService {
 	
 	public boolean comformDownloadstat(ReceiveBean rb){
 		try {
-			Tempdownloadstat temp = experienceDAO.findSingleByProperty(Tempdownloadstat.class, "code", rb.getCode());
-			if(temp == null){
-				return false;
+			ArrayList<Comformstat> cList = rb.getComformstatList();
+			for(int i=0;i<cList.size();i++){
+				Comformstat stat = cList.get(i);
+				Tempdownloadstat temp = experienceDAO.findSingleByProperty(Tempdownloadstat.class, "code", stat.getCode());
+				if(temp == null){
+					continue;
+				}
+				Softdownloadstat downloadstat = experienceDAO.findById(Softdownloadstat.class, temp.getStatId());
+				downloadstat.setStatus(1);
+				experienceDAO.update(downloadstat);
 			}
-			Softdownloadstat downloadstat = experienceDAO.findById(Softdownloadstat.class, temp.getStatId());
-			downloadstat.setStatus(1);
-			experienceDAO.update(downloadstat);
 			return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
