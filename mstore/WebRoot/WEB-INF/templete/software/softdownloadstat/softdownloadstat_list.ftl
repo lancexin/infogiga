@@ -18,7 +18,9 @@ var newComponent = (function() {
 	        {name: 'employeeNo'},
 	        {name: 'downloadtypeName'},
 	        {name: 'phoneNumber'},
-	        {name: 'addTime'}
+	        {name: 'addTime'},
+	        {name: 'completeTime'},
+	        {name: 'status'}
         ],
         sortInfo: {
             field: 'statId', direction: 'DESC'
@@ -108,7 +110,16 @@ var newComponent = (function() {
             {header: "手机型号", sortable: true, dataIndex: 'phonetypeName'},
             {header: "手机号码", sortable: true, dataIndex: 'phoneNumber'},
             {header: "下载类型", sortable: true, dataIndex: 'downloadtypeName'},
-            {header: "下载时间", sortable: true, dataIndex: 'addTime'}
+            {header: "记录时间", sortable: true, dataIndex: 'addTime'},
+            {header: "下载时间", sortable: true, dataIndex: 'completeTime'},
+         	{header: "状态",sortable: true, dataIndex: 'status',renderer:function(value, metaData, record, rowIndex, colIndex, store){
+	         	if(value == 0){
+	         		return "未下载";
+	         	}else{
+	         		return "已下载";
+	         	}
+	         } 
+         	}
         ],
         stripeRows: true,
         autoExpandColumn: 'statId',
