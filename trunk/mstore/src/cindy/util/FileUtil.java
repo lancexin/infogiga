@@ -9,15 +9,16 @@ public class FileUtil {
 	public static boolean copyFile(java.io.File filefrom, java.io.File fileto,
 			boolean rewrite) {
 		if (!filefrom.exists()) {
-			System.out.println("文件不存在");
+			System.out.println("文件不存在 "+filefrom.getAbsolutePath());
 			return false;
 		}
+		
 		if (!filefrom.isFile()) {
-			System.out.println("不能够复制文件夹");
+			System.out.println("不能够复制文件夹 "+filefrom.getAbsolutePath());
 			return false;
 		}
 		if (!filefrom.canRead()) {
-			System.out.println("不能够读取需要复制的文件");
+			System.out.println("不能够读取需要复制的文件 "+filefrom.getAbsolutePath());
 			return false;
 		}
 		if (!fileto.getParentFile().exists()) {
