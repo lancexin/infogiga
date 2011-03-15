@@ -25,6 +25,7 @@ import cn.infogiga.exp.webservice.bean.TopSoft;
 import cn.infogiga.exp.webservice.client.CmbBeanFactory;
 import cn.infogiga.pojo.Menu;
 import cn.infogiga.pojo.Soft;
+import cn.infogiga.pojo.Softdownloadstat;
 
 @Controller
 public class ExperienceController {
@@ -314,8 +315,8 @@ public class ExperienceController {
 		Intf intf = new Intf();
 		ErrInfo errInfo = null;
 		
-		boolean bl = experienceService.logDownloadSoft(rb);
-		if(bl){
+		Softdownloadstat bl = experienceService.logDownloadSoft(rb,1);
+		if(bl != null){
 			errInfo = CmbBeanFactory.getSuccessErrInfo();
 		}else{
 			errInfo = CmbBeanFactory.getAddFailureErrInfo();
@@ -413,7 +414,8 @@ public class ExperienceController {
 	 * @return
 	 */
 	private String addTempDownloadstat(ReceiveBean rb){
-		boolean bl = experienceService.addTempDownloadstat(rb);
+		Softdownloadstat ds = experienceService.logDownloadSoft(rb, 0);
+		boolean bl = experienceService.addTempDownloadstat(rb,ds.getId());
 		Intf intf = new Intf();
 		if(bl){
 			ErrInfo errInfo = CmbBeanFactory.getSuccessErrInfo();
