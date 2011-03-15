@@ -19,7 +19,11 @@ import cindy.util.ProperiesReader;
 import cn.infogiga.exp.service.CmbService;
 import cn.infogiga.exp.service.ExperienceService;
 import cn.infogiga.pojo.Attachment;
+import cn.infogiga.pojo.Downloadtype;
+import cn.infogiga.pojo.Equipment;
+import cn.infogiga.pojo.Phonetype;
 import cn.infogiga.pojo.Soft;
+import cn.infogiga.pojo.Softdownloadstat;
 import cn.infogiga.pojo.Softmenu;
 import cn.infogiga.pojo.Tempdownloadstat;
 import cn.infogiga.pojo.Users;
@@ -71,11 +75,6 @@ public class WebShowController {
 	public String info(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model,
 			@RequestParam("softId")Integer softId){
 
-		/*List<JsonSoft> list = MyBeanUtils.copyListProperties(manageService.getManageDAO().searchSoft(menuId, phonetypeId, start, limit), JsonSoft.class);
-		long totalCount = manageService.getManageDAO().searchSoftCount(menuId, phonetypeId);
-		JsonListBean jsonListBean = new JsonListBean(totalCount,list,true,null);
-		model.addAttribute("object", jsonListBean);*/
-
 		JsonSoft jsoft = MyBeanUtils.copyProperties(manageService.getManageDAO().findById(Soft.class, softId), JsonSoft.class);
 		JsonObjectBean ob = new JsonObjectBean();
 		ob.setMsg("request success");
@@ -118,24 +117,30 @@ public class WebShowController {
 					sendUrl = ProperiesReader.getInstence("config.properties")
 						.getStringValue("msoft.download.post")+attachment.getName()+"?id="+code;
 					
-					//像短信表里添加一条
-					Tempdownloadstat temp = new Tempdownloadstat();
-					temp.setCode(code);
-					temp.setPhoneNumber(phoneNumber);
-					temp.setPhonetypeId(phonetypeId);
-					temp.setSoftId(softId);
-					temp.setDownloadtypeId(4);//4表示wappush
-					temp.setAddTime(new Date());
-					temp.setUserId(users.getId());
 					
+					Softdownloadstat downloadstat = new Softdownloadstat();
+					downloadstat.setAddTime(new Date());
+					Downloadtype downloadtype = new Downloadtype();
+					downloadtype.setId(4);
+					downloadstat.setDownloadtype(downloadtype);
+					downloadstat.setSoft(soft);
+					Phonetype phonetype = new Phonetype();
+					phonetype.setId(phonetypeId);
+					downloadstat.setPhonetype(phonetype);
+					Equipment equipment = new Equipment();
 					Integer eId = (Integer) session.getAttribute("eId");
-					if(eId == -1){
-						temp.setEquipmentId(ProperiesReader.getInstence("config.properties").getIntegerValue("mstore.default.eId"));
-					}else{
-						temp.setEquipmentId(eId);
-					}
 					
-					manageService.getManageDAO().save(temp);
+					if(eId == -1){
+						equipment.setId(ProperiesReader.getInstence("config.properties").getIntegerValue("mstore.default.eId"));
+					}else{
+						equipment.setId(eId);
+					}
+					downloadstat.setEquipment(equipment);
+					downloadstat.setPhoneNumber(phoneNumber);
+					downloadstat.setUsers(users);
+					downloadstat.setStatus(0);
+					manageService.getManageDAO().save(downloadstat);
+					experienceService.addTempDownloadstat(downloadstat.getId(), code);
 				}
 				//发送wappush
 				cmbService.sendWapPush(phoneNumber, sendUrl, sendStr);
