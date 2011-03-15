@@ -37,6 +37,7 @@ public class MsoftServiceImpl implements MsoftService{
 	
 	
 	public void addPhonebrand(Phonebrand phonebrand,HttpServletRequest request){
+		
 		//System.out.println(phonebrand.getPhonebrandName());
 		String folerUrl = request.getRealPath(ProperiesReader.getInstence("config.properties").getStringValue("msoft.phone.url")+phonebrand.getPhonebrandName());
 		//System.out.println(folerUrl);
@@ -76,6 +77,7 @@ public class MsoftServiceImpl implements MsoftService{
 	
 	public void addPhonetype(Phonetype phonetype,HttpServletRequest request){
 		Phonebrandcategory category = phonetype.getPhonebrandcategory();
+
 		if(category == null){
 			return;
 		}
@@ -110,6 +112,10 @@ public class MsoftServiceImpl implements MsoftService{
 	public void addAttachment(Attachment attachment,HttpServletRequest request){
 		StringBuffer folderName = new StringBuffer();
 		Soft soft = attachment.getSoft();
+		
+		if(soft.getStatus() == 0){
+			return;
+		}
 		Set indexs = soft.getSoftindexes();
 		Iterator iite = indexs.iterator();
 		//附件所在的菜单
