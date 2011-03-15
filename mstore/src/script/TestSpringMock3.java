@@ -60,8 +60,31 @@ public class TestSpringMock3 extends AbstractDependencyInjectionSpringContextTes
 		
 	}
 	
-	public void testChangeSoft(){
+	public void testChangePhonebrand(){
 		MappingOldDAO oldDAO = (MappingOldDAO) this.applicationContext.getBean ("oldDao");
+		MappingNewDAO newDAO = (MappingNewDAO) this.applicationContext.getBean ("newDao");
+		
+		List<cn.infogiga.exp.pojo.Phonetype> sList = oldDAO.findAll(cn.infogiga.exp.pojo.Phonetype.class);
+		cn.infogiga.exp.pojo.Phonetype phonetype;
+		for(int i=0;i<sList.size();i++){
+			phonetype = sList.get(i);
+			cn.infogiga.pojo.Phonetype pt = newDAO.findById(cn.infogiga.pojo.Phonetype.class, phonetype.getPhonetypeId());
+			if(pt == null){
+				continue;
+			}
+			cn.infogiga.pojo.Phonebrandcategory pl = newDAO.findById(cn.infogiga.pojo.Phonebrandcategory.class, pt.getPhonebrandcategory().getId());
+			
+			cn.infogiga.exp.pojo.Phonebrand phonebrand = new cn.infogiga.exp.pojo.Phonebrand();
+			System.out.println(phonetype.getPhonetypeName()+"  "+phonetype.getPhonebrand().getPhonebrandId()+"   修改为   "+pl.getPhonebrand().getId());
+			phonebrand.setPhonebrandId(pl.getPhonebrand().getId());
+			phonetype.setPhonebrand(phonebrand);
+			oldDAO.update(phonetype);
+			
+		}
+	}
+	
+	public void testChangeSoft(){
+		/*MappingOldDAO oldDAO = (MappingOldDAO) this.applicationContext.getBean ("oldDao");
 		MappingNewDAO newDAO = (MappingNewDAO) this.applicationContext.getBean ("newDao");
 		
 		List<Soft> sList = newDAO.findAll(Soft.class);
@@ -85,8 +108,6 @@ public class TestSpringMock3 extends AbstractDependencyInjectionSpringContextTes
 				oldDAO.update(info);
 				System.out.println(info.getSoftName()+"    修改   "+soft.getSoftName());
 			}
-			
-			
-		}
+		}*/
 	}
 }
