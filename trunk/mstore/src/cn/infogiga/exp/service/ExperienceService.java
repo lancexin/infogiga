@@ -230,6 +230,9 @@ public class ExperienceService {
 					continue;
 				}
 				Softdownloadstat downloadstat = experienceDAO.findById(Softdownloadstat.class, temp.getStatId());
+				if(downloadstat == null){
+					continue;
+				}
 				downloadstat.setStatus(1);
 				experienceDAO.update(downloadstat);
 			}
@@ -239,6 +242,7 @@ public class ExperienceService {
 			e.printStackTrace();
 			return false;
 		}
+
 	}
 	
 	
@@ -323,3 +327,4 @@ public class ExperienceService {
 	}
 	
 }
+
