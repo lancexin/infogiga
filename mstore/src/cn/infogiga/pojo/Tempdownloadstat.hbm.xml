@@ -10,26 +10,8 @@
             <column name="ID" />
             <generator class="identity" />
         </id>
-        <property name="equipmentId" type="java.lang.Integer">
-            <column name="equipmentID" />
-        </property>
-        <property name="softId" type="java.lang.Integer">
-            <column name="softID" />
-        </property>
-        <property name="phonetypeId" type="java.lang.Integer">
-            <column name="phonetypeID" />
-        </property>
-        <property name="userId" type="java.lang.Integer">
-            <column name="userID" />
-        </property>
-        <property name="downloadtypeId" type="java.lang.Integer">
-            <column name="downloadtypeID" />
-        </property>
-        <property name="phoneNumber" type="java.lang.String">
-            <column name="phoneNumber" length="15" />
-        </property>
-        <property name="addTime" type="java.util.Date">
-            <column name="addTime" length="0" />
+        <property name="statId" type="java.lang.Integer">
+            <column name="statID" />
         </property>
         <property name="code" type="java.lang.String">
             <column name="code" length="32" />
