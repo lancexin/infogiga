@@ -78,6 +78,7 @@ public class SoftContoller {
 	public String softExport(HttpServletRequest request,HttpServletResponse response,HttpSession session, ModelMap model){
 		
 		try {
+			System.out.println("开始导出");
 			msoftService.deleteAll(request);
 			
 			List<Phonebrand> phonebrands = manageService.getManageDAO().findAll(Phonebrand.class);
@@ -101,6 +102,7 @@ public class SoftContoller {
 			model.put("msg", "导出出错,请联系管理员或重新试一次！");
 			e.printStackTrace();
 		}
+		System.out.println("结束导出");
 		return "list";
 	}
 	
