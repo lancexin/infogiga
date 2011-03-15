@@ -95,6 +95,18 @@ public class ExperienceService {
 		
 		return experienceDAO.findSingleByExample(employee);
 	}
+
+	public Users getSingleEmployee(String empNo,String empPwd){
+		Users employee = new Users();
+		if(empNo == null || empPwd == null){
+			return null;
+		}
+		employee.setUserName(empNo.trim());
+		employee.setPassWord(empPwd.trim());
+		employee.setStatus(1);
+		
+		return experienceDAO.findSingleByExample(employee);
+	}
 	
 	public Equipment getSingleEquipment(ReceiveBean rb){
 		Equipment equipment = new Equipment();
@@ -103,6 +115,16 @@ public class ExperienceService {
 			return null;
 		}
 		equipment.setMac(rb.getMac().trim());
+		return experienceDAO.findSingleByExample(equipment);
+	}
+
+	public Equipment getSingleEquipment(String mac){
+		Equipment equipment = new Equipment();
+		
+		if(mac == null){
+			return null;
+		}
+		equipment.setMac(mac.trim());
 		return experienceDAO.findSingleByExample(equipment);
 	}
 	
@@ -168,41 +190,26 @@ public class ExperienceService {
 		}
 	}
 	
-	public boolean addTempDownloadstat(ReceiveBean rb){
+	public boolean addTempDownloadstat(ReceiveBean rb,Integer statId){
 		try {
 			Tempdownloadstat temp = new Tempdownloadstat();
-			temp.setAddTime(DateUtil.stringToDate(rb.getAdd_time(), DateUtil.NOW_TIME));
-			if(rb.getCode() == null ){
-				return false;
-			}
+			temp.setStatId(statId);
 			temp.setCode(rb.getCode());
-			if(rb.getDownload_type() == null){
-				return false;
-			}
-			temp.setDownloadtypeId(Integer.parseInt(rb.getDownload_type()));
-			if(rb.getPhone_number()== null){
-				return false;
-			}
-			temp.setPhoneNumber(rb.getPhone_number());
-			if(rb.getSoft_id()== null){
-				return false;
-			}
-			temp.setSoftId(Integer.parseInt(rb.getSoft_id()));
-			if(rb.getEmp_no()== null){
-				return false;
-			}
-			temp.setUserId(Integer.parseInt(rb.getEmp_no()));
-			Equipment equi = getSingleEquipment(rb);
-			if(equi== null){
-				return false;
-			}
-			
-			if(rb.getPhone_type_id() == null){
-				return false;
-			}
-			temp.setPhonetypeId(Integer.parseInt(rb.getPhone_type_id()));
-			
-			temp.setEquipmentId(equi.getId());
+			experienceDAO.save(temp);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+
+	public boolean addTempDownloadstat(Integer statId,String code){
+		try {
+			Tempdownloadstat temp = new Tempdownloadstat();
+			temp.setStatId(statId);
+			temp.setCode(code);
 			experienceDAO.save(temp);
 			return true;
 		} catch (Exception e) {
@@ -214,22 +221,13 @@ public class ExperienceService {
 	
 	public boolean comformDownloadstat(ReceiveBean rb){
 		try {
-			List<Comformstat> cList = rb.getComformstatList();
-			int size = cList.size();
-			Comformstat stat;
-			for(int i=0;i<size;i++){
-				stat =  cList.get(i);
-				Tempdownloadstat tls = new Tempdownloadstat();
-				//System.out.println(stat.getCode());
-				tls.setCode(stat.getCode());
-				tls = experienceDAO.findSingleByExample(tls);
-				if(tls == null){
-					System.out.println("数据库未找到该临时记录:"+stat.getCode());
-					continue;
-				}
-				tempToDownloadstat(tls);
-				deleteTempDownloadstat(tls);
+			Tempdownloadstat temp = experienceDAO.findSingleByProperty(Tempdownloadstat.class, "code", rb.getCode());
+			if(temp == null){
+				return false;
 			}
+			Softdownloadstat downloadstat = experienceDAO.findById(Softdownloadstat.class, temp.getStatId());
+			downloadstat.setStatus(1);
+			experienceDAO.update(downloadstat);
 			return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -238,39 +236,6 @@ public class ExperienceService {
 		}
 	}
 	
-	private void tempToDownloadstat(Tempdownloadstat tls){
-		if(tls == null){
-			return;
-		}
-		Softdownloadstat downloadstat = new Softdownloadstat();
-		downloadstat.setAddTime(tls.getAddTime());
-		Equipment equipment = experienceDAO.findById(Equipment.class, tls.getEquipmentId()==null?-1:tls.getEquipmentId());
-		if(equipment == null){
-			return;
-		}
-		//equipment.setId(tls.getEquipmentId());
-		downloadstat.setEquipment(equipment);
-		Downloadtype downloadtype = new Downloadtype();
-		downloadtype.setId(tls.getDownloadtypeId());
-		downloadstat.setDownloadtype(downloadtype);
-		Phonetype phonetype = experienceDAO.findById(Phonetype.class, tls.getPhonetypeId()==null?-1:tls.getPhonetypeId());
-		if(phonetype == null){
-			return;
-		}
-		//phonetype.setId(tls.getPhonetypeId());
-		downloadstat.setPhonetype(phonetype);
-		Soft soft = experienceDAO.findById(Soft.class, tls.getSoftId()== null?-1:tls.getSoftId());
-		if(soft == null){
-			return;
-		}
-		downloadstat.setSoft(soft);
-		downloadstat.setPhoneNumber(tls.getPhoneNumber());
-		experienceDAO.save(downloadstat);
-		Download d = soft.getDownload();
-		d.setDownloadCount(d.getDownloadCount()+1);
-		experienceDAO.save(d);
-		System.out.println("成功添加一个wappush统计信息："+tls.getCode());
-	}
 	
 	private void deleteTempDownloadstat(Tempdownloadstat tls){
 		if(tls == null){
@@ -279,25 +244,7 @@ public class ExperienceService {
 		experienceDAO.delete(tls);
 		System.out.println("成功删除一个wappush统计信息："+tls.getCode());
 	}
-	
-/*	public String checkUpdate(ReceiveBean rb){
-		Renewal renewal = new Renewal();
-		renewal.setVersion(rb.getVersion());
-		renewal.setStatus(1);
-		Equipment equipment = getSingleEquipment(rb);
-		if(equipment != null){
-			renewal.setSysinfo(equipment.getSysinfo());
-			Renewal r = experienceDAO.findSingleByExample(renewal);
-			if(r == null){
-				return null;
-			}else{
-				return r.getUrl();
-			}
-		}else{
-			return null;
-		}
-	}*/
-	
+		
 	public Soft getStarSoft(ReceiveBean rb){
 		Date startTime = DateUtil.getStartOfWeek(new Date());
 		Date endTime = DateUtil.getEndOfWeek(new Date());
@@ -309,8 +256,8 @@ public class ExperienceService {
 		
 		return experienceDAO.getTopSoft();
 	}
-	
-	public boolean logDownloadSoft(ReceiveBean rb){
+		
+	public Softdownloadstat logDownloadSoft(ReceiveBean rb,Integer status){
 		boolean b = false;
 		Softdownloadstat downloadstat = new Softdownloadstat();
 		int soft_id = Integer.parseInt(rb.getSoft_id().trim());
@@ -320,17 +267,17 @@ public class ExperienceService {
 		Equipment equipment = getSingleEquipment(rb);
 		Users employee = getSingleEmployee(rb);
 		if(equipment == null){
-			return false;
+			return null;
 		}
 		
 		if(employee == null){
-			return false;
+			return null;
 		}
 		downloadstat.setAddTime(new Date());
+		
 		Downloadtype downloadtype =new  Downloadtype();
 		downloadtype.setId(download_type_id);
 		downloadstat.setDownloadtype(downloadtype);
-		//downloadstat.set.setDownloadUrl(rb.getSoft_download_url());
 		
 		downloadstat.setUsers(employee);
 		downloadstat.setEquipment(equipment);
@@ -340,16 +287,20 @@ public class ExperienceService {
 		downloadstat.setPhonetype(phonetype);
 		Soft softinfo = experienceDAO.findById(Soft.class, soft_id);
 		downloadstat.setSoft(softinfo);
+		
+		downloadstat.setCompleteTime(new Date());
+		downloadstat.setStatus(status);
+		
 		try {
 			experienceDAO.save(downloadstat);
 			Download d = softinfo.getDownload();
 			d.setDownloadCount(d.getDownloadCount()+1);
 			experienceDAO.save(d);
-			return true;
+			return downloadstat;
 		} catch (RuntimeException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
+			return null;
 		}
 	}
 	
