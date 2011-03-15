@@ -43,6 +43,24 @@ public class JsonSoftDownloadStat {
 	@Sync(value = "equipment.bissinusshall.channel.channelName")
 	String channelName;
 	
+	@Sync(value = "completeTime")
+	String completeTime;
+
+	@Sync(value = "status")
+	String status;
+	
+	public String getCompleteTime() {
+		return completeTime;
+	}
+	public void setCompleteTime(String completeTime) {
+		this.completeTime = completeTime;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getChannelName() {
 		return channelName;
 	}
