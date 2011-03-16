@@ -234,6 +234,7 @@ public class ExperienceService {
 					continue;
 				}
 				downloadstat.setStatus(1);
+				downloadstat.setCompleteTime(new Date());
 				experienceDAO.update(downloadstat);
 			}
 			return true;
