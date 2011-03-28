@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Ext Carousel Example</title>		
+        
+    	
+    	<link href="carousel.css" rel="stylesheet" />
+        
+    	<link type="text/css" rel="stylesheet" href="../ext/3.2.1/resources/css/ext-all.css"/>
+		<script type="text/javascript" src="../ext/3.2.1/adapter/ext/ext-base.js"></script>
+		<script type="text/javascript" src="../ext/3.2.1/ext-all.js"></script>
+        <script src="carousel.js"></script>
+        
+        <script>
+            Ext.onReady(function() {
+                new Ext.ux.Carousel('simple-example');
+            })
+        </script>
+        
+        <style>
+            div.item {
+                padding: 20px;
+            }            
+        </style>
+    </head>
+
+    <body>
+    	<h2>Example</h2>
+    
+    	<h3>Simple configuration</h3>
+        <div id="simple-example" style="padding: 5px; height: 355px; width: 238px; background-color: #E6E6E0">
+    		<img src="slides/a00001.png" title="Masterpiece" style="height: 355px; width: 238px;">
+            <img src="slides/a00001.png" title="Teeth" style="height: 355px; width: 238px;">
+            <img src="slides/a00001.png" title="Roar" style="height: 355px; width: 238px;">
+            <img src="slides/a00001.png" title="Feed me" style="height: 355px; width: 238px;">
+            <img src="slides/a00001.png" title="Debugging" style="height: 355px; width: 238px;">
+            <img src="slides/a00001.png" title="Baby" style="height: 355px; width: 238px;">
+        </div>
+        
+      
+    </body>
+</html>

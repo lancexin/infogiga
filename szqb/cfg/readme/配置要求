@@ -1,0 +1,4 @@
+开发工具：MyEclipse6.5
+数据库：Mysql
+用到的技术:spring mvc,hibernate,xfire,freemarker
+浏览器需求：需要支持javascript ie6,ie7,ie8,firefox,chrome,opera

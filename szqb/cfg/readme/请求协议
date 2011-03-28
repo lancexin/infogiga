@@ -1,0 +1,132 @@
+通信协议为http协议,内容承载方式xml
+通信接口只有一个,类似: http://localhost:8080/szqb/m
+
+
+-------------------------------------------------------
+<!-- 请求：获得读物类别 -->
+<msg>
+	<type>1</type>  <!-- 操作类型 -->
+</msg>
+
+<!-- 返回：获得读物类别 -->
+<msg>
+	<readtype>
+		<ID>1</ID><!-- 读物类别id -->
+		<typeName>报纸</typeName><!-- 类别名称 -->
+		<shortName>bz</shortName><!-- 类别缩写 -->
+	</readtype>
+
+	<readtype>
+		<ID>2</ID>
+		<typeName>杂志</typeName>
+		<shortName>zz</shortName>
+	</readtype>
+	....
+</msg>
+
+-------------------------------------------------------
+
+<!-- 请求：根据根据读物类别id获得读物物 -->
+<msg>
+	<type>2</type> <!-- 操作类型 -->
+	<readtypeID>0</readtypeID>  <!-- 期刊id,如果为0则获取全部 -->
+</msg>
+
+<!-- 返回：根据期刊id获得读物 -->
+<msg>
+	<reader>
+		<ID>1</ID> <!-- 读物id -->
+		<readerName>深圳侨报</readerName><!-- 读物名称 -->
+		<shortName>qb</shortName><!-- 读物缩写 -->
+		<readtypeID>1</readtypeID><!-- 读物类别id -->
+		<pic></pic><!-- 读物图片(主要是为了后期扩展,前期没有为空) -->
+	</reader>
+	
+	<reader>
+		<ID>2</ID>
+		<readerName>人民日报</readerName>
+		<shortName>rmrb</shortName>
+		<readtypeID>1</readtypeID>
+		<pic></pic>
+	</reader>
+	.....
+</msg>
+
+--------------------------------------------------------
+
+<!-- 请求：根据读物id获得期刊列表 -->
+<msg>
+	<type>3</type>
+	<readerID>0</readerID>  <!-- 读物id,如果为0则获取全部 -->
+	<start>0</start> <!-- 从第几个开始返回 -->
+	<limit>10</limit> <!-- 每次返回几个,0则返回全部 -->
+</msg>
+
+<!-- 返回：根据读物id获得期刊列表,根据出版时间降序排序 -->
+
+<msg>
+	<periodical>
+		<ID>1</ID><!-- 期刊id -->
+		<number>1234</number><!-- 刊号 -->
+		<shortName>bz_qb_20110112_1234</shortName><!-- 缩写 -->
+		<periodicalName>深圳侨报20110112第1234刊</periodicalName><!-- 期刊中文名 -->
+		<readerID>1</readerID><!-- 读物id -->
+		<indexPic>http://localhost/pic/bz_qb_20110112_1234_index.png</indexPic><!-- 首页图片地址(用于程序首页显示的图片) -->
+		<tabloidPic>http://localhost/pic/bz_qb_20110112_1234_tabloid.png</tabloidPic><!-- 读物缩略图片地址(用于书架上图片展示) -->
+		<attachmentUrl>http://localhost/zip/bz_qb_20110112_1234.zip</attachmentUrl><!-- 附件下载的地址 -->
+		<attachmentMD5></attachmentMD5><!-- 附件的md5码已确定附件是否下载完整 -->
+		<publishTime>2011-01-12</publishTime><!-- 出版日期 -->
+		<status>2</status><!-- 期刊状态 未完成0，待审核1，已发布2(主要是为了后期扩展,前期没用) -->
+	</periodical>
+	.....
+</msg>
+-------------------------------------------------------
+<!-- 请求：期刊下载图片信息 -->
+<msg>
+	<type>4</type>
+	<periodicalID>1</periodicalID>  <!-- 期刊id -->
+</msg>
+
+<!-- 返回：期刊下载图片信息 -->
+<msg>
+	<page>
+		<imgUrl>http://localhost/pic/bz_qb_20110112_1234_1.png</imgUrl>
+		<imgMD5>aaaaaaaaaaaaaaaaa</imgMD5>
+		<periodicalID>1</periodicalID>
+	</page>
+	
+	<page>
+		<imgUrl>http://localhost/pic/bz_qb_20110112_1234_2.png</imgUrl>
+		<imgMD5>aaaaaaaaaaaaaaaaa</imgMD5>
+		<periodicalID>1</periodicalID>
+	</page>
+	......
+</msg>
+----------------------------------------------------------
+
+
+约定：
+图片文件名格式：
+bz_qb_20110112_1234_1.png
+读物类别缩写_读物名称缩写_出版时间_刊号_页码.后缀名
+
+
+压缩包文件名格式：（后期可能考虑压缩包下载的方式）
+bz_qb_20110112_1234.zip
+读物类别缩写_读物名称缩写_出版时间_刊号.后缀名
+
+
+首页图片地址文件名格式：
+bz_qb_20110112_1234_index.png
+读物类别缩写_读物名称缩写_出版时间_刊号_index.后缀名
+
+
+缩略图片地址文件名格式：
+bz_qb_20110112_1234_tabloid.png
+读物类别缩写_读物名称缩写_出版时间_刊号_tabloid.后缀名
+-------------------------------------------------------
+其它内容：
+1.首页图片的大小，文件格式等需要确定
+2.缩略图片的大小，文件格式等需要确定
+
+
