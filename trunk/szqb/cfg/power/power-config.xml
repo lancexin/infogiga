@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<power>
+	<menu>
+		<code>A</code>
+		<name>系统管理</name>
+		<item_list>
+			<item>
+				<code>A_1</code>
+				<name>权限管理</name>
+				<url><![CDATA[p?powerList]]></url>
+				<isframe>false</isframe>
+			</item>
+
+			<item>
+				<code>A_2</code>
+				<name>管理员管理</name>
+				<url><![CDATA[p?adminList]]></url>
+				<isframe>false</isframe>
+			</item>
+		</item_list>
+	</menu>
+	<menu>
+		<code>B</code>
+		<name>读物管理</name>
+		<item_list>
+			<item>
+				<code>B_1</code>
+				<name>基本信息管理</name>
+				<url><![CDATA[p?baseinfo]]></url>
+				<isframe>false</isframe>
+			</item>
+			<item>
+				<code>B_2</code>
+				<name>刊物发布</name>
+				<url><![CDATA[p?addPeriodical]]></url>
+				<isframe>true</isframe>
+			</item>
+			<item>
+				<code>B_3</code>
+				<name>刊物列表</name>
+				<url><![CDATA[p?periodicalList]]></url>
+				<isframe>false</isframe>
+			</item>
+			
+		</item_list>
+	</menu>
+	
+</power>
